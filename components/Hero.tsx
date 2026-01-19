@@ -3,6 +3,7 @@
 import { type Locale } from '@/i18n';
 import { getMessages } from '@/i18n';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from 'react';
 
@@ -82,23 +83,26 @@ export default function Hero({ locale }: HeroProps) {
           {/* Navigation - Hidden on mobile, shown on desktop */}
           <nav className="hidden lg:flex items-center gap-6 font-cabinet bg-white/10 backdrop-blur-sm rounded-full px-8 py-3">
             {[
-              { href: "#", label: t.nav.home },
-              { href: "#", label: t.nav.about },
-              { href: "#", label: t.nav.services },
-              { href: "#", label: t.nav.tours },
-              { href: "#", label: t.nav.medical },
-              { href: "#", label: t.nav.contact },
+              { href: `/${locale}`, label: t.nav.home },
+              { href: `/${locale}/about-us`, label: t.nav.about },
+              { href: `/${locale}/our-services`, label: t.nav.services },
+              { href: `/${locale}/tours`, label: t.nav.tours },
+              { href: `/${locale}/medical-tourism`, label: t.nav.medical },
+              { href: `/${locale}/contact-us`, label: t.nav.contact },
             ].map((link, index) => (
-              <motion.a
+              <motion.div
                 key={index}
-                href={link.href}
-                className={`text-white hover:text-secondary transition-colors text-sm`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 + (index * 0.05) }}
               >
-                {link.label}
-              </motion.a>
+                <Link
+                  href={link.href}
+                  className={`text-white hover:text-secondary transition-colors text-sm`}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
