@@ -4,6 +4,7 @@ import Team from "@/components/Team";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
 import Image from "next/image";
+import AboutHero from "@/components/AboutHero";
 
 export default async function AboutUs({
     params,
@@ -19,30 +20,7 @@ export default async function AboutUs({
             <Navbar locale={locale} />
 
             {/* Hero Section */}
-            <section className="relative h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
-                {/* Background Image */}
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop"
-                        alt="About us background"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                    {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-black/50" />
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-cabinet mb-4 md:mb-6 text-white">
-                        About us
-                    </h1>
-                    <p className="text-base md:text-lg lg:text-xl font-satoshi text-white/90 max-w-2xl mx-auto">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </p>
-                </div>
-            </section>
+            <AboutHero locale={locale} />
 
             {/* Our Story Section */}
             <section className="py-16 md:py-24 px-6 bg-white">
