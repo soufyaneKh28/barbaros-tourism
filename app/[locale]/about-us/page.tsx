@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Team from "@/components/Team";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
 import Image from "next/image";
@@ -18,14 +19,146 @@ export default async function AboutUs({
             <Navbar locale={locale} />
 
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-primary-700 to-primary-900 text-white py-20 px-6">
-                <div className="max-w-7xl mx-auto">
-                    <h1 className="text-5xl font-bold font-cabinet mb-6">About Barbaros Tourism</h1>
-                    <p className="text-xl font-satoshi max-w-3xl">
-                        Your trusted partner for unforgettable experiences in Türkiye. We specialize in creating memorable journeys and providing world-class medical tourism services.
+            <section className="relative h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop"
+                        alt="About us background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/50" />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-cabinet mb-4 md:mb-6 text-white">
+                        About us
+                    </h1>
+                    <p className="text-base md:text-lg lg:text-xl font-satoshi text-white/90 max-w-2xl mx-auto">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     </p>
                 </div>
             </section>
+
+            {/* Our Story Section */}
+            <section className="py-16 md:py-24 px-6 bg-white">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                        {/* Left Content */}
+                        <div className="order-2 lg:order-1">
+                            <span className="text-primary font-bold font-cabinet text-sm uppercase tracking-wide mb-4 block">
+                                OUR STORY
+                            </span>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-cabinet mb-6 text-gray-900 leading-tight">
+                                It feels like family<br />
+                                (because it is)
+                            </h2>
+                            <p className="text-gray-600 font-satoshi leading-relaxed mb-4">
+                                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                            </p>
+                            <p className="text-gray-600 font-satoshi leading-relaxed mb-8">
+                                If you are going to use a passage of Lorem Ipsum
+                            </p>
+                            <button className="border-2 border-primary text-primary px-8 py-3 rounded-full font-bold font-cabinet hover:bg-primary hover:text-white transition-colors">
+                                Read more
+                            </button>
+                        </div>
+
+                        {/* Right Images */}
+                        <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
+                            {/* Left Image - Team at sunset */}
+                            <div className="relative h-[280px] md:h-[350px] lg:h-[400px] rounded-2xl overflow-hidden">
+                                <Image
+                                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop"
+                                    alt="Team collaboration"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                            {/* Right Image - Office workspace */}
+                            <div className="relative h-[280px] md:h-[350px] lg:h-[400px] rounded-2xl overflow-hidden">
+                                <Image
+                                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
+                                    alt="Office workspace"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Stats Section */}
+            <section className="relative py-20 px-6 overflow-hidden">
+                {/* Background Pattern - World Map effect */}
+                <div className="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center z-0">
+                    <svg width="100%" height="100%" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="200" cy="150" r="2" fill="currentColor" />
+                        <circle cx="220" cy="160" r="2" fill="currentColor" />
+                        <circle cx="240" cy="140" r="2" fill="currentColor" />
+                        <circle cx="260" cy="155" r="2" fill="currentColor" />
+                        <circle cx="280" cy="145" r="2" fill="currentColor" />
+                        <circle cx="300" cy="165" r="2" fill="currentColor" />
+                        <circle cx="320" cy="175" r="2" fill="currentColor" />
+                        <circle cx="340" cy="185" r="2" fill="currentColor" />
+                        <circle cx="400" cy="200" r="2" fill="currentColor" />
+                        <circle cx="420" cy="210" r="2" fill="currentColor" />
+                        <circle cx="440" cy="190" r="2" fill="currentColor" />
+                        <circle cx="460" cy="205" r="2" fill="currentColor" />
+                        <circle cx="480" cy="195" r="2" fill="currentColor" />
+                        <circle cx="500" cy="215" r="2" fill="currentColor" />
+                        <circle cx="600" cy="100" r="2" fill="currentColor" />
+                        <circle cx="620" cy="110" r="2" fill="currentColor" />
+                        <circle cx="640" cy="90" r="2" fill="currentColor" />
+                        <circle cx="660" cy="105" r="2" fill="currentColor" />
+                        <circle cx="680" cy="95" r="2" fill="currentColor" />
+                        <circle cx="700" cy="115" r="2" fill="currentColor" />
+                        <circle cx="800" cy="250" r="2" fill="currentColor" />
+                        <circle cx="820" cy="260" r="2" fill="currentColor" />
+                        <circle cx="840" cy="240" r="2" fill="currentColor" />
+                        <circle cx="860" cy="255" r="2" fill="currentColor" />
+                        <circle cx="880" cy="245" r="2" fill="currentColor" />
+                        <circle cx="900" cy="265" r="2" fill="currentColor" />
+                    </svg>
+                </div>
+
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="text-center mb-16">
+                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-cabinet text-primary mb-4">
+                            We’re here to introduce you to all<br />the places out there
+                        </h2>
+                        <p className="text-gray-500 font-satoshi max-w-2xl mx-auto">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            { value: "10,000+", label: "Happy customers" },
+                            { value: "5,000+", label: "Tours and activities" },
+                            { value: "30+", label: "Countries around the globe" },
+                            { value: "200+", label: "Local Partners" },
+                        ].map((stat, index) => (
+                            <div key={index} className="bg-white border border-secondary/30 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+                                <div className="text-4xl font-bold font-cabinet text-secondary mb-2">
+                                    {stat.value}
+                                </div>
+                                <div className="text-gray-600 font-satoshi font-medium">
+                                    {stat.label}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Team Section */}
+            <Team />
 
             {/* Mission & Vision */}
             <section className="py-20 px-6">

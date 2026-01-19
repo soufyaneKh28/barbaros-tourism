@@ -26,7 +26,7 @@ export default function Navbar({ locale, transparent = false }: NavbarProps) {
     ];
 
     return (
-        <header className={`w-full px-6 py-6 lg:px-12 ${transparent ? 'absolute top-0 left-0 right-0 z-20' : 'bg-white shadow-sm'}`}>
+        <header className={`w-full px-6 py-6 lg:px-12 relative z-50 ${transparent ? '' : 'bg-white shadow-sm'}`}>
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Logo */}
                 <motion.div
@@ -127,8 +127,8 @@ function LanguageSelector({ locale, transparent }: { locale: Locale; transparent
     return (
         <div className="relative group">
             <button className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-200 font-cabinet backdrop-blur-sm ${transparent
-                    ? 'border-white/30 text-white hover:border-white/50'
-                    : 'border-gray-300 text-gray-700 hover:border-gray-400'
+                ? 'border-white/30 text-white hover:border-white/50'
+                : 'border-gray-300 text-gray-700 hover:border-gray-400'
                 }`}>
                 <span className="text-sm font-medium lowercase">{locale}</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

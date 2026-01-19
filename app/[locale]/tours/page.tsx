@@ -2,9 +2,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Destinations from "@/components/Destinations";
 import HotDeals from "@/components/HotDeals";
+import TourCarousel from "@/components/TourCarousel";
+import ToursHero from "@/components/ToursHero";
+import ToursExperience from "@/components/ToursExperience";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
 import Image from "next/image";
+import Link from 'next/link';
 
 export default async function Tours({
     params,
@@ -15,165 +19,241 @@ export default async function Tours({
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
     const t = getMessages(locale);
 
+    const dailyTours = [
+        {
+            id: 1,
+            title: "Istanbul Old City Tour",
+            description: "Visit Hagia Sophia, Blue Mosque, and the Grand Bazaar in a comprehensive day trip.",
+            image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=800&auto=format&fit=crop",
+            price: "$45",
+            tags: ["Daily", "History", "Istanbul"],
+            link: "/tours/istanbul-old-city"
+        },
+        {
+            id: 2,
+            title: "Bosphorus Dinner Cruise",
+            description: "Enjoy a magical evening on the Bosphorus with dinner, drinks, and traditional shows.",
+            image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=800&auto=format&fit=crop",
+            price: "$60",
+            tags: ["Evening", "Dinner", "Cruise"],
+            link: "/tours/bosphorus-cruise"
+        },
+        {
+            id: 3,
+            title: "Cappadocia North Tour",
+            description: "Explore Goreme Open Air Museum, Devrent Valley, and Pasabag fairy chimneys.",
+            image: "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=800&auto=format&fit=crop",
+            price: "$55",
+            tags: ["Daily", "Nature", "Cappadocia"],
+            link: "/tours/cappadocia-north"
+        },
+        {
+            id: 4,
+            title: "Princes' Islands Trip",
+            description: "Escape the city bustle with a peaceful full-day trip to Buyukada island.",
+            image: "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?q=80&w=800&auto=format&fit=crop",
+            price: "$40",
+            tags: ["Full Day", "Island", "Relax"],
+            link: "/tours/princes-islands"
+        }
+    ];
+
+    const topDestinations = [
+        {
+            id: 101,
+            title: "Antalya Coastal Escape",
+            description: "Turquoise waters, ancient ruins, and luxury resorts await in the heart of the Turkish Riviera.",
+            image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=800&auto=format&fit=crop",
+            tags: ["Beach", "Luxury", "History"],
+            link: "/destinations/antalya"
+        },
+        {
+            id: 102,
+            title: "Bodrum Yacht Life",
+            description: "Experience the vibrant nightlife and crystal-clear bays of Turkey's most famous coastal town.",
+            image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800&auto=format&fit=crop",
+            tags: ["Sun", "Sea", "Nightlife"],
+            link: "/destinations/bodrum"
+        },
+        {
+            id: 103,
+            title: "Ephesus & Pamukkale",
+            description: "Journey through time at the ancient city of Ephesus and bathe in the white travertine pools.",
+            image: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6?q=80&w=800&auto=format&fit=crop",
+            tags: ["UNESCO", "Thermal", "Discovery"],
+            link: "/destinations/ephesus-pamukkale"
+        },
+        {
+            id: 104,
+            title: "Trabzon & Black Sea",
+            description: "Discover the lush green landscapes, tea plantations, and Sumela Monastery.",
+            image: "https://images.unsplash.com/photo-1606733900350-0a2a4b878207?q=80&w=800&auto=format&fit=crop",
+            tags: ["Nature", "Tea", "History"],
+            link: "/destinations/trabzon"
+        }
+    ];
+
+    const medicalPackages = [
+        {
+            id: 201,
+            title: "VIP Hair Restoration",
+            description: "All-inclusive FUE hair transplant package with 5-star accommodation and VIP transfers.",
+            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop",
+            price: "From $1500",
+            tags: ["Medical", "Hair", "VIP"],
+            link: "/medical-tourism/hair-transplant"
+        },
+        {
+            id: 202,
+            title: "Smile Design Makeover",
+            description: "Transform your smile with Hollywood veneers and professional dental care in Istanbul.",
+            image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=800&auto=format&fit=crop",
+            price: "From $2000",
+            tags: ["Dental", "Aesthetics", "Care"],
+            link: "/medical-tourism/dental"
+        },
+        {
+            id: 203,
+            title: "Rhinoplasty Excellence",
+            description: "World-class surgical expertise and comprehensive post-op recovery care.",
+            image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=800&auto=format&fit=crop",
+            price: "From $2500",
+            tags: ["Surgery", "Cosmetic", "Safety"],
+            link: "/medical-tourism/rhinoplasty"
+        },
+        {
+            id: 204,
+            title: "Executive Health Check",
+            description: "Full body screening using the latest diagnostic technology in top hospitals.",
+            image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop",
+            price: "From $800",
+            tags: ["Health", "Prevention", "Screening"],
+            link: "/medical-tourism/checkup"
+        }
+    ];
+
+    const adventureTours = [
+        {
+            id: 301,
+            title: "Hot Air Balloon Flight",
+            description: "Soar over the otherworldly landscape of Cappadocia at sunrise for a once-in-a-lifetime view.",
+            image: "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=800&auto=format&fit=crop",
+            price: "$180",
+            tags: ["Aerial", "Adventure", "Landscape"],
+            link: "/tours/balloon-flight"
+        },
+        {
+            id: 302,
+            title: "Taurus Mountain Jeep Safari",
+            description: "Off-road adventure through rugged mountain trails, local villages, and hidden valleys.",
+            image: "https://images.unsplash.com/photo-1533519107127-143d748d7e00?q=80&w=800&auto=format&fit=crop",
+            price: "$75",
+            tags: ["Off-road", "Jeep", "Mountains"],
+            link: "/tours/jeep-safari"
+        },
+        {
+            id: 303,
+            title: "Oludeniz Paragliding",
+            description: "Experience the thrill of tandem paragliding over the world-famous Blue Lagoon.",
+            image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800&auto=format&fit=crop",
+            price: "$120",
+            tags: ["Extreme", "Aerial", "Ocean"],
+            link: "/tours/paragliding"
+        },
+        {
+            id: 304,
+            title: "Kas Scuba Diving",
+            description: "Explore crystal-clear waters, ancient shipwrecks, and vibrant marine life in the Mediterranean.",
+            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop",
+            price: "$90",
+            tags: ["Diving", "Underwater", "Discovery"],
+            link: "/tours/diving"
+        }
+    ];
+
     return (
-        <>
-            <Navbar locale={locale} />
+        <div className="bg-white">
+            <Navbar locale={locale} transparent={false} />
 
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white py-20 px-6">
-                <div className="max-w-7xl mx-auto">
-                    <h1 className="text-5xl font-bold font-cabinet mb-6">Explore Türkiye</h1>
-                    <p className="text-xl font-satoshi max-w-3xl">
-                        Discover the magic of Türkiye with our carefully curated tours. From ancient ruins to
-                        modern marvels, experience the best this beautiful country has to offer.
-                    </p>
-                </div>
-            </section>
+            <ToursHero locale={locale} />
+
+            {/* Daily Tours Carousel */}
+            <TourCarousel
+                badge="DAILY TOURS"
+                title="Short & Sweet Adventures"
+                description="Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots."
+                items={dailyTours}
+                locale={locale}
+            />
+
+            {/* Top Destinations Carousel (Dark Mode) */}
+            <TourCarousel
+                badge="TOP DESTINATIONS"
+                title="Where Every Journey Matters"
+                description="Join thousands of travelers who have discovered the magic of these iconic Turkish locations."
+                items={topDestinations}
+                locale={locale}
+                dark={true}
+            />
 
             {/* Hot Deals */}
             <HotDeals />
 
-            {/* Destinations */}
+            {/* Medical Tourism Packages Carousel */}
+            <TourCarousel
+                badge="MEDICAL PACKAGES"
+                title="Combine Care with Travel"
+                description="Premium medical services combined with luxury travel experiences. Your health and comfort are our priority."
+                items={medicalPackages}
+                locale={locale}
+            />
+
+            {/* Adventure Tours Carousel */}
+            <TourCarousel
+                badge="ADVENTURE"
+                title="Push Your Boundaries"
+                description="For the thrill-seekers and nature lovers. Experience Türkiye from new perspectives."
+                items={adventureTours}
+                locale={locale}
+                dark={true}
+            />
+
+            {/* Destinations grid (from home for SEO/internal linking) */}
             <Destinations />
 
-            {/* Tour Categories */}
-            <section className="py-20 px-6 bg-gray-50">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl font-bold font-cabinet text-center mb-12 text-gray-900">Tour Categories</h2>
+            {/* What's Included / Experience Section */}
+            <ToursExperience />
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            {
-                                title: "Historical Tours",
-                                image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=400&auto=format&fit=crop",
-                                description: "Explore ancient civilizations and Ottoman heritage"
-                            },
-                            {
-                                title: "Nature & Adventure",
-                                image: "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=400&auto=format&fit=crop",
-                                description: "Hot air balloons, hiking, and natural wonders"
-                            },
-                            {
-                                title: "Coastal Getaways",
-                                image: "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?q=80&w=400&auto=format&fit=crop",
-                                description: "Beautiful beaches and Mediterranean charm"
-                            },
-                            {
-                                title: "City Experiences",
-                                image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=400&auto=format&fit=crop",
-                                description: "Urban culture, shopping, and nightlife"
-                            },
-                        ].map((category, index) => (
-                            <div key={index} className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all cursor-pointer">
-                                <div className="relative h-64">
-                                    <Image
-                                        src={category.image}
-                                        alt={category.title}
-                                        fill
-                                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                                </div>
-                                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                    <h3 className="text-2xl font-bold font-cabinet mb-2">{category.title}</h3>
-                                    <p className="text-sm font-satoshi text-white/90">{category.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+            {/* Final CTA */}
+            <section className="py-24 px-6 relative overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2071&auto=format&fit=crop"
+                        alt="CTA background"
+                        fill
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-primary/90 mix-blend-multiply" />
                 </div>
-            </section>
 
-            {/* What's Included */}
-            <section className="py-20 px-6">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl font-bold font-cabinet text-center mb-12 text-gray-900">What's Included in Our Tours</h2>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {[
-                            {
-                                icon: (
-                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
-                                ),
-                                title: "Expert Guides",
-                                description: "Professional, knowledgeable guides fluent in multiple languages"
-                            },
-                            {
-                                icon: (
-                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                                    </svg>
-                                ),
-                                title: "Accommodation",
-                                description: "Comfortable hotels and resorts carefully selected for quality"
-                            },
-                            {
-                                icon: (
-                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                                    </svg>
-                                ),
-                                title: "Transportation",
-                                description: "All transfers and travel between destinations included"
-                            },
-                            {
-                                icon: (
-                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                ),
-                                title: "Flexible Schedule",
-                                description: "Customizable itineraries to match your preferences"
-                            },
-                            {
-                                icon: (
-                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                                    </svg>
-                                ),
-                                title: "Entry Tickets",
-                                description: "Skip the lines with pre-arranged entrance fees"
-                            },
-                            {
-                                icon: (
-                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                                    </svg>
-                                ),
-                                title: "24/7 Support",
-                                description: "Round-the-clock assistance throughout your journey"
-                            },
-                        ].map((item, index) => (
-                            <div key={index} className="flex gap-4">
-                                <div className="flex-shrink-0 w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center text-primary-700">
-                                    {item.icon}
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold font-cabinet mb-2 text-gray-900">{item.title}</h3>
-                                    <p className="text-gray-600 font-satoshi">{item.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA */}
-            <section className="py-20 px-6 bg-gradient-to-r from-primary-700 to-primary-900 text-white">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-4xl font-bold font-cabinet mb-6">Start Planning Your Adventure</h2>
-                    <p className="text-xl font-satoshi mb-8">
-                        Let us help you create unforgettable memories in Türkiye. Contact our team today!
+                <div className="max-w-4xl mx-auto text-center relative z-10 text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold font-cabinet mb-8">Ready to Write Your <br /> Turkish Story?</h2>
+                    <p className="text-xl font-satoshi mb-12 text-white/80">
+                        Join over 10,000 happy travelers who trusted Barbaros Tourism for their Turkish adventure.
                     </p>
-                    <a href={`/${locale}/contact-us`} className="inline-block bg-white text-primary-700 px-8 py-4 rounded-lg font-bold font-cabinet hover:bg-gray-100 transition-colors">
-                        Get in Touch
-                    </a>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link href={`/${locale}/contact-us`} className="bg-secondary text-primary px-10 py-4 rounded-full font-bold font-cabinet hover:bg-white transition-all duration-300 shadow-xl">
+                            Plan Your Trip
+                        </Link>
+                        <Link href={`/${locale}/medical-tourism`} className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 rounded-full font-bold font-cabinet hover:bg-white/20 transition-all duration-300">
+                            Medical Inquiries
+                        </Link>
+                    </div>
                 </div>
             </section>
 
             <Footer />
-        </>
+        </div>
     );
 }
