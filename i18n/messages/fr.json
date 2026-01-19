@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos de nous",
+    "services": "Nos services",
+    "tours": "Visites",
+    "medical": "Tourisme médical",
+    "contact": "Contactez-nous"
+  },
+  "hero": {
+    "tagline": "Services touristiques de confiance en Turquie",
+    "heading": "Barbaros Tourism Votre partenaire fiable en Turquie",
+    "description": "Solutions touristiques complètes en Turquie - des visites inoubliables aux services de tourisme médical de classe mondiale.",
+    "bookTrip": "Réservez votre voyage",
+    "exploreTours": "Explorer les visites",
+    "medicalTourism": "Tourisme médical"
+  }
+}
+
+

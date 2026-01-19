@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "services": "Our services",
+    "tours": "Tours",
+    "medical": "Medical tourism",
+    "contact": "Contact us"
+  },
+  "hero": {
+    "tagline": "Trusted Tourism Services in Turkey",
+    "heading": "Barbaros Tourism Your reliable partner in Türkiye",
+    "description": "Comprehensive tourism solutions in Türkiye - from unforgettable tours to world-class medical tourism services.",
+    "bookTrip": "Book your trip",
+    "exploreTours": "Explore tours",
+    "medicalTourism": "Medical tourism"
+  }
+}
+
+
