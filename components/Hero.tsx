@@ -304,6 +304,7 @@ export default function Hero({ locale }: HeroProps) {
 }
 
 function LanguageSelector({ locale }: { locale: Locale }) {
+  const [isOpen, setIsOpen] = useState(false);
   const languages = [
     { code: 'en' as const, label: 'EN' },
     { code: 'ar' as const, label: 'AR' },
@@ -312,25 +313,32 @@ function LanguageSelector({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <div className="relative group">
-      <button className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 text-white hover:border-white/50 transition-all duration-200 font-cabinet backdrop-blur-sm">
+    <div className="relative">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 text-white hover:border-white/50 transition-all duration-200 font-cabinet backdrop-blur-sm"
+      >
         <span className="text-sm font-medium lowercase">{locale}</span>
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      <div className="absolute right-0 top-full mt-2 w-32 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30">
-        {languages.map((lang) => (
-          <a
-            key={lang.code}
-            href={`/${lang.code}`}
-            className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
-              }`}
-          >
-            {lang.label}
-          </a>
-        ))}
-      </div>
+      {isOpen && (
+        <div className="absolute right-0 top-full pt-2 z-50">
+          <div className="w-32 bg-white rounded-lg shadow-lg">
+            {languages.map((lang) => (
+              <a
+                key={lang.code}
+                href={`/${lang.code}`}
+                className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
+                  }`}
+              >
+                {lang.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

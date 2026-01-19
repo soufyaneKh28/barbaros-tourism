@@ -117,6 +117,7 @@ export default function Navbar({ locale, transparent = false }: NavbarProps) {
 }
 
 function LanguageSelector({ locale, transparent }: { locale: Locale; transparent: boolean }) {
+    const [isOpen, setIsOpen] = useState(false);
     const languages = [
         { code: 'en' as const, label: 'EN' },
         { code: 'ar' as const, label: 'AR' },
@@ -125,30 +126,35 @@ function LanguageSelector({ locale, transparent }: { locale: Locale; transparent
     ];
 
     return (
-        <div className="relative group">
-            <button className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-200 font-cabinet backdrop-blur-sm ${transparent
-                ? 'border-white/30 text-white hover:border-white/50'
-                : 'border-gray-300 text-gray-700 hover:border-gray-400'
-                }`}>
+        <div className="relative">
+            <button 
+                onClick={() => setIsOpen(!isOpen)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-200 font-cabinet backdrop-blur-sm ${transparent
+                    ? 'border-white/30 text-white hover:border-white/50'
+                    : 'border-gray-300 text-gray-700 hover:border-gray-400'
+                }`}
+            >
                 <span className="text-sm font-medium lowercase">{locale}</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
-            <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30">
-                <div className="w-32 bg-white rounded-lg shadow-lg">
-                    {languages.map((lang) => (
-                        <Link
-                            key={lang.code}
-                            href={`/${lang.code}`}
-                            className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
-                                }`}
-                        >
-                            {lang.label}
-                        </Link>
-                    ))}
+            {isOpen && (
+                <div className="absolute right-0 top-full pt-2 z-50">
+                    <div className="w-32 bg-white rounded-lg shadow-lg">
+                        {languages.map((lang) => (
+                            <Link
+                                key={lang.code}
+                                href={`/${lang.code}`}
+                                className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
+                                    }`}
+                            >
+                                {lang.label}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
