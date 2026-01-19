@@ -135,17 +135,19 @@ function LanguageSelector({ locale, transparent }: { locale: Locale; transparent
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
-            <div className="absolute right-0 top-full mt-2 w-32 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30">
-                {languages.map((lang) => (
-                    <Link
-                        key={lang.code}
-                        href={`/${lang.code}`}
-                        className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
-                            }`}
-                    >
-                        {lang.label}
-                    </Link>
-                ))}
+            <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30">
+                <div className="w-32 bg-white rounded-lg shadow-lg">
+                    {languages.map((lang) => (
+                        <Link
+                            key={lang.code}
+                            href={`/${lang.code}`}
+                            className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
+                                }`}
+                        >
+                            {lang.label}
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );
