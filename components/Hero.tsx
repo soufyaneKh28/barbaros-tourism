@@ -21,6 +21,7 @@ const heroImages = [
 export default function Hero({ locale }: HeroProps) {
   const t = getMessages(locale);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -106,7 +107,7 @@ export default function Hero({ locale }: HeroProps) {
             ))}
           </nav>
 
-          {/* Language Selector & Book Button */}
+          {/* Language Selector & Mobile Menu Button */}
           <motion.div
             className="flex items-center gap-4"
             initial={{ opacity: 0, y: -20 }}
@@ -117,8 +118,56 @@ export default function Hero({ locale }: HeroProps) {
             <button className="hidden md:flex bg-primary hover:bg-primary-700 text-white px-6 py-3 rounded-full font-bold transition-colors font-cabinet text-[13px]">
               {t.hero.bookTrip}
             </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+              aria-label="Toggle menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </motion.div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.nav
+            className="lg:hidden mt-4 bg-white/95 backdrop-blur-md rounded-lg shadow-lg p-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {[
+              { href: `/${locale}`, label: t.nav.home },
+              { href: `/${locale}/about-us`, label: t.nav.about },
+              { href: `/${locale}/our-services`, label: t.nav.services },
+              { href: `/${locale}/tours`, label: t.nav.tours },
+              { href: `/${locale}/medical-tourism`, label: t.nav.medical },
+              { href: `/${locale}/contact-us`, label: t.nav.contact },
+            ].map((link, index) => (
+              <Link
+                key={index}
+                href={link.href}
+                className="block py-3 px-4 text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors font-cabinet"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <button className="w-full bg-primary hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-bold transition-colors font-cabinet text-sm">
+                {t.hero.bookTrip}
+              </button>
+            </div>
+          </motion.nav>
+        )}
       </header>
 
       {/* Main Content */}
@@ -139,7 +188,7 @@ export default function Hero({ locale }: HeroProps) {
 
             {/* Main Heading */}
             <motion.h1
-              className="lg:text-[48px] font-extrabold text-white mb-3 leading-[45px] max-w-[500px] font-cabinet drop-shadow-lg"
+              className="text-[28px] leading-[32px] lg:text-[48px] font-extrabold text-white mb-3 md:leading-[45px] max-w-[500px] font-cabinet drop-shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -214,7 +263,7 @@ export default function Hero({ locale }: HeroProps) {
           </motion.a>
         </div>
       </div>
-    </section>
+    </section >
   );
 }
 
