@@ -174,7 +174,7 @@ export default function Hero({ locale }: HeroProps) {
       </header>
 
       {/* Main Content */}
-      <div className="relative z-20 flex-1 flex items-center px-6 py-12 lg:px-12">
+      <div className="relative flex-1 flex items-center px-6 py-12 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
           <div className="max-w-2xl">
             {/* Tagline Badge */}
@@ -316,7 +316,7 @@ function LanguageSelector({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative z-50">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 text-white hover:border-white/50 transition-all duration-200 font-cabinet backdrop-blur-sm"
@@ -328,7 +328,7 @@ function LanguageSelector({ locale }: { locale: Locale }) {
       </button>
       {isOpen && (
         <div className="absolute right-0 top-full pt-2 z-50">
-          <div className="w-32 bg-white rounded-lg shadow-lg">
+          <div className="w-32 bg-white z-50 rounded-lg shadow-lg">
             {languages.map((lang) => (
               <a
                 key={lang.code}
