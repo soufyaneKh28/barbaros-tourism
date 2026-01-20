@@ -1,6 +1,7 @@
 import { getTrips } from '@/lib/services/trips'
 import Link from 'next/link'
-import { Plus, Search, Edit2, Trash2, MapPin, DollarSign, Calendar, Plane } from 'lucide-react'
+import { Plus, Search, MapPin, Plane } from 'lucide-react'
+import TripActions from '@/components/portal/TripActions'
 
 export default async function TripsPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
@@ -65,9 +66,9 @@ export default async function TripsPage({ params }: { params: Promise<{ locale: 
                         >
                             {/* Trip Image */}
                             <div className="relative h-56 bg-gray-100 overflow-hidden">
-                                {trip.images?.[0] ? (
+                                {trip.main_image || trip.images?.[0] ? (
                                     <img
-                                        src={trip.images[0]}
+                                        src={trip.main_image || trip.images[0]}
                                         alt={trip.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
@@ -82,6 +83,11 @@ export default async function TripsPage({ params }: { params: Promise<{ locale: 
                                         <MapPin className="w-4 h-4" />
                                         <span>{trip.destination?.name || 'No destination'}</span>
                                     </div>
+                                    {trip.trip_type && (
+                                        <div className="inline-block px-2 py-1 rounded bg-white/20 backdrop-blur-sm text-xs capitalize text-white">
+                                            {trip.trip_type}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
@@ -93,16 +99,11 @@ export default async function TripsPage({ params }: { params: Promise<{ locale: 
 
                                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                                     <div className="flex items-center gap-1.5 text-primary">
-                                        <span className="text-lg font-bold">${trip.price}</span>
+                                        <span className="text-lg font-bold">
+                                            {trip.price ? `$${trip.price}` : 'Free'}
+                                        </span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <button className="p-2 text-gray-500 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
-                                            <Edit2 className="w-4 h-4" />
-                                        </button>
-                                        <button className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                                            <Trash2 className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                                    <TripActions id={trip.id} />
                                 </div>
                             </div>
                         </div>
@@ -112,5 +113,3 @@ export default async function TripsPage({ params }: { params: Promise<{ locale: 
         </div>
     )
 }
-
-

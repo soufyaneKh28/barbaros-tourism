@@ -15,6 +15,17 @@ export async function getTrips() {
     return data
 }
 
+export async function getTripById(id: string) {
+    const { data, error } = await supabase
+        .from('trips')
+        .select('*')
+        .eq('id', id)
+        .single()
+
+    if (error) throw error
+    return data
+}
+
 export async function getTripBySlug(slug: string) {
     const { data, error } = await supabase
         .from('trips')
