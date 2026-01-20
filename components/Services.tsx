@@ -2,46 +2,52 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { type Locale, getMessages } from "@/i18n";
 
-const services = [
-    {
-        id: 0,
-        title: 'Integrated tourism services',
-        description: 'We provide integrated tourism services that include hotel reservations, airport reception, transportation, VIP services, and full support throughout your stay, to give you a worry-free and comfortable experience.',
-        image: '/images/generated/services_section_image.png',
-        icon: (active: boolean) => (
-            <svg className={`w-6 h-6 ${active ? 'text-white' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-            </svg>
-        )
-    },
-    {
-        id: 1,
-        title: 'Medical tourism',
-        description: 'Comprehensive medical tourism packages working with top hospitals and specialists to ensure the best care and recovery experience.',
-        image: '/images/generated/services_medical.png',
-        icon: (active: boolean) => (
-            <svg className={`w-6 h-6 ${active ? 'text-white' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-        )
-    },
-    {
-        id: 2,
-        title: 'Tours',
-        description: 'Unforgettable cultural and recreational tours to the most beautiful destinations in Türkiye, guided by local experts.',
-        image: '/images/generated/services_tours.png',
-        icon: (active: boolean) => (
-            <svg className={`w-6 h-6 ${active ? 'text-white' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
-        )
-    }
-];
+interface ServicesProps {
+    locale?: Locale;
+}
 
-export default function Services() {
+export default function Services({ locale = 'en' }: ServicesProps) {
+    const t = getMessages(locale);
     const [activeId, setActiveId] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
+
+    const services = [
+        {
+            id: 0,
+            title: t.home.services.items.integrated.title,
+            description: t.home.services.items.integrated.description,
+            image: '/images/generated/services_section_image.png',
+            icon: (active: boolean) => (
+                <svg className={`w-6 h-6 ${active ? 'text-white' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+            )
+        },
+        {
+            id: 1,
+            title: t.home.services.items.medical.title,
+            description: t.home.services.items.medical.description,
+            image: '/images/generated/services_medical.png',
+            icon: (active: boolean) => (
+                <svg className={`w-6 h-6 ${active ? 'text-white' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+            )
+        },
+        {
+            id: 2,
+            title: t.home.services.items.tours.title,
+            description: t.home.services.items.tours.description,
+            image: '/images/generated/services_tours.png',
+            icon: (active: boolean) => (
+                <svg className={`w-6 h-6 ${active ? 'text-white' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+            )
+        }
+    ];
 
     useEffect(() => {
         if (isPaused) return;
@@ -51,7 +57,7 @@ export default function Services() {
         }, 4000); // Switch every 4 seconds
 
         return () => clearInterval(interval);
-    }, [isPaused]);
+    }, [isPaused, services.length]);
 
     return (
         <section className="py-20 bg-white">
@@ -62,13 +68,12 @@ export default function Services() {
                     <div>
                         <div className="inline-block mb-6">
                             <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                                Our services
+                                {t.home.services.badge}
                             </span>
                         </div>
 
                         <h2 className="text-[36px] lg:text-[48px] leading-[1.1] font-cabinet font-bold text-primary mb-10">
-                            Integrated tourism solutions that meet all your needs in{' '}
-                            <span className="text-secondary">Türkiye</span>
+                            {t.home.services.heading}
                         </h2>
 
                         <div className="relative aspect-[4/3] w-full rounded-[32px] overflow-hidden shadow-lg">
@@ -88,9 +93,7 @@ export default function Services() {
                     {/* Right Column */}
                     <div className="lg:pt-20">
                         <p className="text-lg text-gray-600 mb-12 font-satoshi leading-relaxed">
-                            At Barbaros Tourism, we offer a full range of carefully designed tourism services,
-                            to guarantee you a comfortable, safe, and distinctive experience, whether you are
-                            looking for comprehensive travel services, medical tourism, or unforgettable tourist tours.
+                            {t.home.services.description}
                         </p>
 
                         {/* Accordion */}

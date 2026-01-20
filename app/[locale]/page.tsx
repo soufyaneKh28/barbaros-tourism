@@ -23,10 +23,10 @@ export default async function Home({
       <Services />
       <HotDeals />
       <Destinations />
-      <Testimonials />
+      <Testimonials locale={locale} />
       <VideoSection />
-      <Blogs />
-      <Footer />
+      <Blogs locale={locale} />
+      <Footer locale={locale} />
     </>
   );
 }

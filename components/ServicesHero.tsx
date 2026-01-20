@@ -4,19 +4,21 @@ import Image from 'next/image';
 import { motion } from 'motion/react';
 import CtaButton from './ui/CtaButton';
 import Navbar from './Navbar';
-import { type Locale } from "@/i18n";
+import { type Locale, getMessages } from "@/i18n";
 
 interface ServicesHeroProps {
     locale: Locale;
 }
 
 export default function ServicesHero({ locale }: ServicesHeroProps) {
+    const t = getMessages(locale);
+
     return (
-        <section className="relative m-2 rounded-[32px] overflow-hidden flex flex-col min-h-[600px] lg:min-h-[700px]">
+        <section className="relative m-2 rounded-[32px] overflow-hidden flex flex-col min-h-[600px] lg:min-h-[600px]">
             {/* Navbar integrated into Hero */}
-            <div className="absolute top-0 left-0 right-0 z-50">
+            {/* <div className="absolute top-0 left-0 right-0 z-50">
                 <Navbar locale={locale} transparent={true} />
-            </div>
+            </div> */}
 
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
@@ -44,7 +46,7 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     className="inline-block mb-8"
                 >
                     <span className="bg-secondary/90 backdrop-blur-md border border-white/20 rounded-full px-6 py-2 text-white font-bold font-cabinet text-xs tracking-widest uppercase">
-                        Comprehensive Solutions
+                        {t.servicesPage.hero.badge}
                     </span>
                 </motion.div>
 
@@ -55,8 +57,7 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="text-2xl md:text-2xl lg:text-5xl font-extrabold font-cabinet text-white mb-3 leading-[1] drop-shadow-2xl"
                 >
-                    Exceptional Services <br />
-                    <span className="text-secondary">for Your Journey</span>
+                    {t.servicesPage.hero.heading}
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -66,7 +67,7 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-xl md:text-lg text-white/95 font-satoshi leading-relaxed mb-12 max-w-3xl mx-auto drop-shadow-lg"
                 >
-                    From cultural treasures to world-class medical procedures, we provide end-to-end services to make your experience in Türkiye truly unforgettable.
+                    {t.servicesPage.hero.description}
                 </motion.p>
 
                 {/* CTA Button */}
@@ -77,7 +78,7 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     className="flex justify-center"
                 >
                     <CtaButton href={`/${locale}/contact-us`}>
-                        Start Your Experience
+                        {t.servicesPage.hero.cta}
                     </CtaButton>
                 </motion.div>
             </div>

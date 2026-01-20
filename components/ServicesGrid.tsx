@@ -3,32 +3,35 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
+import { type Locale, getMessages } from "@/i18n";
 
-const services = [
-    {
-        title: "Medical Tourism",
-        description: "Access world-class healthcare in Türkiye with our comprehensive medical tourism packages, combining treatment and recovery.",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop",
-        link: "/medical-tourism"
-    },
-    {
-        title: "Integrated Services",
-        description: "Experience hassle-free travel with our VIP transportation, luxury accommodation, and 24/7 dedicated support services.",
-        image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop",
-        link: "/our-services"
-    },
-    {
-        title: "Travel Tours",
-        description: "Discover the hidden gems of Türkiye with curated cultural tours, historical expeditions, and breathtaking adventure trips.",
-        image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop",
-        link: "/tours"
-    }
-];
+interface ServicesGridProps {
+    locale?: Locale;
+}
 
-export default function ServicesGrid() {
-    const pathname = usePathname();
-    const locale = pathname?.split('/')[1] || 'en';
+export default function ServicesGrid({ locale = 'en' }: ServicesGridProps) {
+    const t = getMessages(locale);
+
+    const services = [
+        {
+            title: t.home.services.items.medical.title,
+            description: t.home.services.items.medical.description,
+            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop",
+            link: "/medical-tourism"
+        },
+        {
+            title: t.home.services.items.integrated.title,
+            description: t.home.services.items.integrated.description,
+            image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop",
+            link: "/our-services"
+        },
+        {
+            title: t.home.services.items.tours.title,
+            description: t.home.services.items.tours.description,
+            image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop",
+            link: "/tours"
+        }
+    ];
 
     return (
         <section className="py-24 px-6 bg-[#F9FAFB]">
@@ -42,7 +45,7 @@ export default function ServicesGrid() {
                         viewport={{ once: true }}
                         className="text-secondary font-bold font-cabinet text-sm tracking-[0.2em] uppercase block mb-4"
                     >
-                        OUR SERVICES
+                        {t.home.services.badge}
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
@@ -51,7 +54,7 @@ export default function ServicesGrid() {
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-bold font-cabinet text-primary mb-6"
                     >
-                        What our company provides
+                        {t.home.services.heading}
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
@@ -60,8 +63,7 @@ export default function ServicesGrid() {
                         viewport={{ once: true }}
                         className="text-gray-600 font-satoshi text-lg leading-relaxed"
                     >
-                        We offer specialized solutions tailored to your unique travel and healthcare needs,
-                        ensuring every detail of your journey in Türkiye is perfectly managed.
+                        {t.home.services.description}
                     </motion.p>
                 </div>
 

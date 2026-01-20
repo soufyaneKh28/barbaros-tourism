@@ -1,9 +1,14 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
+import { type Locale, getMessages } from '@/i18n';
 
-export default function Footer() {
+interface FooterProps {
+    locale?: Locale;
+}
+
+export default function Footer({ locale = 'en' }: FooterProps) {
+    const t = getMessages(locale);
+
     return (
         <footer className="bg-secondary text-white pt-20 pb-10 rounded-t-[40px] mt-20">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -11,7 +16,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
                     {/* Column 1: Logo & About */}
                     <div className="flex flex-col gap-6">
-                        <a href="/" className="inline-block">
+                        <a href={`/${locale}`} className="inline-block">
                             <Image
                                 src="/images/logo.png"
                                 alt="Barbaros Tourism Logo"
@@ -21,7 +26,7 @@ export default function Footer() {
                             />
                         </a>
                         <p className="text-white/80 font-satoshi text-sm leading-relaxed max-w-xs">
-                            Exceptional travel experiences and top-tier medical tourism services in Türkiye. We connect your journey with purpose.
+                            {t.footer.about}
                         </p>
                         {/* Social Icons */}
                         <div className="flex items-center gap-4">
@@ -34,38 +39,38 @@ export default function Footer() {
 
                     {/* Column 2: Quick Links */}
                     <div>
-                        <h4 className="font-cabinet font-bold text-xl mb-6">Quick Links</h4>
+                        <h4 className="font-cabinet font-bold text-xl mb-6">{t.footer.links.title}</h4>
                         <ul className="flex flex-col gap-4 font-satoshi text-white/80">
-                            <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Our Services</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Tour Packages</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Medical Tourism</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+                            <li><a href={`/${locale}/about-us`} className="hover:text-white transition-colors">{t.footer.links.about}</a></li>
+                            <li><a href={`/${locale}/services`} className="hover:text-white transition-colors">{t.footer.links.services}</a></li>
+                            <li><a href={`/${locale}/tours`} className="hover:text-white transition-colors">{t.footer.links.tours}</a></li>
+                            <li><a href={`/${locale}/medical-tourism`} className="hover:text-white transition-colors">{t.footer.links.medical}</a></li>
+                            <li><a href={`/${locale}/contact-us`} className="hover:text-white transition-colors">{t.footer.links.contact}</a></li>
                         </ul>
                     </div>
 
                     {/* Column 3: Services */}
                     <div>
-                        <h4 className="font-cabinet font-bold text-xl mb-6">Our Services</h4>
+                        <h4 className="font-cabinet font-bold text-xl mb-6">{t.footer.services.title}</h4>
                         <ul className="flex flex-col gap-4 font-satoshi text-white/80">
-                            <li><a href="#" className="hover:text-white transition-colors">Hotel Booking</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Flight Reservations</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">VIP Transfers</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Guided Tours</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Health Packages</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.hotel}</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.flight}</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.transfer}</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.tours}</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.health}</a></li>
                         </ul>
                     </div>
 
                     {/* Column 4: Contact */}
                     <div>
-                        <h4 className="font-cabinet font-bold text-xl mb-6">Contact Us</h4>
+                        <h4 className="font-cabinet font-bold text-xl mb-6">{t.footer.contact.title}</h4>
                         <ul className="flex flex-col gap-5 font-satoshi text-white/80">
                             <li className="flex items-start gap-3">
                                 <svg className="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span>Istanbul, Türkiye</span>
+                                <span>{t.footer.contact.location}</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -88,11 +93,11 @@ export default function Footer() {
 
                 {/* Bottom Section */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 font-satoshi text-sm text-white/60">
-                    <p>© {new Date().getFullYear()} Barbaros Tourism. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} Barbaros Tourism. {t.footer.bottom.rights}</p>
                     <div className="flex items-center gap-6">
-                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                        <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+                        <a href="#" className="hover:text-white transition-colors">{t.footer.bottom.privacy}</a>
+                        <a href="#" className="hover:text-white transition-colors">{t.footer.bottom.terms}</a>
+                        <a href="#" className="hover:text-white transition-colors">{t.footer.bottom.cookies}</a>
                     </div>
                 </div>
             </div>

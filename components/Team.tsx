@@ -3,50 +3,57 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 
-const teamMembers = [
-    {
-        name: "Alexander Barbaros",
-        role: "Founder & CEO",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Elena Petrov",
-        role: "Co-Founder & COO",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Marco Rossi",
-        role: "Head of Tourism",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Dr. Selin Yılmaz",
-        role: "Medical Tourism Director",
-        image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "James Chen",
-        role: "Marketing Manager",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Sofia Müller",
-        role: "Lead Tour Guide",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Lucas Dubois",
-        role: "Customer Experience Lead",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Aisha Hassan",
-        role: "Logistics Manager",
-        image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=800&auto=format&fit=crop",
-    },
-];
+import { type Locale, getMessages } from "@/i18n";
 
-export default function Team() {
+interface TeamProps {
+    locale?: Locale;
+}
+
+export default function Team({ locale = 'en' }: TeamProps) {
+    const t = getMessages(locale);
+
+    const teamMembers = [
+        {
+            name: t.team.members.alexander.name,
+            role: t.team.members.alexander.role,
+            image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+            name: t.team.members.elena.name,
+            role: t.team.members.elena.role,
+            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+            name: t.team.members.marco.name,
+            role: t.team.members.marco.role,
+            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+            name: t.team.members.selin.name,
+            role: t.team.members.selin.role,
+            image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+            name: t.team.members.james.name,
+            role: t.team.members.james.role,
+            image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+            name: t.team.members.sofia.name,
+            role: t.team.members.sofia.role,
+            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+            name: t.team.members.lucas.name,
+            role: t.team.members.lucas.role,
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+            name: t.team.members.aisha.name,
+            role: t.team.members.aisha.role,
+            image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=800&auto=format&fit=crop",
+        },
+    ];
     return (
         <section className="py-24 px-6 bg-white">
             <div className="max-w-7xl mx-auto">
@@ -60,7 +67,7 @@ export default function Team() {
                         className="inline-block mb-4"
                     >
                         <span className="bg-primary/5 border border-primary/10 rounded-full px-6 py-2 text-primary font-bold font-cabinet text-sm">
-                            Founder & Leadership Team
+                            {t.team.badge}
                         </span>
                     </motion.div>
                     <motion.h2
@@ -70,7 +77,7 @@ export default function Team() {
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-extrabold font-cabinet text-primary mb-6"
                     >
-                        Meet the minds behind Barbaros
+                        {t.team.heading}
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -79,7 +86,7 @@ export default function Team() {
                         viewport={{ once: true }}
                         className="text-lg text-gray-500 font-satoshi max-w-2xl mx-auto"
                     >
-                        Our dedicated team of experts works tirelessly to ensure your travel and medical experiences in Türkiye are nothing short of extraordinary.
+                        {t.team.description}
                     </motion.p>
                 </div>
 

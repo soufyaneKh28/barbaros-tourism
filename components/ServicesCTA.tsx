@@ -1,14 +1,15 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { type Locale } from "@/i18n";
 import CtaButton from './ui/CtaButton';
+import { type Locale, getMessages } from "@/i18n";
 
 interface ServicesCTAProps {
     locale: Locale;
 }
 
 export default function ServicesCTA({ locale }: ServicesCTAProps) {
+    const t = getMessages(locale);
     return (
         <section className="py-24 px-6 relative overflow-hidden">
             {/* Background with Gradient and Blur */}
@@ -24,8 +25,7 @@ export default function ServicesCTA({ locale }: ServicesCTAProps) {
                     viewport={{ once: true }}
                     className="text-4xl md:text-5xl lg:text-6xl font-extrabold font-cabinet mb-8 text-white leading-tight"
                 >
-                    Ready to Start Your <br />
-                    <span className="text-secondary text-glow">Perfect Journey?</span>
+                    {t.servicesPage.cta.heading}
                 </motion.h2>
 
                 <motion.p
@@ -35,7 +35,7 @@ export default function ServicesCTA({ locale }: ServicesCTAProps) {
                     viewport={{ once: true }}
                     className="text-xl text-white/80 font-satoshi mb-12 max-w-2xl mx-auto leading-relaxed"
                 >
-                    Contact us today to discuss your travel plans and let us create a personalized package that meets all your expectations.
+                    {t.servicesPage.cta.description}
                 </motion.p>
 
                 <motion.div
@@ -46,10 +46,10 @@ export default function ServicesCTA({ locale }: ServicesCTAProps) {
                     className="flex flex-col sm:flex-row gap-6 justify-center"
                 >
                     <CtaButton href={`/${locale}/contact-us`}>
-                        Schedule a Consultation
+                        {t.servicesPage.cta.schedule}
                     </CtaButton>
                     <CtaButton href={`/${locale}/tours`} variant="outline">
-                        Explore Our Tours
+                        {t.servicesPage.cta.explore}
                     </CtaButton>
                 </motion.div>
             </div>

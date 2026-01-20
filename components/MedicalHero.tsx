@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import CtaButton from './ui/CtaButton';
-import { usePathname } from 'next/navigation';
+import { type Locale, getMessages } from '@/i18n';
 
-export default function MedicalHero() {
-    const pathname = usePathname();
-    const locale = pathname?.split('/')[1] || 'en';
+
+export default function MedicalHero({ locale }: { locale: Locale }) {
+    const t = getMessages(locale);
     return (
         <section className="relative m-2 rounded-[20px] overflow-hidden min-h-[600px] flex items-center">
             {/* Background Image */}
@@ -36,7 +36,7 @@ export default function MedicalHero() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <span className="bg-secondary/90 backdrop-blur-sm rounded-full text-white px-4 py-2 text-sm font-medium font-cabinet border border-white/10">
-                            World-Class Healthcare
+                            {t.medical.hero.tagline}
                         </span>
                     </motion.div>
 
@@ -47,7 +47,7 @@ export default function MedicalHero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        Premium Medical Tourism in Türkiye
+                        {t.medical.hero.heading}
                     </motion.h1>
 
                     {/* Description */}
@@ -57,7 +57,7 @@ export default function MedicalHero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
-                        Combine world-class medical procedures with an unforgettable Turkish experience. Expert care, affordable prices, and complete support throughout your journey.
+                        {t.medical.hero.description}
                     </motion.p>
 
                     {/* Stats */}
@@ -69,15 +69,15 @@ export default function MedicalHero() {
                     >
                         <div>
                             <div className="text-3xl font-bold text-secondary font-cabinet">50+</div>
-                            <div className="text-sm text-white/80 font-satoshi">JCI Hospitals</div>
+                            <div className="text-sm text-white/80 font-satoshi">{t.medical.whyChoose.stats.hospitals}</div>
                         </div>
                         <div>
                             <div className="text-3xl font-bold text-secondary font-cabinet">70%</div>
-                            <div className="text-sm text-white/80 font-satoshi">Cost Savings</div>
+                            <div className="text-sm text-white/80 font-satoshi">{t.medical.whyChoose.stats.savings}</div>
                         </div>
                         <div>
                             <div className="text-3xl font-bold text-secondary font-cabinet">500K+</div>
-                            <div className="text-sm text-white/80 font-satoshi">Happy Patients</div>
+                            <div className="text-sm text-white/80 font-satoshi">{t.medical.whyChoose.stats.patients}</div>
                         </div>
                     </motion.div>
 
@@ -89,10 +89,10 @@ export default function MedicalHero() {
                         transition={{ duration: 0.6, delay: 0.6 }}
                     >
                         <CtaButton href={`/${locale}/contact-us`}>
-                            Free Consultation
+                            {t.contact.form.submit}
                         </CtaButton>
                         <CtaButton variant="outline">
-                            View Procedures
+                            {t.medical.services.learnMore}
                         </CtaButton>
                     </motion.div>
                 </div>

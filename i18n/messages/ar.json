@@ -1,21 +1,520 @@
 {
   "nav": {
-    "home": "الرئيسية",
-    "about": "من نحن",
-    "services": "خدماتنا",
-    "tours": "الجولات",
-    "medical": "السياحة العلاجية",
-    "blogs": "المدونات",
-    "contact": "اتصل بنا"
+    "home": "Home",
+    "about": "About us",
+    "services": "Our services",
+    "tours": "Tours",
+    "medical": "Medical tourism",
+    "blogs": "Blogs",
+    "contact": "Contact us"
+  },
+  "home": {
+    "services": {
+      "badge": "Our services",
+      "heading": "Integrated tourism solutions that meet all your needs in Türkiye",
+      "description": "At Barbaros Tourism, we offer a full range of carefully designed tourism services, to guarantee you a comfortable, safe, and distinctive experience, whether you are looking for comprehensive travel services, medical tourism, or unforgettable tourist tours.",
+      "seeAll": "See All Blogs",
+      "items": {
+        "integrated": {
+          "title": "Integrated tourism services",
+          "description": "We provide integrated tourism services that include hotel reservations, airport reception, transportation, VIP services, and full support throughout your stay, to give you a worry-free and comfortable experience."
+        },
+        "medical": {
+          "title": "Medical tourism",
+          "description": "Comprehensive medical tourism packages working with top hospitals and specialists to ensure the best care and recovery experience."
+        },
+        "tours": {
+          "title": "Tours",
+          "description": "Unforgettable cultural and recreational tours to the most beautiful destinations in Türkiye, guided by local experts."
+        }
+      }
+    },
+    "blogs": {
+      "readMore": "Read More",
+      "items": {
+        "istanbul": "Istanbul Bosphorus Experience",
+        "kyoto": "Kyoto Cultural Escape",
+        "alpine": "Alpine Lake Adventures"
+      }
+    }
   },
   "hero": {
-    "tagline": "خدمات سياحية موثوقة في تركيا",
-    "heading": "بربروس للسياحة شريكك الموثوق في تركيا",
-    "description": "حلول سياحية شاملة في تركيا - من الجولات التي لا تُنسى إلى خدمات السياحة العلاجية ذات المستوى العالمي.",
-    "bookTrip": "احجز رحلتك",
-    "exploreTours": "استكشف الجولات",
-    "medicalTourism": "السياحة العلاجية"
+    "tagline": "Trusted Tourism Services in Turkey",
+    "heading": "Barbaros Tourism Your reliable partner in Türkiye",
+    "description": "Comprehensive tourism solutions in Türkiye - from unforgettable tours to world-class medical tourism services.",
+    "bookTrip": "Book your trip",
+    "exploreTours": "Explore tours",
+    "medicalTourism": "Medical tourism"
+  },
+  "medical": {
+    "hero": {
+      "tagline": "World-Class Healthcare",
+      "heading": "Advanced Medical Tourism in Türkiye",
+      "description": "Experience world-class medical treatments combined with exceptional hospitality. From hair transplants to advanced surgery, we handle every detail of your journey.",
+      "stats": {
+        "savings": "Cost Savings",
+        "patients": "Happy Patients"
+      }
+    },
+    "whyChoose": {
+      "badge": "Why Türkiye",
+      "heading": "World-Class Healthcare at Affordable Prices",
+      "description": "Türkiye has become a global leader in medical tourism, combining cutting-edge facilities with exceptional service and stunning locations.",
+      "reasons": {
+        "jci": {
+          "title": "JCI Accredited Hospitals",
+          "description": "All our partner hospitals hold international Joint Commission International accreditation, ensuring the highest standards of care."
+        },
+        "pricing": {
+          "title": "Competitive Pricing",
+          "description": "Save up to 70% compared to Western countries without compromising on quality or safety standards."
+        },
+        "surgeons": {
+          "title": "Expert Surgeons",
+          "description": "Our medical professionals have years of international experience and specialized training in their fields."
+        },
+        "support": {
+          "title": "Full Support Package",
+          "description": "From translation services to accommodation and transfers, we handle all logistics for a seamless experience."
+        },
+        "combination": {
+          "title": "Tourism Combination",
+          "description": "Combine your treatment with a memorable vacation in one of the world's most beautiful countries."
+        },
+        "aftercare": {
+          "title": "Aftercare Support",
+          "description": "Continued support after your return home with online consultations and follow-up care."
+        }
+      },
+      "stats": {
+        "hospitals": "JCI Hospitals",
+        "patients": "Annual Patients",
+        "savings": "Cost Savings",
+        "satisfaction": "Satisfaction Rate"
+      }
+    },
+    "services": {
+      "badge": "Our Medical Services",
+      "heading": "Comprehensive Medical Procedures",
+      "description": "From cosmetic enhancements to life-changing surgeries, we offer a full range of medical services with world-class expertise.",
+      "learnMore": "Learn More",
+      "types": {
+        "hair": {
+          "title": "Hair Transplant",
+          "description": "Advanced hair restoration techniques with natural-looking results.",
+          "price": "From €1,500"
+        },
+        "dental": {
+          "title": "Dental Treatments",
+          "description": "Transform your smile with state-of-the-art dental care.",
+          "price": "From €300"
+        },
+        "cosmetic": {
+          "title": "Cosmetic Surgery",
+          "description": "Expert cosmetic procedures for enhanced confidence.",
+          "price": "From €2,500"
+        },
+        "eye": {
+          "title": "Eye Surgery",
+          "description": "Advanced laser eye treatments for perfect vision.",
+          "price": "From €1,200"
+        },
+        "bariatric": {
+          "title": "Bariatric Surgery",
+          "description": "Life-changing weight loss surgery with comprehensive support.",
+          "price": "From €3,500"
+        },
+        "orthopedics": {
+          "title": "Orthopedics",
+          "description": "Advanced orthopedic treatments for mobility restoration.",
+          "price": "From €4,000"
+        }
+      }
+    },
+    "cta": {
+      "heading": "Ready to Transform Your Life?",
+      "description": "Join thousands of happy patients who chose Türkiye for their medical journey. Get your free consultation today.",
+      "start": "Start Your Journey",
+      "caseStudies": "View Case Studies"
+    }
+  },
+  "process": {
+    "badge": "Simple Process",
+    "heading": "Your Medical Journey",
+    "description": "From consultation to recovery, we guide you through every step with care and professionalism.",
+    "steps": {
+      "consultation": {
+        "title": "Free Consultation",
+        "description": "Connect with our medical experts online. Share your medical history and discuss your goals."
+      },
+      "plan": {
+        "title": "Treatment Plan",
+        "description": "Receive a personalized treatment plan with cost breakdown and procedure details."
+      },
+      "travel": {
+        "title": "Travel Arrangements",
+        "description": "We handle everything: flights, accommodation, transfers, and translator services."
+      },
+      "arrival": {
+        "title": "Arrival & Welcome",
+        "description": "VIP airport pickup, hotel check-in, and meet with your medical team."
+      },
+      "procedure": {
+        "title": "Medical Procedure",
+        "description": "Receive your treatment in JCI-accredited hospitals with expert surgeons."
+      },
+      "recovery": {
+        "title": "Recovery & Support",
+        "description": "Post-op care, follow-up appointments, and ongoing remote consultations."
+      }
+    }
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "heading": "Real Experiences from Travelers Who Trusted Us",
+    "description": "Hear from our clients about their journeys with Barbaros Tourism. From seamless travel planning to exceptional medical tourism services, these real stories reflect our commitment to quality, care, and unforgettable experiences.",
+    "items": [
+      {
+        "text": "Barbaros Tourism made our family trip to Turkey unforgettable. The guides were knowledgeable and the transfers were seamless.",
+        "name": "Sarah Jenkins",
+        "role": "Family Traveler"
+      },
+      {
+        "text": "The medical tourism package was exceptional. From the clinic to the hotel, everything was handled with the utmost care and professionalism.",
+        "name": "Michael Chen",
+        "role": "Medical Tourist"
+      },
+      {
+        "text": "I loved the hot air balloon tour in Cappadocia! It was a dream come true. Highly recommend their services for anyone visiting Turkey.",
+        "name": "Elena Rodriguez",
+        "role": "Adventure Seeker"
+      },
+      {
+        "text": "Professional, reliable, and friendly. They tailored the itinerary exactly to our needs. Istanbul is magical thanks to them.",
+        "name": "James Wilson",
+        "role": "Cultural Enthusiast"
+      },
+      {
+        "text": "The VIP transfer service was top-notch. Comfortable vehicles and punctual drivers. Made our business trip stress-free.",
+        "name": "Emily Davis",
+        "role": "Business Traveler"
+      },
+      {
+        "text": "We booked a full package including flights, hotels, and tours. Best value for money and excellent customer support throughout.",
+        "name": "Robert Taylor",
+        "role": "Vacationer"
+      },
+      {
+        "text": "Their attention to detail is amazing. They suggested hidden gems in Istanbul that we wouldn't have found on our own.",
+        "name": "David Kim",
+        "role": "Explorer"
+      },
+      {
+        "text": "Safe and trustworthy. As a solo female traveler, I felt completely secure with their guides and drivers.",
+        "name": "Sophie Martin",
+        "role": "Solo Traveler"
+      },
+      {
+        "text": "The Bosphorus cruise dinner was the highlight of our trip. Great food, great views, and perfect organization.",
+        "name": "Thomas Anderson",
+        "role": "Foodie"
+      }
+    ]
+  },
+  "servicesPage": {
+    "hero": {
+      "badge": "Comprehensive Solutions",
+      "heading": "Exceptional Services for Your Journey",
+      "description": "From cultural treasures to world-class medical procedures, we provide end-to-end services to make your experience in Türkiye truly unforgettable.",
+      "cta": "Start Your Experience"
+    },
+    "offerings": {
+      "badge": "Our Expertise",
+      "heading": "What We Offer",
+      "titles": {
+        "cultural": "Cultural Tours",
+        "adventure": "Adventure Tours",
+        "medical": "Medical Tourism",
+        "accommodation": "Accommodation",
+        "transportation": "Transportation",
+        "custom": "Custom Packages"
+      }
+    },
+    "cta": {
+      "heading": "Ready to Start Your Perfect Journey?",
+      "description": "Contact us today to discuss your travel plans and let us create a personalized package that meets all your expectations.",
+      "schedule": "Schedule a Consultation",
+      "explore": "Explore Our Tours"
+    }
+  },
+  "contact": {
+    "hero": {
+      "badge": "GET IN TOUCH",
+      "heading": "Let's Start Your Journey",
+      "description": "Whether you're planning a dream vacation or seeking world-class medical care, our team of experts is here to guide you every step of the way."
+    },
+    "form": {
+      "heading": "Send us a Message",
+      "subheading": "Fill out the form below and our team will get back to you within 24 hours.",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "interest": "Select Interest",
+      "message": "Message",
+      "submit": "Send Message",
+      "options": {
+        "cultural": "Cultural Tours",
+        "adventure": "Adventure Tours",
+        "hair": "Medical Tourism - Hair Transplant",
+        "dental": "Medical Tourism - Dental",
+        "cosmetic": "Medical Tourism - Cosmetic Surgery",
+        "custom": "Custom Package",
+        "other": "Other"
+      }
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "office": {
+        "title": "Office",
+        "name": "Barbaros Tourism Agency",
+        "address": "Taksim Square, Beyoğlu",
+        "city": "Istanbul, Türkiye 34437"
+      },
+      "hours": {
+        "title": "Hours",
+        "monFri": "Mon - Fri: 9:00 AM - 6:00 PM",
+        "sat": "Sat: 10:00 AM - 4:00 PM",
+        "sun": "Sun: Closed"
+      },
+      "connect": "Connect With Us"
+    }
+  },
+  "faq": {
+    "badge": "Common Questions",
+    "heading": "Frequently Asked Questions",
+    "description": "Find quick answers to your questions about our services, booking process, and more.",
+    "items": [
+      {
+        "question": "How do I book a tour or treatment?",
+        "answer": "You can start by filling out our contact form or messaging us directly via WhatsApp. Our consultants will guide you through the process."
+      },
+      {
+        "question": "What is included in the medical packages?",
+        "answer": "Our medical packages typically include airport transfers, hotel accommodation, the procedure itself, medications, and follow-up care."
+      },
+      {
+        "question": "Do I need a visa for Türkiye?",
+        "answer": "Visa requirements depend on your nationality. Many visitors can enter with an e-visa. We can provide guidance based on your specific case."
+      },
+      {
+        "question": "How long should I stay for my medical treatment?",
+        "answer": "The duration depends on the procedure. Most treatments require 3-7 days. We will provide a detailed timeline in your personalized plan."
+      }
+    ]
+  },
+  "footer": {
+    "about": "Exceptional travel experiences and top-tier medical tourism services in Türkiye. We connect your journey with purpose.",
+    "links": {
+      "title": "Quick Links",
+      "about": "About Us",
+      "services": "Our Services",
+      "tours": "Tour Packages",
+      "medical": "Medical Tourism",
+      "contact": "Contact Us"
+    },
+    "services": {
+      "title": "Our Services",
+      "hotel": "Hotel Booking",
+      "flight": "Flight Reservations",
+      "transfer": "VIP Transfers",
+      "tours": "Guided Tours",
+      "health": "Health Packages"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "location": "Istanbul, Türkiye"
+    },
+    "bottom": {
+      "rights": "All rights reserved.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "WHO WE ARE",
+      "heading": "About Us",
+      "description": "We are a dedicated team of travel and medical tourism experts committed to providing unforgettable experiences in Türkiye."
+    },
+    "story": {
+      "badge": "OUR STORY",
+      "heading": "It feels like family (because it is)",
+      "p1": "Founded with a passion for showcasing the beauty and culture of Türkiye, Barbaros Tourism has grown from a small local agency to a comprehensive tourism and medical tourism provider.",
+      "p2": "Our journey began with a simple mission: to share the wonders of Türkiye with the world while providing exceptional service. Over the years, we've expanded our services to include medical tourism, recognizing the growing demand for quality healthcare combined with travel.",
+      "p3": "Today, we're proud to serve thousands of clients annually, helping them discover Türkiye's rich history, stunning landscapes, and world-class medical facilities.",
+      "readMore": "Read more"
+    },
+    "stats": {
+      "heading": "We’re here to introduce you to all the places out there",
+      "description": "Our impact across the globe through years of dedicated service and passion for travel.",
+      "items": {
+        "customers": "Happy customers",
+        "tours": "Tours and activities",
+        "countries": "Countries around the globe",
+        "partners": "Local Partners"
+      }
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To provide exceptional tourism experiences and medical services that exceed expectations, combining Turkish hospitality with professional excellence."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To become the leading tourism and medical tourism provider in Türkiye, recognized globally for our commitment to quality and innovation."
+    },
+    "whyChoose": {
+      "heading": "Why Choose Barbaros Tourism?",
+      "items": {
+        "trusted": {
+          "title": "Trusted Experience",
+          "description": "Years of expertise in tourism and medical services with thousands of satisfied clients."
+        },
+        "support": {
+          "title": "24/7 Support",
+          "description": "Round-the-clock assistance to ensure your journey is smooth and worry-free."
+        },
+        "value": {
+          "title": "Best Value",
+          "description": "Competitive pricing without compromising on quality or service excellence."
+        },
+        "personalized": {
+          "title": "Personalized Service",
+          "description": "Tailored experiences designed to match your preferences and requirements."
+        },
+        "team": {
+          "title": "Expert Team",
+          "description": "Professional guides and medical coordinators dedicated to your satisfaction."
+        },
+        "network": {
+          "title": "Global Network",
+          "description": "Partnerships with top hotels, hospitals, and service providers across Türkiye."
+        }
+      }
+    }
+  },
+  "tours": {
+    "hero": {
+      "badge": "DISCOVER TÜRKİYE",
+      "heading": "Your Gateway to Unforgettable Experiences",
+      "description": "Expertly curated journeys through the heart of Türkiye's most iconic landscapes and hidden gems."
+    }
+  },
+  "team": {
+    "badge": "Founder & Leadership Team",
+    "heading": "Meet the minds behind Barbaros",
+    "description": "Our dedicated team of experts works tirelessly to ensure your travel and medical experiences in Türkiye are extraordinary.",
+    "members": {
+      "alexander": {
+        "name": "Alexander Barbaros",
+        "role": "Founder & CEO"
+      },
+      "elena": {
+        "name": "Elena Petrov",
+        "role": "Co-Founder & COO"
+      },
+      "marco": {
+        "name": "Marco Rossi",
+        "role": "Head of Tourism"
+      },
+      "selin": {
+        "name": "Dr. Selin Yılmaz",
+        "role": "Medical Tourism Director"
+      },
+      "james": {
+        "name": "James Chen",
+        "role": "Marketing Manager"
+      },
+      "sofia": {
+        "name": "Sofia Müller",
+        "role": "Lead Tour Guide"
+      },
+      "lucas": {
+        "name": "Lucas Dubois",
+        "role": "Customer Experience Lead"
+      },
+      "aisha": {
+        "name": "Aisha Hassan",
+        "role": "Logistics Manager"
+      }
+    }
+  },
+  "servicesOfferings": {
+    "badge": "OUR EXPERTISE",
+    "heading": "What We Offer",
+    "items": {
+      "cultural": {
+        "title": "Cultural Tours",
+        "description": "Explore Türkiye's rich history and heritage with expert guides who bring ancient stories to life.",
+        "features": [
+          "Historical sites",
+          "Museum visits",
+          "Local experiences",
+          "Cultural workshops"
+        ]
+      },
+      "adventure": {
+        "title": "Adventure Tours",
+        "description": "Thrilling experiences for adrenaline seekers and nature lovers in Türkiye's most breathtaking landscapes.",
+        "features": [
+          "Hot air balloons",
+          "Paragliding",
+          "Hiking trails",
+          "Water sports"
+        ]
+      },
+      "medical": {
+        "title": "Medical Tourism",
+        "description": "Access world-class medical procedures with comprehensive care packages in top JCI-accredited hospitals.",
+        "features": [
+          "Hair transplant",
+          "Dental treatments",
+          "Cosmetic surgery",
+          "Health checkups"
+        ]
+      },
+      "accommodation": {
+        "title": "Accommodation",
+        "description": "Carefully selected hotels and resorts, ranging from boutique stays to luxury 5-star experiences.",
+        "features": [
+          "5-star hotels",
+          "Boutique stays",
+          "Resort packages",
+          "Private villas"
+        ]
+      },
+      "transportation": {
+        "title": "Transportation",
+        "description": "Seamless travel arrangements including VIP airport transfers and private chauffeur services.",
+        "features": [
+          "Airport transfers",
+          "VIP transport",
+          "Luxury SUVs",
+          "Private jets"
+        ]
+      },
+      "custom": {
+        "title": "Custom Packages",
+        "description": "Perfectly tailored itineraries designed specifically to match your interests and desires.",
+        "features": [
+          "Tailored paths",
+          "Special requests",
+          "Event planning",
+          "Personal concierge"
+        ]
+      }
+    }
   }
 }
-
-

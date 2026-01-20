@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import Services from "@/components/Services";
 import ServicesGrid from "@/components/ServicesGrid";
 import ServicesHero from "@/components/ServicesHero";
@@ -16,22 +17,24 @@ export default async function OurServices({
 
     return (
         <div className="bg-white">
+            <Navbar locale={locale} />
+
             {/* Hero Section */}
             <ServicesHero locale={locale} />
 
             {/* What We Offer - Granular details */}
-            <ServicesOfferings />
+            <ServicesOfferings locale={locale} />
 
             {/* Modern Services Grid - Main Categories */}
             {/* <ServicesGrid /> */}
 
             {/* Services Component - Interactive Accordion */}
-            <Services />
+            <Services locale={locale} />
 
             {/* Final CTA Section */}
             <ServicesCTA locale={locale} />
 
-            <Footer />
+            <Footer locale={locale} />
         </div>
     );
 }

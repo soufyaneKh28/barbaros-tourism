@@ -128,12 +128,12 @@ function LanguageSelector({ locale, transparent }: { locale: Locale; transparent
 
     return (
         <div className="relative">
-            <button 
+            <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-200 font-cabinet backdrop-blur-sm ${transparent
                     ? 'border-white/30 text-white hover:border-white/50'
                     : 'border-gray-300 text-gray-700 hover:border-gray-400'
-                }`}
+                    }`}
             >
                 <span className="text-sm font-medium lowercase">{locale}</span>
                 <svg className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">

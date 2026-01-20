@@ -2,8 +2,14 @@
 
 import { motion } from "motion/react";
 import { useState } from "react";
+import { type Locale, getMessages } from "@/i18n";
 
-export default function ContactForm() {
+interface ContactFormProps {
+    locale?: Locale;
+}
+
+export default function ContactForm({ locale = 'en' }: ContactFormProps) {
+    const t = getMessages(locale);
     const [focusedField, setFocusedField] = useState<string | null>(null);
 
     return (
@@ -17,8 +23,8 @@ export default function ContactForm() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-bl-full -mr-8 -mt-8 z-0"></div>
 
             <div className="relative z-10">
-                <h2 className="text-3xl font-bold font-cabinet mb-2 text-gray-900">Send us a Message</h2>
-                <p className="text-gray-500 font-satoshi mb-8">Fill out the form below and our team will get back to you within 24 hours.</p>
+                <h2 className="text-3xl font-bold font-cabinet mb-2 text-gray-900">{t.contact.form.heading}</h2>
+                <p className="text-gray-500 font-satoshi mb-8">{t.contact.form.subheading}</p>
 
                 <form className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
@@ -28,7 +34,7 @@ export default function ContactForm() {
                                 className={`absolute left-4 transition-all duration-200 pointer-events-none ${focusedField === 'firstName' ? '-top-2.5 text-xs bg-white px-2 text-primary font-bold' : 'top-3.5 text-gray-400'
                                     }`}
                             >
-                                First Name
+                                {t.contact.form.firstName}
                             </label>
                             <input
                                 type="text"
@@ -44,7 +50,7 @@ export default function ContactForm() {
                                 className={`absolute left-4 transition-all duration-200 pointer-events-none ${focusedField === 'lastName' ? '-top-2.5 text-xs bg-white px-2 text-primary font-bold' : 'top-3.5 text-gray-400'
                                     }`}
                             >
-                                Last Name
+                                {t.contact.form.lastName}
                             </label>
                             <input
                                 type="text"
@@ -62,7 +68,7 @@ export default function ContactForm() {
                             className={`absolute left-4 transition-all duration-200 pointer-events-none ${focusedField === 'email' ? '-top-2.5 text-xs bg-white px-2 text-primary font-bold' : 'top-3.5 text-gray-400'
                                 }`}
                         >
-                            Email Address
+                            {t.contact.form.email}
                         </label>
                         <input
                             type="email"
@@ -80,7 +86,7 @@ export default function ContactForm() {
                                 className={`absolute left-4 transition-all duration-200 pointer-events-none ${focusedField === 'phone' ? '-top-2.5 text-xs bg-white px-2 text-primary font-bold' : 'top-3.5 text-gray-400'
                                     }`}
                             >
-                                Phone Number
+                                {t.contact.form.phone}
                             </label>
                             <input
                                 type="tel"
@@ -96,14 +102,14 @@ export default function ContactForm() {
                                 defaultValue=""
                                 className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-satoshi appearance-none text-gray-700"
                             >
-                                <option value="" disabled>Select Interest</option>
-                                <option>Cultural Tours</option>
-                                <option>Adventure Tours</option>
-                                <option>Medical Tourism - Hair Transplant</option>
-                                <option>Medical Tourism - Dental</option>
-                                <option>Medical Tourism - Cosmetic Surgery</option>
-                                <option>Custom Package</option>
-                                <option>Other</option>
+                                <option value="" disabled>{t.contact.form.interest}</option>
+                                <option>{t.contact.form.options.cultural}</option>
+                                <option>{t.contact.form.options.adventure}</option>
+                                <option>{t.contact.form.options.hair}</option>
+                                <option>{t.contact.form.options.dental}</option>
+                                <option>{t.contact.form.options.cosmetic}</option>
+                                <option>{t.contact.form.options.custom}</option>
+                                <option>{t.contact.form.options.other}</option>
                             </select>
                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,7 +125,7 @@ export default function ContactForm() {
                             className={`absolute left-4 transition-all duration-200 pointer-events-none ${focusedField === 'message' ? '-top-2.5 text-xs bg-white px-2 text-primary font-bold' : 'top-3.5 text-gray-400'
                                 }`}
                         >
-                            Message
+                            {t.contact.form.message}
                         </label>
                         <textarea
                             id="message"
@@ -134,7 +140,7 @@ export default function ContactForm() {
                         type="submit"
                         className="w-full bg-primary hover:bg-primary-600 text-white px-8 py-4 rounded-xl font-bold font-cabinet transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 group"
                     >
-                        Send Message
+                        {t.contact.form.submit}
                         <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>

@@ -24,20 +24,20 @@ export default async function ContactUs({
                 <div className="max-w-7xl mx-auto">
                     <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
                         <div className="lg:col-span-7">
-                            <ContactForm />
+                            <ContactForm locale={locale} />
                         </div>
                         <div className="lg:col-span-5 space-y-12 pt-8 lg:pt-0">
-                            <ContactInfo />
+                            <ContactInfo locale={locale} />
                         </div>
                     </div>
                 </div>
             </section>
 
-            <FAQ />
+            <FAQ locale={locale} />
 
             <MapPlaceholder />
 
-            <Footer />
+            <Footer locale={locale} />
         </div>
     );
 }

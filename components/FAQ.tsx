@@ -3,40 +3,26 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
-const faqs = [
-    {
-        question: "Do I need a visa to travel to Turkey?",
-        answer: "Visa requirements depend on your nationality. Many countries can obtain an e-visa online before travel. We recommend checking the official Turkish Ministry of Foreign Affairs website or contacting our team for assistance."
-    },
-    {
-        question: "How do I book a medical consultation?",
-        answer: "You can start by filling out our contact form or messaging us directly. Our medical coordinators will request your medical history and photos for a preliminary assessment by our specialized doctors."
-    },
-    {
-        question: "Does the tour price include flights?",
-        answer: "Our standard tour packages typically include accommodation, domestic transfers, and guided tours. International flights are usually not included to give you flexibility, but we can assist with flight bookings upon request."
-    },
-    {
-        question: "Is it safe to travel to Turkey?",
-        answer: "Yes, Turkey is a popular and safe tourist destination. Like any country, it's recommended to follow standard travel advice. Our team monitors all destinations to ensure your safety and comfort."
-    },
-    {
-        question: "What payment methods do you accept?",
-        answer: "We accept major credit cards, bank transfers, and in some cases, cash payments upon arrival. Secure payment links are provided for deposit payments to confirm your booking."
-    }
-];
+import { type Locale, getMessages } from "@/i18n";
 
-export default function FAQ() {
-    const [activeIndex, setActiveIndex] = useState<number | null>(0);
+interface FAQProps {
+    locale?: Locale;
+}
+
+export default function FAQ({ locale = 'en' }: FAQProps) {
+    const t = getMessages(locale);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+    const faqs = t.faq.items;
 
     return (
         <section className="py-20 px-6 bg-gray-50">
             <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
                     <span className="text-secondary font-bold font-cabinet text-sm uppercase tracking-wider mb-2 block">
-                        GOT QUESTIONS?
+                        {t.faq.badge}
                     </span>
-                    <h2 className="text-4xl font-bold font-cabinet text-gray-900">Frequently Asked Questions</h2>
+                    <h2 className="text-4xl font-bold font-cabinet text-gray-900">{t.faq.heading}</h2>
                 </div>
 
                 <div className="space-y-4">

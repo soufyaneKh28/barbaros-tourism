@@ -1,13 +1,13 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CtaButton from "@/components/ui/CtaButton";
 import MedicalHero from "@/components/MedicalHero";
 import MedicalWhyChoose from "@/components/MedicalWhyChoose";
 import MedicalServices from "@/components/MedicalServices";
 import MedicalProcess from "@/components/MedicalProcess";
 import Testimonials from "@/components/Testimonials";
-import { type Locale, locales, defaultLocale } from "@/i18n";
+import { type Locale, locales, defaultLocale, getMessages } from "@/i18n";
 import Image from "next/image";
-import Link from "next/link";
 
 export default async function MedicalTourism({
     params,
@@ -16,25 +16,26 @@ export default async function MedicalTourism({
 }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
 
     return (
         <div className="bg-white">
             <Navbar locale={locale} />
 
             {/* Hero Section */}
-            <MedicalHero />
+            <MedicalHero locale={locale} />
 
             {/* Why Choose Turkey */}
-            <MedicalWhyChoose />
+            <MedicalWhyChoose locale={locale} />
 
             {/* Medical Services */}
-            <MedicalServices />
+            <MedicalServices locale={locale} />
 
             {/* Process/Journey */}
-            <MedicalProcess />
+            <MedicalProcess locale={locale} />
 
             {/* Testimonials */}
-            <Testimonials />
+            <Testimonials locale={locale} />
 
             {/* Final CTA */}
             <section className="py-24 px-6 relative overflow-hidden">
@@ -50,18 +51,18 @@ export default async function MedicalTourism({
 
                 <div className="max-w-4xl mx-auto text-center relative z-10 text-white">
                     <h2 className="text-4xl md:text-5xl font-bold font-cabinet mb-6">
-                        Ready to Transform <br className="hidden md:block" /> Your Life?
+                        {t.medical.cta.heading}
                     </h2>
                     <p className="text-xl font-satoshi mb-12 text-white/90">
-                        Get a free consultation and personalized treatment plan from our medical experts. Start your journey to a better you today.
+                        {t.medical.cta.description}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href={`/${locale}/contact-us`} className="bg-secondary text-primary px-10 py-4 rounded-full font-bold font-cabinet hover:bg-white hover:text-primary transition-all duration-300 shadow-xl">
-                            Request Free Consultation
-                        </Link>
-                        <a href="tel:+905551234567" className="bg-white/10 backdrop-blur-md border-2 border-white text-white px-10 py-4 rounded-full font-bold font-cabinet hover:bg-white hover:text-primary transition-all duration-300">
-                            Call Us Now
-                        </a>
+                        <CtaButton href={`/${locale}/contact-us`}>
+                            {t.medical.cta.start}
+                        </CtaButton>
+                        <CtaButton variant="outline" className="!border-white !text-white hover:!bg-white hover:!text-primary">
+                            {t.medical.cta.caseStudies}
+                        </CtaButton>
                     </div>
 
                     {/* Trust Badges */}
@@ -89,7 +90,7 @@ export default async function MedicalTourism({
                 </div>
             </section>
 
-            <Footer />
+            <Footer locale={locale} />
         </div>
     );
 }
