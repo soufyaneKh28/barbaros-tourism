@@ -179,7 +179,7 @@ export default function TourCarousel({ title, badge, description, items, locale,
                                         </p>
 
                                         <Link
-                                            href={`/${locale}${item.link || '/contact-us'}`}
+                                            href={`${item.link || '/contact-us'}`}
                                             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-primary font-bold text-sm hover:bg-secondary transition-all duration-300"
                                         >
                                             View Details
