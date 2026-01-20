@@ -38,7 +38,7 @@ export default function AboutHero({ locale }: AboutHeroProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-4xl md:text-6xl font-bold font-cabinet mb-6"
+                    className="text-4xl md:text-5xl font-bold font-cabinet mb-3"
                 >
                     About Us
                 </motion.h1>
@@ -46,7 +46,7 @@ export default function AboutHero({ locale }: AboutHeroProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-xl font-satoshi max-w-2xl mx-auto text-white/90"
+                    className="text-lg font-satoshi max-w-2xl mx-auto text-white/90"
                 >
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 </motion.p>

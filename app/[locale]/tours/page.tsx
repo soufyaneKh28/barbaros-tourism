@@ -93,44 +93,6 @@ export default async function Tours({
         }
     ];
 
-    const medicalPackages = [
-        {
-            id: 201,
-            title: "VIP Hair Restoration",
-            description: "All-inclusive FUE hair transplant package with 5-star accommodation and VIP transfers.",
-            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop",
-            price: "From $1500",
-            tags: ["Medical", "Hair", "VIP"],
-            link: "/medical-tourism/hair-transplant"
-        },
-        {
-            id: 202,
-            title: "Smile Design Makeover",
-            description: "Transform your smile with Hollywood veneers and professional dental care in Istanbul.",
-            image: "https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=800&auto=format&fit=crop",
-            price: "From $2000",
-            tags: ["Dental", "Aesthetics", "Care"],
-            link: "/medical-tourism/dental"
-        },
-        {
-            id: 203,
-            title: "Rhinoplasty Excellence",
-            description: "World-class surgical expertise and comprehensive post-op recovery care.",
-            image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=800&auto=format&fit=crop",
-            price: "From $2500",
-            tags: ["Surgery", "Cosmetic", "Safety"],
-            link: "/medical-tourism/rhinoplasty"
-        },
-        {
-            id: 204,
-            title: "Executive Health Check",
-            description: "Full body screening using the latest diagnostic technology in top hospitals.",
-            image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop",
-            price: "From $800",
-            tags: ["Health", "Prevention", "Screening"],
-            link: "/medical-tourism/checkup"
-        }
-    ];
 
     const adventureTours = [
         {
@@ -199,15 +161,6 @@ export default async function Tours({
 
             {/* Hot Deals */}
             <HotDeals />
-
-            {/* Medical Tourism Packages Carousel */}
-            <TourCarousel
-                badge="MEDICAL PACKAGES"
-                title="Combine Care with Travel"
-                description="Premium medical services combined with luxury travel experiences. Your health and comfort are our priority."
-                items={medicalPackages}
-                locale={locale}
-            />
 
             {/* Adventure Tours Carousel */}
             <TourCarousel

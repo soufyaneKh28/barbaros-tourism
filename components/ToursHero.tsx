@@ -38,7 +38,7 @@ export default function ToursHero({ locale }: ToursHeroProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-4xl md:text-6xl font-bold font-cabinet mb-6"
+                    className="text-4xl md:text-5xl font-bold font-cabinet mb-6"
                 >
                     Your Gateway to <br /> Unforgettable Experiences
                 </motion.h1>
@@ -46,7 +46,7 @@ export default function ToursHero({ locale }: ToursHeroProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-xl font-satoshi max-w-2xl mx-auto"
+                    className="text-lg font-satoshi max-w-2xl mx-auto"
                 >
                     Expertly curated journeys through the heart of Türkiye's most iconic landscapes and hidden gems.
                 </motion.p>

@@ -2,41 +2,47 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const destinations = [
     {
         id: 1,
-        name: 'France',
-        tours: '2 Tours',
-        image: '/images/generated/destinations_france.png',
+        name: 'Bodrum',
+        slug: 'bodrum',
+        tours: '8 Tours',
+        image: 'https://images.unsplash.com/photo-1605815063836-7a6c2497c2b1?q=80&w=2070&auto=format&fit=crop',
         large: true, // Takes 2 cols
     },
     {
         id: 2,
-        name: 'Turkey',
-        tours: '2 Tours',
-        image: '/images/generated/destinations_turkey_istanbul.png',
+        name: 'Istanbul',
+        slug: 'istanbul',
+        tours: '15 Tours',
+        image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop',
         large: false, // Takes 1 col
     },
     {
         id: 3,
-        name: 'Turkey', // Cappadocia
-        tours: '2 Tours',
-        image: '/images/generated/destinations_turkey_cappadocia.png',
+        name: 'Cappadocia',
+        slug: 'cappadocia',
+        tours: '10 Tours',
+        image: 'https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=2070&auto=format&fit=crop',
         large: false,
     },
     {
         id: 4,
-        name: 'Rome',
-        tours: '2 Tours',
-        image: '/images/generated/services_section_image.png', // Fallback/Placeholder
+        name: 'Antalya',
+        slug: 'antalya',
+        tours: '12 Tours',
+        image: 'https://images.unsplash.com/photo-1578271887552-5ac3a72752bc?q=80&w=2070&auto=format&fit=crop',
         large: false,
     },
     {
         id: 5,
-        name: 'Bali',
-        tours: '2 Tours',
-        image: '/images/generated/services_tours.png', // Fallback/Placeholder
+        name: 'Pamukkale',
+        slug: 'pamukkale',
+        tours: '6 Tours',
+        image: 'https://images.unsplash.com/photo-1584646098378-0874589d76b1?q=80&w=2070&auto=format&fit=crop',
         large: false,
     },
 ];
@@ -75,9 +81,10 @@ export default function Destinations() {
                         const colSpanClass = isFirst ? 'md:col-span-2' : 'md:col-span-1';
 
                         return (
-                            <div
+                            <Link
                                 key={dest.id}
-                                className={`relative cursor-pointer rounded-3xl overflow-hidden group h-[300px] md:h-[400px] ${colSpanClass}`}
+                                href={`/en/destinations/${dest.slug}`}
+                                className={`relative cursor-pointer rounded-3xl overflow-hidden group h-[300px] md:h-[400px] ${colSpanClass} block`}
                             >
                                 <Image
                                     src={dest.image}
@@ -89,7 +96,14 @@ export default function Destinations() {
                                     <h3 className="text-white font-cabinet font-bold text-3xl mb-1">{dest.name}</h3>
                                     <p className="text-white/90 font-satoshi text-sm">{dest.tours}</p>
                                 </div>
-                            </div>
+                                
+                                {/* Arrow Icon */}
+                                <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </div>
+                            </Link>
                         );
                     })}
                 </div>
