@@ -2,7 +2,8 @@ import { getDestinations } from '@/lib/services/destinations'
 import Link from 'next/link'
 import { Plus, Search, Edit2, Trash2, MapPin, Compass } from 'lucide-react'
 
-export default async function DestinationsAdminPage() {
+export default async function DestinationsAdminPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
     let destinations = []
     try {
         destinations = await getDestinations()
@@ -21,7 +22,7 @@ export default async function DestinationsAdminPage() {
                     <p className="text-gray-600 mt-1">Add and manage travel destinations</p>
                 </div>
                 <Link
-                    href="/portal-manage/destinations/new"
+                    href={`/${locale}/portal-manage/destinations/new`}
                     className="flex items-center gap-2 bg-secondary text-white px-6 py-3 rounded-xl hover:bg-secondary/90 transition-all shadow-sm font-medium"
                 >
                     <Plus className="w-5 h-5" />
@@ -48,7 +49,7 @@ export default async function DestinationsAdminPage() {
                     <h3 className="text-xl font-semibold text-gray-900 mb-2 font-cabinet">No destinations yet</h3>
                     <p className="text-gray-600 mb-6">Start by adding your first destination</p>
                     <Link
-                        href="/portal-manage/destinations/new"
+                        href={`/${locale}/portal-manage/destinations/new`}
                         className="inline-flex items-center gap-2 bg-secondary text-white px-6 py-3 rounded-xl hover:bg-secondary/90 transition-all font-medium"
                     >
                         <Plus className="w-5 h-5" />

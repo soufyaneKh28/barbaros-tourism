@@ -1,6 +1,7 @@
 import { getBlogs } from '@/lib/services/blogs'
 import Link from 'next/link'
-import { Plus, Search, Edit2, Trash2, FileText, Calendar, Eye, CheckCircle, Clock } from 'lucide-react'
+import { Plus, Search, FileText, Calendar, Eye } from 'lucide-react'
+import BlogActions from '@/components/portal/BlogActions'
 
 export default async function BlogsAdminPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
@@ -115,18 +116,20 @@ export default async function BlogsAdminPage({ params }: { params: Promise<{ loc
                                 </div>
 
                                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                                    <button className="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors group/btn">
+                                    <a
+                                        href={`/${locale}/blogs/${blog.slug}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors group/btn"
+                                    >
                                         <Eye className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
                                         Preview
-                                    </button>
-                                    <div className="flex items-center gap-2">
-                                        <button className="p-2 text-gray-500 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
-                                            <Edit2 className="w-4 h-4" />
-                                        </button>
-                                        <button className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                                            <Trash2 className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                                    </a>
+                                    <BlogActions
+                                        id={blog.id}
+                                        isPublished={blog.is_published}
+                                        slug={blog.slug}
+                                    />
                                 </div>
                             </div>
                         </div>

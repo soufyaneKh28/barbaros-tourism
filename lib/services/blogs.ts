@@ -1,12 +1,17 @@
 import { supabase } from '../supabase'
 
-export async function getBlogs() {
+export async function getBlogs(includeDrafts = true) {
     try {
-        const { data, error } = await supabase
+        let query = supabase
             .from('blogs')
             .select('*')
-            .eq('is_published', true)
-            .order('published_at', { ascending: false })
+            .order('created_at', { ascending: false })
+
+        if (!includeDrafts) {
+            query = query.eq('is_published', true)
+        }
+
+        const { data, error } = await query
 
         if (error) {
             console.error('Error fetching blogs:', error)
@@ -16,6 +21,25 @@ export async function getBlogs() {
     } catch (error) {
         console.error('Error in getBlogs:', error)
         return []
+    }
+}
+
+export async function getBlogById(id: string) {
+    try {
+        const { data, error } = await supabase
+            .from('blogs')
+            .select('*')
+            .eq('id', id)
+            .single()
+
+        if (error) {
+            console.error('Error fetching blog by id:', error)
+            return null
+        }
+        return data
+    } catch (error) {
+        console.error('Error in getBlogById:', error)
+        return null
     }
 }
 

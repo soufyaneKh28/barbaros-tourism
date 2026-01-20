@@ -2,7 +2,8 @@ import { getTrips } from '@/lib/services/trips'
 import Link from 'next/link'
 import { Plus, Search, Edit2, Trash2, MapPin, DollarSign, Calendar, Plane } from 'lucide-react'
 
-export default async function TripsPage() {
+export default async function TripsPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
     let trips = []
     try {
         trips = await getTrips()
@@ -21,7 +22,7 @@ export default async function TripsPage() {
                     <p className="text-gray-600 mt-1">Create and manage your tour packages</p>
                 </div>
                 <Link
-                    href="/portal-manage/trips/new"
+                    href={`/${locale}/portal-manage/trips/new`}
                     className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl hover:bg-primary/90 transition-all shadow-sm font-medium"
                 >
                     <Plus className="w-5 h-5" />
@@ -48,7 +49,7 @@ export default async function TripsPage() {
                     <h3 className="text-xl font-semibold text-gray-900 mb-2 font-cabinet">No trips yet</h3>
                     <p className="text-gray-600 mb-6">Start by creating your first tour package</p>
                     <Link
-                        href="/portal-manage/trips/new"
+                        href={`/${locale}/portal-manage/trips/new`}
                         className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl hover:bg-primary/90 transition-all font-medium"
                     >
                         <Plus className="w-5 h-5" />
