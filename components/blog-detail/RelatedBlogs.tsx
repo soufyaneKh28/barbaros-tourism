@@ -57,8 +57,8 @@ export default function RelatedBlogs({ currentBlogId }: RelatedBlogsProps) {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                        <Link 
-                            href={`/en/blogs/${blog.slug}`}
+                        <Link
+                            href={`/blogs/${blog.slug}`}
                             className="group block"
                         >
                             <div className="relative h-64 rounded-2xl overflow-hidden mb-4">
