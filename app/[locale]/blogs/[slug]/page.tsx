@@ -2,8 +2,40 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BlogHeader, BlogContent, RelatedBlogs } from "@/components/blog-detail";
 import { type Locale, locales, defaultLocale } from "@/i18n";
-import { getBlogBySlug } from "@/lib/services/blogs";
+import { getBlogBySlug, getBlogs } from "@/lib/services/blogs";
 import { notFound } from "next/navigation";
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+    try {
+        const blogs = await getBlogs();
+
+        if (!blogs || blogs.length === 0) {
+            // Return empty array if no blogs found (e.g., during build without DB access)
+            return [];
+        }
+
+        // Generate params for all locale/slug combinations
+        const params = [];
+        for (const locale of locales) {
+            for (const blog of blogs) {
+                params.push({
+                    locale,
+                    slug: blog.slug,
+                });
+            }
+        }
+        return params;
+    } catch (error) {
+        console.error('Error generating static params:', error);
+        // Return empty array on error to allow build to continue
+        return [];
+    }
+}
+
+// Enable dynamic rendering for paths not generated at build time
+export const dynamicParams = true;
+
 
 export default async function BlogDetails({
     params,
