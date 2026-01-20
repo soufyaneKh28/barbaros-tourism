@@ -22,6 +22,7 @@ export default function Navbar({ locale, transparent = false }: NavbarProps) {
         { href: `/${locale}/our-services`, label: t.nav.services },
         { href: `/${locale}/tours`, label: t.nav.tours },
         { href: `/${locale}/medical-tourism`, label: t.nav.medical },
+        { href: `/${locale}/blogs`, label: t.nav.blogs },
         { href: `/${locale}/contact-us`, label: t.nav.contact },
     ];
 

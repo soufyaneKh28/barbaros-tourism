@@ -89,6 +89,7 @@ export default function Hero({ locale }: HeroProps) {
               { href: `/${locale}/our-services`, label: t.nav.services },
               { href: `/${locale}/tours`, label: t.nav.tours },
               { href: `/${locale}/medical-tourism`, label: t.nav.medical },
+              { href: `/${locale}/blogs`, label: t.nav.blogs },
               { href: `/${locale}/contact-us`, label: t.nav.contact },
             ].map((link, index) => (
               <motion.div
@@ -150,6 +151,7 @@ export default function Hero({ locale }: HeroProps) {
               { href: `/${locale}/our-services`, label: t.nav.services },
               { href: `/${locale}/tours`, label: t.nav.tours },
               { href: `/${locale}/medical-tourism`, label: t.nav.medical },
+              { href: `/${locale}/blogs`, label: t.nav.blogs },
               { href: `/${locale}/contact-us`, label: t.nav.contact },
             ].map((link, index) => (
               <Link

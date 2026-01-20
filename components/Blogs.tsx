@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 
 const blogs = [
@@ -9,6 +10,7 @@ const blogs = [
         id: 1,
         category: 'TRAVEL',
         title: 'Istanbul Bosphorus Experience',
+        slug: 'istanbul-bosphorus-experience',
         image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop',
         large: true,
     },
@@ -16,6 +18,7 @@ const blogs = [
         id: 2,
         category: 'TRAVEL',
         title: 'Kyoto Cultural Escape',
+        slug: 'kyoto-cultural-escape',
         image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop',
         large: false,
     },
@@ -23,6 +26,7 @@ const blogs = [
         id: 3,
         category: 'TRAVEL',
         title: 'Alpine Lake Adventures',
+        slug: 'alpine-lake-adventures',
         image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop',
         large: false,
     },
@@ -53,9 +57,11 @@ export default function Blogs() {
                     </div>
 
                     <div>
-                        <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-xl font-cabinet font-bold transition-all">
-                            See All Blogs
-                        </button>
+                        <Link href="/en/blogs">
+                            <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-xl font-cabinet font-bold transition-all">
+                                See All Blogs
+                            </button>
+                        </Link>
                     </div>
                 </div>
 
@@ -71,39 +77,41 @@ export default function Blogs() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`relative rounded-3xl overflow-hidden group cursor-pointer ${isLarge ? 'lg:row-span-2 h-[500px] lg:h-full' : 'h-[300px]'
+                                className={`relative rounded-3xl overflow-hidden group ${isLarge ? 'lg:row-span-2 h-[500px] lg:h-full' : 'h-[300px]'
                                     }`}
                             >
-                                {/* Background Image */}
-                                <div className="absolute inset-0">
-                                    <Image
-                                        src={blog.image}
-                                        alt={blog.title}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                </div>
-
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-                                {/* Content */}
-                                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                                    <span className="text-secondary font-cabinet font-bold text-sm mb-3 tracking-wider">
-                                        {blog.category}
-                                    </span>
-
-                                    <h3 className="text-white font-cabinet font-bold text-2xl lg:text-3xl mb-4">
-                                        {blog.title}
-                                    </h3>
-
-                                    <div className="flex items-center gap-2 text-white font-cabinet font-medium group-hover:gap-3 transition-all">
-                                        <span>Read More</span>
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
+                                <Link href={`/en/blogs/${blog.slug}`} className="block h-full">
+                                    {/* Background Image */}
+                                    <div className="absolute inset-0">
+                                        <Image
+                                            src={blog.image}
+                                            alt={blog.title}
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
                                     </div>
-                                </div>
+
+                                    {/* Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+                                    {/* Content */}
+                                    <div className="absolute inset-0 flex flex-col justify-end p-8">
+                                        <span className="text-secondary font-cabinet font-bold text-sm mb-3 tracking-wider">
+                                            {blog.category}
+                                        </span>
+
+                                        <h3 className="text-white font-cabinet font-bold text-2xl lg:text-3xl mb-4">
+                                            {blog.title}
+                                        </h3>
+
+                                        <div className="flex items-center gap-2 text-white font-cabinet font-medium group-hover:gap-3 transition-all">
+                                            <span>Read More</span>
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </Link>
                             </motion.div>
                         );
                     })}
