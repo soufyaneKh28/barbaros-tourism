@@ -93,9 +93,10 @@ export default function ContactForm() {
                         <div className="relative">
                             <select
                                 id="service"
+                                defaultValue=""
                                 className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-satoshi appearance-none text-gray-700"
                             >
-                                <option value="" disabled selected>Select Interest</option>
+                                <option value="" disabled>Select Interest</option>
                                 <option>Cultural Tours</option>
                                 <option>Adventure Tours</option>
                                 <option>Medical Tourism - Hair Transplant</option>
