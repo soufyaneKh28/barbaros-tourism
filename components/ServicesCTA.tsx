@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { type Locale } from "@/i18n";
+import CtaButton from './ui/CtaButton';
 
 interface ServicesCTAProps {
     locale: Locale;
@@ -44,18 +45,12 @@ export default function ServicesCTA({ locale }: ServicesCTAProps) {
                     viewport={{ once: true }}
                     className="flex flex-col sm:flex-row gap-6 justify-center"
                 >
-                    <a
-                        href={`/${locale}/contact-us`}
-                        className="bg-secondary hover:bg-white text-primary px-10 py-5 rounded-full font-bold font-cabinet transition-all duration-300 hover:scale-105 shadow-xl text-lg"
-                    >
+                    <CtaButton href={`/${locale}/contact-us`}>
                         Schedule a Consultation
-                    </a>
-                    <a
-                        href={`/${locale}/tours`}
-                        className="bg-white/10 backdrop-blur-md border-2 border-white/20 text-white px-10 py-5 rounded-full font-bold font-cabinet hover:bg-white/20 transition-all duration-300 text-lg"
-                    >
+                    </CtaButton>
+                    <CtaButton href={`/${locale}/tours`} variant="outline">
                         Explore Our Tours
-                    </a>
+                    </CtaButton>
                 </motion.div>
             </div>
         </section>

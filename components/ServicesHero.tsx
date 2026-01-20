@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'motion/react';
+import CtaButton from './ui/CtaButton';
 import Navbar from './Navbar';
 import { type Locale } from "@/i18n";
 
@@ -75,13 +76,9 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="flex justify-center"
                 >
-                    <a
-                        href={`/${locale}/contact-us`}
-                        className="group relative overflow-hidden bg-secondary text-primary px-10 py-5 rounded-full font-bold font-cabinet transition-all duration-300 hover:scale-105 shadow-[0_10px_30px_rgba(247,148,30,0.3)] hover:shadow-[0_15px_40px_rgba(247,148,30,0.4)]"
-                    >
-                        <span className="relative z-10">Start Your Experience</span>
-                        <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                    </a>
+                    <CtaButton href={`/${locale}/contact-us`}>
+                        Start Your Experience
+                    </CtaButton>
                 </motion.div>
             </div>
 

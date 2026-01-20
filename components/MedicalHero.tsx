@@ -3,8 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
+import CtaButton from './ui/CtaButton';
+import { usePathname } from 'next/navigation';
 
 export default function MedicalHero() {
+    const pathname = usePathname();
+    const locale = pathname?.split('/')[1] || 'en';
     return (
         <section className="relative m-2 rounded-[20px] overflow-hidden min-h-[600px] flex items-center">
             {/* Background Image */}
@@ -84,14 +88,12 @@ export default function MedicalHero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                     >
-                        <Link href="/en/contact-us">
-                            <button className="bg-secondary hover:bg-secondary/90 text-primary px-8 py-3 rounded-lg text-base font-bold transition-colors font-cabinet shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all">
-                                Free Consultation
-                            </button>
-                        </Link>
-                        <button className="hover:bg-white/10 border-2 border-white text-white px-8 py-3 rounded-lg text-base font-medium transition-colors font-cabinet backdrop-blur-sm">
+                        <CtaButton href={`/${locale}/contact-us`}>
+                            Free Consultation
+                        </CtaButton>
+                        <CtaButton variant="outline">
                             View Procedures
-                        </button>
+                        </CtaButton>
                     </motion.div>
                 </div>
             </div>

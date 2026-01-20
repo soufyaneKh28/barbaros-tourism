@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from 'react';
+import CtaButton from './ui/CtaButton';
 
 interface HeroProps {
   locale: Locale;
@@ -215,12 +216,12 @@ export default function Hero({ locale }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <button className="bg-primary-700 hover:bg-primary-600 text-white px-8 py-3 rounded-lg text-base font-medium transition-colors font-cabinet shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all">
+              <CtaButton href={`/${locale}/tours`}>
                 {t.hero.exploreTours}
-              </button>
-              <button className="hover:bg-white/10 border border-white text-white px-8 py-3 rounded-lg text-base font-medium transition-colors font-cabinet backdrop-blur-sm">
+              </CtaButton>
+              <CtaButton href={`/${locale}/medical-tourism`} variant="outline">
                 {t.hero.medicalTourism}
-              </button>
+              </CtaButton>
             </motion.div>
 
             {/* Social Media Icons - Mobile Only */}
@@ -316,7 +317,7 @@ function LanguageSelector({ locale }: { locale: Locale }) {
 
   return (
     <div className="relative">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 text-white hover:border-white/50 transition-all duration-200 font-cabinet backdrop-blur-sm"
       >
