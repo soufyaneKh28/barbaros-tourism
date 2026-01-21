@@ -77,8 +77,6 @@ export default function EditTripPage() {
         return new Date(dateString).toISOString().slice(0, 16)
     }
 
-    const formatItinerary = (itinerary?: any[]) => itinerary?.map((i: any) => i.title).join('\n') || ''
-
     return (
         <div className="max-w-4xl mx-auto bg-white p-8 shadow rounded-lg font-satoshi">
             <h2 className="text-2xl font-bold mb-6 font-cabinet">Edit Trip</h2>
@@ -154,10 +152,7 @@ export default function EditTripPage() {
                     <MultiLangArrayInput name="excludes" label="Excludes (One item per line)" rows={5} defaultValue={trip.excludes} />
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Highlights / Program (One step per line)</label>
-                    <textarea name="itinerary" defaultValue={formatItinerary(trip.itinerary)} rows={6} className="mt-1 block w-full border rounded-md px-3 py-2 font-mono text-sm" />
-                </div>
+                <MultiLangArrayInput name="itinerary" label="Highlights / Program (One step per line)" rows={6} defaultValue={trip.itinerary} />
 
                 {/* Hot Deal Section */}
                 <div className="border-t pt-6">

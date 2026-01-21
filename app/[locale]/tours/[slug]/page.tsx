@@ -54,6 +54,7 @@ export default async function TourDetails({
                         itinerary={trip.itinerary}
                         includes={trip.includes}
                         excludes={trip.excludes}
+                        locale={locale}
                     />
 
                     {/* Right Sidebar (Booking) */}

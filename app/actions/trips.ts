@@ -55,9 +55,7 @@ export async function createTripAction(formData: FormData) {
     const endDateRaw = formData.get('endDate') as string
     const endDate = endDateRaw ? new Date(endDateRaw).toISOString() : null
 
-    const itineraryRaw = formData.get('itinerary') as string
-    // Store as simple array of objects for now
-    const itinerary = itineraryRaw ? itineraryRaw.split('\n').map(s => s.trim()).filter(Boolean).map(step => ({ title: step })) : []
+    const itinerary = getMultiLangArrayField(formData, 'itinerary')
 
     const tripType = formData.get('tripType') as string || 'daily'
 
@@ -143,8 +141,7 @@ export async function updateTripAction(id: string, formData: FormData) {
     const endDateRaw = formData.get('endDate') as string
     const endDate = endDateRaw ? new Date(endDateRaw).toISOString() : null
 
-    const itineraryRaw = formData.get('itinerary') as string
-    const itinerary = itineraryRaw ? itineraryRaw.split('\n').map(s => s.trim()).filter(Boolean).map(step => ({ title: step })) : []
+    const itinerary = getMultiLangArrayField(formData, 'itinerary')
 
     const tripType = formData.get('tripType') as string || 'daily'
 

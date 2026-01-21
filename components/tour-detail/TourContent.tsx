@@ -16,9 +16,10 @@ interface TourContentProps {
     itinerary?: any[];
     includes?: string[];
     excludes?: string[];
+    locale?: string;
 }
 
-export default function TourContent({ description, location, itinerary, includes, excludes }: TourContentProps) {
+export default function TourContent({ description, location, itinerary, includes, excludes, locale = 'en' }: TourContentProps) {
     const [activeTab, setActiveTab] = useState('Overview');
 
     return (
@@ -47,7 +48,7 @@ export default function TourContent({ description, location, itinerary, includes
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <TourProgram itinerary={itinerary || []} />
+                            <TourProgram itinerary={itinerary || []} locale={locale} />
                         </motion.div>
                     )}
 

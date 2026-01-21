@@ -111,10 +111,7 @@ export default function NewTripPage() {
                     <MultiLangArrayInput name="excludes" label="Excludes (One item per line)" rows={5} placeholder="Personal expenses\nTips" />
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Highlights / Program (One step per line)</label>
-                    <textarea name="itinerary" rows={6} className="mt-1 block w-full border rounded-md px-3 py-2 font-mono text-sm" placeholder="Day 1: Arrival and Transfer&#10;Day 2: City Tour&#10;Day 3: Departure" />
-                </div>
+                <MultiLangArrayInput name="itinerary" label="Highlights / Program (One step per line)" rows={6} placeholder="Day 1: Arrival and Transfer&#10;Day 2: City Tour&#10;Day 3: Departure" />
 
                 {/* Hot Deal Section */}
                 <div className="border-t pt-6">
