@@ -56,6 +56,8 @@ export default function NewTripPage() {
                         <option value="daily">Daily Tour</option>
                         <option value="group">Group Tour</option>
                         <option value="private">Private Tour</option>
+                        <option value="tourism-programs">Tourism Programs</option>
+                        <option value="specialized-packages">Specialized Tourism Packages</option>
                     </select>
                 </div>
 

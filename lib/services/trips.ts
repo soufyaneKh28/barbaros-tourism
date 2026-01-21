@@ -39,6 +39,22 @@ export async function getTrips(locale: string = 'en') {
     return data.map(trip => transformTrip(trip, locale))
 }
 
+export async function getTripsByType(tripType: string, locale: string = 'en') {
+    const { data, error } = await supabase
+        .from('trips')
+        .select(`
+      *,
+      destination:destinations(name, slug),
+      category:categories(name, slug)
+    `)
+        .eq('is_active', true)
+        .eq('trip_type', tripType)
+        .order('created_at', { ascending: false })
+
+    if (error) throw error
+    return data.map(trip => transformTrip(trip, locale))
+}
+
 export async function getTripById(id: string, locale: string = 'en') {
     const { data, error } = await supabase
         .from('trips')

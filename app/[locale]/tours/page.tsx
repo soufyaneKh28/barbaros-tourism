@@ -10,7 +10,8 @@ import { getMessages } from "@/i18n";
 import Image from "next/image";
 import Link from 'next/link';
 
-import { getTrips, getHotDeals } from "@/lib/services/trips";
+import { getTrips, getHotDeals, getTripsByType } from "@/lib/services/trips";
+import { getDestinations } from "@/lib/services/destinations";
 
 export default async function Tours({
     params,
@@ -28,13 +29,55 @@ export default async function Tours({
             id: trip.id,
             title: trip.title,
             description: trip.description,
-            image: trip.images?.[0] || "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
-            price: `$${trip.price}`,
+            image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
+            price: trip.price ? `$${trip.price}` : undefined,
             tags: [trip.destination?.name, trip.category?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`
         }));
     } catch (error) {
         console.error("Error fetching dynamic trips:", error);
+    }
+
+    // Fetch tourism programs
+    let tourismPrograms: any[] = [];
+    try {
+        const data = await getTripsByType('tourism-programs', locale);
+        tourismPrograms = (data || []).map((trip: any) => ({
+            id: trip.id,
+            title: trip.title,
+            description: trip.description,
+            image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
+            price: trip.price ? `$${trip.price}` : undefined,
+            tags: [trip.destination?.name, trip.category?.name].filter(Boolean),
+            link: `/${locale}/tours/${trip.slug}`
+        }));
+    } catch (error) {
+        console.error("Error fetching tourism programs:", error);
+    }
+
+    // Fetch specialized packages
+    let specializedPackages: any[] = [];
+    try {
+        const data = await getTripsByType('specialized-packages', locale);
+        specializedPackages = (data || []).map((trip: any) => ({
+            id: trip.id,
+            title: trip.title,
+            description: trip.description,
+            image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd",
+            price: trip.price ? `$${trip.price}` : undefined,
+            tags: [trip.destination?.name, trip.category?.name].filter(Boolean),
+            link: `/${locale}/tours/${trip.slug}`
+        }));
+    } catch (error) {
+        console.error("Error fetching specialized packages:", error);
+    }
+
+    // Fetch destinations
+    let destinations: any[] = [];
+    try {
+        destinations = await getDestinations(locale);
+    } catch (error) {
+        console.error("Error fetching destinations:", error);
     }
 
     // Fetch hot deals
@@ -67,37 +110,6 @@ export default async function Tours({
         }
     ];
 
-    const topDestinations = [
-        {
-            id: 101,
-            title: "Antalya Coastal Escape",
-            description: "Turquoise waters, ancient ruins, and luxury resorts await in the heart of the Turkish Riviera.",
-            image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=800&auto=format&fit=crop",
-            tags: ["Beach", "Luxury", "History"],
-            link: `/${locale}/destinations/antalya`
-        },
-        {
-            id: 102,
-            title: "Bodrum Yacht Life",
-            description: "Experience the vibrant nightlife and crystal-clear bays of Turkey's most famous coastal town.",
-            image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800&auto=format&fit=crop",
-            tags: ["Sun", "Sea", "Nightlife"],
-            link: `/${locale}/destinations/bodrum`
-        }
-    ];
-
-    const adventureTours = [
-        {
-            id: 301,
-            title: "Hot Air Balloon Flight",
-            description: "Soar over the otherworldly landscape of Cappadocia at sunrise for a once-in-a-lifetime view.",
-            image: "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=800&auto=format&fit=crop",
-            price: "$180",
-            tags: ["Aerial", "Adventure", "Landscape"],
-            link: `/${locale}/tours/balloon-flight`
-        }
-    ];
-
     return (
         <div className="bg-white">
             <Navbar transparent={false} />
@@ -113,29 +125,47 @@ export default async function Tours({
                 items={dailyTours}
             />
 
-            {/* Top Destinations Carousel (Dark Mode) */}
+            {/* Tourism Programs Carousel (Dark Mode) */}
             <TourCarousel
-                badge="TOP DESTINATIONS"
-                title="Where Every Journey Matters"
-                description="Join thousands of travelers who have discovered the magic of these iconic Turkish locations."
-                items={topDestinations}
+                badge="TOURISM PROGRAMS"
+                title="Curated Travel Experiences"
+                description="Discover our specially designed tourism programs that combine culture, adventure, and relaxation for an unforgettable journey."
+                items={tourismPrograms.length > 0 ? tourismPrograms : [
+                    {
+                        id: 101,
+                        title: "Cultural Heritage Tour",
+                        description: "Explore Turkey's rich history and cultural landmarks in this comprehensive program.",
+                        image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=800&auto=format&fit=crop",
+                        tags: ["Culture", "History"],
+                        link: `/${locale}/tours/cultural-heritage`
+                    }
+                ]}
                 dark={true}
             />
 
             {/* Hot Deals */}
             <HotDeals deals={hotDeals} locale={locale} />
 
-            {/* Adventure Tours Carousel */}
+            {/* Specialized Tourism Packages Carousel */}
             <TourCarousel
-                badge="ADVENTURE"
-                title="Push Your Boundaries"
-                description="For the thrill-seekers and nature lovers. Experience Türkiye from new perspectives."
-                items={adventureTours}
+                badge="SPECIALIZED PACKAGES"
+                title="Tailored Tourism Solutions"
+                description="Exclusive packages designed for specific interests - from medical tourism to cultural immersion and luxury experiences."
+                items={specializedPackages.length > 0 ? specializedPackages : [
+                    {
+                        id: 301,
+                        title: "Medical Tourism Package",
+                        description: "Combine world-class medical care with a relaxing Turkish getaway.",
+                        image: "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=800&auto=format&fit=crop",
+                        tags: ["Medical", "Wellness"],
+                        link: `/${locale}/tours/medical-tourism`
+                    }
+                ]}
                 dark={true}
             />
 
             {/* Destinations grid (from home for SEO/internal linking) */}
-            <Destinations />
+            <Destinations destinations={destinations} locale={locale} />
 
             {/* What's Included / Experience Section */}
             <ToursExperience />
