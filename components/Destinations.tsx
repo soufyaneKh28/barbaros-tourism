@@ -58,18 +58,18 @@ export default function Destinations({ destinations: initialDestinations, locale
                         return (
                             <Link
                                 key={dest.id}
-                                href={`/en/destinations/${dest.slug}`}
+                                href={`/${locale}/tours?destination=${dest.slug}`}
                                 className={`relative cursor-pointer rounded-3xl overflow-hidden group h-[300px] md:h-[400px] ${colSpanClass} block`}
                             >
                                 <Image
-                                    src={dest.image}
+                                    src={dest.image_url || 'https://images.unsplash.com/photo-1605815063836-7a6c2497c2b1?q=80&w=2070&auto=format&fit=crop'}
                                     alt={dest.name}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8">
                                     <h3 className="text-white font-cabinet font-bold text-3xl mb-1">{dest.name}</h3>
-                                    <p className="text-white/90 font-satoshi text-sm">{dest.tours}</p>
+                                    <p className="text-white/90 font-satoshi text-sm">{dest.tours_count || 0} Tours</p>
                                 </div>
 
                                 {/* Arrow Icon */}

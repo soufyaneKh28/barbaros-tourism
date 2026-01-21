@@ -6,7 +6,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import { signOutAction } from '@/app/actions/auth'
-import { Plane, MapPin, FileText, Database, LogOut, LayoutDashboard } from 'lucide-react'
+import { Plane, MapPin, FileText, Database, LogOut, LayoutDashboard, Mail } from 'lucide-react'
 
 export default function AdminLayout({
     children,
@@ -23,6 +23,7 @@ export default function AdminLayout({
         { href: `/${locale}/portal-manage/trips`, label: 'Trips', icon: Plane },
         { href: `/${locale}/portal-manage/destinations`, label: 'Destinations', icon: MapPin },
         { href: `/${locale}/portal-manage/blogs`, label: 'Blogs', icon: FileText },
+        { href: `/${locale}/portal-manage/messages`, label: 'Messages', icon: Mail },
         { href: `/${locale}/portal-manage/seed`, label: 'Seed', icon: Database, isSecondary: true }
     ]
 
