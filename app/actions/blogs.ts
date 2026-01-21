@@ -2,13 +2,28 @@
 
 import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
+import { locales } from '@/i18n/config'
+
+// Helper to extract multi-language field from FormData
+function getMultiLangField(formData: FormData, fieldName: string): Record<string, string> {
+    const result: Record<string, string> = {}
+    locales.forEach(locale => {
+        const value = formData.get(`${fieldName}[${locale}]`) as string
+        if (value) result[locale] = value
+    })
+    return result
+}
 
 export async function createBlogAction(formData: FormData) {
     const supabase = await createClient()
-    const title = formData.get('title') as string
+
+    // Multi-language fields
+    const title = getMultiLangField(formData, 'title')
+    const excerpt = getMultiLangField(formData, 'excerpt')
+    const content = getMultiLangField(formData, 'content')
+
+    // Regular fields
     const slug = formData.get('slug') as string
-    const excerpt = formData.get('excerpt') as string
-    const content = formData.get('content') as string
     const coverImage = formData.get('coverImage') as string
     const authorName = formData.get('authorName') as string || 'Barbaros Team'
     const isPublished = formData.get('isPublished') === 'on'
@@ -32,6 +47,7 @@ export async function createBlogAction(formData: FormData) {
     }
 
     revalidatePath('/[locale]/blogs', 'page')
+    revalidatePath('/[locale]/portal-manage/blogs')
     return { success: true }
 }
 
@@ -74,15 +90,16 @@ export async function toggleBlogStatusAction(id: string, isPublished: boolean) {
 
 export async function updateBlogAction(id: string, formData: FormData) {
     const supabase = await createClient()
-    const title = formData.get('title') as string
+
+    // Multi-language fields
+    const title = getMultiLangField(formData, 'title')
+    const excerpt = getMultiLangField(formData, 'excerpt')
+    const content = getMultiLangField(formData, 'content')
+
+    // Regular fields
     const slug = formData.get('slug') as string
-    const excerpt = formData.get('excerpt') as string
-    const content = formData.get('content') as string
     const coverImage = formData.get('coverImage') as string
     const authorName = formData.get('authorName') as string
-
-    // We don't update is_published here as that is handled by the toggle action
-    // or we could, but let's keep it simple for now and just update content
 
     const { error } = await supabase
         .from('blogs')

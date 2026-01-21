@@ -1,6 +1,30 @@
 import { supabase } from '../supabase'
+import { getLocalized } from '../utils'
 
-export async function getTrips() {
+// Helper to flatten localized fields
+function transformTrip(trip: any, locale: string = 'en') {
+    if (!trip) return null
+    return {
+        ...trip,
+        title: getLocalized(trip.title, locale),
+        description: getLocalized(trip.description, locale),
+        long_description: getLocalized(trip.long_description, locale),
+        location: getLocalized(trip.location, locale),
+        includes: getLocalized(trip.includes, locale) || [],
+        excludes: getLocalized(trip.excludes, locale) || [],
+        destination: trip.destination ? {
+            ...trip.destination,
+            name: getLocalized(trip.destination.name, locale),
+            description: getLocalized(trip.destination.description, locale)
+        } : null,
+        category: trip.category ? {
+            ...trip.category,
+            name: getLocalized(trip.category.name, locale)
+        } : null
+    }
+}
+
+export async function getTrips(locale: string = 'en') {
     const { data, error } = await supabase
         .from('trips')
         .select(`
@@ -12,10 +36,10 @@ export async function getTrips() {
         .order('created_at', { ascending: false })
 
     if (error) throw error
-    return data
+    return data.map(trip => transformTrip(trip, locale))
 }
 
-export async function getTripById(id: string) {
+export async function getTripById(id: string, locale: string = 'en') {
     const { data, error } = await supabase
         .from('trips')
         .select('*')
@@ -23,10 +47,10 @@ export async function getTripById(id: string) {
         .single()
 
     if (error) throw error
-    return data
+    return transformTrip(data, locale)
 }
 
-export async function getTripBySlug(slug: string) {
+export async function getTripBySlug(slug: string, locale: string = 'en') {
     const { data, error } = await supabase
         .from('trips')
         .select(`
@@ -38,7 +62,7 @@ export async function getTripBySlug(slug: string) {
         .single()
 
     if (error) throw error
-    return data
+    return transformTrip(data, locale)
 }
 
 export async function createTrip(tripData: any) {

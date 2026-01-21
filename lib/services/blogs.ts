@@ -1,6 +1,17 @@
 import { supabase } from '../supabase'
+import { getLocalized } from '../utils'
 
-export async function getBlogs(includeDrafts = true) {
+function transformBlog(blog: any, locale: string = 'en') {
+    if (!blog) return null
+    return {
+        ...blog,
+        title: getLocalized(blog.title, locale),
+        excerpt: getLocalized(blog.excerpt, locale),
+        content: getLocalized(blog.content, locale)
+    }
+}
+
+export async function getBlogs(includeDrafts = true, locale: string = 'en') {
     try {
         let query = supabase
             .from('blogs')
@@ -17,14 +28,14 @@ export async function getBlogs(includeDrafts = true) {
             console.error('Error fetching blogs:', error)
             return []
         }
-        return data || []
+        return (data || []).map(blog => transformBlog(blog, locale))
     } catch (error) {
         console.error('Error in getBlogs:', error)
         return []
     }
 }
 
-export async function getBlogById(id: string) {
+export async function getBlogById(id: string, locale: string = 'en') {
     try {
         const { data, error } = await supabase
             .from('blogs')
@@ -36,14 +47,14 @@ export async function getBlogById(id: string) {
             console.error('Error fetching blog by id:', error)
             return null
         }
-        return data
+        return transformBlog(data, locale)
     } catch (error) {
         console.error('Error in getBlogById:', error)
         return null
     }
 }
 
-export async function getBlogBySlug(slug: string) {
+export async function getBlogBySlug(slug: string, locale: string = 'en') {
     try {
         const { data, error } = await supabase
             .from('blogs')
@@ -55,7 +66,7 @@ export async function getBlogBySlug(slug: string) {
             console.error('Error fetching blog by slug:', error)
             return null
         }
-        return data
+        return transformBlog(data, locale)
     } catch (error) {
         console.error('Error in getBlogBySlug:', error)
         return null

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { updateBlogAction } from '@/app/actions/blogs'
 import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
+import MultiLangInput from '@/components/portal/MultiLangInput'
+import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 
 export default function EditBlogPage() {
     const [loading, setLoading] = useState(false)
@@ -64,28 +66,17 @@ export default function EditBlogPage() {
             <h2 className="text-2xl font-bold mb-6 font-cabinet">Edit Blog Post</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Title</label>
-                        <input
-                            name="title"
-                            defaultValue={blog.title}
-                            required
-                            className="mt-1 block w-full border rounded-md px-3 py-2"
-                            placeholder="Post title"
-                        />
-                    </div>
+                <MultiLangInput name="title" label="Title" required placeholder="Post title" defaultValue={blog.title} />
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Slug</label>
-                        <input
-                            name="slug"
-                            defaultValue={blog.slug}
-                            required
-                            className="mt-1 block w-full border rounded-md px-3 py-2"
-                            placeholder="post-url-slug"
-                        />
-                    </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Slug</label>
+                    <input
+                        name="slug"
+                        defaultValue={blog.slug}
+                        required
+                        className="mt-1 block w-full border rounded-md px-3 py-2"
+                        placeholder="post-url-slug"
+                    />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -109,28 +100,9 @@ export default function EditBlogPage() {
                     </div>
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Excerpt (Short summary)</label>
-                    <textarea
-                        name="excerpt"
-                        defaultValue={blog.excerpt}
-                        rows={2}
-                        required
-                        className="mt-1 block w-full border rounded-md px-3 py-2"
-                    />
-                </div>
+                <MultiLangTextarea name="excerpt" label="Excerpt (Short summary)" required rows={2} defaultValue={blog.excerpt} />
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Content (HTML allowed)</label>
-                    <textarea
-                        name="content"
-                        defaultValue={blog.content}
-                        rows={10}
-                        required
-                        className="mt-1 block w-full border rounded-md px-3 py-2 font-mono text-sm"
-                        placeholder="<p>Start writing...</p>"
-                    />
-                </div>
+                <MultiLangTextarea name="content" label="Content (HTML allowed)" required rows={10} placeholder="<p>Start writing...</p>" defaultValue={blog.content} />
 
                 {error && <p className="text-red-600 text-sm">{error}</p>}
 

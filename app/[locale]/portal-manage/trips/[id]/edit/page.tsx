@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import { updateTripAction } from '@/app/actions/trips'
 import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
+import MultiLangInput from '@/components/portal/MultiLangInput'
+import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
+import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
 
 export default function EditTripPage() {
     const [loading, setLoading] = useState(false)
@@ -65,7 +68,6 @@ export default function EditTripPage() {
         return new Date(dateString).toISOString().slice(0, 16)
     }
 
-    const formatArray = (arr?: string[]) => arr?.join('\n') || ''
     const formatItinerary = (itinerary?: any[]) => itinerary?.map((i: any) => i.title).join('\n') || ''
 
     return (
@@ -73,16 +75,11 @@ export default function EditTripPage() {
             <h2 className="text-2xl font-bold mb-6 font-cabinet">Edit Trip</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Trip Title</label>
-                        <input name="title" defaultValue={trip.title} required className="mt-1 block w-full border rounded-md px-3 py-2" />
-                    </div>
+                <MultiLangInput name="title" label="Trip Title" required defaultValue={trip.title} />
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Slug</label>
-                        <input name="slug" defaultValue={trip.slug} required className="mt-1 block w-full border rounded-md px-3 py-2" />
-                    </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Slug</label>
+                    <input name="slug" defaultValue={trip.slug} required className="mt-1 block w-full border rounded-md px-3 py-2" />
                 </div>
 
                 <div>
@@ -116,7 +113,7 @@ export default function EditTripPage() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Price ($) (Optional)</label>
                         <input name="price" defaultValue={trip.price} type="number" step="0.01" className="mt-1 block w-full border rounded-md px-3 py-2" />
@@ -125,26 +122,15 @@ export default function EditTripPage() {
                         <label className="block text-sm font-medium text-gray-700">Duration (Days)</label>
                         <input name="duration" defaultValue={trip.duration_days} type="number" required className="mt-1 block w-full border rounded-md px-3 py-2" />
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Location</label>
-                        <input name="location" defaultValue={trip.location} required className="mt-1 block w-full border rounded-md px-3 py-2" />
-                    </div>
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea name="description" defaultValue={trip.description} rows={3} required className="mt-1 block w-full border rounded-md px-3 py-2" />
-                </div>
+                <MultiLangInput name="location" label="Location" required defaultValue={trip.location} />
+
+                <MultiLangTextarea name="description" label="Description" required rows={3} defaultValue={trip.description} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Includes (One item per line)</label>
-                        <textarea name="includes" defaultValue={formatArray(trip.includes)} rows={5} className="mt-1 block w-full border rounded-md px-3 py-2 font-mono text-sm" />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Excludes (One item per line)</label>
-                        <textarea name="excludes" defaultValue={formatArray(trip.excludes)} rows={5} className="mt-1 block w-full border rounded-md px-3 py-2 font-mono text-sm" />
-                    </div>
+                    <MultiLangArrayInput name="includes" label="Includes (One item per line)" rows={5} defaultValue={trip.includes} />
+                    <MultiLangArrayInput name="excludes" label="Excludes (One item per line)" rows={5} defaultValue={trip.excludes} />
                 </div>
 
                 <div>

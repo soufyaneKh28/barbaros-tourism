@@ -2,14 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { type Locale, getMessages } from "@/i18n";
+import { useLanguage } from '@/hooks/use-language';
 
-interface ServicesProps {
-    locale?: Locale;
-}
-
-export default function Services({ locale = 'en' }: ServicesProps) {
-    const t = getMessages(locale);
+export default function Services() {
+    const { t } = useLanguage();
     const [activeId, setActiveId] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 

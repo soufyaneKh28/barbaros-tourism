@@ -10,22 +10,22 @@
   },
   "home": {
     "services": {
-      "badge": "Our services",
-      "heading": "Integrated tourism solutions that meet all your needs in Türkiye",
-      "description": "At Barbaros Tourism, we offer a full range of carefully designed tourism services, to guarantee you a comfortable, safe, and distinctive experience, whether you are looking for comprehensive travel services, medical tourism, or unforgettable tourist tours.",
-      "seeAll": "See All Blogs",
+      "badge": "Hizmetlerimiz",
+      "heading": "Türkiye'deki tüm ihtiyaçlarınızı karşılayan entegre turizm çözümleri",
+      "description": "Barbaros Turizm olarak, kapsamlı seyahat hizmetleri, sağlık turizmi veya unutulmaz turistik turlar arıyor olun, size konforlu, güvenli ve ayırt edici bir deneyim garanti etmek için özenle tasarlanmış eksiksiz bir turizm hizmetleri yelpazesi sunuyoruz.",
+      "seeAll": "Tüm Blogları Gör",
       "items": {
         "integrated": {
-          "title": "Integrated tourism services",
-          "description": "We provide integrated tourism services that include hotel reservations, airport reception, transportation, VIP services, and full support throughout your stay, to give you a worry-free and comfortable experience."
+          "title": "Entegre turizm hizmetleri",
+          "description": "Otel rezervasyonları, havaalanı karşılama, ulaşım, VIP hizmetler ve konaklamanız boyunca tam destek içeren entegre turizm hizmetleri sunarak size endişesiz ve konforlu bir deneyim yaşatıyoruz."
         },
         "medical": {
-          "title": "Medical tourism",
-          "description": "Comprehensive medical tourism packages working with top hospitals and specialists to ensure the best care and recovery experience."
+          "title": "Sağlık turizmi",
+          "description": "En iyi bakım ve iyileşme deneyimini sağlamak için en iyi hastaneler ve uzmanlarla çalışan kapsamlı sağlık turizmi paketleri."
         },
         "tours": {
-          "title": "Tours",
-          "description": "Unforgettable cultural and recreational tours to the most beautiful destinations in Türkiye, guided by local experts."
+          "title": "Turlar",
+          "description": "Yerel uzmanlar rehberliğinde Türkiye'nin en güzel destinasyonlarına unutulmaz kültürel ve eğlence turları."
         }
       }
     },

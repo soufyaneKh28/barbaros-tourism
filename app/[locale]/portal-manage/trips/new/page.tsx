@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { createTripAction } from '@/app/actions/trips'
 import { useRouter, useParams } from 'next/navigation'
+import MultiLangInput from '@/components/portal/MultiLangInput'
+import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
+import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
 
 export default function NewTripPage() {
     const [loading, setLoading] = useState(false)
@@ -33,16 +36,11 @@ export default function NewTripPage() {
             <h2 className="text-2xl font-bold mb-6 font-cabinet">Create New Trip</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Trip Title</label>
-                        <input name="title" required className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="e.g. Bosphorus Dinner Cruise" />
-                    </div>
+                <MultiLangInput name="title" label="Trip Title" required placeholder="e.g. Bosphorus Dinner Cruise" />
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Slug</label>
-                        <input name="slug" required className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="e.g. bosphorus-dinner-cruise" />
-                    </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Slug</label>
+                    <input name="slug" required className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="e.g. bosphorus-dinner-cruise" />
                 </div>
 
                 <div>
@@ -76,7 +74,7 @@ export default function NewTripPage() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Price ($) (Optional)</label>
                         <input name="price" type="number" step="0.01" className="mt-1 block w-full border rounded-md px-3 py-2" />
@@ -85,26 +83,15 @@ export default function NewTripPage() {
                         <label className="block text-sm font-medium text-gray-700">Duration (Days)</label>
                         <input name="duration" type="number" required className="mt-1 block w-full border rounded-md px-3 py-2" />
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Location</label>
-                        <input name="location" required className="mt-1 block w-full border rounded-md px-3 py-2" />
-                    </div>
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea name="description" rows={3} required className="mt-1 block w-full border rounded-md px-3 py-2" />
-                </div>
+                <MultiLangInput name="location" label="Location" required />
+
+                <MultiLangTextarea name="description" label="Description" required rows={3} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Includes (One item per line)</label>
-                        <textarea name="includes" rows={5} className="mt-1 block w-full border rounded-md px-3 py-2 font-mono text-sm" placeholder="Hotel pickup&#10;Lunch&#10;Guide" />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Excludes (One item per line)</label>
-                        <textarea name="excludes" rows={5} className="mt-1 block w-full border rounded-md px-3 py-2 font-mono text-sm" placeholder="Personal expenses&#10;Tips" />
-                    </div>
+                    <MultiLangArrayInput name="includes" label="Includes (One item per line)" rows={5} placeholder="Hotel pickup\nLunch\nGuide" />
+                    <MultiLangArrayInput name="excludes" label="Excludes (One item per line)" rows={5} placeholder="Personal expenses\nTips" />
                 </div>
 
                 <div>

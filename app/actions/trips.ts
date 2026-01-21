@@ -2,18 +2,47 @@
 
 import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
+import { locales } from '@/i18n/config'
+
+// Helper to extract multi-language field from FormData
+function getMultiLangField(formData: FormData, fieldName: string): Record<string, string> {
+    const result: Record<string, string> = {}
+    locales.forEach(locale => {
+        const value = formData.get(`${fieldName}[${locale}]`) as string
+        if (value) result[locale] = value
+    })
+    return result
+}
+
+// Helper to extract multi-language array field from FormData
+function getMultiLangArrayField(formData: FormData, fieldName: string): Record<string, string[]> {
+    const result: Record<string, string[]> = {}
+    locales.forEach(locale => {
+        const value = formData.get(`${fieldName}[${locale}]`) as string
+        if (value) {
+            result[locale] = value.split('\n').map(s => s.trim()).filter(Boolean)
+        }
+    })
+    return result
+}
 
 export async function createTripAction(formData: FormData) {
     const supabase = await createClient()
-    const title = formData.get('title') as string
+
+    // Multi-language fields
+    const title = getMultiLangField(formData, 'title')
+    const description = getMultiLangField(formData, 'description')
+    const location = getMultiLangField(formData, 'location')
+    const includes = getMultiLangArrayField(formData, 'includes')
+    const excludes = getMultiLangArrayField(formData, 'excludes')
+
+    // Regular fields
     const slug = formData.get('slug') as string
-    const description = formData.get('description') as string
 
     const priceRaw = formData.get('price') as string
     const price = priceRaw ? parseFloat(priceRaw) : null
 
     const duration = parseInt(formData.get('duration') as string)
-    const location = formData.get('location') as string
 
     const mainImage = formData.get('mainImage') as string
 
@@ -25,12 +54,6 @@ export async function createTripAction(formData: FormData) {
 
     const endDateRaw = formData.get('endDate') as string
     const endDate = endDateRaw ? new Date(endDateRaw).toISOString() : null
-
-    const includesRaw = formData.get('includes') as string
-    const includes = includesRaw ? includesRaw.split('\n').map(s => s.trim()).filter(Boolean) : []
-
-    const excludesRaw = formData.get('excludes') as string
-    const excludes = excludesRaw ? excludesRaw.split('\n').map(s => s.trim()).filter(Boolean) : []
 
     const itineraryRaw = formData.get('itinerary') as string
     // Store as simple array of objects for now
@@ -75,17 +98,24 @@ export async function createTripAction(formData: FormData) {
     return { success: true }
 }
 
+
 export async function updateTripAction(id: string, formData: FormData) {
     const supabase = await createClient()
-    const title = formData.get('title') as string
+
+    // Multi-language fields
+    const title = getMultiLangField(formData, 'title')
+    const description = getMultiLangField(formData, 'description')
+    const location = getMultiLangField(formData, 'location')
+    const includes = getMultiLangArrayField(formData, 'includes')
+    const excludes = getMultiLangArrayField(formData, 'excludes')
+
+    // Regular fields
     const slug = formData.get('slug') as string
-    const description = formData.get('description') as string
 
     const priceRaw = formData.get('price') as string
     const price = priceRaw ? parseFloat(priceRaw) : null
 
     const duration = parseInt(formData.get('duration') as string)
-    const location = formData.get('location') as string
 
     const mainImage = formData.get('mainImage') as string
 
@@ -97,12 +127,6 @@ export async function updateTripAction(id: string, formData: FormData) {
 
     const endDateRaw = formData.get('endDate') as string
     const endDate = endDateRaw ? new Date(endDateRaw).toISOString() : null
-
-    const includesRaw = formData.get('includes') as string
-    const includes = includesRaw ? includesRaw.split('\n').map(s => s.trim()).filter(Boolean) : []
-
-    const excludesRaw = formData.get('excludes') as string
-    const excludes = excludesRaw ? excludesRaw.split('\n').map(s => s.trim()).filter(Boolean) : []
 
     const itineraryRaw = formData.get('itinerary') as string
     const itinerary = itineraryRaw ? itineraryRaw.split('\n').map(s => s.trim()).filter(Boolean).map(step => ({ title: step })) : []

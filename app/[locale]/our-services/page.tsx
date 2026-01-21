@@ -29,7 +29,7 @@ export default async function OurServices({
             {/* <ServicesGrid /> */}
 
             {/* Services Component - Interactive Accordion */}
-            <Services locale={locale} />
+            <Services />
 
             {/* Final CTA Section */}
             <ServicesCTA locale={locale} />

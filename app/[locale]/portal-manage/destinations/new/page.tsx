@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { createDestinationAction } from '@/app/actions/destinations'
 import { useRouter, useParams } from 'next/navigation'
+import MultiLangInput from '@/components/portal/MultiLangInput'
+import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 
 export default function NewDestinationPage() {
     const [loading, setLoading] = useState(false)
@@ -33,10 +35,7 @@ export default function NewDestinationPage() {
             <h2 className="text-2xl font-bold mb-6">Create New Destination</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Destination Name</label>
-                    <input name="name" required className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="e.g. Antalya" />
-                </div>
+                <MultiLangInput name="name" label="Destination Name" required placeholder="e.g. Antalya" />
 
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Slug</label>
@@ -48,10 +47,7 @@ export default function NewDestinationPage() {
                     <input name="imageUrl" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="https://unsplash.com/..." />
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea name="description" rows={4} required className="mt-1 block w-full border rounded-md px-3 py-2" />
-                </div>
+                <MultiLangTextarea name="description" label="Description" required rows={4} />
 
                 {error && <p className="text-red-600 text-sm">{error}</p>}
 

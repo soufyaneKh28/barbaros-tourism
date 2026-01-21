@@ -10,22 +10,22 @@
   },
   "home": {
     "services": {
-      "badge": "Our services",
-      "heading": "Integrated tourism solutions that meet all your needs in Türkiye",
-      "description": "At Barbaros Tourism, we offer a full range of carefully designed tourism services, to guarantee you a comfortable, safe, and distinctive experience, whether you are looking for comprehensive travel services, medical tourism, or unforgettable tourist tours.",
-      "seeAll": "See All Blogs",
+      "badge": "Nos services",
+      "heading": "Des solutions touristiques intégrées qui répondent à tous vos besoins en Turquie",
+      "description": "Chez Barbaros Tourism, nous offrons une gamme complète de services touristiques soigneusement conçus pour vous garantir une expérience confortable, sûre et distinctive, que vous cherchiez des services de voyage complets, du tourisme médical ou des circuits touristiques inoubliables.",
+      "seeAll": "Voir tous les blogs",
       "items": {
         "integrated": {
-          "title": "Integrated tourism services",
-          "description": "We provide integrated tourism services that include hotel reservations, airport reception, transportation, VIP services, and full support throughout your stay, to give you a worry-free and comfortable experience."
+          "title": "Services touristiques intégrés",
+          "description": "Nous fournissons des services touristiques intégrés qui incluent les réservations d'hôtel, la réception à l'aéroport, le transport, les services VIP et un soutien complet tout au long de votre séjour, pour vous offrir une expérience sans souci et confortable."
         },
         "medical": {
-          "title": "Medical tourism",
-          "description": "Comprehensive medical tourism packages working with top hospitals and specialists to ensure the best care and recovery experience."
+          "title": "Tourisme médical",
+          "description": "Des forfaits complets de tourisme médical travaillant avec les meilleurs hôpitaux et spécialistes pour assurer les meilleurs soins et une expérience de récupération."
         },
         "tours": {
-          "title": "Tours",
-          "description": "Unforgettable cultural and recreational tours to the most beautiful destinations in Türkiye, guided by local experts."
+          "title": "Circuits",
+          "description": "Des visites culturelles et récréatives inoubliables vers les plus belles destinations de Turquie, guidées par des experts locaux."
         }
       }
     },
