@@ -74,3 +74,22 @@ export async function createTrip(tripData: any) {
     if (error) throw error
     return data
 }
+
+export async function getHotDeals(locale: string = 'en') {
+    const now = new Date().toISOString()
+    const { data, error } = await supabase
+        .from('trips')
+        .select(`
+            *,
+            destination:destinations(name, slug, description, image_url),
+            category:categories(name, slug)
+        `)
+        .eq('is_hot_deal', true)
+        .eq('is_active', true)
+        .or(`hot_deal_end_date.is.null,hot_deal_end_date.gte.${now}`)
+        .order('hot_deal_priority', { ascending: true, nullsFirst: false })
+        .limit(10)
+
+    if (error) throw error
+    return data.map(trip => transformTrip(trip, locale))
+}

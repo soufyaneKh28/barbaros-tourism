@@ -61,6 +61,17 @@ export async function createTripAction(formData: FormData) {
 
     const tripType = formData.get('tripType') as string || 'daily'
 
+    // Hot deal fields
+    const isHotDeal = formData.get('isHotDeal') === 'on'
+    const hotDealPriorityRaw = formData.get('hotDealPriority') as string
+    const hotDealPriority = hotDealPriorityRaw ? parseInt(hotDealPriorityRaw) : null
+
+    const hotDealStartDateRaw = formData.get('hotDealStartDate') as string
+    const hotDealStartDate = hotDealStartDateRaw ? new Date(hotDealStartDateRaw).toISOString() : null
+
+    const hotDealEndDateRaw = formData.get('hotDealEndDate') as string
+    const hotDealEndDate = hotDealEndDateRaw ? new Date(hotDealEndDateRaw).toISOString() : null
+
     // For now, we'll fetch a random destination and category if not provided
     // In a real app, you'd have a dropdown to select these
     const { data: dest } = await supabase.from('destinations').select('id').limit(1).single()
@@ -83,6 +94,10 @@ export async function createTripAction(formData: FormData) {
             excludes,
             itinerary,
             trip_type: tripType,
+            is_hot_deal: isHotDeal,
+            hot_deal_priority: hotDealPriority,
+            hot_deal_start_date: hotDealStartDate,
+            hot_deal_end_date: hotDealEndDate,
             destination_id: dest?.id,
             category_id: cat?.id,
             is_active: true
@@ -133,6 +148,17 @@ export async function updateTripAction(id: string, formData: FormData) {
 
     const tripType = formData.get('tripType') as string || 'daily'
 
+    // Hot deal fields
+    const isHotDeal = formData.get('isHotDeal') === 'on'
+    const hotDealPriorityRaw = formData.get('hotDealPriority') as string
+    const hotDealPriority = hotDealPriorityRaw ? parseInt(hotDealPriorityRaw) : null
+
+    const hotDealStartDateRaw = formData.get('hotDealStartDate') as string
+    const hotDealStartDate = hotDealStartDateRaw ? new Date(hotDealStartDateRaw).toISOString() : null
+
+    const hotDealEndDateRaw = formData.get('hotDealEndDate') as string
+    const hotDealEndDate = hotDealEndDateRaw ? new Date(hotDealEndDateRaw).toISOString() : null
+
     const { error } = await supabase
         .from('trips')
         .update({
@@ -150,6 +176,10 @@ export async function updateTripAction(id: string, formData: FormData) {
             excludes,
             itinerary,
             trip_type: tripType,
+            is_hot_deal: isHotDeal,
+            hot_deal_priority: hotDealPriority,
+            hot_deal_start_date: hotDealStartDate,
+            hot_deal_end_date: hotDealEndDate,
             updated_at: new Date().toISOString()
         })
         .eq('id', id)

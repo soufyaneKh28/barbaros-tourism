@@ -6,10 +6,14 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import { useLanguage } from '@/hooks/use-language';
 
-export default function Blogs() {
+interface BlogsProps {
+    blogs?: any[]
+}
+
+export default function Blogs({ blogs: initialBlogs }: BlogsProps) {
     const { t, locale } = useLanguage();
 
-    const blogs = [
+    const staticBlogs = [
         {
             id: 1,
             category: 'TRAVEL',
@@ -18,23 +22,18 @@ export default function Blogs() {
             image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop',
             large: true,
         },
-        {
-            id: 2,
-            category: 'TRAVEL',
-            title: t.home.blogs.items.kyoto,
-            slug: 'kyoto-cultural-escape',
-            image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop',
-            large: false,
-        },
-        {
-            id: 3,
-            category: 'TRAVEL',
-            title: t.home.blogs.items.alpine,
-            slug: 'alpine-lake-adventures',
-            image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop',
-            large: false,
-        },
+        // ... (keep structure for fallback or removal if strictly dynamic)
     ];
+
+    const displayBlogs = initialBlogs && initialBlogs.length > 0 ? initialBlogs.map((b, i) => ({
+        id: b.id,
+        category: 'TRAVEL', // Static for now, or fetch from blog data if category exists
+        title: b.title,
+        slug: b.slug,
+        image: b.cover_image || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop',
+        large: i === 0 // Make the first one large
+    })) : staticBlogs;
+
     return (
         <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -68,7 +67,7 @@ export default function Blogs() {
 
                 {/* Blog Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {blogs.map((blog, index) => {
+                    {displayBlogs.map((blog, index) => {
                         const isLarge = blog.large;
 
                         return (

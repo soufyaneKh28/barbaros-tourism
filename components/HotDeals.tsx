@@ -2,46 +2,9 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-
-const deals = [
-    {
-        id: 1,
-        title: 'Kyoto Cultural Escape',
-        description: "Explore Kyoto's iconic landmarks with a complete, well-planned city tour experience.",
-        image: '/images/generated/services_section_image.png', // Placeholder
-        tags: ['Cultural Tours', 'Guided Experiences'],
-    },
-    {
-        id: 2,
-        title: 'Istanbul City Experience',
-        description: "Discover the magic of Istanbul, where history meets modern life, with a complete and well-organized city tour.",
-        image: '/images/generated/destinations_turkey_istanbul.png',
-        tags: ['Guided Tours', 'Comfortable Transfers'],
-    },
-    {
-        id: 3,
-        title: 'Paris Romantic Getaway',
-        description: "Enjoy the charm of Paris with a carefully designed trip covering iconic attractions and unforgettable moments.",
-        image: '/images/generated/destinations_france.png',
-        tags: ['City Tours', 'Cultural Experiences'],
-    },
-    {
-        id: 4,
-        title: 'Bali Tropical Paradise',
-        description: "Relax in the stunning landscapes of Bali with our exclusive tour package including best spots.",
-        image: '/images/generated/services_tours.png', // Placeholder
-        tags: ['Nature', 'Relaxation'],
-    },
-    {
-        id: 5,
-        title: 'Cappadocia Adventure',
-        description: "Experience the magic of hot air balloons and fairy chimneys in this unique adventure.",
-        image: '/images/generated/destinations_turkey_cappadocia.png',
-        tags: ['Adventure', 'Scenic Views'],
-    }
-];
 
 const responsive = {
     superLargeDesktop: {
@@ -66,8 +29,17 @@ const responsive = {
     }
 };
 
-export default function HotDeals() {
+interface HotDealsProps {
+    deals: any[]
+    locale: string
+}
+
+export default function HotDeals({ deals, locale }: HotDealsProps) {
     const carouselRef = useRef<any>(null);
+
+    if (!deals || deals.length === 0) {
+        return null
+    }
 
     return (
         <section className="py-20 bg-primary text-white relative overflow-hidden">
@@ -137,12 +109,13 @@ export default function HotDeals() {
                         partialVisible={true}
                     >
                         {deals.map((deal) => (
-                            <div
+                            <Link
                                 key={deal.id}
-                                className="h-[400px] md:h-[480px] relative rounded-3xl overflow-hidden group select-none"
+                                href={`/${locale}/tours/${deal.slug}`}
+                                className="block h-[400px] md:h-[480px] relative rounded-3xl overflow-hidden group select-none"
                             >
                                 <Image
-                                    src={deal.image}
+                                    src={deal.main_image || '/images/placeholder.jpg'}
                                     alt={deal.title}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -153,14 +126,16 @@ export default function HotDeals() {
 
                                     {/* Top Tags */}
                                     <div className="flex flex-wrap gap-2">
-                                        {deal.tags.map((tag, idx) => (
-                                            <span
-                                                key={idx}
-                                                className="bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10"
-                                            >
-                                                {tag}
+                                        {deal.category?.name && (
+                                            <span className="bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10">
+                                                {deal.category.name}
                                             </span>
-                                        ))}
+                                        )}
+                                        {deal.trip_type && (
+                                            <span className="bg-secondary/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10">
+                                                {deal.trip_type}
+                                            </span>
+                                        )}
                                     </div>
 
                                     {/* Bottom Content */}
@@ -172,12 +147,19 @@ export default function HotDeals() {
                                             {deal.description}
                                         </p>
 
-                                        <button className="px-6 py-2.5 rounded-full border border-white/30 text-white font-medium text-sm hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm">
-                                            View Deal
-                                        </button>
+                                        <div className="flex items-center justify-between">
+                                            <div className="px-6 py-2.5 rounded-full border border-white/30 text-white font-medium text-sm hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm">
+                                                View Deal
+                                            </div>
+                                            {deal.price && (
+                                                <div className="text-white font-bold text-xl">
+                                                    ${deal.price}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </Carousel>
                 </div>

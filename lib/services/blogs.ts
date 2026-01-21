@@ -11,7 +11,7 @@ function transformBlog(blog: any, locale: string = 'en') {
     }
 }
 
-export async function getBlogs(includeDrafts = true, locale: string = 'en') {
+export async function getBlogs(includeDrafts = true, locale: string = 'en', limit: number | null = null) {
     try {
         let query = supabase
             .from('blogs')
@@ -20,6 +20,10 @@ export async function getBlogs(includeDrafts = true, locale: string = 'en') {
 
         if (!includeDrafts) {
             query = query.eq('is_published', true)
+        }
+
+        if (limit) {
+            query = query.limit(limit)
         }
 
         const { data, error } = await query

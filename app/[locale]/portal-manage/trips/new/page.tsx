@@ -3,12 +3,16 @@
 import { useState } from 'react'
 import { createTripAction } from '@/app/actions/trips'
 import { useRouter, useParams } from 'next/navigation'
+import ImageUpload from '@/components/portal/ImageUpload'
+import MultiImageUpload from '@/components/portal/MultiImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
 
 export default function NewTripPage() {
     const [loading, setLoading] = useState(false)
+    const [mainImage, setMainImage] = useState('')
+    const [galleryImages, setGalleryImages] = useState<string[]>([])
     const [error, setError] = useState<string | null>(null)
     const router = useRouter()
     const params = useParams()
@@ -20,6 +24,9 @@ export default function NewTripPage() {
         setError(null)
 
         const formData = new FormData(event.currentTarget)
+        formData.set('mainImage', mainImage)
+        formData.set('images', galleryImages.join(','))
+
         const result = await createTripAction(formData)
 
         if (result.error) {
@@ -54,12 +61,22 @@ export default function NewTripPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Main Image URL</label>
-                        <input name="mainImage" required className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="https://..." />
+                        <ImageUpload
+                            bucket="trip-images"
+                            onUploadComplete={setMainImage}
+                            label="Main Image URL"
+                            required
+                        />
+                        <input type="hidden" name="mainImage" value={mainImage} />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Other Images (Comma separated)</label>
-                        <input name="images" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="https://..., https://..." />
+                        <MultiImageUpload
+                            bucket="trip-images"
+                            onUploadComplete={setGalleryImages}
+                            label="Gallery Images"
+                            maxImages={8}
+                        />
+                        <input type="hidden" name="images" value={galleryImages.join(',')} />
                     </div>
                 </div>
 
@@ -97,6 +114,35 @@ export default function NewTripPage() {
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Highlights / Program (One step per line)</label>
                     <textarea name="itinerary" rows={6} className="mt-1 block w-full border rounded-md px-3 py-2 font-mono text-sm" placeholder="Day 1: Arrival and Transfer&#10;Day 2: City Tour&#10;Day 3: Departure" />
+                </div>
+
+                {/* Hot Deal Section */}
+                <div className="border-t pt-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 font-cabinet">Hot Deal Settings</h3>
+
+                    <div className="space-y-4">
+                        <div className="flex items-center">
+                            <input id="isHotDeal" name="isHotDeal" type="checkbox" className="h-4 w-4 text-primary border-gray-300 rounded" />
+                            <label htmlFor="isHotDeal" className="ml-2 block text-sm text-gray-900 font-medium">
+                                Mark as Hot Deal
+                            </label>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Priority (lower = higher priority)</label>
+                                <input name="hotDealPriority" type="number" min="1" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="1" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Start Date (Optional)</label>
+                                <input name="hotDealStartDate" type="datetime-local" className="mt-1 block w-full border rounded-md px-3 py-2" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">End Date (Optional)</label>
+                                <input name="hotDealEndDate" type="datetime-local" className="mt-1 block w-full border rounded-md px-3 py-2" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {error && <p className="text-red-600 text-sm">{error}</p>}

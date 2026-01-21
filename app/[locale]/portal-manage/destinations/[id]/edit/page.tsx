@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react'
 import { updateDestinationAction } from '@/app/actions/destinations'
 import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
+import ImageUpload from '@/components/portal/ImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 
 export default function EditDestinationPage() {
     const [loading, setLoading] = useState(false)
     const [fetching, setFetching] = useState(true)
+    const [imageUrl, setImageUrl] = useState('')
     const [error, setError] = useState<string | null>(null)
     const [destination, setDestination] = useState<any>(null)
     const router = useRouter()
@@ -32,6 +34,7 @@ export default function EditDestinationPage() {
                 setError('Failed to load destination')
             } else {
                 setDestination(data)
+                setImageUrl(data.image_url)
             }
             setFetching(false)
         }
@@ -47,6 +50,8 @@ export default function EditDestinationPage() {
         setError(null)
 
         const formData = new FormData(event.currentTarget)
+        formData.set('imageUrl', imageUrl)
+
         const result = await updateDestinationAction(id, formData)
 
         if (result.error) {
@@ -74,8 +79,13 @@ export default function EditDestinationPage() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Image URL</label>
-                    <input name="imageUrl" defaultValue={destination.image_url} className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="https://unsplash.com/..." />
+                    <ImageUpload
+                        bucket="destination-images"
+                        onUploadComplete={setImageUrl}
+                        currentImage={destination.image_url}
+                        label="Image URL"
+                    />
+                    <input type="hidden" name="imageUrl" value={imageUrl} />
                 </div>
 
                 <MultiLangTextarea name="description" label="Description" required rows={4} defaultValue={destination.description} />

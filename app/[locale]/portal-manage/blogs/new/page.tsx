@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import { createBlogAction } from '@/app/actions/blogs'
 import { useRouter, useParams } from 'next/navigation'
+import ImageUpload from '@/components/portal/ImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 
 export default function NewBlogPage() {
     const [loading, setLoading] = useState(false)
+    const [coverImage, setCoverImage] = useState('')
     const [error, setError] = useState<string | null>(null)
     const router = useRouter()
     const params = useParams()
@@ -19,6 +21,8 @@ export default function NewBlogPage() {
         setError(null)
 
         const formData = new FormData(event.currentTarget)
+        formData.set('coverImage', coverImage)
+
         const result = await createBlogAction(formData)
 
         if (result.error) {
@@ -44,8 +48,12 @@ export default function NewBlogPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Cover Image URL</label>
-                        <input name="coverImage" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="https://unsplash.com/..." />
+                        <ImageUpload
+                            bucket="blog-images"
+                            onUploadComplete={setCoverImage}
+                            label="Cover Image URL"
+                        />
+                        <input type="hidden" name="coverImage" value={coverImage} />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Author Name</label>

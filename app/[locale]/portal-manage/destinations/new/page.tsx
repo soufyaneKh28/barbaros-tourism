@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import { createDestinationAction } from '@/app/actions/destinations'
 import { useRouter, useParams } from 'next/navigation'
+import ImageUpload from '@/components/portal/ImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 
 export default function NewDestinationPage() {
     const [loading, setLoading] = useState(false)
+    const [imageUrl, setImageUrl] = useState('')
     const [error, setError] = useState<string | null>(null)
     const router = useRouter()
     const params = useParams()
@@ -19,6 +21,8 @@ export default function NewDestinationPage() {
         setError(null)
 
         const formData = new FormData(event.currentTarget)
+        formData.set('imageUrl', imageUrl)
+
         const result = await createDestinationAction(formData)
 
         if (result.error) {
@@ -43,8 +47,12 @@ export default function NewDestinationPage() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Image URL</label>
-                    <input name="imageUrl" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="https://unsplash.com/..." />
+                    <ImageUpload
+                        bucket="destination-images"
+                        onUploadComplete={setImageUrl}
+                        label="Image URL"
+                    />
+                    <input type="hidden" name="imageUrl" value={imageUrl} />
                 </div>
 
                 <MultiLangTextarea name="description" label="Description" required rows={4} />

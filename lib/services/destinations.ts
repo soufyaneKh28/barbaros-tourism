@@ -10,14 +10,27 @@ function transformDestination(dest: any, locale: string = 'en') {
     }
 }
 
-export async function getDestinations(locale: string = 'en') {
-    const { data, error } = await supabase
+export async function getDestinations(locale: string = 'en', limit: number | null = null) {
+    let query = supabase
         .from('destinations')
-        .select('*')
+        .select(`
+            *,
+            trips:trips(count)
+        `)
         .order('name', { ascending: true })
 
+    if (limit) {
+        query = query.limit(limit)
+    }
+
+    const { data, error } = await query
+
     if (error) throw error
-    return data.map(dest => transformDestination(dest, locale))
+
+    return data.map(dest => ({
+        ...transformDestination(dest, locale),
+        tours_count: dest.trips?.[0]?.count || 0
+    }))
 }
 
 export async function createDestination(destData: any) {

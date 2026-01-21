@@ -10,7 +10,7 @@ import { getMessages } from "@/i18n";
 import Image from "next/image";
 import Link from 'next/link';
 
-import { getTrips } from "@/lib/services/trips";
+import { getTrips, getHotDeals } from "@/lib/services/trips";
 
 export default async function Tours({
     params,
@@ -23,7 +23,7 @@ export default async function Tours({
 
     let dynamicTrips: any[] = [];
     try {
-        const data = await getTrips();
+        const data = await getTrips(locale);
         dynamicTrips = (data || []).map((trip: any) => ({
             id: trip.id,
             title: trip.title,
@@ -35,6 +35,14 @@ export default async function Tours({
         }));
     } catch (error) {
         console.error("Error fetching dynamic trips:", error);
+    }
+
+    // Fetch hot deals
+    let hotDeals = []
+    try {
+        hotDeals = await getHotDeals(locale)
+    } catch (e) {
+        console.error('Failed to fetch hot deals', e)
     }
 
     // Daily Tours: Combine dynamic and some static fallbacks if empty
@@ -115,7 +123,7 @@ export default async function Tours({
             />
 
             {/* Hot Deals */}
-            <HotDeals />
+            <HotDeals deals={hotDeals} locale={locale} />
 
             {/* Adventure Tours Carousel */}
             <TourCarousel

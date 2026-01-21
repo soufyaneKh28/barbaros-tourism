@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react'
 import { updateBlogAction } from '@/app/actions/blogs'
 import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
+import ImageUpload from '@/components/portal/ImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 
 export default function EditBlogPage() {
     const [loading, setLoading] = useState(false)
     const [fetching, setFetching] = useState(true)
+    const [coverImage, setCoverImage] = useState('')
     const [error, setError] = useState<string | null>(null)
     const [blog, setBlog] = useState<any>(null)
     const router = useRouter()
@@ -32,6 +34,7 @@ export default function EditBlogPage() {
                 setError('Failed to load blog post')
             } else {
                 setBlog(data)
+                setCoverImage(data.cover_image)
             }
             setFetching(false)
         }
@@ -47,6 +50,8 @@ export default function EditBlogPage() {
         setError(null)
 
         const formData = new FormData(event.currentTarget)
+        formData.set('coverImage', coverImage)
+
         const result = await updateBlogAction(id, formData)
 
         if (result.error) {
@@ -81,13 +86,13 @@ export default function EditBlogPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Cover Image URL</label>
-                        <input
-                            name="coverImage"
-                            defaultValue={blog.cover_image}
-                            className="mt-1 block w-full border rounded-md px-3 py-2"
-                            placeholder="https://unsplash.com/..."
+                        <ImageUpload
+                            bucket="blog-images"
+                            onUploadComplete={setCoverImage}
+                            currentImage={blog.cover_image}
+                            label="Cover Image URL"
                         />
+                        <input type="hidden" name="coverImage" value={coverImage} />
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Author Name</label>
