@@ -1,9 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Team from "@/components/Team";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
+import Team from "@/components/about/Team";
 import { type Locale, locales, defaultLocale, getMessages } from "@/i18n";
 import Image from "next/image";
-import AboutHero from "@/components/AboutHero";
+import AboutHero from "@/components/about/AboutHero";
 
 export default async function AboutUs({
     params,

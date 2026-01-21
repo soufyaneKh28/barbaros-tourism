@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from 'react';
-import CtaButton from './ui/CtaButton';
+import CtaButton from '../ui/CtaButton';
 
 
 

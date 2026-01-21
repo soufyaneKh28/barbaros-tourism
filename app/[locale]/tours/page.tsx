@@ -1,10 +1,10 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Destinations from "@/components/Destinations";
-import HotDeals from "@/components/HotDeals";
-import TourCarousel from "@/components/TourCarousel";
-import ToursHero from "@/components/ToursHero";
-import ToursExperience from "@/components/ToursExperience";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
+import Destinations from "@/components/home/Destinations";
+import HotDeals from "@/components/home/HotDeals";
+import TourCarousel from "@/components/tours/TourCarousel";
+import ToursHero from "@/components/tours/ToursHero";
+import ToursExperience from "@/components/tours/ToursExperience";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
 import Image from "next/image";

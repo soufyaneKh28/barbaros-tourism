@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "motion/react";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/common/Navbar";
 import Image from "next/image";
 import { useLanguage } from "@/hooks/use-language";
 

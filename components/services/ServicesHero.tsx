@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from 'motion/react';
-import CtaButton from './ui/CtaButton';
-import Navbar from './Navbar';
+import CtaButton from '../ui/CtaButton';
+import Navbar from '../common/Navbar';
 import { type Locale, getMessages } from "@/i18n";
 
 interface ServicesHeroProps {

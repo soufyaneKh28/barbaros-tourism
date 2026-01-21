@@ -1,5 +1,5 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 import { DestinationHeader, DestinationContent, DestinationGallery, RelatedDestinations } from "@/components/destination-detail";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 

@@ -1,9 +1,9 @@
-import Footer from "@/components/Footer";
-import ContactHero from "@/components/ContactHero";
-import ContactForm from "@/components/ContactForm";
-import ContactInfo from "@/components/ContactInfo";
-import FAQ from "@/components/FAQ";
-import MapPlaceholder from "@/components/MapPlaceholder";
+import Footer from "@/components/common/Footer";
+import ContactHero from "@/components/contact/ContactHero";
+import ContactForm from "@/components/contact/ContactForm";
+import ContactInfo from "@/components/contact/ContactInfo";
+import FAQ from "@/components/common/FAQ";
+import MapPlaceholder from "@/components/common/MapPlaceholder";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
 

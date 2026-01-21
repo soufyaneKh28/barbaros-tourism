@@ -1,6 +1,6 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import BlogsGrid from "@/components/BlogsGrid";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
+import BlogsGrid from "@/components/blogs/BlogsGrid";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 
 import { getBlogs } from "@/lib/services/blogs";

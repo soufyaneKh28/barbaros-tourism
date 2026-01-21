@@ -1,10 +1,10 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import Services from "@/components/Services";
-import ServicesGrid from "@/components/ServicesGrid";
-import ServicesHero from "@/components/ServicesHero";
-import ServicesOfferings from "@/components/ServicesOfferings";
-import ServicesCTA from "@/components/ServicesCTA";
+import Footer from "@/components/common/Footer";
+import Navbar from "@/components/common/Navbar";
+import Services from "@/components/home/Services";
+import ServicesGrid from "@/components/services/ServicesGrid";
+import ServicesHero from "@/components/services/ServicesHero";
+import ServicesOfferings from "@/components/services/ServicesOfferings";
+import ServicesCTA from "@/components/services/ServicesCTA";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getServices } from "@/lib/services/services";
 

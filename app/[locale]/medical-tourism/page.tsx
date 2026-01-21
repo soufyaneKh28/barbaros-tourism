@@ -1,11 +1,11 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 import CtaButton from "@/components/ui/CtaButton";
-import MedicalHero from "@/components/MedicalHero";
-import MedicalWhyChoose from "@/components/MedicalWhyChoose";
-import MedicalServices from "@/components/MedicalServices";
-import MedicalProcess from "@/components/MedicalProcess";
-import Testimonials from "@/components/Testimonials";
+import MedicalHero from "@/components/medical/MedicalHero";
+import MedicalWhyChoose from "@/components/medical/MedicalWhyChoose";
+import MedicalServices from "@/components/medical/MedicalServices";
+import MedicalProcess from "@/components/medical/MedicalProcess";
+import Testimonials from "@/components/common/Testimonials";
 import { type Locale, locales, defaultLocale, getMessages } from "@/i18n";
 import Image from "next/image";
 

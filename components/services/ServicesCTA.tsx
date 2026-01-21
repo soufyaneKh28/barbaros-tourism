@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import CtaButton from './ui/CtaButton';
+import CtaButton from '../ui/CtaButton';
 import { type Locale, getMessages } from "@/i18n";
 
 interface ServicesCTAProps {

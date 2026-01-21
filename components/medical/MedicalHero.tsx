@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import CtaButton from './ui/CtaButton';
+import CtaButton from '../ui/CtaButton';
 import { type Locale, getMessages } from '@/i18n';
 
 

@@ -1,6 +1,6 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import DestinationsGrid from "@/components/DestinationsGrid";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
+import DestinationsGrid from "@/components/destinations/DestinationsGrid";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 
 export default async function DestinationsPage({
