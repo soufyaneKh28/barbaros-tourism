@@ -1,6 +1,7 @@
 import { getDestinations } from '@/lib/services/destinations'
 import Link from 'next/link'
 import { Plus, Search, Edit2, Trash2, MapPin, Compass } from 'lucide-react'
+import DestinationActions from '@/components/portal/DestinationActions'
 
 export default async function DestinationsAdminPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
@@ -88,14 +89,14 @@ export default async function DestinationsAdminPage({ params }: { params: Promis
 
                             {/* Action Buttons */}
                             <div className="p-4 bg-gray-50 flex items-center justify-end gap-2 border-t border-gray-100">
-                                <button className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-primary hover:bg-white hover:shadow-sm rounded-lg transition-all font-medium text-sm">
+                                <Link
+                                    href={`/${locale}/portal-manage/destinations/${dest.id}/edit`}
+                                    className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-primary hover:bg-white hover:shadow-sm rounded-lg transition-all font-medium text-sm"
+                                >
                                     <Edit2 className="w-4 h-4" />
                                     Edit
-                                </button>
-                                <button className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-red-600 hover:bg-white hover:shadow-sm rounded-lg transition-all font-medium text-sm">
-                                    <Trash2 className="w-4 h-4" />
-                                    Delete
-                                </button>
+                                </Link>
+                                <DestinationActions destinationId={dest.id} destinationName={dest.name} locale={locale} />
                             </div>
                         </div>
                     ))}
