@@ -80,6 +80,7 @@ export default function AdminLayout({
                             <div className="h-8 w-[1px] bg-gray-200 mx-3" />
 
                             <form action={signOutAction}>
+                                <input type="hidden" name="locale" value={locale} />
                                 <button
                                     type="submit"
                                     className="flex items-center gap-2 bg-gray-100/50 hover:bg-red-50 hover:text-red-600 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all group"

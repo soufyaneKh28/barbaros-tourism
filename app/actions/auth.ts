@@ -23,9 +23,14 @@ export async function signInAction(formData: FormData) {
     redirect(`/${locale}/portal-manage`)
 }
 
-export async function signOutAction() {
+export async function signOutAction(formData?: FormData) {
     const supabase = await createClient()
     await supabase.auth.signOut()
-    revalidatePath('/', 'layout')
-    redirect('/')
+
+    let locale = 'en'
+    if (formData) {
+        locale = formData.get('locale') as string || 'en'
+    }
+
+    redirect(`/${locale}`)
 }
