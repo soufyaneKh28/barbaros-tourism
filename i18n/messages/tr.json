@@ -451,6 +451,10 @@
       }
     }
   },
+  "partners": {
+    "badge": "Güvenilir İş Ortaklarımız",
+    "heading": "Size olağanüstü bir deneyim sunmak için en iyilerle işbirliği yapıyoruz"
+  },
   "servicesOfferings": {
     "badge": "OUR EXPERTISE",
     "heading": "What We Offer",

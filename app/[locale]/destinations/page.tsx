@@ -13,7 +13,7 @@ export default async function DestinationsPage({
 
     return (
         <div className="bg-white">
-            <Navbar locale={locale} />
+            <Navbar />
 
             <main className="max-w-7xl mx-auto px-6 py-12">
                 {/* Page Header */}
@@ -23,11 +23,11 @@ export default async function DestinationsPage({
                             Top Destinations
                         </span>
                     </div>
-                    
+
                     <h1 className="text-[32px] lg:text-[48px] leading-tight font-cabinet font-extrabold text-primary mb-4">
                         Explore Our Destinations
                     </h1>
-                    
+
                     <p className="max-w-2xl mx-auto text-gray-600 font-satoshi text-lg leading-relaxed">
                         Discover the most loved destinations chosen by our travelers. From iconic cities to breathtaking landscapes, these destinations offer unforgettable experiences.
                     </p>

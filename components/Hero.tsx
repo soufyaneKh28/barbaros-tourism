@@ -1,16 +1,14 @@
 'use client';
 
 import { type Locale } from '@/i18n';
-import { getMessages } from '@/i18n';
+import { useLanguage } from '@/hooks/use-language';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from 'react';
 import CtaButton from './ui/CtaButton';
 
-interface HeroProps {
-  locale: Locale;
-}
+
 
 const heroImages = [
   "/images/heroBg.png",
@@ -19,8 +17,8 @@ const heroImages = [
   "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1794&auto=format&fit=crop", // Tokyo/General Travel
 ];
 
-export default function Hero({ locale }: HeroProps) {
-  const t = getMessages(locale);
+export default function Hero() {
+  const { t, locale } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -116,7 +114,7 @@ export default function Hero({ locale }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <LanguageSelector locale={locale} />
+            <LanguageSelector />
             <button className="hidden md:flex bg-primary hover:bg-primary-700 text-white px-6 py-3 rounded-full font-bold transition-colors font-cabinet text-[13px]">
               {t.hero.bookTrip}
             </button>
@@ -306,7 +304,8 @@ export default function Hero({ locale }: HeroProps) {
   );
 }
 
-function LanguageSelector({ locale }: { locale: Locale }) {
+function LanguageSelector() {
+  const { locale } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const languages = [
     { code: 'en' as const, label: 'EN' },

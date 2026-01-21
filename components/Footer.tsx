@@ -1,13 +1,10 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
-import { type Locale, getMessages } from '@/i18n';
+import { useLanguage } from '@/hooks/use-language';
 
-interface FooterProps {
-    locale?: Locale;
-}
-
-export default function Footer({ locale = 'en' }: FooterProps) {
-    const t = getMessages(locale);
+export default function Footer() {
+    const { t, locale } = useLanguage();
 
     return (
         <footer className="bg-secondary text-white pt-20 pb-10 rounded-t-[40px] mt-20">

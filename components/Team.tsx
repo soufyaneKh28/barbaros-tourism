@@ -3,14 +3,10 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 
-import { type Locale, getMessages } from "@/i18n";
+import { useLanguage } from '@/hooks/use-language';
 
-interface TeamProps {
-    locale?: Locale;
-}
-
-export default function Team({ locale = 'en' }: TeamProps) {
-    const t = getMessages(locale);
+export default function Team() {
+    const { t } = useLanguage();
 
     const teamMembers = [
         {

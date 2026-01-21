@@ -182,11 +182,11 @@ export default async function DestinationDetails({
 
     return (
         <div className="bg-white">
-            <Navbar locale={locale} />
+            <Navbar />
 
             <main className="max-w-7xl mx-auto px-6 py-12">
                 {/* Back Navigation */}
-                <a 
+                <a
                     href={`/${locale}/tours`}
                     className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors mb-8 font-cabinet font-medium"
                 >

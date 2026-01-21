@@ -17,7 +17,7 @@ export default async function OurServices({
 
     return (
         <div className="bg-white">
-            <Navbar locale={locale} />
+            <Navbar />
 
             {/* Hero Section */}
             <ServicesHero locale={locale} />
@@ -34,7 +34,7 @@ export default async function OurServices({
             {/* Final CTA Section */}
             <ServicesCTA locale={locale} />
 
-            <Footer locale={locale} />
+            <Footer />
         </div>
     );
 }

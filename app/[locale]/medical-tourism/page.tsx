@@ -20,7 +20,7 @@ export default async function MedicalTourism({
 
     return (
         <div className="bg-white">
-            <Navbar locale={locale} />
+            <Navbar />
 
             {/* Hero Section */}
             <MedicalHero locale={locale} />
@@ -35,7 +35,7 @@ export default async function MedicalTourism({
             <MedicalProcess locale={locale} />
 
             {/* Testimonials */}
-            <Testimonials locale={locale} />
+            <Testimonials />
 
             {/* Final CTA */}
             <section className="py-24 px-6 relative overflow-hidden">
@@ -90,7 +90,7 @@ export default async function MedicalTourism({
                 </div>
             </section>
 
-            <Footer locale={locale} />
+            <Footer />
         </div>
     );
 }

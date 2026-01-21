@@ -49,7 +49,7 @@ export default async function BlogsPage({
 
     return (
         <div className="bg-white">
-            <Navbar locale={locale} />
+            <Navbar />
 
             <main className="max-w-7xl mx-auto px-6 py-12">
                 {/* Page Header */}

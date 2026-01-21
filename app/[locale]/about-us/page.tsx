@@ -16,7 +16,7 @@ export default async function AboutUs({
 
     return (
         <div className="bg-white">
-            <Navbar locale={locale} />
+            <Navbar />
 
             {/* Hero Section */}
             <AboutHero locale={locale} />
@@ -103,7 +103,7 @@ export default async function AboutUs({
             </section>
 
             {/* Team Section */}
-            <Team locale={locale} />
+            <Team />
 
             {/* Mission & Vision */}
             <section className="py-20 px-6">
@@ -209,7 +209,7 @@ export default async function AboutUs({
                 </div>
             </section>
 
-            <Footer locale={locale} />
+            <Footer />
         </div>
     );
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import { locales, defaultLocale, type Locale } from "@/i18n/config";
+import { getMessages } from "@/i18n";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Barbaros Tourism & Services",
@@ -21,11 +23,14 @@ export default async function RootLayout({
   const { locale: localeParam } = await params;
   const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
+  const messages = getMessages(locale);
 
   return (
     <html lang={locale} dir={dir}>
       <body className="antialiased">
-        {children}
+        <LanguageProvider locale={locale} messages={messages}>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

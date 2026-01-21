@@ -92,7 +92,7 @@ export default async function Tours({
 
     return (
         <div className="bg-white">
-            <Navbar locale={locale} transparent={false} />
+            <Navbar transparent={false} />
 
             {/* Hero Section */}
             <ToursHero locale={locale} />
@@ -103,7 +103,6 @@ export default async function Tours({
                 title="Short & Sweet Adventures"
                 description="Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots."
                 items={dailyTours}
-                locale={locale}
             />
 
             {/* Top Destinations Carousel (Dark Mode) */}
@@ -112,7 +111,6 @@ export default async function Tours({
                 title="Where Every Journey Matters"
                 description="Join thousands of travelers who have discovered the magic of these iconic Turkish locations."
                 items={topDestinations}
-                locale={locale}
                 dark={true}
             />
 
@@ -125,7 +123,6 @@ export default async function Tours({
                 title="Push Your Boundaries"
                 description="For the thrill-seekers and nature lovers. Experience Türkiye from new perspectives."
                 items={adventureTours}
-                locale={locale}
                 dark={true}
             />
 

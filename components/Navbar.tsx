@@ -1,19 +1,17 @@
 'use client';
 
-import { type Locale } from '@/i18n';
-import { getMessages } from '@/i18n';
+import { useLanguage } from '@/hooks/use-language';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from "motion/react";
 import { useState } from 'react';
 
 interface NavbarProps {
-    locale: Locale;
     transparent?: boolean;
 }
 
-export default function Navbar({ locale, transparent = false }: NavbarProps) {
-    const t = getMessages(locale);
+export default function Navbar({ transparent = false }: NavbarProps) {
+    const { t, locale } = useLanguage();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const navLinks = [
@@ -74,7 +72,7 @@ export default function Navbar({ locale, transparent = false }: NavbarProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                    <LanguageSelector locale={locale} transparent={transparent} />
+                    <LanguageSelector transparent={transparent} />
 
                     {/* Mobile Menu Button */}
                     <button
@@ -117,7 +115,8 @@ export default function Navbar({ locale, transparent = false }: NavbarProps) {
     );
 }
 
-function LanguageSelector({ locale, transparent }: { locale: Locale; transparent: boolean }) {
+function LanguageSelector({ transparent }: { transparent: boolean }) {
+    const { locale } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const languages = [
         { code: 'en' as const, label: 'EN' },

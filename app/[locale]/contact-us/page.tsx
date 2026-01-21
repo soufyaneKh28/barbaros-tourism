@@ -18,7 +18,7 @@ export default async function ContactUs({
 
     return (
         <div className="bg-white">
-            <ContactHero locale={locale} />
+            <ContactHero />
 
             <section className="py-20 px-6 relative z-20 mt-10">
                 <div className="max-w-7xl mx-auto">
@@ -37,7 +37,7 @@ export default async function ContactUs({
 
             <MapPlaceholder />
 
-            <Footer locale={locale} />
+            <Footer />
         </div>
     );
 }

@@ -6,6 +6,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { motion } from "motion/react";
 import Link from 'next/link';
+import { useLanguage } from '@/hooks/use-language';
 
 interface TourItem {
     id: number | string;
@@ -22,7 +23,6 @@ interface TourCarouselProps {
     badge: string;
     description?: string;
     items: TourItem[];
-    locale: string;
     dark?: boolean;
 }
 
@@ -49,7 +49,8 @@ const responsive = {
     }
 };
 
-export default function TourCarousel({ title, badge, description, items, locale, dark = false }: TourCarouselProps) {
+export default function TourCarousel({ title, badge, description, items, dark = false }: TourCarouselProps) {
+    const { locale } = useLanguage();
     const carouselRef = useRef<any>(null);
 
     return (
@@ -179,7 +180,7 @@ export default function TourCarousel({ title, badge, description, items, locale,
                                         </p>
 
                                         <Link
-                                            href={`${item.link || '/contact-us'}`}
+                                            href={`${item.link || `/${locale}/contact-us`}`}
                                             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-primary font-bold text-sm hover:bg-secondary transition-all duration-300"
                                         >
                                             View Details

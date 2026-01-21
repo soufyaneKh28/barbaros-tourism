@@ -18,15 +18,15 @@ export default async function Home({
   const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
   return (
     <>
-      <Hero locale={locale} />
+      <Hero />
       <Partners />
       <Services />
       <HotDeals />
       <Destinations />
-      <Testimonials locale={locale} />
+      <Testimonials />
       <VideoSection />
-      <Blogs locale={locale} />
-      <Footer locale={locale} />
+      <Blogs />
+      <Footer />
     </>
   );
 }

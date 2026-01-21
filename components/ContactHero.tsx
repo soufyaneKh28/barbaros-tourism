@@ -3,16 +3,13 @@
 import { motion } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import { type Locale } from "@/i18n";
+import { useLanguage } from "@/hooks/use-language";
 
-interface ContactHeroProps {
-    locale: Locale;
-}
-
-export default function ContactHero({ locale }: ContactHeroProps) {
+export default function ContactHero() {
+    const { t } = useLanguage();
     return (
         <section className="relative min-h-[50vh] flex flex-col">
-            <Navbar locale={locale} transparent={true} />
+            <Navbar transparent={true} />
 
             {/* Background */}
             <div className="absolute inset-0 z-0">
@@ -35,15 +32,13 @@ export default function ContactHero({ locale }: ContactHeroProps) {
                     className="max-w-3xl mx-auto"
                 >
                     <span className="inline-block px-6 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white/90 font-bold font-cabinet text-sm mb-6">
-                        GET IN TOUCH
+                        {t.contact.hero.badge}
                     </span>
                     <h1 className="text-5xl md:text-5xl font-bold font-cabinet text-white mb-6 leading-[40px]">
-                        Let's Start Your <br />
-                        <span className="text-secondary">Journey</span>
+                        {t.contact.hero.heading}
                     </h1>
                     <p className="text-lg font-satoshi text-white/80 leading-relaxed max-w-2xl mx-auto">
-                        Whether you're planning a dream vacation or seeking world-class medical care,
-                        our team of experts is here to guide you every step of the way.
+                        {t.contact.hero.description}
                     </p>
                 </motion.div>
             </div>

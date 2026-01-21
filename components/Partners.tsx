@@ -2,7 +2,10 @@
 
 import React from 'react';
 
+import { useLanguage } from '@/hooks/use-language';
+
 export default function Partners() {
+    const { t } = useLanguage();
     return (
         <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -10,13 +13,13 @@ export default function Partners() {
                     {/* Pill Label */}
                     <div className="inline-block mb-6">
                         <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                            Our trusted partners
+                            {t.partners.badge}
                         </span>
                     </div>
 
                     {/* Heading */}
                     <h2 className="text-[32px] lg:text-[42px] leading-[36px] lg:leading-[40px] font-cabinet font-extrabold text-primary max-w-3xl">
-                        We collaborate with the best to provide you with an exceptional experience
+                        {t.partners.heading}
                     </h2>
                 </div>
 

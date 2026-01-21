@@ -2,14 +2,10 @@
 
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { motion } from "motion/react";
-import { type Locale, getMessages } from "@/i18n";
+import { useLanguage } from '@/hooks/use-language';
 
-interface TestimonialsProps {
-    locale: Locale;
-}
-
-export default function Testimonials({ locale }: TestimonialsProps) {
-    const t = getMessages(locale);
+export default function Testimonials() {
+    const { t } = useLanguage();
 
     const testimonialImages = [
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",

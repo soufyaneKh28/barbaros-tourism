@@ -4,14 +4,10 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { type Locale, getMessages } from '@/i18n';
+import { useLanguage } from '@/hooks/use-language';
 
-interface BlogsProps {
-    locale?: Locale;
-}
-
-export default function Blogs({ locale = 'en' }: BlogsProps) {
-    const t = getMessages(locale);
+export default function Blogs() {
+    const { t, locale } = useLanguage();
 
     const blogs = [
         {

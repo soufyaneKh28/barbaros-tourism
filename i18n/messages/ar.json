@@ -1,370 +1,370 @@
 {
   "nav": {
-    "home": "Home",
-    "about": "About us",
-    "services": "Our services",
-    "tours": "Tours",
-    "medical": "Medical tourism",
-    "blogs": "Blogs",
-    "contact": "Contact us"
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "خدماتنا",
+    "tours": "الجولات",
+    "medical": "السياحة العلاجية",
+    "blogs": "المدونة",
+    "contact": "تواصل معنا"
   },
   "home": {
     "services": {
-      "badge": "Our services",
-      "heading": "Integrated tourism solutions that meet all your needs in Türkiye",
-      "description": "At Barbaros Tourism, we offer a full range of carefully designed tourism services, to guarantee you a comfortable, safe, and distinctive experience, whether you are looking for comprehensive travel services, medical tourism, or unforgettable tourist tours.",
-      "seeAll": "See All Blogs",
+      "badge": "خدماتنا",
+      "heading": "حلول سياحية متكاملة تلبي جميع احتياجاتك في تركيا",
+      "description": "في بارباروس للسياحة، نقدم مجموعة متكاملة من الخدمات السياحية المصممة بعناية لضمان تجربة مريحة وآمنة ومميزة، سواء كنت تبحث عن خدمات سفر شاملة، أو سياحة علاجية، أو جولات سياحية لا تُنسى.",
+      "seeAll": "عرض جميع المقالات",
       "items": {
         "integrated": {
-          "title": "Integrated tourism services",
-          "description": "We provide integrated tourism services that include hotel reservations, airport reception, transportation, VIP services, and full support throughout your stay, to give you a worry-free and comfortable experience."
+          "title": "خدمات سياحية متكاملة",
+          "description": "نوفر خدمات سياحية متكاملة تشمل حجز الفنادق، الاستقبال في المطار، التنقل، خدمات VIP، والدعم الكامل طوال فترة إقامتك لتجربة مريحة وخالية من القلق."
         },
         "medical": {
-          "title": "Medical tourism",
-          "description": "Comprehensive medical tourism packages working with top hospitals and specialists to ensure the best care and recovery experience."
+          "title": "السياحة العلاجية",
+          "description": "باقات سياحة علاجية متكاملة بالتعاون مع أفضل المستشفيات والأطباء لضمان أفضل رعاية وتجربة تعافٍ مثالية."
         },
         "tours": {
-          "title": "Tours",
-          "description": "Unforgettable cultural and recreational tours to the most beautiful destinations in Türkiye, guided by local experts."
+          "title": "الجولات السياحية",
+          "description": "جولات ثقافية وترفيهية لا تُنسى إلى أجمل الوجهات في تركيا، بإشراف مرشدين محليين محترفين."
         }
       }
     },
     "blogs": {
-      "readMore": "Read More",
+      "readMore": "اقرأ المزيد",
       "items": {
-        "istanbul": "Istanbul Bosphorus Experience",
-        "kyoto": "Kyoto Cultural Escape",
-        "alpine": "Alpine Lake Adventures"
+        "istanbul": "تجربة مضيق البوسفور في إسطنبول",
+        "kyoto": "الهروب الثقافي في كيوتو",
+        "alpine": "مغامرات البحيرات الجبلية"
       }
     }
   },
   "hero": {
-    "tagline": "Trusted Tourism Services in Turkey",
-    "heading": "Barbaros Tourism Your reliable partner in Türkiye",
-    "description": "Comprehensive tourism solutions in Türkiye - from unforgettable tours to world-class medical tourism services.",
-    "bookTrip": "Book your trip",
-    "exploreTours": "Explore tours",
-    "medicalTourism": "Medical tourism"
+    "tagline": "خدمات سياحية موثوقة في تركيا",
+    "heading": "بارباروس للسياحة شريكك الموثوق في تركيا",
+    "description": "حلول سياحية شاملة في تركيا — من الجولات التي لا تُنسى إلى خدمات السياحة العلاجية بمعايير عالمية.",
+    "bookTrip": "احجز رحلتك",
+    "exploreTours": "استكشف الجولات",
+    "medicalTourism": "السياحة العلاجية"
   },
   "medical": {
     "hero": {
-      "tagline": "World-Class Healthcare",
-      "heading": "Advanced Medical Tourism in Türkiye",
-      "description": "Experience world-class medical treatments combined with exceptional hospitality. From hair transplants to advanced surgery, we handle every detail of your journey.",
+      "tagline": "رعاية صحية بمعايير عالمية",
+      "heading": "السياحة العلاجية المتقدمة في تركيا",
+      "description": "استمتع بعلاجات طبية عالمية المستوى مع ضيافة استثنائية. من زراعة الشعر إلى العمليات الجراحية المتقدمة، نهتم بكل تفاصيل رحلتك.",
       "stats": {
-        "savings": "Cost Savings",
-        "patients": "Happy Patients"
+        "savings": "توفير في التكاليف",
+        "patients": "مرضى سعداء"
       }
     },
     "whyChoose": {
-      "badge": "Why Türkiye",
-      "heading": "World-Class Healthcare at Affordable Prices",
-      "description": "Türkiye has become a global leader in medical tourism, combining cutting-edge facilities with exceptional service and stunning locations.",
+      "badge": "لماذا تركيا",
+      "heading": "رعاية صحية عالمية بأسعار مناسبة",
+      "description": "أصبحت تركيا رائدة عالميًا في السياحة العلاجية، حيث تجمع بين أحدث التقنيات الطبية وخدمة متميزة ومواقع خلابة.",
       "reasons": {
         "jci": {
-          "title": "JCI Accredited Hospitals",
-          "description": "All our partner hospitals hold international Joint Commission International accreditation, ensuring the highest standards of care."
+          "title": "مستشفيات معتمدة من JCI",
+          "description": "جميع مستشفياتنا الشريكة حاصلة على اعتماد اللجنة الدولية المشتركة، مما يضمن أعلى معايير الرعاية."
         },
         "pricing": {
-          "title": "Competitive Pricing",
-          "description": "Save up to 70% compared to Western countries without compromising on quality or safety standards."
+          "title": "أسعار تنافسية",
+          "description": "وفر حتى 70٪ مقارنة بالدول الغربية دون أي تنازل عن الجودة أو السلامة."
         },
         "surgeons": {
-          "title": "Expert Surgeons",
-          "description": "Our medical professionals have years of international experience and specialized training in their fields."
+          "title": "أطباء خبراء",
+          "description": "أطباؤنا يتمتعون بخبرة دولية وسنوات من التدريب المتخصص."
         },
         "support": {
-          "title": "Full Support Package",
-          "description": "From translation services to accommodation and transfers, we handle all logistics for a seamless experience."
+          "title": "حزمة دعم متكاملة",
+          "description": "من خدمات الترجمة إلى الإقامة والتنقل، نتولى جميع التفاصيل لتجربة سلسة."
         },
         "combination": {
-          "title": "Tourism Combination",
-          "description": "Combine your treatment with a memorable vacation in one of the world's most beautiful countries."
+          "title": "الجمع بين العلاج والسياحة",
+          "description": "اجمع بين علاجك وإجازة مميزة في واحدة من أجمل دول العالم."
         },
         "aftercare": {
-          "title": "Aftercare Support",
-          "description": "Continued support after your return home with online consultations and follow-up care."
+          "title": "رعاية ما بعد العلاج",
+          "description": "دعم مستمر بعد عودتك من خلال الاستشارات والمتابعة عن بُعد."
         }
       },
       "stats": {
-        "hospitals": "JCI Hospitals",
-        "patients": "Annual Patients",
-        "savings": "Cost Savings",
-        "satisfaction": "Satisfaction Rate"
+        "hospitals": "مستشفيات معتمدة",
+        "patients": "مرضى سنويًا",
+        "savings": "نسبة التوفير",
+        "satisfaction": "معدل الرضا"
       }
     },
     "services": {
-      "badge": "Our Medical Services",
-      "heading": "Comprehensive Medical Procedures",
-      "description": "From cosmetic enhancements to life-changing surgeries, we offer a full range of medical services with world-class expertise.",
-      "learnMore": "Learn More",
+      "badge": "خدماتنا الطبية",
+      "heading": "إجراءات طبية شاملة",
+      "description": "من التحسينات التجميلية إلى العمليات التي تغير الحياة، نقدم مجموعة كاملة من الخدمات الطبية بخبرة عالمية.",
+      "learnMore": "اعرف المزيد",
       "types": {
         "hair": {
-          "title": "Hair Transplant",
-          "description": "Advanced hair restoration techniques with natural-looking results.",
-          "price": "From €1,500"
+          "title": "زراعة الشعر",
+          "description": "تقنيات متقدمة لزراعة الشعر بنتائج طبيعية.",
+          "price": "ابتداءً من 1,500€"
         },
         "dental": {
-          "title": "Dental Treatments",
-          "description": "Transform your smile with state-of-the-art dental care.",
-          "price": "From €300"
+          "title": "علاجات الأسنان",
+          "description": "ابتسامة جديدة مع أحدث تقنيات العناية بالأسنان.",
+          "price": "ابتداءً من 300€"
         },
         "cosmetic": {
-          "title": "Cosmetic Surgery",
-          "description": "Expert cosmetic procedures for enhanced confidence.",
-          "price": "From €2,500"
+          "title": "الجراحة التجميلية",
+          "description": "إجراءات تجميلية احترافية لثقة أكبر.",
+          "price": "ابتداءً من 2,500€"
         },
         "eye": {
-          "title": "Eye Surgery",
-          "description": "Advanced laser eye treatments for perfect vision.",
-          "price": "From €1,200"
+          "title": "جراحة العيون",
+          "description": "علاجات ليزر متقدمة لرؤية مثالية.",
+          "price": "ابتداءً من 1,200€"
         },
         "bariatric": {
-          "title": "Bariatric Surgery",
-          "description": "Life-changing weight loss surgery with comprehensive support.",
-          "price": "From €3,500"
+          "title": "جراحة السمنة",
+          "description": "جراحة إنقاص الوزن مع دعم شامل.",
+          "price": "ابتداءً من 3,500€"
         },
         "orthopedics": {
-          "title": "Orthopedics",
-          "description": "Advanced orthopedic treatments for mobility restoration.",
-          "price": "From €4,000"
+          "title": "جراحة العظام",
+          "description": "علاجات متقدمة لاستعادة الحركة.",
+          "price": "ابتداءً من 4,000€"
         }
       }
     },
     "cta": {
-      "heading": "Ready to Transform Your Life?",
-      "description": "Join thousands of happy patients who chose Türkiye for their medical journey. Get your free consultation today.",
-      "start": "Start Your Journey",
-      "caseStudies": "View Case Studies"
+      "heading": "هل أنت مستعد لتغيير حياتك؟",
+      "description": "انضم إلى آلاف المرضى السعداء الذين اختاروا تركيا لرحلتهم العلاجية. احصل على استشارتك المجانية اليوم.",
+      "start": "ابدأ رحلتك",
+      "caseStudies": "عرض قصص النجاح"
     }
   },
   "process": {
-    "badge": "Simple Process",
-    "heading": "Your Medical Journey",
-    "description": "From consultation to recovery, we guide you through every step with care and professionalism.",
+    "badge": "خطوات بسيطة",
+    "heading": "رحلتك الطبية",
+    "description": "من الاستشارة إلى التعافي، نرافقك في كل خطوة بعناية واحترافية.",
     "steps": {
       "consultation": {
-        "title": "Free Consultation",
-        "description": "Connect with our medical experts online. Share your medical history and discuss your goals."
+        "title": "استشارة مجانية",
+        "description": "تواصل مع خبرائنا الطبيين عبر الإنترنت، وشارك تاريخك الطبي وناقش أهدافك."
       },
       "plan": {
-        "title": "Treatment Plan",
-        "description": "Receive a personalized treatment plan with cost breakdown and procedure details."
+        "title": "خطة العلاج",
+        "description": "احصل على خطة علاج مخصصة مع تفاصيل الإجراءات وتكاليفها."
       },
       "travel": {
-        "title": "Travel Arrangements",
-        "description": "We handle everything: flights, accommodation, transfers, and translator services."
+        "title": "ترتيبات السفر",
+        "description": "نتكفل بكل شيء: تذاكر الطيران، الإقامة، التنقلات، وخدمات الترجمة."
       },
       "arrival": {
-        "title": "Arrival & Welcome",
-        "description": "VIP airport pickup, hotel check-in, and meet with your medical team."
+        "title": "الوصول والاستقبال",
+        "description": "استقبال VIP من المطار، تسجيل الدخول إلى الفندق، ولقاء الفريق الطبي."
       },
       "procedure": {
-        "title": "Medical Procedure",
-        "description": "Receive your treatment in JCI-accredited hospitals with expert surgeons."
+        "title": "الإجراء الطبي",
+        "description": "تلقي العلاج في مستشفيات معتمدة من JCI وبأيدي أطباء متخصصين."
       },
       "recovery": {
-        "title": "Recovery & Support",
-        "description": "Post-op care, follow-up appointments, and ongoing remote consultations."
+        "title": "التعافي والدعم",
+        "description": "رعاية ما بعد العملية، مواعيد المتابعة، واستشارات عن بُعد مستمرة."
       }
     }
   },
   "testimonials": {
-    "badge": "Testimonials",
-    "heading": "Real Experiences from Travelers Who Trusted Us",
-    "description": "Hear from our clients about their journeys with Barbaros Tourism. From seamless travel planning to exceptional medical tourism services, these real stories reflect our commitment to quality, care, and unforgettable experiences.",
+    "badge": "آراء العملاء",
+    "heading": "تجارب حقيقية من مسافرين وثقوا بنا",
+    "description": "استمع إلى قصص عملائنا مع بارباروس للسياحة. من تنظيم السفر بسلاسة إلى خدمات السياحة العلاجية المتميزة، تعكس هذه التجارب التزامنا بالجودة والرعاية وتجارب لا تُنسى.",
     "items": [
       {
-        "text": "Barbaros Tourism made our family trip to Turkey unforgettable. The guides were knowledgeable and the transfers were seamless.",
-        "name": "Sarah Jenkins",
-        "role": "Family Traveler"
+        "text": "جعلت بارباروس للسياحة رحلتنا العائلية إلى تركيا تجربة لا تُنسى. المرشدون كانوا محترفين والتنقلات منظمة بسلاسة.",
+        "name": "سارة جينكنز",
+        "role": "مسافرة مع العائلة"
       },
       {
-        "text": "The medical tourism package was exceptional. From the clinic to the hotel, everything was handled with the utmost care and professionalism.",
-        "name": "Michael Chen",
-        "role": "Medical Tourist"
+        "text": "باقة السياحة العلاجية كانت ممتازة. من العيادة إلى الفندق، كل شيء كان منظمًا بعناية واحترافية عالية.",
+        "name": "مايكل تشين",
+        "role": "سائح علاجي"
       },
       {
-        "text": "I loved the hot air balloon tour in Cappadocia! It was a dream come true. Highly recommend their services for anyone visiting Turkey.",
-        "name": "Elena Rodriguez",
-        "role": "Adventure Seeker"
+        "text": "رحلة المنطاد في كابادوكيا كانت حلمًا تحقق! أنصح بشدة بخدماتهم لكل من يزور تركيا.",
+        "name": "إيلينا رودريغيز",
+        "role": "محبة للمغامرات"
       },
       {
-        "text": "Professional, reliable, and friendly. They tailored the itinerary exactly to our needs. Istanbul is magical thanks to them.",
-        "name": "James Wilson",
-        "role": "Cultural Enthusiast"
+        "text": "احترافية، موثوقية، وتعامل ودود. صمموا برنامج الرحلة بما يناسب احتياجاتنا تمامًا.",
+        "name": "جيمس ويلسون",
+        "role": "محب للثقافة"
       },
       {
-        "text": "The VIP transfer service was top-notch. Comfortable vehicles and punctual drivers. Made our business trip stress-free.",
-        "name": "Emily Davis",
-        "role": "Business Traveler"
+        "text": "خدمة النقل VIP كانت على أعلى مستوى. سيارات مريحة وسائقون في غاية الالتزام.",
+        "name": "إميلي ديفيس",
+        "role": "مسافرة لأعمال"
       },
       {
-        "text": "We booked a full package including flights, hotels, and tours. Best value for money and excellent customer support throughout.",
-        "name": "Robert Taylor",
-        "role": "Vacationer"
+        "text": "حجزنا باقة متكاملة تشمل الطيران والفنادق والجولات. أفضل قيمة مقابل السعر ودعم ممتاز طوال الرحلة.",
+        "name": "روبرت تايلور",
+        "role": "سائح"
       },
       {
-        "text": "Their attention to detail is amazing. They suggested hidden gems in Istanbul that we wouldn't have found on our own.",
-        "name": "David Kim",
-        "role": "Explorer"
+        "text": "اهتمامهم بالتفاصيل رائع. اقترحوا أماكن مميزة في إسطنبول لم نكن لنعرفها وحدنا.",
+        "name": "ديفيد كيم",
+        "role": "مستكشف"
       },
       {
-        "text": "Safe and trustworthy. As a solo female traveler, I felt completely secure with their guides and drivers.",
-        "name": "Sophie Martin",
-        "role": "Solo Traveler"
+        "text": "شعرت بالأمان التام كمسافرة منفردة. فريقهم كان داعمًا ومحترفًا للغاية.",
+        "name": "صوفي مارتن",
+        "role": "مسافرة منفردة"
       },
       {
-        "text": "The Bosphorus cruise dinner was the highlight of our trip. Great food, great views, and perfect organization.",
-        "name": "Thomas Anderson",
-        "role": "Foodie"
+        "text": "عشاء رحلة البوسفور كان أجمل جزء في الرحلة. تنظيم مثالي وتجربة رائعة.",
+        "name": "توماس أندرسون",
+        "role": "محب للطعام"
       }
     ]
   },
   "servicesPage": {
     "hero": {
-      "badge": "Comprehensive Solutions",
-      "heading": "Exceptional Services for Your Journey",
-      "description": "From cultural treasures to world-class medical procedures, we provide end-to-end services to make your experience in Türkiye truly unforgettable.",
-      "cta": "Start Your Experience"
+      "badge": "حلول متكاملة",
+      "heading": "خدمات استثنائية لرحلتك",
+      "description": "من الكنوز الثقافية إلى الإجراءات الطبية العالمية، نقدم لك خدمات متكاملة لتجربة لا تُنسى في تركيا.",
+      "cta": "ابدأ تجربتك"
     },
     "offerings": {
-      "badge": "Our Expertise",
-      "heading": "What We Offer",
+      "badge": "خبراتنا",
+      "heading": "ماذا نقدم",
       "titles": {
-        "cultural": "Cultural Tours",
-        "adventure": "Adventure Tours",
-        "medical": "Medical Tourism",
-        "accommodation": "Accommodation",
-        "transportation": "Transportation",
-        "custom": "Custom Packages"
+        "cultural": "الجولات الثقافية",
+        "adventure": "جولات المغامرة",
+        "medical": "السياحة العلاجية",
+        "accommodation": "الإقامة",
+        "transportation": "المواصلات",
+        "custom": "باقات مخصصة"
       }
     },
     "cta": {
-      "heading": "Ready to Start Your Perfect Journey?",
-      "description": "Contact us today to discuss your travel plans and let us create a personalized package that meets all your expectations.",
-      "schedule": "Schedule a Consultation",
-      "explore": "Explore Our Tours"
+      "heading": "هل أنت مستعد لبدء رحلتك المثالية؟",
+      "description": "تواصل معنا اليوم ودعنا نصمم لك باقة مخصصة تلبي جميع تطلعاتك.",
+      "schedule": "احجز استشارة",
+      "explore": "استكشف جولاتنا"
     }
   },
   "contact": {
     "hero": {
-      "badge": "GET IN TOUCH",
-      "heading": "Let's Start Your Journey",
-      "description": "Whether you're planning a dream vacation or seeking world-class medical care, our team of experts is here to guide you every step of the way."
+      "badge": "تواصل معنا",
+      "heading": "لنبدأ رحلتك",
+      "description": "سواء كنت تخطط لعطلة أحلامك أو تبحث عن رعاية طبية عالمية، فريقنا هنا لمرافقتك في كل خطوة."
     },
     "form": {
-      "heading": "Send us a Message",
-      "subheading": "Fill out the form below and our team will get back to you within 24 hours.",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Email Address",
-      "phone": "Phone Number",
-      "interest": "Select Interest",
-      "message": "Message",
-      "submit": "Send Message",
+      "heading": "أرسل لنا رسالة",
+      "subheading": "املأ النموذج وسيتواصل معك فريقنا خلال 24 ساعة.",
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "interest": "اختر الاهتمام",
+      "message": "الرسالة",
+      "submit": "إرسال الرسالة",
       "options": {
-        "cultural": "Cultural Tours",
-        "adventure": "Adventure Tours",
-        "hair": "Medical Tourism - Hair Transplant",
-        "dental": "Medical Tourism - Dental",
-        "cosmetic": "Medical Tourism - Cosmetic Surgery",
-        "custom": "Custom Package",
-        "other": "Other"
+        "cultural": "جولات ثقافية",
+        "adventure": "جولات مغامرة",
+        "hair": "سياحة علاجية - زراعة الشعر",
+        "dental": "سياحة علاجية - طب الأسنان",
+        "cosmetic": "سياحة علاجية - جراحة تجميلية",
+        "custom": "باقة مخصصة",
+        "other": "أخرى"
       }
     },
     "info": {
-      "phone": "Phone",
-      "email": "Email",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
       "office": {
-        "title": "Office",
-        "name": "Barbaros Tourism Agency",
-        "address": "Taksim Square, Beyoğlu",
-        "city": "Istanbul, Türkiye 34437"
+        "title": "المكتب",
+        "name": "وكالة بارباروس للسياحة",
+        "address": "ميدان تقسيم، بيوغلو",
+        "city": "إسطنبول، تركيا 34437"
       },
       "hours": {
-        "title": "Hours",
-        "monFri": "Mon - Fri: 9:00 AM - 6:00 PM",
-        "sat": "Sat: 10:00 AM - 4:00 PM",
-        "sun": "Sun: Closed"
+        "title": "ساعات العمل",
+        "monFri": "الاثنين - الجمعة: 9:00 صباحًا - 6:00 مساءً",
+        "sat": "السبت: 10:00 صباحًا - 4:00 مساءً",
+        "sun": "الأحد: مغلق"
       },
-      "connect": "Connect With Us"
+      "connect": "تواصل معنا"
     }
   },
   "faq": {
-    "badge": "Common Questions",
-    "heading": "Frequently Asked Questions",
-    "description": "Find quick answers to your questions about our services, booking process, and more.",
+    "badge": "أسئلة شائعة",
+    "heading": "الأسئلة الأكثر شيوعًا",
+    "description": "اعثر على إجابات سريعة لأسئلتك حول خدماتنا وآلية الحجز والمزيد.",
     "items": [
       {
-        "question": "How do I book a tour or treatment?",
-        "answer": "You can start by filling out our contact form or messaging us directly via WhatsApp. Our consultants will guide you through the process."
+        "question": "كيف يمكنني حجز جولة أو علاج؟",
+        "answer": "يمكنك البدء بملء نموذج التواصل أو مراسلتنا مباشرة عبر واتساب، وسيقوم مستشارونا بإرشادك."
       },
       {
-        "question": "What is included in the medical packages?",
-        "answer": "Our medical packages typically include airport transfers, hotel accommodation, the procedure itself, medications, and follow-up care."
+        "question": "ماذا تشمل باقات السياحة العلاجية؟",
+        "answer": "تشمل عادةً التنقل من وإلى المطار، الإقامة الفندقية، الإجراء الطبي، الأدوية، والمتابعة بعد العلاج."
       },
       {
-        "question": "Do I need a visa for Türkiye?",
-        "answer": "Visa requirements depend on your nationality. Many visitors can enter with an e-visa. We can provide guidance based on your specific case."
+        "question": "هل أحتاج إلى تأشيرة لدخول تركيا؟",
+        "answer": "تعتمد متطلبات التأشيرة على جنسيتك. يمكن للعديد من الزوار الدخول عبر التأشيرة الإلكترونية."
       },
       {
-        "question": "How long should I stay for my medical treatment?",
-        "answer": "The duration depends on the procedure. Most treatments require 3-7 days. We will provide a detailed timeline in your personalized plan."
+        "question": "كم مدة الإقامة المطلوبة للعلاج الطبي؟",
+        "answer": "تختلف حسب نوع الإجراء، وغالبًا ما تتراوح بين 3 إلى 7 أيام."
       }
     ]
   },
   "footer": {
-    "about": "Exceptional travel experiences and top-tier medical tourism services in Türkiye. We connect your journey with purpose.",
+    "about": "تجارب سفر مميزة وخدمات سياحة علاجية عالية المستوى في تركيا. نربط رحلتك بالغاية.",
     "links": {
-      "title": "Quick Links",
-      "about": "About Us",
-      "services": "Our Services",
-      "tours": "Tour Packages",
-      "medical": "Medical Tourism",
-      "contact": "Contact Us"
+      "title": "روابط سريعة",
+      "about": "من نحن",
+      "services": "خدماتنا",
+      "tours": "باقات الجولات",
+      "medical": "السياحة العلاجية",
+      "contact": "تواصل معنا"
     },
     "services": {
-      "title": "Our Services",
-      "hotel": "Hotel Booking",
-      "flight": "Flight Reservations",
-      "transfer": "VIP Transfers",
-      "tours": "Guided Tours",
-      "health": "Health Packages"
+      "title": "خدماتنا",
+      "hotel": "حجز الفنادق",
+      "flight": "حجوزات الطيران",
+      "transfer": "تنقلات VIP",
+      "tours": "جولات بإرشاد سياحي",
+      "health": "باقات صحية"
     },
     "contact": {
-      "title": "Contact Us",
-      "location": "Istanbul, Türkiye"
+      "title": "اتصل بنا",
+      "location": "إسطنبول، تركيا"
     },
     "bottom": {
-      "rights": "All rights reserved.",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service",
-      "cookies": "Cookie Policy"
+      "rights": "جميع الحقوق محفوظة.",
+      "privacy": "سياسة الخصوصية",
+      "terms": "شروط الخدمة",
+      "cookies": "سياسة ملفات الارتباط"
     }
   },
   "about": {
     "hero": {
-      "badge": "WHO WE ARE",
-      "heading": "About Us",
-      "description": "We are a dedicated team of travel and medical tourism experts committed to providing unforgettable experiences in Türkiye."
+      "badge": "من نحن",
+      "heading": "نبذة عنا",
+      "description": "نحن فريق متخصص في السياحة والسياحة العلاجية، ملتزمون بتقديم تجارب لا تُنسى في تركيا."
     },
     "story": {
-      "badge": "OUR STORY",
-      "heading": "It feels like family (because it is)",
-      "p1": "Founded with a passion for showcasing the beauty and culture of Türkiye, Barbaros Tourism has grown from a small local agency to a comprehensive tourism and medical tourism provider.",
-      "p2": "Our journey began with a simple mission: to share the wonders of Türkiye with the world while providing exceptional service. Over the years, we've expanded our services to include medical tourism, recognizing the growing demand for quality healthcare combined with travel.",
-      "p3": "Today, we're proud to serve thousands of clients annually, helping them discover Türkiye's rich history, stunning landscapes, and world-class medical facilities.",
-      "readMore": "Read more"
+      "badge": "قصتنا",
+      "heading": "نشعر وكأننا عائلة (لأننا كذلك)",
+      "p1": "تأسست بارباروس للسياحة بشغف لإبراز جمال وثقافة تركيا، ونمت من وكالة محلية صغيرة إلى مزود متكامل للسياحة والسياحة العلاجية.",
+      "p2": "بدأت رحلتنا بمهمة بسيطة: مشاركة روائع تركيا مع العالم مع تقديم خدمة استثنائية.",
+      "p3": "اليوم نفخر بخدمة آلاف العملاء سنويًا، ومساعدتهم على اكتشاف تاريخ تركيا الغني ومناظرها الخلابة.",
+      "readMore": "اقرأ المزيد"
     },
     "stats": {
-      "heading": "We’re here to introduce you to all the places out there",
-      "description": "Our impact across the globe through years of dedicated service and passion for travel.",
+      "heading": "نحن هنا لنعرفك على كل الأماكن",
+      "description": "أثرنا العالمي عبر سنوات من الشغف والخدمة.",
       "items": {
-        "customers": "Happy customers",
-        "tours": "Tours and activities",
-        "countries": "Countries around the globe",
-        "partners": "Local Partners"
+        "customers": "عملاء سعداء",
+        "tours": "جولات وأنشطة",
+        "countries": "دول حول العالم",
+        "partners": "شركاء محليون"
       }
     },
     "mission": {
@@ -450,6 +450,10 @@
         "role": "Logistics Manager"
       }
     }
+  },
+  "partners": {
+    "badge": "شركاؤنا الموثوقون",
+    "heading": "نتعاون مع الأفضل لنقدم لكم تجربة استثنائية"
   },
   "servicesOfferings": {
     "badge": "OUR EXPERTISE",

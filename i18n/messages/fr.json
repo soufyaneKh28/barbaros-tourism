@@ -451,6 +451,10 @@
       }
     }
   },
+  "partners": {
+    "badge": "Nos partenaires de confiance",
+    "heading": "Nous collaborons avec les meilleurs pour vous offrir une expérience exceptionnelle"
+  },
   "servicesOfferings": {
     "badge": "OUR EXPERTISE",
     "heading": "What We Offer",
