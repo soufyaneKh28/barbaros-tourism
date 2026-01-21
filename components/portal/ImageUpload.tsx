@@ -6,7 +6,7 @@ import { Upload, X, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 
 interface ImageUploadProps {
-    bucket: 'trip-images' | 'blog-images' | 'destination-images'
+    bucket: 'trip-images' | 'blog-images' | 'destination-images' | 'service-images'
     onUploadComplete: (url: string) => void
     currentImage?: string
     label?: string

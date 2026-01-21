@@ -39,8 +39,8 @@ export default function MultiLangTextarea({
                         type="button"
                         onClick={() => setActiveLocale(locale)}
                         className={`px-3 py-1.5 text-sm font-medium transition-colors ${activeLocale === locale
-                                ? 'border-b-2 border-primary text-primary'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'border-b-2 border-primary text-primary'
+                            : 'text-gray-500 hover:text-gray-700'
                             } ${values[locale] ? 'font-semibold' : ''}`}
                     >
                         {localeNames[locale]}
@@ -53,7 +53,7 @@ export default function MultiLangTextarea({
             {locales.map(locale => (
                 <div key={locale} className={activeLocale === locale ? 'block' : 'hidden'}>
                     <textarea
-                        name={`${name}[${locale}]`}
+                        name={`${name}_${locale}`}
                         value={values[locale] || ''}
                         onChange={(e) => handleChange(locale, e.target.value)}
                         required={required && locale === 'en'}

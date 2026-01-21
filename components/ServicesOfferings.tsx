@@ -5,12 +5,14 @@ import { type Locale, getMessages } from "@/i18n";
 
 interface ServicesOfferingsProps {
     locale?: Locale;
+    services?: any[];
 }
 
-export default function ServicesOfferings({ locale = 'en' }: ServicesOfferingsProps) {
+export default function ServicesOfferings({ locale = 'en', services: dynamicServices }: ServicesOfferingsProps) {
     const t = getMessages(locale);
 
-    const offerings = [
+    // Static fallback offerings
+    const staticOfferings = [
         {
             title: t.servicesOfferings.items.cultural.title,
             description: t.servicesOfferings.items.cultural.description,
@@ -73,6 +75,35 @@ export default function ServicesOfferings({ locale = 'en' }: ServicesOfferingsPr
         },
     ];
 
+    // Use dynamic services if available, otherwise use static
+    const offerings = dynamicServices && dynamicServices.length > 0
+        ? dynamicServices.map((service) => {
+            // Parse features from procedural_requirements or additional_notes
+            const features = [];
+            if (service.procedural_requirements) {
+                features.push(service.procedural_requirements);
+            }
+            if (service.target_client_category) {
+                features.push(service.target_client_category);
+            }
+
+            return {
+                title: service.service_name,
+                description: service.service_details,
+                coverImage: service.cover_image,
+                targetCategory: service.target_client_category,
+                proceduralRequirements: service.procedural_requirements,
+                additionalNotes: service.additional_notes,
+                icon: (
+                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                ),
+                features: features.length > 0 ? features : []
+            };
+        })
+        : staticOfferings;
+
     return (
         <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
             {/* Background decorative elements */}
@@ -117,31 +148,66 @@ export default function ServicesOfferings({ locale = 'en' }: ServicesOfferingsPr
                             <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-[100px] transition-all duration-300 group-hover:scale-150 group-hover:bg-secondary/10" />
 
                             <div className="relative z-10">
-                                {/* Icon Container */}
-                                <div className="w-16 h-16 bg-[#F3F4F6] rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
-                                    {service.icon}
-                                </div>
+                                {/* Image or Icon Container */}
+                                {(service as any).coverImage ? (
+                                    <div className="w-full h-48 rounded-2xl overflow-hidden mb-8">
+                                        <img
+                                            src={(service as any).coverImage}
+                                            alt={service.title}
+                                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="w-16 h-16 bg-[#F3F4F6] rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                                        {service.icon}
+                                    </div>
+                                )}
 
                                 <h3 className="text-2xl font-bold font-cabinet mb-4 text-primary group-hover:text-secondary transition-colors duration-300">
                                     {service.title}
                                 </h3>
 
-                                <p className="text-gray-600 font-satoshi mb-8 leading-relaxed">
+                                <p className="text-gray-600 font-satoshi mb-6 leading-relaxed">
                                     {service.description}
                                 </p>
 
-                                <ul className="space-y-4">
-                                    {service.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center text-gray-700 font-satoshi font-medium">
-                                            <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center mr-3 group-hover:bg-secondary/20 transition-colors">
-                                                <svg className="w-3.5 h-3.5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                                </svg>
-                                            </div>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
+                                {/* Dynamic service fields */}
+                                {(service as any).targetCategory && (
+                                    <div className="mb-6">
+                                        <h4 className="text-sm font-bold font-cabinet text-primary mb-2">Target Client Category</h4>
+                                        <p className="text-gray-700 font-satoshi">{(service as any).targetCategory}</p>
+                                    </div>
+                                )}
+
+                                {(service as any).proceduralRequirements && (
+                                    <div className="mb-6">
+                                        <h4 className="text-sm font-bold font-cabinet text-primary mb-2">Procedural Requirements</h4>
+                                        <p className="text-gray-700 font-satoshi">{(service as any).proceduralRequirements}</p>
+                                    </div>
+                                )}
+
+                                {(service as any).additionalNotes && (
+                                    <div className="mb-6">
+                                        <h4 className="text-sm font-bold font-cabinet text-primary mb-2">Additional Notes</h4>
+                                        <p className="text-gray-700 font-satoshi">{(service as any).additionalNotes}</p>
+                                    </div>
+                                )}
+
+                                {/* Static service features */}
+                                {/* {service.features && service.features.length > 0 && (
+                                    <ul className="space-y-4">
+                                        {service.features.map((feature, idx) => (
+                                            <li key={idx} className="flex items-center text-gray-700 font-satoshi font-medium">
+                                                <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center mr-3 group-hover:bg-secondary/20 transition-colors">
+                                                    <svg className="w-3.5 h-3.5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )} */}
                             </div>
                         </motion.div>
                     ))}
