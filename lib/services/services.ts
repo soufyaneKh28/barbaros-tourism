@@ -101,3 +101,30 @@ export async function getServiceBySlug(slug: string, locale: string = 'en') {
         return null
     }
 }
+
+export async function getHotDealServices(locale: string = 'en') {
+    try {
+        const supabase = await createClient()
+        const now = new Date().toISOString()
+
+        const { data, error } = await supabase
+            .from('services')
+            .select('*')
+            .eq('is_hot_deal', true)
+            .eq('is_active', true)
+            .or(`hot_deal_end_date.is.null,hot_deal_end_date.gte.${now}`)
+            .order('hot_deal_priority', { ascending: true, nullsFirst: false })
+            .limit(10)
+
+        if (error) {
+            console.error('Error fetching hot deal services:', error)
+            return []
+        }
+
+        return data.map(service => transformService(service, locale))
+    } catch (error) {
+        console.error('Error in getHotDealServices:', error)
+        return []
+    }
+}
+

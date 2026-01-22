@@ -8,7 +8,7 @@ import VideoSection from "@/components/home/VideoSection";
 import Blogs from "@/components/home/Blogs";
 import Footer from "@/components/common/Footer";
 import { type Locale, locales, defaultLocale } from "@/i18n";
-import { getHotDeals } from "@/lib/services/trips";
+import { getCombinedHotDeals } from "@/lib/services/deals";
 import { getBlogs } from "@/lib/services/blogs";
 import { getDestinations } from "@/lib/services/destinations";
 
@@ -20,10 +20,10 @@ export default async function Home({
   const { locale: localeParam } = await params;
   const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
 
-  // Fetch hot deals
+  // Fetch hot deals (trips and services)
   let hotDeals = []
   try {
-    hotDeals = await getHotDeals(locale)
+    hotDeals = await getCombinedHotDeals(locale)
   } catch (e) {
     console.error('Failed to fetch hot deals', e)
   }

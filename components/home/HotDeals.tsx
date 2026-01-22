@@ -61,12 +61,12 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                         </div>
 
                         <h2 className="text-[32px] lg:text-[42px] leading-tight font-cabinet font-extrabold text-white mb-6">
-                            Limited-Time Offers on <span className="text-secondary">Selected Trips</span>
+                            Limited-Time Offers on <span className="text-secondary">Selected Services</span>
                         </h2>
 
                         <p className="text-white/70 font-satoshi text-lg leading-relaxed max-w-xl">
-                            Explore our best travel packages with exclusive discounts.
-                            Don't miss the chance to book your dream vacation at an unbeatable price.
+                            Explore our best travel packages and services with exclusive discounts.
+                            Don't miss the chance to book your dream experience at an unbeatable price.
                         </p>
                     </div>
 
@@ -108,59 +108,71 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                         arrows={false}
                         partialVisible={true}
                     >
-                        {deals.map((deal) => (
-                            <Link
-                                key={deal.id}
-                                href={`/${locale}/tours/${deal.slug}`}
-                                className="block h-[400px] md:h-[480px] relative rounded-3xl overflow-hidden group select-none"
-                            >
-                                <Image
-                                    src={deal.main_image || '/images/placeholder.jpg'}
-                                    alt={deal.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
+                        {deals.map((deal) => {
+                            const isTrip = deal.type === 'trip'
+                            const href = isTrip
+                                ? `/${locale}/tours/${deal.slug}`
+                                : `/${locale}/our-services/${deal.slug}`
+                            const imageUrl = deal.main_image || deal.cover_image || '/images/placeholder.jpg'
 
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 p-8 flex flex-col justify-between">
+                            return (
+                                <Link
+                                    key={deal.id}
+                                    href={href}
+                                    className="block h-[400px] md:h-[480px] relative rounded-3xl overflow-hidden group select-none"
+                                >
+                                    <Image
+                                        src={imageUrl}
+                                        alt={deal.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
 
-                                    {/* Top Tags */}
-                                    <div className="flex flex-wrap gap-2">
-                                        {deal.category?.name && (
-                                            <span className="bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10">
-                                                {deal.category.name}
+                                    {/* Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 p-8 flex flex-col justify-between">
+
+                                        {/* Top Tags */}
+                                        <div className="flex flex-wrap gap-2">
+                                            {/* Type Badge */}
+                                            <span className={`${isTrip ? 'bg-blue-500/80' : 'bg-emerald-500/80'} backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10`}>
+                                                {isTrip ? 'Trip' : 'Service'}
                                             </span>
-                                        )}
-                                        {deal.trip_type && (
-                                            <span className="bg-secondary/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10">
-                                                {deal.trip_type}
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    {/* Bottom Content */}
-                                    <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                        <h3 className="text-2xl font-cabinet font-bold text-white mb-3">
-                                            {deal.title}
-                                        </h3>
-                                        <p className="text-white/80 font-satoshi text-sm mb-6 line-clamp-2">
-                                            {deal.description}
-                                        </p>
-
-                                        <div className="flex items-center justify-between">
-                                            <div className="px-6 py-2.5 rounded-full border border-white/30 text-white font-medium text-sm hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm">
-                                                View Deal
-                                            </div>
-                                            {deal.price && (
-                                                <div className="text-white font-bold text-xl">
-                                                    ${deal.price}
-                                                </div>
+                                            {deal.category?.name && (
+                                                <span className="bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10">
+                                                    {deal.category.name}
+                                                </span>
+                                            )}
+                                            {deal.trip_type && (
+                                                <span className="bg-secondary/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10">
+                                                    {deal.trip_type}
+                                                </span>
                                             )}
                                         </div>
+
+                                        {/* Bottom Content */}
+                                        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                            <h3 className="text-2xl font-cabinet font-bold text-white mb-3">
+                                                {deal.title}
+                                            </h3>
+                                            <p className="text-white/80 font-satoshi text-sm mb-6 line-clamp-2">
+                                                {deal.description}
+                                            </p>
+
+                                            <div className="flex items-center justify-between">
+                                                <div className="px-6 py-2.5 rounded-full border border-white/30 text-white font-medium text-sm hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm">
+                                                    View Deal
+                                                </div>
+                                                {deal.price && (
+                                                    <div className="text-white font-bold text-xl">
+                                                        ${deal.price}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            )
+                        })}
                     </Carousel>
                 </div>
 

@@ -37,6 +37,14 @@ export async function createServiceAction(formData: FormData) {
         const coverImage = formData.get('cover_image') as string
         const isActive = formData.get('is_active') === 'on'
 
+        // Hot deal fields
+        const isHotDeal = formData.get('is_hot_deal') === 'on'
+        const hotDealStartDateRaw = formData.get('hotDealStartDate') as string
+        const hotDealStartDate = hotDealStartDateRaw ? new Date(hotDealStartDateRaw).toISOString() : null
+        const hotDealEndDateRaw = formData.get('hotDealEndDate') as string
+        const hotDealEndDate = hotDealEndDateRaw ? new Date(hotDealEndDateRaw).toISOString() : null
+        const hotDealPriority = formData.get('hotDealPriority') ? parseInt(formData.get('hotDealPriority') as string) : 999
+
         // Debug logging
         console.log('Service Name:', serviceName)
         console.log('FormData keys:', Array.from(formData.keys()))
@@ -58,7 +66,11 @@ export async function createServiceAction(formData: FormData) {
                 additional_notes: additionalNotes,
                 cover_image: coverImage || null,
                 slug,
-                is_active: isActive
+                is_active: isActive,
+                is_hot_deal: isHotDeal,
+                hot_deal_start_date: hotDealStartDate,
+                hot_deal_end_date: hotDealEndDate,
+                hot_deal_priority: hotDealPriority
             }])
 
         if (error) {
@@ -85,6 +97,14 @@ export async function updateServiceAction(id: string, formData: FormData) {
         const coverImage = formData.get('cover_image') as string
         const isActive = formData.get('is_active') === 'on'
 
+        // Hot deal fields
+        const isHotDeal = formData.get('is_hot_deal') === 'on'
+        const hotDealStartDateRaw = formData.get('hotDealStartDate') as string
+        const hotDealStartDate = hotDealStartDateRaw ? new Date(hotDealStartDateRaw).toISOString() : null
+        const hotDealEndDateRaw = formData.get('hotDealEndDate') as string
+        const hotDealEndDate = hotDealEndDateRaw ? new Date(hotDealEndDateRaw).toISOString() : null
+        const hotDealPriority = formData.get('hotDealPriority') ? parseInt(formData.get('hotDealPriority') as string) : 999
+
         if (!serviceName) {
             return { error: 'Service name is required' }
         }
@@ -102,7 +122,11 @@ export async function updateServiceAction(id: string, formData: FormData) {
                 additional_notes: additionalNotes,
                 cover_image: coverImage || null,
                 slug,
-                is_active: isActive
+                is_active: isActive,
+                is_hot_deal: isHotDeal,
+                hot_deal_start_date: hotDealStartDate,
+                hot_deal_end_date: hotDealEndDate,
+                hot_deal_priority: hotDealPriority
             })
             .eq('id', id)
 
