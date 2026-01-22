@@ -65,6 +65,67 @@ export default function NewServicePage() {
                     </label>
                 </div>
 
+                {/* Hot Deal Section */}
+                <div className="border-t pt-6 mt-6">
+                    <h3 className="text-lg font-bold mb-4 font-cabinet text-gray-900">Hot Deal Settings</h3>
+
+                    <div className="space-y-4">
+                        <div className="flex items-center">
+                            <input
+                                type="checkbox"
+                                id="is_hot_deal"
+                                name="is_hot_deal"
+                                className="w-4 h-4 text-secondary border-gray-300 rounded focus:ring-secondary"
+                            />
+                            <label htmlFor="is_hot_deal" className="ml-2 block text-sm text-gray-900 font-medium">
+                                Mark as Hot Deal
+                            </label>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label htmlFor="hotDealStartDate" className="block text-sm font-medium text-gray-700 mb-1">
+                                    Hot Deal Start Date
+                                </label>
+                                <input
+                                    type="datetime-local"
+                                    id="hotDealStartDate"
+                                    name="hotDealStartDate"
+                                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="hotDealEndDate" className="block text-sm font-medium text-gray-700 mb-1">
+                                    Hot Deal End Date (Optional)
+                                </label>
+                                <input
+                                    type="datetime-local"
+                                    id="hotDealEndDate"
+                                    name="hotDealEndDate"
+                                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label htmlFor="hotDealPriority" className="block text-sm font-medium text-gray-700 mb-1">
+                                Priority (lower number = higher priority)
+                            </label>
+                            <input
+                                type="number"
+                                id="hotDealPriority"
+                                name="hotDealPriority"
+                                defaultValue={999}
+                                min={1}
+                                max={9999}
+                                className="w-full md:w-48 border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent"
+                            />
+                            <p className="mt-1 text-xs text-gray-500">Lower numbers appear first in the Hot Deals section</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="flex gap-4">
                     <button
                         type="submit"
