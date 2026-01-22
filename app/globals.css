@@ -55,9 +55,26 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'KoTammem';
+  src: url('/fonts/KOTammem-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KoTammem';
+  src: url('/fonts/KOTammem-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-cabinet: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-satoshi: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
   --color-primary: #243751;
   --color-secondary: #A80045;
   --radius: 0.625rem;
@@ -92,6 +109,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+html[lang="ar"] {
+  --font-cabinet: var(--font-ibm-plex), sans-serif;
+  --font-satoshi: var(--font-ibm-plex), sans-serif;
+}
+
+html[lang="ar"] body {
+  font-family: var(--font-satoshi);
 }
 
 @theme inline {
@@ -212,6 +238,7 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

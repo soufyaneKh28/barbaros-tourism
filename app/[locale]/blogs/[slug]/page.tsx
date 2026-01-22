@@ -47,7 +47,7 @@ export default async function BlogDetails({
 
     let blog;
     try {
-        blog = await getBlogBySlug(slug);
+        blog = await getBlogBySlug(slug, locale);
     } catch (error) {
         console.error("Error fetching blog:", error);
     }

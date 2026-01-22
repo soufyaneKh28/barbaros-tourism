@@ -15,7 +15,7 @@ export default async function BlogsPage({
 
     let dynamicBlogs: any[] = [];
     try {
-        const data = await getBlogs(false);
+        const data = await getBlogs(false, locale);
         dynamicBlogs = (data || []).map((blog: any) => ({
             id: blog.id,
             category: 'TRAVEL', // Placeholder until category join logic refined

@@ -55,7 +55,7 @@ export default function MultiLangInput({
                     <input
                         type={type}
                         name={`${name}_${locale}`}
-                        value={values[locale] || ''}
+                        value={values?.[locale] || ''}
                         onChange={(e) => handleChange(locale, e.target.value)}
                         required={required && locale === 'en'}
                         className="mt-1 block w-full border rounded-md px-3 py-2"
