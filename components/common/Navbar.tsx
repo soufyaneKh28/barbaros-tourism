@@ -97,33 +97,27 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                 className="absolute left-1/2 top-1 z-50 mt-4 -translate-x-1/2"
                             >
                                 <div className="flex flex-col gap-3 w-[420px] rounded-2xl bg-white shadow-2xl border border-gray-100 p-4">
-                                    <CompanyCard
-                                        href="https://barbarostourism.com"
-                                        title="Barbaros Tourism"
-                                        description="Travel & medical tourism experiences in Türkiye."
-                                        iconColor="bg-blue-50 text-blue-600"
-                                        Icon={Plane}
-                                    />
+
                                     <CompanyCard
                                         href="https://barbarosevents.com"
                                         title="Barbaros Events"
                                         description="Corporate & private event planning and management."
                                         iconColor="bg-purple-50 text-purple-600"
-                                        Icon={Calendar}
+                                        imageSrc="/images/eventIcon.png"
                                     />
                                     <CompanyCard
                                         href="https://barbarostrade.com"
                                         title="Barbaros Trade"
                                         description="International trade, logistics and import/export."
                                         iconColor="bg-emerald-50 text-emerald-600"
-                                        Icon={Ship}
+                                        imageSrc="/images/tradeIcon.png"
                                     />
                                     <CompanyCard
                                         href="https://barbarosgroup.com"
                                         title="Barbaros Group"
                                         description="Holding company and shared group services."
                                         iconColor="bg-amber-50 text-amber-600"
-                                        Icon={Building2}
+                                        imageSrc="/images/tourismIcon.png"
                                     />
                                 </div>
                             </motion.div>
@@ -230,10 +224,11 @@ interface CompanyCardProps {
     title: string;
     description: string;
     iconColor: string;
-    Icon: React.ElementType;
+    Icon?: React.ElementType;
+    imageSrc?: string;
 }
 
-function CompanyCard({ href, title, description, iconColor, Icon }: CompanyCardProps) {
+function CompanyCard({ href, title, description, iconColor, Icon, imageSrc }: CompanyCardProps) {
     return (
         <Link
             href={href}
@@ -241,8 +236,12 @@ function CompanyCard({ href, title, description, iconColor, Icon }: CompanyCardP
             target="_blank"
             rel="noopener noreferrer"
         >
-            <div className={`flex h-10 w-10 items-center justify-center rounded-full ${iconColor} shadow-sm`}>
-                <Icon className="w-5 h-5" />
+            <div className={`flex h-10 w-10 items-center justify-center rounded-full ${iconColor} shadow-sm overflow-hidden p-2`}>
+                {imageSrc ? (
+                    <Image src={imageSrc} alt={title} width={24} height={24} className="w-full h-full object-contain" />
+                ) : Icon ? (
+                    <Icon className="w-5 h-5" />
+                ) : null}
             </div>
             <div className="flex-1">
                 <p className="text-sm font-semibold text-gray-900 group-hover:text-primary">

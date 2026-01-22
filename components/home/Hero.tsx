@@ -138,29 +138,24 @@ export default function Hero() {
                   className="absolute left-1/2 top-1 z-50 mt-4 -translate-x-1/2"
                 >
                   <div className="flex flex-col gap-3 w-[420px] rounded-2xl bg-slate-900/95 backdrop-blur-xl shadow-2xl border border-white/10 p-4">
-                    <HeroCompanyCard
-                      href="https://barbarostourism.com"
-                      title="Barbaros Tourism"
-                      description="Travel & medical tourism experiences in Türkiye."
-                      Icon={Plane}
-                    />
+
                     <HeroCompanyCard
                       href="https://barbarosevents.com"
                       title="Barbaros Events"
                       description="Corporate & private event planning and management."
-                      Icon={Calendar}
+                      imageSrc="/images/eventIcon.png"
                     />
                     <HeroCompanyCard
                       href="https://barbarostrade.com"
                       title="Barbaros Trade"
                       description="International trade, logistics and import/export."
-                      Icon={Ship}
+                      imageSrc="/images/tradeIcon.png"
                     />
                     <HeroCompanyCard
                       href="https://barbarosgroup.com"
                       title="Barbaros Group"
                       description="Holding company and shared group services."
-                      Icon={Building2}
+                      imageSrc="/images/tourismIcon.png"
                     />
                   </div>
                 </motion.div>
@@ -412,10 +407,11 @@ interface HeroCompanyCardProps {
   href: string;
   title: string;
   description: string;
-  Icon: React.ElementType;
+  Icon?: React.ElementType;
+  imageSrc?: string;
 }
 
-function HeroCompanyCard({ href, title, description, Icon }: HeroCompanyCardProps) {
+function HeroCompanyCard({ href, title, description, Icon, imageSrc }: HeroCompanyCardProps) {
   return (
     <Link
       href={href}
@@ -423,8 +419,12 @@ function HeroCompanyCard({ href, title, description, Icon }: HeroCompanyCardProp
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white shadow-sm">
-        <Icon className="w-5 h-5" />
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white shadow-sm overflow-hidden p-2">
+        {imageSrc ? (
+          <Image src={imageSrc} alt={title} width={24} height={24} className="w-full h-full object-contain" />
+        ) : Icon ? (
+          <Icon className="w-5 h-5" />
+        ) : null}
       </div>
       <div className="flex-1">
         <p className="text-sm font-semibold text-white group-hover:text-secondary">
