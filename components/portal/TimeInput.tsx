@@ -1,27 +1,40 @@
 'use client'
 
 import { useState } from 'react'
+import { locales, type Locale } from '@/i18n/config'
+import { useAdminLanguage } from '@/contexts/AdminLanguageContext'
 import { Clock, Calendar } from 'lucide-react'
 
 interface TimeInputProps {
     name: string
     label: string
-    defaultValue?: string
+    placeholder?: string
+    defaultValue?: Record<string, string> | string
     defaultIcon?: 'hour' | 'calendar'
     required?: boolean
-    placeholder?: string
 }
 
 export default function TimeInput({
     name,
     label,
-    defaultValue = '',
+    placeholder = 'e.g. Daily, 2 hours, 3 days',
+    defaultValue = {},
     defaultIcon = 'calendar',
-    required = false,
-    placeholder = 'e.g. Daily, 2 hours, 3 days'
+    required = false
 }: TimeInputProps) {
+    const { activeLocale } = useAdminLanguage()
+
+    // Handle both old format (string) and new format (multi-language object)
+    const initialValues = typeof defaultValue === 'string'
+        ? { en: defaultValue }
+        : defaultValue || {}
+
+    const [values, setValues] = useState<Record<string, string>>(initialValues)
     const [selectedIcon, setSelectedIcon] = useState<'hour' | 'calendar'>(defaultIcon)
-    const [timeText, setTimeText] = useState(defaultValue)
+
+    const handleChange = (locale: Locale, value: string) => {
+        setValues(prev => ({ ...prev, [locale]: value }))
+    }
 
     return (
         <div>
@@ -35,10 +48,10 @@ export default function TimeInput({
                 <div className="flex-1 relative">
                     <input
                         type="text"
-                        name={name}
-                        value={timeText}
-                        onChange={(e) => setTimeText(e.target.value)}
-                        required={required}
+                        name={`${name}_${activeLocale}`}
+                        value={values[activeLocale] || ''}
+                        onChange={(e) => handleChange(activeLocale, e.target.value)}
+                        required={required && activeLocale === 'en'}
                         placeholder={placeholder}
                         className="block w-full border border-gray-300 rounded-md px-3 py-2 pr-10 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                     />
@@ -58,8 +71,8 @@ export default function TimeInput({
                         type="button"
                         onClick={() => setSelectedIcon('hour')}
                         className={`p-2 rounded-md transition-all ${selectedIcon === 'hour'
-                                ? 'bg-white text-primary shadow-sm'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'bg-white text-primary shadow-sm'
+                            : 'text-gray-500 hover:text-gray-700'
                             }`}
                         title="Hour/Duration"
                     >
@@ -69,8 +82,8 @@ export default function TimeInput({
                         type="button"
                         onClick={() => setSelectedIcon('calendar')}
                         className={`p-2 rounded-md transition-all ${selectedIcon === 'calendar'
-                                ? 'bg-white text-primary shadow-sm'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'bg-white text-primary shadow-sm'
+                            : 'text-gray-500 hover:text-gray-700'
                             }`}
                         title="Calendar/Date"
                     >
@@ -78,6 +91,16 @@ export default function TimeInput({
                     </button>
                 </div>
             </div>
+
+            {/* Hidden inputs for other languages to preserve data */}
+            {locales.filter(locale => locale !== activeLocale).map(locale => (
+                <input
+                    key={locale}
+                    type="hidden"
+                    name={`${name}_${locale}`}
+                    value={values[locale] || ''}
+                />
+            ))}
 
             {/* Hidden input for icon selection */}
             <input type="hidden" name={`${name}Icon`} value={selectedIcon} />

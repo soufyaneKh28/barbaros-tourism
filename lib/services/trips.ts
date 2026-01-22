@@ -10,6 +10,7 @@ function transformTrip(trip: any, locale: string = 'en') {
         description: getLocalized(trip.description, locale),
         long_description: getLocalized(trip.long_description, locale),
         location: getLocalized(trip.location, locale),
+        time_text: getLocalized(trip.time_text, locale),
         includes: getLocalized(trip.includes, locale) || [],
         excludes: getLocalized(trip.excludes, locale) || [],
         destination: trip.destination ? {
@@ -23,6 +24,7 @@ function transformTrip(trip: any, locale: string = 'en') {
         } : null
     }
 }
+
 
 export async function getTrips(locale: string = 'en') {
     const { data, error } = await supabase

@@ -6,6 +6,8 @@ import { useRouter, useParams } from 'next/navigation'
 import ImageUpload from '@/components/portal/ImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
+import { AdminLanguageProvider } from '@/contexts/AdminLanguageContext'
+import GlobalLanguageSwitcher from '@/components/portal/GlobalLanguageSwitcher'
 
 export default function NewBlogPage() {
     const [loading, setLoading] = useState(false)
@@ -35,62 +37,66 @@ export default function NewBlogPage() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto bg-white p-8 shadow rounded-lg">
-            <h2 className="text-2xl font-bold mb-6">Create New Blog Post</h2>
+        <AdminLanguageProvider>
+            <div className="max-w-4xl mx-auto bg-white p-8 shadow rounded-lg font-satoshi">
+                <h2 className="text-2xl font-bold mb-6 font-cabinet">Create New Blog Post</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-                <MultiLangInput name="title" label="Title" required placeholder="Post title" />
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <GlobalLanguageSwitcher />
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">Slug</label>
-                    <input name="slug" required className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="post-url-slug" />
-                </div>
+                    <MultiLangInput name="title" label="Title" required placeholder="Post title" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <ImageUpload
-                            bucket="blog-images"
-                            onUploadComplete={setCoverImage}
-                            label="Cover Image URL"
-                        />
-                        <input type="hidden" name="coverImage" value={coverImage} />
+                        <label className="block text-sm font-medium text-gray-700">Slug</label>
+                        <input name="slug" required className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="post-url-slug" />
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Author Name</label>
-                        <input name="authorName" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="Barbaros Team" />
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <ImageUpload
+                                bucket="blog-images"
+                                onUploadComplete={setCoverImage}
+                                label="Cover Image URL"
+                            />
+                            <input type="hidden" name="coverImage" value={coverImage} />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Author Name</label>
+                            <input name="authorName" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="Barbaros Team" />
+                        </div>
                     </div>
-                </div>
 
-                <MultiLangTextarea name="excerpt" label="Excerpt (Short summary)" required rows={2} />
+                    <MultiLangTextarea name="excerpt" label="Excerpt (Short summary)" required rows={2} />
 
-                <MultiLangTextarea name="content" label="Content (HTML allowed)" required rows={10} placeholder="<p>Start writing...</p>" />
+                    <MultiLangTextarea name="content" label="Content (HTML allowed)" required rows={10} placeholder="<p>Start writing...</p>" />
 
-                <div className="flex items-center">
-                    <input id="isPublished" name="isPublished" type="checkbox" className="h-4 w-4 text-blue-600 border-gray-300 rounded" defaultChecked />
-                    <label htmlFor="isPublished" className="ml-2 block text-sm text-gray-900">
-                        Publish immediately
-                    </label>
-                </div>
+                    <div className="flex items-center">
+                        <input id="isPublished" name="isPublished" type="checkbox" className="h-4 w-4 text-blue-600 border-gray-300 rounded" defaultChecked />
+                        <label htmlFor="isPublished" className="ml-2 block text-sm text-gray-900">
+                            Publish immediately
+                        </label>
+                    </div>
 
-                {error && <p className="text-red-600 text-sm">{error}</p>}
+                    {error && <p className="text-red-600 text-sm">{error}</p>}
 
-                <div className="pt-4 flex gap-4">
-                    <button
-                        type="button"
-                        onClick={() => router.back()}
-                        className="flex-1 bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 transition"
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="flex-[2] bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 font-bold transition"
-                    >
-                        {loading ? 'Saving...' : 'Create Blog Post'}
-                    </button>
-                </div>
-            </form>
-        </div>
+                    <div className="pt-4 flex gap-4">
+                        <button
+                            type="button"
+                            onClick={() => router.back()}
+                            className="flex-1 bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 transition"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="flex-[2] bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 font-bold transition"
+                        >
+                            {loading ? 'Saving...' : 'Create Blog Post'}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </AdminLanguageProvider>
     )
 }

@@ -48,7 +48,7 @@ export async function createTripAction(formData: FormData) {
     const imagesRaw = formData.get('images') as string
     const images = imagesRaw ? imagesRaw.split(',').map(s => s.trim()).filter(Boolean) : []
 
-    const timeText = formData.get('timeText') as string
+    const timeText = getMultiLangField(formData, 'timeText')
     const timeIcon = formData.get('timeTextIcon') as string || 'calendar'
 
     const itinerary = getMultiLangField(formData, 'itinerary')
@@ -130,7 +130,7 @@ export async function updateTripAction(id: string, formData: FormData) {
     const imagesRaw = formData.get('images') as string
     const images = imagesRaw ? imagesRaw.split(',').map(s => s.trim()).filter(Boolean) : []
 
-    const timeText = formData.get('timeText') as string
+    const timeText = getMultiLangField(formData, 'timeText')
     const timeIcon = formData.get('timeTextIcon') as string || 'calendar'
 
     const itinerary = getMultiLangField(formData, 'itinerary')

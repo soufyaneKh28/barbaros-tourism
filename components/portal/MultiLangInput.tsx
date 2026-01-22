@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { locales, localeNames, type Locale } from '@/i18n/config'
+import { locales, type Locale } from '@/i18n/config'
+import { useAdminLanguage } from '@/contexts/AdminLanguageContext'
 
 interface MultiLangInputProps {
     name: string
@@ -20,7 +21,7 @@ export default function MultiLangInput({
     defaultValue = {},
     type = 'text'
 }: MultiLangInputProps) {
-    const [activeLocale, setActiveLocale] = useState<Locale>('en')
+    const { activeLocale } = useAdminLanguage()
     const [values, setValues] = useState<Record<string, string>>(defaultValue || {})
 
     const handleChange = (locale: Locale, value: string) => {
@@ -29,39 +30,30 @@ export default function MultiLangInput({
 
     return (
         <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+                {label}
+                {required && <span className="text-red-500 ml-1">*</span>}
+            </label>
 
-            {/* Language Tabs */}
-            <div className="flex gap-1 mb-2 border-b">
-                {locales.map(locale => (
-                    <button
-                        key={locale}
-                        type="button"
-                        onClick={() => setActiveLocale(locale)}
-                        className={`px-3 py-1.5 text-sm font-medium transition-colors ${activeLocale === locale
-                            ? 'border-b-2 border-primary text-primary'
-                            : 'text-gray-500 hover:text-gray-700'
-                            } ${values?.[locale] ? 'font-semibold' : ''}`}
-                    >
-                        {localeNames[locale]}
-                        {values?.[locale] && ' ✓'}
-                    </button>
-                ))}
-            </div>
+            {/* Show only active language input */}
+            <input
+                type={type}
+                name={`${name}_${activeLocale}`}
+                value={values?.[activeLocale] || ''}
+                onChange={(e) => handleChange(activeLocale, e.target.value)}
+                required={required && activeLocale === 'en'}
+                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                placeholder={placeholder}
+            />
 
-            {/* Input Fields */}
-            {locales.map(locale => (
-                <div key={locale} className={activeLocale === locale ? 'block' : 'hidden'}>
-                    <input
-                        type={type}
-                        name={`${name}_${locale}`}
-                        value={values?.[locale] || ''}
-                        onChange={(e) => handleChange(locale, e.target.value)}
-                        required={required && locale === 'en'}
-                        className="mt-1 block w-full border rounded-md px-3 py-2"
-                        placeholder={placeholder}
-                    />
-                </div>
+            {/* Hidden inputs for other languages to preserve data */}
+            {locales.filter(locale => locale !== activeLocale).map(locale => (
+                <input
+                    key={locale}
+                    type="hidden"
+                    name={`${name}_${locale}`}
+                    value={values?.[locale] || ''}
+                />
             ))}
         </div>
     )
