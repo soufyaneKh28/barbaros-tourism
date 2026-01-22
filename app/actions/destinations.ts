@@ -8,7 +8,7 @@ import { locales } from '@/i18n/config'
 function getMultiLangField(formData: FormData, fieldName: string): Record<string, string> {
     const result: Record<string, string> = {}
     locales.forEach(locale => {
-        const value = formData.get(`${fieldName}[${locale}]`) as string
+        const value = formData.get(`${fieldName}_${locale}`) as string
         if (value) result[locale] = value
     })
     return result

@@ -21,7 +21,7 @@ export default function MultiLangTextarea({
     rows = 3
 }: MultiLangTextareaProps) {
     const [activeLocale, setActiveLocale] = useState<Locale>('en')
-    const [values, setValues] = useState<Record<string, string>>(defaultValue)
+    const [values, setValues] = useState<Record<string, string>>(defaultValue || {})
 
     const handleChange = (locale: Locale, value: string) => {
         setValues(prev => ({ ...prev, [locale]: value }))
@@ -41,10 +41,10 @@ export default function MultiLangTextarea({
                         className={`px-3 py-1.5 text-sm font-medium transition-colors ${activeLocale === locale
                             ? 'border-b-2 border-primary text-primary'
                             : 'text-gray-500 hover:text-gray-700'
-                            } ${values[locale] ? 'font-semibold' : ''}`}
+                            } ${values?.[locale] ? 'font-semibold' : ''}`}
                     >
                         {localeNames[locale]}
-                        {values[locale] && ' ✓'}
+                        {values?.[locale] && ' ✓'}
                     </button>
                 ))}
             </div>

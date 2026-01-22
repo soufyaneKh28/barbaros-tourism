@@ -30,6 +30,7 @@ export default function ImageUpload({
             setError(null)
 
             if (!event.target.files || event.target.files.length === 0) {
+                setUploading(false)
                 return
             }
 
@@ -38,12 +39,14 @@ export default function ImageUpload({
             // Validate file type
             if (!file.type.startsWith('image/')) {
                 setError('Please upload an image file')
+                setUploading(false)
                 return
             }
 
             // Validate file size (5MB)
             if (file.size > 5 * 1024 * 1024) {
                 setError('File size must be less than 5MB')
+                setUploading(false)
                 return
             }
 

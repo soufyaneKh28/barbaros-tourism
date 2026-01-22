@@ -109,3 +109,19 @@ export async function getHotDeals(locale: string = 'en') {
     if (error) throw error
     return data.map(trip => transformTrip(trip, locale))
 }
+
+export async function getTripsByDestination(destinationSlug: string, locale: string = 'en') {
+    const { data, error } = await supabase
+        .from('trips')
+        .select(`
+            *,
+            destination:destinations!inner(name, slug, description, image_url),
+            category:categories(name, slug)
+        `)
+        .eq('is_active', true)
+        .eq('destination.slug', destinationSlug)
+        .order('created_at', { ascending: false })
+
+    if (error) throw error
+    return data.map(trip => transformTrip(trip, locale))
+}

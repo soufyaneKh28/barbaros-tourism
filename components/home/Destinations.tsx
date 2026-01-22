@@ -58,7 +58,7 @@ export default function Destinations({ destinations: initialDestinations, locale
                         return (
                             <Link
                                 key={dest.id}
-                                href={`/${locale}/tours?destination=${dest.slug}`}
+                                href={`/${locale}/destinations/${dest.slug}`}
                                 className={`relative cursor-pointer rounded-3xl overflow-hidden group h-[300px] md:h-[400px] ${colSpanClass} block`}
                             >
                                 <Image

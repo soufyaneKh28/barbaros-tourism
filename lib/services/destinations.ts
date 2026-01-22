@@ -42,3 +42,14 @@ export async function createDestination(destData: any) {
     if (error) throw error
     return data
 }
+
+export async function getDestinationBySlug(slug: string, locale: string = 'en') {
+    const { data, error } = await supabase
+        .from('destinations')
+        .select('*')
+        .eq('slug', slug)
+        .single()
+
+    if (error) throw error
+    return transformDestination(data, locale)
+}

@@ -8,7 +8,7 @@ import { locales } from '@/i18n/config'
 function getMultiLangField(formData: FormData, fieldName: string): Record<string, string> {
     const result: Record<string, string> = {}
     locales.forEach(locale => {
-        const value = formData.get(`${fieldName}[${locale}]`) as string
+        const value = formData.get(`${fieldName}_${locale}`) as string
         if (value) result[locale] = value
     })
     return result
@@ -18,7 +18,7 @@ function getMultiLangField(formData: FormData, fieldName: string): Record<string
 function getMultiLangArrayField(formData: FormData, fieldName: string): Record<string, string[]> {
     const result: Record<string, string[]> = {}
     locales.forEach(locale => {
-        const value = formData.get(`${fieldName}[${locale}]`) as string
+        const value = formData.get(`${fieldName}_${locale}`) as string
         if (value) {
             result[locale] = value.split('\n').map(s => s.trim()).filter(Boolean)
         }
@@ -32,7 +32,6 @@ export async function createTripAction(formData: FormData) {
     // Multi-language fields
     const title = getMultiLangField(formData, 'title')
     const description = getMultiLangField(formData, 'description')
-    const location = getMultiLangField(formData, 'location')
     const includes = getMultiLangArrayField(formData, 'includes')
     const excludes = getMultiLangArrayField(formData, 'excludes')
 
@@ -70,9 +69,10 @@ export async function createTripAction(formData: FormData) {
     const hotDealEndDateRaw = formData.get('hotDealEndDate') as string
     const hotDealEndDate = hotDealEndDateRaw ? new Date(hotDealEndDateRaw).toISOString() : null
 
-    // For now, we'll fetch a random destination and category if not provided
-    // In a real app, you'd have a dropdown to select these
-    const { data: dest } = await supabase.from('destinations').select('id').limit(1).single()
+    // Get destination ID from form
+    const destinationId = formData.get('destinationId') as string
+
+    // Fetch a random category if not provided
     const { data: cat } = await supabase.from('categories').select('id').limit(1).single()
 
     const { error } = await supabase
@@ -83,7 +83,6 @@ export async function createTripAction(formData: FormData) {
             description,
             price,
             duration_days: duration,
-            location,
             main_image: mainImage,
             images,
             start_date: startDate,
@@ -96,7 +95,7 @@ export async function createTripAction(formData: FormData) {
             hot_deal_priority: hotDealPriority,
             hot_deal_start_date: hotDealStartDate,
             hot_deal_end_date: hotDealEndDate,
-            destination_id: dest?.id,
+            destination_id: destinationId,
             category_id: cat?.id,
             is_active: true
         }])
@@ -118,7 +117,6 @@ export async function updateTripAction(id: string, formData: FormData) {
     // Multi-language fields
     const title = getMultiLangField(formData, 'title')
     const description = getMultiLangField(formData, 'description')
-    const location = getMultiLangField(formData, 'location')
     const includes = getMultiLangArrayField(formData, 'includes')
     const excludes = getMultiLangArrayField(formData, 'excludes')
 
@@ -156,6 +154,12 @@ export async function updateTripAction(id: string, formData: FormData) {
     const hotDealEndDateRaw = formData.get('hotDealEndDate') as string
     const hotDealEndDate = hotDealEndDateRaw ? new Date(hotDealEndDateRaw).toISOString() : null
 
+
+
+    // Get destination ID from form
+    const destinationId = formData.get('destinationId') as string
+
+
     const { error } = await supabase
         .from('trips')
         .update({
@@ -164,7 +168,6 @@ export async function updateTripAction(id: string, formData: FormData) {
             description,
             price,
             duration_days: duration,
-            location,
             main_image: mainImage,
             images,
             start_date: startDate,
@@ -177,6 +180,7 @@ export async function updateTripAction(id: string, formData: FormData) {
             hot_deal_priority: hotDealPriority,
             hot_deal_start_date: hotDealStartDate,
             hot_deal_end_date: hotDealEndDate,
+            destination_id: destinationId,
             updated_at: new Date().toISOString()
         })
         .eq('id', id)

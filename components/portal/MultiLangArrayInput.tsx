@@ -23,7 +23,7 @@ export default function MultiLangArrayInput({
     const [activeLocale, setActiveLocale] = useState<Locale>('en')
     const [values, setValues] = useState<Record<string, string>>(
         Object.fromEntries(
-            Object.entries(defaultValue).map(([locale, arr]) => [locale, arr.join('\n')])
+            Object.entries(defaultValue || {}).map(([locale, arr]) => [locale, arr.join('\n')])
         )
     )
 
@@ -43,12 +43,12 @@ export default function MultiLangArrayInput({
                         type="button"
                         onClick={() => setActiveLocale(locale)}
                         className={`px-3 py-1.5 text-sm font-medium transition-colors ${activeLocale === locale
-                                ? 'border-b-2 border-primary text-primary'
-                                : 'text-gray-500 hover:text-gray-700'
-                            } ${values[locale] ? 'font-semibold' : ''}`}
+                            ? 'border-b-2 border-primary text-primary'
+                            : 'text-gray-500 hover:text-gray-700'
+                            } ${values?.[locale] ? 'font-semibold' : ''}`}
                     >
                         {localeNames[locale]}
-                        {values[locale] && ' ✓'}
+                        {values?.[locale] && ' ✓'}
                     </button>
                 ))}
             </div>

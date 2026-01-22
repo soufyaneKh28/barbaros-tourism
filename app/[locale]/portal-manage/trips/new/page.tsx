@@ -8,6 +8,7 @@ import MultiImageUpload from '@/components/portal/MultiImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
+import DestinationSelect from '@/components/portal/DestinationSelect'
 
 export default function NewTripPage() {
     const [loading, setLoading] = useState(false)
@@ -104,7 +105,7 @@ export default function NewTripPage() {
                     </div>
                 </div>
 
-                <MultiLangInput name="location" label="Location" required />
+                <DestinationSelect name="destinationId" label="Destination" required locale={locale as string} />
 
                 <MultiLangTextarea name="description" label="Description" required rows={3} />
 

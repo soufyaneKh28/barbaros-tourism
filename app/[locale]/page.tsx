@@ -21,7 +21,7 @@ export default async function Home({
   const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
 
   // Fetch hot deals (trips and services)
-  let hotDeals = []
+  let hotDeals: any[] = []
   try {
     hotDeals = await getCombinedHotDeals(locale)
   } catch (e) {
@@ -29,7 +29,7 @@ export default async function Home({
   }
 
   // Fetch latest blogs
-  let latestBlogs = []
+  let latestBlogs: any[] = []
   try {
     latestBlogs = await getBlogs(true, locale, 3)
   } catch (e) {
@@ -37,7 +37,7 @@ export default async function Home({
   }
 
   // Fetch destinations
-  let destinations = []
+  let destinations: any[] = []
   try {
     destinations = await getDestinations(locale, 5)
   } catch (e) {

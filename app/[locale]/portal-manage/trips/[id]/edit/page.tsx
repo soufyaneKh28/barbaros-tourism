@@ -9,6 +9,7 @@ import MultiImageUpload from '@/components/portal/MultiImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
+import DestinationSelect from '@/components/portal/DestinationSelect'
 
 export default function EditTripPage() {
     const [loading, setLoading] = useState(false)
@@ -145,7 +146,7 @@ export default function EditTripPage() {
                     </div>
                 </div>
 
-                <MultiLangInput name="location" label="Location" required defaultValue={trip.location} />
+                <DestinationSelect name="destinationId" label="Destination" required locale={locale as string} defaultValue={trip.destination_id} />
 
                 <MultiLangTextarea name="description" label="Description" required rows={3} defaultValue={trip.description} />
 
