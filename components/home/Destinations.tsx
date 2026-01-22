@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/hooks/use-language';
 
 interface DestinationsProps {
     destinations?: any[]
@@ -10,6 +11,7 @@ interface DestinationsProps {
 }
 
 export default function Destinations({ destinations: initialDestinations, locale = 'en' }: DestinationsProps) {
+    const { t } = useLanguage();
     const staticDestinations = [
         {
             id: 1,
@@ -31,18 +33,16 @@ export default function Destinations({ destinations: initialDestinations, locale
                 <div className="flex flex-col items-center text-center mb-16">
                     <div className="inline-block mb-6">
                         <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                            Top Destinations
+                            {t.home.destinations.badge}
                         </span>
                     </div>
 
                     <h2 className="text-[32px] lg:text-[42px] leading-tight font-cabinet font-extrabold text-primary mb-6">
-                        Explore Our Most Popular Travel Locations
+                        {t.home.destinations.heading}
                     </h2>
 
                     <p className="max-w-2xl text-gray-600 font-satoshi text-lg leading-relaxed">
-                        Discover the most loved destinations chosen by our travelers.
-                        From iconic cities to breathtaking landscapes, these destinations offer a wide range of trips
-                        designed to match different travel styles and preferences.
+                        {t.home.destinations.description}
                     </p>
                 </div>
 

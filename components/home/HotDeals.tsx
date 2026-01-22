@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+import { useLanguage } from '@/hooks/use-language';
+
 const responsive = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 1536 },
@@ -36,6 +38,7 @@ interface HotDealsProps {
 
 export default function HotDeals({ deals, locale }: HotDealsProps) {
     const carouselRef = useRef<any>(null);
+    const { t } = useLanguage();
 
     if (!deals || deals.length === 0) {
         return null
@@ -56,17 +59,16 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                     <div className="max-w-2xl">
                         <div className="inline-block mb-6">
                             <span className="border border-white/20 rounded-full px-6 py-2 text-white/80 font-bold font-cabinet text-sm backdrop-blur-sm bg-white/5">
-                                Hot Deals
+                                {t.home.hotDeals.badge}
                             </span>
                         </div>
 
                         <h2 className="text-[32px] lg:text-[42px] leading-tight font-cabinet font-extrabold text-white mb-6">
-                            Limited-Time Offers on <span className="text-secondary">Selected Services</span>
+                            {t.home.hotDeals.heading}
                         </h2>
 
                         <p className="text-white/70 font-satoshi text-lg leading-relaxed max-w-xl">
-                            Explore our best travel packages and services with exclusive discounts.
-                            Don't miss the chance to book your dream experience at an unbeatable price.
+                            {t.home.hotDeals.description}
                         </p>
                     </div>
 

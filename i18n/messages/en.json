@@ -36,6 +36,21 @@
         "kyoto": "Kyoto Cultural Escape",
         "alpine": "Alpine Lake Adventures"
       }
+    },
+    "hotDeals": {
+      "badge": "Hot Deals",
+      "heading": "Limited-Time Offers on Selected Services",
+      "description": "Explore our best travel packages and services with exclusive discounts. Don't miss the chance to book your dream experience at an unbeatable price."
+    },
+    "destinations": {
+      "badge": "Top Destinations",
+      "heading": "Explore Our Most Popular Travel Locations",
+      "description": "Discover the most loved destinations chosen by our travelers. From iconic cities to breathtaking landscapes, these destinations offer a wide range of trips designed to match different travel styles and preferences."
+    },
+    "videoSection": {
+      "subtitle": "Connecting Your Journey With Purpose",
+      "title": "Unforgettable journeys that make a difference.",
+      "cta": "Play Video"
     }
   },
   "hero": {

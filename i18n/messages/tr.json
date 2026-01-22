@@ -36,6 +36,21 @@
         "kyoto": "Kyoto Cultural Escape",
         "alpine": "Alpine Lake Adventures"
       }
+    },
+    "hotDeals": {
+      "badge": "Sıcak Fırsatlar",
+      "heading": "Seçili Hizmetlerde Sınırlı Süreli Teklifler",
+      "description": "Özel indirimlerle en iyi seyahat paketlerimizi ve hizmetlerimizi keşfedin. Hayalinizdeki deneyimi rakipsiz bir fiyata rezerve etme şansını kaçırmayın."
+    },
+    "destinations": {
+      "badge": "Popüler Destinasyonlar",
+      "heading": "En Popüler Seyahat Noktalarımızı Keşfedin",
+      "description": "Gezginlerimiz tarafından seçilen en sevilen destinasyonları keşfedin. İkonik şehirlerden nefes kesici manzaralara kadar, bu destinasyonlar farklı seyahat tarzlarına ve tercihlerine uygun geniş bir tur yelpazesi sunmaktadır."
+    },
+    "videoSection": {
+      "subtitle": "Yolculuğunuzu Amacınızla Buluşturuyoruz",
+      "title": "Fark yaratan unutulmaz yolculuklar.",
+      "cta": "Videoyu Oynat"
     }
   },
   "hero": {

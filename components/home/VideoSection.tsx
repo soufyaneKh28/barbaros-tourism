@@ -3,8 +3,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
+import { useLanguage } from '@/hooks/use-language';
 
 export default function VideoSection() {
+    const { t } = useLanguage();
+
     return (
         <section className="py-12 px-2 lg:px-6">
             <div className="max-w-7xl mx-auto relative h-[500px] rounded-[32px] overflow-hidden group cursor-pointer">
@@ -30,7 +33,7 @@ export default function VideoSection() {
                         transition={{ duration: 0.6 }}
                     >
                         <h3 className="text-white/90 font-cabinet font-medium tracking-widest text-sm mb-4 uppercase">
-                            Connecting Your Journey With Purpose
+                            {t.home.videoSection.subtitle}
                         </h3>
                     </motion.div>
 
@@ -41,7 +44,7 @@ export default function VideoSection() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                     >
                         <h2 className="text-4xl lg:text-5xl font-cabinet font-bold text-white mb-8 leading-tight">
-                            Unforgettable journeys that make a difference.
+                            {t.home.videoSection.title}
                         </h2>
                     </motion.div>
 
@@ -57,7 +60,7 @@ export default function VideoSection() {
                                     <path d="M8 5v14l11-7z" />
                                 </svg>
                             </span>
-                            Play Video
+                            {t.home.videoSection.cta}
                         </button>
                     </motion.div>
                 </div>
