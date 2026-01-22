@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { LayoutGrid, LayoutList, Plus, Search, MapPin, Plane } from 'lucide-react'
 import TripActions from '@/components/portal/TripActions'
 
@@ -30,8 +31,8 @@ export default function TripsList({ trips, locale }: TripsListProps) {
                         <button
                             onClick={() => setViewMode('table')}
                             className={`p-2 rounded-md transition-all ${viewMode === 'table'
-                                    ? 'bg-white text-primary shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-700'
+                                ? 'bg-white text-primary shadow-sm'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                             title="Table View"
                         >
@@ -40,8 +41,8 @@ export default function TripsList({ trips, locale }: TripsListProps) {
                         <button
                             onClick={() => setViewMode('cards')}
                             className={`p-2 rounded-md transition-all ${viewMode === 'cards'
-                                    ? 'bg-white text-primary shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-700'
+                                ? 'bg-white text-primary shadow-sm'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                             title="Card View"
                         >
@@ -97,10 +98,12 @@ export default function TripsList({ trips, locale }: TripsListProps) {
                                     {/* Trip Image */}
                                     <div className="relative h-56 bg-gray-100 overflow-hidden">
                                         {trip.main_image || trip.images?.[0] ? (
-                                            <img
-                                                src={trip.main_image || trip.images[0]}
+                                            <Image
+                                                src={`${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`}
                                                 alt={trip.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                unoptimized
                                             />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -158,11 +161,15 @@ export default function TripsList({ trips, locale }: TripsListProps) {
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <div className="flex items-center">
                                                         {(trip.main_image || trip.images?.[0]) && (
-                                                            <img
-                                                                src={trip.main_image || trip.images[0]}
-                                                                alt={trip.title}
-                                                                className="w-10 h-10 rounded object-cover mr-3"
-                                                            />
+                                                            <div className="relative w-10 h-10 mr-3">
+                                                                <Image
+                                                                    src={`${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`}
+                                                                    alt={trip.title}
+                                                                    fill
+                                                                    className="rounded object-cover"
+                                                                    unoptimized
+                                                                />
+                                                            </div>
                                                         )}
                                                         <div className="text-sm font-medium text-gray-900 truncate max-w-xs" title={trip.title}>
                                                             {trip.title}

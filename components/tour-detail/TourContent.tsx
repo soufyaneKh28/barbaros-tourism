@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect, useRef } from 'react';
 import TourTabs from "./TourTabs";
 import TourOverview from "./TourOverview";
 import TourAmenities from "./TourAmenities";
@@ -21,85 +20,72 @@ interface TourContentProps {
 
 export default function TourContent({ description, location, itinerary, includes, excludes, locale = 'en' }: TourContentProps) {
     const [activeTab, setActiveTab] = useState('Overview');
+    const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+    const scrollToSection = (sectionId: string) => {
+        const section = sectionRefs.current[sectionId];
+        if (section) {
+            const yOffset = -100; // Offset for sticky header
+            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            setActiveTab(sectionId);
+        }
+    };
+
+    // Track scroll position to update active tab
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY + 150;
+
+            // Check which section is currently in view
+            const sections = Object.entries(sectionRefs.current);
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const [id, element] = sections[i];
+                if (element && element.offsetTop <= scrollPosition) {
+                    setActiveTab(id);
+                    break;
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <div className="lg:col-span-8">
-            <TourTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+            <TourTabs activeTab={activeTab} onTabClick={scrollToSection} />
 
-            <div className="relative min-h-[300px]">
-                <AnimatePresence mode='wait'>
-                    {activeTab === 'Overview' && (
-                        <motion.div
-                            key="overview"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <TourOverview description={description} />
-                        </motion.div>
-                    )}
+            <div className="space-y-12">
+                {/* Overview Section */}
+                <div ref={(el) => { sectionRefs.current['Overview'] = el }} id="overview">
+                    <TourOverview description={description} />
+                </div>
 
-                    {activeTab === 'Program' && (
-                        <motion.div
-                            key="program"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <TourProgram itinerary={itinerary || []} locale={locale} />
-                        </motion.div>
-                    )}
+                {/* Program Section */}
+                <div ref={(el) => { sectionRefs.current['Program'] = el }} id="program">
+                    <TourProgram itinerary={itinerary || []} locale={locale} />
+                </div>
 
-                    {activeTab === 'Inclusions' && (
-                        <motion.div
-                            key="inclusions"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <TourAmenities includes={includes} excludes={excludes} />
-                        </motion.div>
-                    )}
+                {/* Inclusions Section */}
+                <div ref={(el) => { sectionRefs.current['Inclusions'] = el }} id="inclusions">
+                    <TourAmenities includes={includes} excludes={excludes} />
+                </div>
 
-                    {activeTab === 'Policies' && (
-                        <motion.div
-                            key="policies"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <TourPolicies />
-                        </motion.div>
-                    )}
+                {/* Policies Section */}
+                <div ref={(el) => { sectionRefs.current['Policies'] = el }} id="policies">
+                    <TourPolicies />
+                </div>
 
-                    {activeTab === 'Location' && (
-                        <motion.div
-                            key="location"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <TourLocation address={location} />
-                        </motion.div>
-                    )}
+                {/* Location Section */}
+                <div ref={(el) => { sectionRefs.current['Location'] = el }} id="location">
+                    <TourLocation address={location} />
+                </div>
 
-                    {activeTab === 'Reviews' && (
-                        <motion.div
-                            key="reviews"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <TourReviews />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                {/* Reviews Section */}
+                <div ref={(el) => { sectionRefs.current['Reviews'] = el }} id="reviews">
+                    <TourReviews />
+                </div>
             </div>
         </div>
     );

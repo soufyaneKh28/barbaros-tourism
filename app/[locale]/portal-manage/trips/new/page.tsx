@@ -9,6 +9,7 @@ import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
 import DestinationSelect from '@/components/portal/DestinationSelect'
+import TimeInput from '@/components/portal/TimeInput'
 
 export default function NewTripPage() {
     const [loading, setLoading] = useState(false)
@@ -83,16 +84,12 @@ export default function NewTripPage() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Start Date</label>
-                        <input name="startDate" type="datetime-local" className="mt-1 block w-full border rounded-md px-3 py-2" />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">End Date</label>
-                        <input name="endDate" type="datetime-local" className="mt-1 block w-full border rounded-md px-3 py-2" />
-                    </div>
-                </div>
+                <TimeInput
+                    name="timeText"
+                    label="Trip Time/Schedule"
+                    placeholder="e.g. Daily, 2 hours, 3 days, Every Monday"
+                    required
+                />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -114,7 +111,7 @@ export default function NewTripPage() {
                     <MultiLangArrayInput name="excludes" label="Excludes (One item per line)" rows={5} placeholder="Personal expenses\nTips" />
                 </div>
 
-                <MultiLangArrayInput name="itinerary" label="Highlights / Program (One step per line)" rows={6} placeholder="Day 1: Arrival and Transfer&#10;Day 2: City Tour&#10;Day 3: Departure" />
+                <MultiLangTextarea name="itinerary" label="Program / Itinerary" rows={8} placeholder="Day 1: Arrival and Transfer&#10;Day 2: City Tour&#10;Day 3: Departure" />
 
                 {/* Hot Deal Section */}
                 <div className="border-t pt-6">

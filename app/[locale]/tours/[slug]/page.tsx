@@ -42,6 +42,8 @@ export default async function TourDetails({
                     location={trip.location || 'Unknown Location'}
                     rating={4.8} // Placeholder rating
                     reviews={124} // Placeholder reviews
+                    timeText={trip.time_text}
+                    timeIcon={trip.time_icon}
                 />
 
                 <TourGallery images={galleryImages} />

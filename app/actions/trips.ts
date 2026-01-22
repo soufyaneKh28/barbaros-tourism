@@ -48,13 +48,10 @@ export async function createTripAction(formData: FormData) {
     const imagesRaw = formData.get('images') as string
     const images = imagesRaw ? imagesRaw.split(',').map(s => s.trim()).filter(Boolean) : []
 
-    const startDateRaw = formData.get('startDate') as string
-    const startDate = startDateRaw ? new Date(startDateRaw).toISOString() : null
+    const timeText = formData.get('timeText') as string
+    const timeIcon = formData.get('timeTextIcon') as string || 'calendar'
 
-    const endDateRaw = formData.get('endDate') as string
-    const endDate = endDateRaw ? new Date(endDateRaw).toISOString() : null
-
-    const itinerary = getMultiLangArrayField(formData, 'itinerary')
+    const itinerary = getMultiLangField(formData, 'itinerary')
 
     const tripType = formData.get('tripType') as string || 'daily'
 
@@ -85,8 +82,8 @@ export async function createTripAction(formData: FormData) {
             duration_days: duration,
             main_image: mainImage,
             images,
-            start_date: startDate,
-            end_date: endDate,
+            time_text: timeText,
+            time_icon: timeIcon,
             includes,
             excludes,
             itinerary,
@@ -133,13 +130,10 @@ export async function updateTripAction(id: string, formData: FormData) {
     const imagesRaw = formData.get('images') as string
     const images = imagesRaw ? imagesRaw.split(',').map(s => s.trim()).filter(Boolean) : []
 
-    const startDateRaw = formData.get('startDate') as string
-    const startDate = startDateRaw ? new Date(startDateRaw).toISOString() : null
+    const timeText = formData.get('timeText') as string
+    const timeIcon = formData.get('timeTextIcon') as string || 'calendar'
 
-    const endDateRaw = formData.get('endDate') as string
-    const endDate = endDateRaw ? new Date(endDateRaw).toISOString() : null
-
-    const itinerary = getMultiLangArrayField(formData, 'itinerary')
+    const itinerary = getMultiLangField(formData, 'itinerary')
 
     const tripType = formData.get('tripType') as string || 'daily'
 
@@ -170,8 +164,8 @@ export async function updateTripAction(id: string, formData: FormData) {
             duration_days: duration,
             main_image: mainImage,
             images,
-            start_date: startDate,
-            end_date: endDate,
+            time_text: timeText,
+            time_icon: timeIcon,
             includes,
             excludes,
             itinerary,

@@ -10,6 +10,7 @@ import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
 import DestinationSelect from '@/components/portal/DestinationSelect'
+import TimeInput from '@/components/portal/TimeInput'
 
 export default function EditTripPage() {
     const [loading, setLoading] = useState(false)
@@ -72,11 +73,7 @@ export default function EditTripPage() {
     if (fetching) return <div className="p-8 text-center">Loading...</div>
     if (!trip && !fetching) return <div className="p-8 text-center text-red-500">Trip not found</div>
 
-    // Formatting dates for inputs
-    const formatDate = (dateString?: string) => {
-        if (!dateString) return ''
-        return new Date(dateString).toISOString().slice(0, 16)
-    }
+
 
     return (
         <div className="max-w-4xl mx-auto bg-white p-8 shadow rounded-lg font-satoshi">
@@ -124,16 +121,14 @@ export default function EditTripPage() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Start Date</label>
-                        <input name="startDate" defaultValue={formatDate(trip.start_date)} type="datetime-local" className="mt-1 block w-full border rounded-md px-3 py-2" />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">End Date</label>
-                        <input name="endDate" defaultValue={formatDate(trip.end_date)} type="datetime-local" className="mt-1 block w-full border rounded-md px-3 py-2" />
-                    </div>
-                </div>
+                <TimeInput
+                    name="timeText"
+                    label="Trip Time/Schedule"
+                    placeholder="e.g. Daily, 2 hours, 3 days, Every Monday"
+                    defaultValue={trip.time_text || ''}
+                    defaultIcon={trip.time_icon || 'calendar'}
+                    required
+                />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -155,7 +150,7 @@ export default function EditTripPage() {
                     <MultiLangArrayInput name="excludes" label="Excludes (One item per line)" rows={5} defaultValue={trip.excludes} />
                 </div>
 
-                <MultiLangArrayInput name="itinerary" label="Highlights / Program (One step per line)" rows={6} defaultValue={trip.itinerary} />
+                <MultiLangTextarea name="itinerary" label="Program / Itinerary" rows={8} defaultValue={trip.itinerary} />
 
                 {/* Hot Deal Section */}
                 <div className="border-t pt-6">
@@ -176,11 +171,11 @@ export default function EditTripPage() {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Start Date (Optional)</label>
-                                <input name="hotDealStartDate" type="datetime-local" defaultValue={formatDate(trip.hot_deal_start_date)} className="mt-1 block w-full border rounded-md px-3 py-2" />
+                                <input name="hotDealStartDate" type="datetime-local" defaultValue={trip.hot_deal_start_date ? new Date(trip.hot_deal_start_date).toISOString().slice(0, 16) : ''} className="mt-1 block w-full border rounded-md px-3 py-2" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">End Date (Optional)</label>
-                                <input name="hotDealEndDate" type="datetime-local" defaultValue={formatDate(trip.hot_deal_end_date)} className="mt-1 block w-full border rounded-md px-3 py-2" />
+                                <input name="hotDealEndDate" type="datetime-local" defaultValue={trip.hot_deal_end_date ? new Date(trip.hot_deal_end_date).toISOString().slice(0, 16) : ''} className="mt-1 block w-full border rounded-md px-3 py-2" />
                             </div>
                         </div>
                     </div>
