@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from 'react';
 import CtaButton from '../ui/CtaButton';
+import { Plane, Calendar, Ship, Building2 } from 'lucide-react';
 
 
 
@@ -21,6 +22,7 @@ export default function Hero() {
   const { t, locale } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [groupMenuOpen, setGroupMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -85,8 +87,8 @@ export default function Hero() {
             {[
               { href: `/${locale}`, label: t.nav.home },
               { href: `/${locale}/about-us`, label: t.nav.about },
-              { href: `/${locale}/our-services`, label: t.nav.services },
               { href: `/${locale}/tours`, label: t.nav.tours },
+              { href: `/${locale}/our-services`, label: t.nav.services },
               { href: `/${locale}/medical-tourism`, label: t.nav.medical },
               { href: `/${locale}/blogs`, label: t.nav.blogs },
               { href: `/${locale}/contact-us`, label: t.nav.contact },
@@ -99,12 +101,71 @@ export default function Hero() {
               >
                 <Link
                   href={link.href}
-                  className={`text-white hover:text-secondary transition-colors text-sm`}
+                  className="text-white hover:text-secondary transition-colors text-sm"
                 >
                   {link.label}
                 </Link>
               </motion.div>
             ))}
+
+            {/* Barbaros Group Mega Menu */}
+            <div
+              className="relative"
+              onMouseEnter={() => setGroupMenuOpen(true)}
+              onMouseLeave={() => setGroupMenuOpen(false)}
+            >
+              <button
+                className="text-white hover:text-secondary transition-colors text-sm flex items-center gap-1"
+                type="button"
+              >
+                Barbaros Group
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${groupMenuOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {groupMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute left-1/2 top-1 z-50 mt-4 -translate-x-1/2"
+                >
+                  <div className="flex flex-col gap-3 w-[420px] rounded-2xl bg-slate-900/95 backdrop-blur-xl shadow-2xl border border-white/10 p-4">
+                    <HeroCompanyCard
+                      href="https://barbarostourism.com"
+                      title="Barbaros Tourism"
+                      description="Travel & medical tourism experiences in Türkiye."
+                      Icon={Plane}
+                    />
+                    <HeroCompanyCard
+                      href="https://barbarosevents.com"
+                      title="Barbaros Events"
+                      description="Corporate & private event planning and management."
+                      Icon={Calendar}
+                    />
+                    <HeroCompanyCard
+                      href="https://barbarostrade.com"
+                      title="Barbaros Trade"
+                      description="International trade, logistics and import/export."
+                      Icon={Ship}
+                    />
+                    <HeroCompanyCard
+                      href="https://barbarosgroup.com"
+                      title="Barbaros Group"
+                      description="Holding company and shared group services."
+                      Icon={Building2}
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </div>
           </nav>
 
           {/* Language Selector & Mobile Menu Button */}
@@ -162,6 +223,50 @@ export default function Hero() {
                 {link.label}
               </Link>
             ))}
+
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <p className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                Barbaros Group Companies
+              </p>
+              <div className="space-y-1">
+                <Link
+                  href="https://barbarostourism.com"
+                  className="flex items-center gap-3 py-2 px-4 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Plane className="w-4 h-4 text-gray-400" />
+                  Barbaros Tourism
+                </Link>
+                <Link
+                  href="https://barbarosevents.com"
+                  className="flex items-center gap-3 py-2 px-4 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Calendar className="w-4 h-4 text-gray-400" />
+                  Barbaros Events
+                </Link>
+                <Link
+                  href="https://barbarostrade.com"
+                  className="flex items-center gap-3 py-2 px-4 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Ship className="w-4 h-4 text-gray-400" />
+                  Barbaros Trade
+                </Link>
+                <Link
+                  href="https://barbarosgroup.com"
+                  className="flex items-center gap-3 py-2 px-4 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Building2 className="w-4 h-4 text-gray-400" />
+                  Barbaros Group
+                </Link>
+              </div>
+            </div>
             <div className="mt-4 pt-4 border-t border-gray-200">
               <button className="w-full bg-primary hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-bold transition-colors font-cabinet text-sm">
                 {t.hero.bookTrip}
@@ -304,6 +409,36 @@ export default function Hero() {
   );
 }
 
+interface HeroCompanyCardProps {
+  href: string;
+  title: string;
+  description: string;
+  Icon: React.ElementType;
+}
+
+function HeroCompanyCard({ href, title, description, Icon }: HeroCompanyCardProps) {
+  return (
+    <Link
+      href={href}
+      className="flex gap-3 rounded-xl p-3 hover:bg-white/5 transition-colors group"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white shadow-sm">
+        <Icon className="w-5 h-5" />
+      </div>
+      <div className="flex-1">
+        <p className="text-sm font-semibold text-white group-hover:text-secondary">
+          {title}
+        </p>
+        <p className="mt-1 text-xs text-white/70">
+          {description}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
 function LanguageSelector() {
   const { locale } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
@@ -315,9 +450,12 @@ function LanguageSelector() {
   ];
 
   return (
-    <div className="relative z-50">
+    <div
+      className="relative z-50"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
       <button
-        onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 text-white hover:border-white/50 transition-all duration-200 font-cabinet backdrop-blur-sm"
       >
         <span className="text-sm font-medium lowercase">{locale}</span>
@@ -326,20 +464,26 @@ function LanguageSelector() {
         </svg>
       </button>
       {isOpen && (
-        <div className="absolute right-0 top-full pt-2 z-50">
-          <div className="w-32 bg-white z-50 rounded-lg shadow-lg">
+        <motion.div
+          className="absolute right-0 top-full pt-2 z-50"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className="w-32 bg-white z-50 rounded-lg shadow-lg overflow-hidden">
             {languages.map((lang) => (
               <a
                 key={lang.code}
                 href={`/${lang.code}`}
-                className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
+                className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg transition-colors ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
                   }`}
               >
                 {lang.label}
               </a>
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
