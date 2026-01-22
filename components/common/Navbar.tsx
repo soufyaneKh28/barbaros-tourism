@@ -2,6 +2,7 @@
 'use client';
 
 import { useLanguage } from '@/hooks/use-language';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from "motion/react";
@@ -255,8 +256,11 @@ function CompanyCard({ href, title, description, iconColor, Icon, imageSrc }: Co
     );
 }
 
+
+
 function LanguageSelector({ transparent }: { transparent: boolean }) {
     const { locale } = useLanguage();
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const languages = [
         { code: 'en' as const, label: 'EN' },
@@ -264,6 +268,13 @@ function LanguageSelector({ transparent }: { transparent: boolean }) {
         { code: 'fr' as const, label: 'FR' },
         { code: 'tr' as const, label: 'TR' },
     ];
+
+    const redirectedPathName = (locale: string) => {
+        if (!pathname) return '/';
+        const segments = pathname.split('/');
+        segments[1] = locale;
+        return segments.join('/');
+    };
 
     return (
         <div
@@ -294,7 +305,7 @@ function LanguageSelector({ transparent }: { transparent: boolean }) {
                         {languages.map((lang) => (
                             <Link
                                 key={lang.code}
-                                href={`/${lang.code}`}
+                                href={redirectedPathName(lang.code)}
                                 className={`block px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg transition-colors ${locale === lang.code ? 'bg-secondary/10 text-secondary font-medium' : 'text-gray-700'
                                     }`}
                             >

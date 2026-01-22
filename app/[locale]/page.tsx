@@ -47,12 +47,12 @@ export default async function Home({
   return (
     <>
       <Hero />
-      <Partners />
       <Services />
       <HotDeals deals={hotDeals} locale={locale} />
       <Destinations destinations={destinations} locale={locale} />
       <Testimonials />
       <VideoSection />
+      <Partners />
       <Blogs blogs={latestBlogs} />
       <Footer />
     </>
