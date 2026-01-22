@@ -197,13 +197,12 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <motion.nav
-            className="lg:hidden mt-4 bg-white/95 backdrop-blur-md rounded-lg shadow-lg p-4"
-            initial={{ opacity: 0, y: -20 }}
+            className="lg:hidden absolute left-6 right-6 top-[88px] z-50 bg-white/95 backdrop-blur-md rounded-lg shadow-xl p-4 border border-white/20"
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
           >
             {[
               { href: `/${locale}`, label: t.nav.home },
@@ -319,10 +318,10 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <CtaButton href={`/${locale}/tours`}>
+              <CtaButton href={`/${locale}/tours`} className="w-full sm:w-auto">
                 {t.hero.exploreTours}
               </CtaButton>
-              <CtaButton href={`/${locale}/medical-tourism`} variant="outline">
+              <CtaButton href={`/${locale}/medical-tourism`} variant="outline" className="w-full sm:w-auto">
                 {t.hero.medicalTourism}
               </CtaButton>
             </motion.div>

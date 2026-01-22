@@ -20,7 +20,7 @@ export default function CtaButton({
     className = '',
     type = 'button'
 }: CtaButtonProps) {
-    const baseStyles = "px-8 py-3 rounded-lg text-base font-medium transition-all duration-300 font-cabinet shadow-lg hover:shadow-xl transform hover:-translate-y-0.5";
+    const baseStyles = "inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-all duration-300 font-cabinet shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center";
 
     const variants = {
         primary: "bg-primary-700 hover:bg-primary-600 text-white shadow-primary/20",

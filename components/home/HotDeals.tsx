@@ -42,7 +42,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
     }
 
     return (
-        <section className="py-20 bg-primary text-white relative overflow-hidden">
+        <section className="py-20 bg-primary text-white relative">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5 pointer-events-none">
                 <div className="absolute inset-0 bg-[url('/images/pattern.png')] bg-repeat opacity-10"></div>
