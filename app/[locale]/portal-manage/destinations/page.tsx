@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { Plus, Search, Edit2, Trash2, MapPin, Compass } from 'lucide-react'
 import DestinationActions from '@/components/portal/DestinationActions'
 
+export const dynamic = 'force-dynamic';
+
 export default async function DestinationsAdminPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
     let destinations = []
