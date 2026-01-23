@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About us",
     "services": "Our services",
-    "tours": "Tours",
+    "tourism": "Tourisme",
     "medical": "Medical tourism",
     "blogs": "Blogs",
     "contact": "Contact us"
@@ -539,5 +539,22 @@
   "whatsapp": {
     "defaultMessage": "Bonjour! J'aimerais en savoir plus sur vos services.",
     "consultation": "Consultation gratuite via WhatsApp"
+  },
+  "tourTypes": {
+    "dailyTours": {
+      "badge": "EXCURSIONS QUOTIDIENNES",
+      "heading": "Aventures Courtes et Agréables",
+      "description": "Parfait pour ceux qui ont peu de temps ou qui cherchent à ajouter de l'excitation à leur journée. Découvrez l'essentiel des meilleurs sites de Turquie lors d'excursions quotidiennes soigneusement organisées."
+    },
+    "specialPackages": {
+      "badge": "FORFAITS TOURISTIQUES SPÉCIAUX",
+      "heading": "Solutions Touristiques Sur Mesure",
+      "description": "Des forfaits exclusifs conçus pour des intérêts spécifiques - de l'immersion culturelle aux expériences d'aventure. Chaque forfait est soigneusement conçu pour offrir des voyages uniques et mémorables."
+    },
+    "vipPrograms": {
+      "badge": "PROGRAMMES VIP",
+      "heading": "Expériences de Luxe Premium",
+      "description": "Profitez du meilleur de la Turquie avec nos programmes VIP exclusifs. Bénéficiez d'un service personnalisé, d'hébergements de luxe et d'expériences inoubliables."
+    }
   }
 }

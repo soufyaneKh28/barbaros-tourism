@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from "motion/react";
 import { useState } from 'react';
-import { Plane, Calendar, Ship, Building2 } from 'lucide-react';
+import { Plane, Calendar, Ship, Building2, Sun, Star, Crown } from 'lucide-react';
 
 interface NavbarProps {
     transparent?: boolean;
@@ -17,6 +17,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
     const { t, locale } = useLanguage();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [groupMenuOpen, setGroupMenuOpen] = useState(false);
+    const [tourismMenuOpen, setTourismMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
     // Handle scroll effect
@@ -38,7 +39,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
     const navLinks = [
         { href: `/${locale}`, label: t.nav.home },
         { href: `/${locale}/about-us`, label: t.nav.about },
-        { href: `/${locale}/tours`, label: t.nav.tours },
+        { href: `/${locale}/tours`, label: t.nav.tourism },
         { href: `/${locale}/our-services`, label: t.nav.services },
         { href: `/${locale}/medical-tourism`, label: t.nav.medical },
         { href: `/${locale}/blogs`, label: t.nav.blogs },
@@ -59,9 +60,10 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                         <Image
                             src="/images/logo.png"
                             alt="Barbaros Tourism Logo"
-                            width={120}
-                            height={40}
-                            className={`h-10 w-auto transition-all duration-300 ${isTransparent ? 'filter brightness-0 invert' : ''}`}
+                            width={250}
+                            height={100}
+                            quality={100}
+                            className={`h-auto w-[150px] transition-all duration-300 ${isTransparent ? 'filter brightness-0 invert' : ''}`}
                             priority
                         />
                     </Link>
@@ -69,21 +71,84 @@ export default function Navbar({ transparent = false }: NavbarProps) {
 
                 {/* Desktop Navigation */}
                 <nav className={`hidden lg:flex items-center gap-6 font-cabinet ${isTransparent ? 'bg-white/10 backdrop-blur-sm' : 'bg-gray-50'} rounded-full px-8 py-3 transition-colors duration-300`}>
-                    {navLinks.map((link, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 + (index * 0.05) }}
+                    {/* Normal Links (Before Tourism) */}
+                    <Link href={`/${locale}`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
+                        {t.nav.home}
+                    </Link>
+                    <Link href={`/${locale}/about-us`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
+                        {t.nav.about}
+                    </Link>
+
+                    {/* Tourism Mega Menu */}
+                    <div
+                        className="relative"
+                        onMouseEnter={() => setTourismMenuOpen(true)}
+                        onMouseLeave={() => setTourismMenuOpen(false)}
+                    >
+                        <button
+                            className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm flex items-center gap-1`}
+                            type="button"
+                            onClick={() => window.location.href = `/${locale}/tours`}
                         >
-                            <Link
-                                href={link.href}
-                                className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}
+                            {(t.nav as any).tourism}
+                            <svg
+                                className={`w-4 h-4 transition-transform duration-200 ${tourismMenuOpen ? 'rotate-180' : ''}`}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
                             >
-                                {link.label}
-                            </Link>
-                        </motion.div>
-                    ))}
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        {tourismMenuOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 8 }}
+                                transition={{ duration: 0.2 }}
+                                className="absolute left-1/2 top-1 z-50 mt-4 -translate-x-1/2"
+                            >
+                                <div className="flex flex-col gap-2 w-[320px] rounded-2xl bg-white shadow-2xl border border-gray-100 p-3">
+                                    <MegaMenuItem
+                                        href={`/${locale}/daily-tours`}
+                                        title={(t as any).tourTypes?.dailyTours?.badge || "DAILY TOURS"}
+                                        description="Short adventures for limited time"
+                                        iconColor="bg-blue-50 text-blue-600"
+                                        Icon={Sun}
+                                    />
+                                    <MegaMenuItem
+                                        href={`/${locale}/special-tourism-packages`}
+                                        title={(t as any).tourTypes?.specialPackages?.badge || "SPECIAL PACKAGES"}
+                                        description="Tailored specific interest tours"
+                                        iconColor="bg-purple-50 text-purple-600"
+                                        Icon={Star}
+                                    />
+                                    <MegaMenuItem
+                                        href={`/${locale}/vip-programs`}
+                                        title={(t as any).tourTypes?.vipPrograms?.badge || "VIP PROGRAMS"}
+                                        description="Premium luxury experiences"
+                                        iconColor="bg-amber-50 text-amber-600"
+                                        Icon={Crown}
+                                    />
+                                </div>
+                            </motion.div>
+                        )}
+                    </div>
+
+                    <Link href={`/${locale}/our-services`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
+                        {t.nav.services}
+                    </Link>
+                    <Link href={`/${locale}/medical-tourism`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
+                        {t.nav.medical}
+                    </Link>
+                    <Link href={`/${locale}/blogs`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
+                        {t.nav.blogs}
+                    </Link>
+                    <Link href={`/${locale}/contact-us`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
+                        {t.nav.contact}
+                    </Link>
+
 
                     {/* Barbaros Group Mega Menu */}
                     <div
@@ -91,6 +156,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                         onMouseEnter={() => setGroupMenuOpen(true)}
                         onMouseLeave={() => setGroupMenuOpen(false)}
                     >
+                        {/* ... existing group menu code ... */}
                         <button
                             className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm flex items-center gap-1`}
                             type="button"
@@ -177,16 +243,29 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    {navLinks.map((link, index) => (
-                        <Link
-                            key={index}
-                            href={link.href}
-                            className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
+                    <Link href={`/${locale}`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.home}</Link>
+                    <Link href={`/${locale}/about-us`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.about}</Link>
+
+                    {/* Mobile Tourism Links */}
+                    <div className="py-2 px-4">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{(t.nav as any).tourism}</p>
+                        <div className="pl-4 space-y-2 border-l-2 border-gray-100">
+                            <Link href={`/${locale}/daily-tours`} className="block text-sm text-gray-700 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
+                                {(t as any).tourTypes?.dailyTours?.badge || "Daily Tours"}
+                            </Link>
+                            <Link href={`/${locale}/special-tourism-packages`} className="block text-sm text-gray-700 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
+                                {(t as any).tourTypes?.specialPackages?.badge || "Special Packages"}
+                            </Link>
+                            <Link href={`/${locale}/vip-programs`} className="block text-sm text-gray-700 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
+                                {(t as any).tourTypes?.vipPrograms?.badge || "VIP Programs"}
+                            </Link>
+                        </div>
+                    </div>
+
+                    <Link href={`/${locale}/our-services`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.services}</Link>
+                    <Link href={`/${locale}/medical-tourism`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.medical}</Link>
+                    <Link href={`/${locale}/blogs`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.blogs}</Link>
+                    <Link href={`/${locale}/contact-us`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.contact}</Link>
 
                     <div className="mt-4 pt-4 border-t border-gray-100">
                         <p className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
@@ -333,5 +412,34 @@ function LanguageSelector({ transparent }: { transparent: boolean }) {
                 </motion.div>
             )}
         </div>
+    );
+}
+
+interface MegaMenuItemProps {
+    href: string;
+    title: string;
+    description: string;
+    iconColor: string;
+    Icon: React.ElementType;
+}
+
+function MegaMenuItem({ href, title, description, iconColor, Icon }: MegaMenuItemProps) {
+    return (
+        <Link
+            href={href}
+            className="flex gap-3 rounded-xl p-3 hover:bg-gray-50 transition-colors group"
+        >
+            <div className={`flex h-10 w-10 items-center justify-center rounded-full ${iconColor} shadow-sm shrink-0`}>
+                <Icon className="w-5 h-5" />
+            </div>
+            <div className="flex-1">
+                <p className="text-sm font-semibold text-gray-900 group-hover:text-primary">
+                    {title}
+                </p>
+                <p className="mt-1 text-xs text-gray-500 line-clamp-1">
+                    {description}
+                </p>
+            </div>
+        </Link>
     );
 }

@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About us",
     "services": "Our services",
-    "tours": "Tours",
+    "tourism": "Turizm",
     "medical": "Medical tourism",
     "blogs": "Blogs",
     "contact": "Contact us"
@@ -539,5 +539,22 @@
   "whatsapp": {
     "defaultMessage": "Merhaba! Hizmetleriniz hakkında daha fazla bilgi almak istiyorum.",
     "consultation": "WhatsApp üzerinden ücretsiz danışmanlık"
+  },
+  "tourTypes": {
+    "dailyTours": {
+      "badge": "GÜNLÜK TURLAR",
+      "heading": "Kısa ve Tatlı Maceralar",
+      "description": "Sınırlı zamanı olanlar veya günlerine heyecan katmak isteyenler için mükemmel. Özenle hazırlanmış günlük turlarda Türkiye'nin en iyi noktalarının özlerini yaşayın."
+    },
+    "specialPackages": {
+      "badge": "ÖZEL TURİZM PAKETLERİ",
+      "heading": "Özel Turizm Çözümleri",
+      "description": "Kültürel keşiflerden macera deneyimlerine kadar özel ilgi alanları için tasarlanmış özel paketler. Her paket, benzersiz ve unutulmaz yolculuklar sunmak için özenle hazırlanmıştır."
+    },
+    "vipPrograms": {
+      "badge": "VIP PROGRAMLAR",
+      "heading": "Premium Lüks Deneyimler",
+      "description": "Türkiye'nin sunduğu en iyilerin tadını özel VIP programlarımızla çıkarın. Kişiselleştirilmiş hizmet, lüks konaklama ve unutulmaz deneyimlerin keyfini çıkarın."
+    }
   }
 }

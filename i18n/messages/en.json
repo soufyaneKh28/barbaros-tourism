@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About us",
     "services": "Services",
-    "tours": "Tours",
+    "tourism": "Tourism",
     "medical": "Medical tourism",
     "blogs": "Blogs",
     "contact": "Contact us"
@@ -539,5 +539,22 @@
   "whatsapp": {
     "defaultMessage": "Hello! I would like to know more about your services.",
     "consultation": "Free consultation via WhatsApp"
+  },
+  "tourTypes": {
+    "dailyTours": {
+      "badge": "DAILY TOURS",
+      "heading": "Short & Sweet Adventures",
+      "description": "Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots in carefully curated daily tours."
+    },
+    "specialPackages": {
+      "badge": "SPECIAL TOURISM PACKAGES",
+      "heading": "Tailored Tourism Solutions",
+      "description": "Exclusive packages designed for specific interests - from cultural immersion to adventure experiences. Each package is carefully crafted to provide unique and memorable journeys."
+    },
+    "vipPrograms": {
+      "badge": "VIP PROGRAMS",
+      "heading": "Premium Luxury Experiences",
+      "description": "Indulge in the finest that Türkiye has to offer with our exclusive VIP programs. Enjoy personalized service, luxury accommodations, and unforgettable experiences."
+    }
   }
 }

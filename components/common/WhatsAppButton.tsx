@@ -2,10 +2,17 @@
 
 import { useLanguage } from '@/context/LanguageContext';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function WhatsAppButton() {
     const { t } = useLanguage();
+    const pathname = usePathname();
     const [isHovered, setIsHovered] = useState(false);
+
+    // If we are in the portal, do not show the button
+    if (pathname?.includes('/portal')) {
+        return null;
+    }
 
     // WhatsApp number - you can update this with the actual number
     const whatsappNumber = '+905053688856'; // Replace with actual number
