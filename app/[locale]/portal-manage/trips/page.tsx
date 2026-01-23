@@ -1,6 +1,8 @@
 import { getTrips } from '@/lib/services/trips'
 import TripsList from '@/components/portal/TripsList'
 
+export const dynamic = 'force-dynamic';
+
 export default async function TripsPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
     let trips = []
