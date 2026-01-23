@@ -3,6 +3,7 @@ import "../globals.css";
 import { locales, defaultLocale, type Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n";
 import { LanguageProvider } from "@/context/LanguageContext";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 
@@ -38,6 +39,7 @@ export default async function RootLayout({
       <body className="antialiased">
         <LanguageProvider locale={locale} messages={messages}>
           {children}
+          <WhatsAppButton />
         </LanguageProvider>
       </body>
     </html>

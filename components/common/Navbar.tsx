@@ -17,6 +17,23 @@ export default function Navbar({ transparent = false }: NavbarProps) {
     const { t, locale } = useLanguage();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [groupMenuOpen, setGroupMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    // Handle scroll effect
+    useState(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+
+        // Add event listener
+        if (typeof window !== 'undefined') {
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+        }
+    });
+
+    // Effective transparent state: true only if transparent prop is true AND not scrolled
+    const isTransparent = transparent && !isScrolled;
 
     const navLinks = [
         { href: `/${locale}`, label: t.nav.home },
@@ -29,7 +46,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
     ];
 
     return (
-        <header className={`w-full px-6 py-6 lg:px-12 relative z-50 ${transparent ? '' : 'bg-white shadow-sm'}`}>
+        <header className={`w-full px-6 py-4 lg:py-6 lg:px-12 sticky top-0 z-50 transition-all duration-300 ${isTransparent ? 'bg-transparent' : 'bg-white/95 backdrop-blur-md shadow-sm'}`}>
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Logo */}
                 <motion.div
@@ -44,14 +61,14 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                             alt="Barbaros Tourism Logo"
                             width={120}
                             height={40}
-                            className={`h-10 w-auto transition-all duration-300 ${transparent ? 'filter brightness-0 invert hover:brightness-100 hover:invert-0' : ''}`}
+                            className={`h-10 w-auto transition-all duration-300 ${isTransparent ? 'filter brightness-0 invert' : ''}`}
                             priority
                         />
                     </Link>
                 </motion.div>
 
                 {/* Desktop Navigation */}
-                <nav className={`hidden lg:flex items-center gap-6 font-cabinet ${transparent ? 'bg-white/10 backdrop-blur-sm' : 'bg-gray-50'} rounded-full px-8 py-3`}>
+                <nav className={`hidden lg:flex items-center gap-6 font-cabinet ${isTransparent ? 'bg-white/10 backdrop-blur-sm' : 'bg-gray-50'} rounded-full px-8 py-3 transition-colors duration-300`}>
                     {navLinks.map((link, index) => (
                         <motion.div
                             key={index}
@@ -61,7 +78,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                         >
                             <Link
                                 href={link.href}
-                                className={`${transparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}
+                                className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}
                             >
                                 {link.label}
                             </Link>
@@ -75,7 +92,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                         onMouseLeave={() => setGroupMenuOpen(false)}
                     >
                         <button
-                            className={`${transparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm flex items-center gap-1`}
+                            className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm flex items-center gap-1`}
                             type="button"
                         >
                             Barbaros Group
@@ -133,12 +150,12 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                    <LanguageSelector transparent={transparent} />
+                    <LanguageSelector transparent={isTransparent} />
 
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className={`lg:hidden p-2 rounded-lg ${transparent ? 'text-white' : 'text-gray-700'}`}
+                        className={`lg:hidden p-2 rounded-lg ${isTransparent ? 'text-white' : 'text-gray-700'}`}
                         aria-label="Toggle menu"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

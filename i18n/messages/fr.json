@@ -535,5 +535,9 @@
         ]
       }
     }
+  },
+  "whatsapp": {
+    "defaultMessage": "Bonjour! J'aimerais en savoir plus sur vos services.",
+    "consultation": "Consultation gratuite via WhatsApp"
   }
 }

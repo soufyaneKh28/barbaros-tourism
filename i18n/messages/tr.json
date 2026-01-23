@@ -535,5 +535,9 @@
         ]
       }
     }
+  },
+  "whatsapp": {
+    "defaultMessage": "Merhaba! Hizmetleriniz hakkında daha fazla bilgi almak istiyorum.",
+    "consultation": "WhatsApp üzerinden ücretsiz danışmanlık"
   }
 }
