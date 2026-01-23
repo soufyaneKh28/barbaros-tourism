@@ -8,7 +8,7 @@ export default function WhatsAppButton() {
     const [isHovered, setIsHovered] = useState(false);
 
     // WhatsApp number - you can update this with the actual number
-    const whatsappNumber = '+905555555555'; // Replace with actual number
+    const whatsappNumber = '+905053688856'; // Replace with actual number
     const message = encodeURIComponent((t as any).whatsapp?.defaultMessage || 'Hello! I would like to know more about your services.');
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
