@@ -23,9 +23,12 @@ export default async function TourDetails({
     }
 
     // Combine main_image with other images for gallery
+    const version = trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now();
     const galleryImages = [];
-    if (trip.main_image) galleryImages.push(trip.main_image);
-    if (trip.images && Array.isArray(trip.images)) galleryImages.push(...trip.images);
+    if (trip.main_image) galleryImages.push(`${trip.main_image}?v=${version}`);
+    if (trip.images && Array.isArray(trip.images)) {
+        galleryImages.push(...trip.images.map((img: string) => `${img}?v=${version}`));
+    }
 
     // Fallback images if none provided
     if (galleryImages.length === 0) {

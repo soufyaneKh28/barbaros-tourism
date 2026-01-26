@@ -23,7 +23,9 @@ export default async function DailyTours({
             id: trip.id,
             title: trip.title,
             description: trip.description,
-            image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
+            image: (trip.main_image || trip.images?.[0])
+                ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
+                : "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
             price: trip.price ? `$${trip.price}` : undefined,
             tags: [trip.destination?.name, trip.category?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`

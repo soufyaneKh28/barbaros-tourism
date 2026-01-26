@@ -30,7 +30,9 @@ export default async function Tours({
             id: trip.id,
             title: trip.title,
             description: trip.description,
-            image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
+            image: (trip.main_image || trip.images?.[0])
+                ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
+                : "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
             price: trip.price ? `$${trip.price}` : undefined,
             tags: [trip.category?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`
@@ -52,7 +54,9 @@ export default async function Tours({
             id: trip.id,
             title: trip.title,
             description: trip.description,
-            image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
+            image: (trip.main_image || trip.images?.[0])
+                ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
+                : "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
             price: trip.price ? `$${trip.price}` : undefined,
             tags: [trip.category?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`
@@ -69,7 +73,9 @@ export default async function Tours({
             id: trip.id,
             title: trip.title,
             description: trip.description,
-            image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd",
+            image: (trip.main_image || trip.images?.[0])
+                ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
+                : "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd",
             price: trip.price ? `$${trip.price}` : undefined,
             tags: [trip.category?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`
@@ -81,7 +87,13 @@ export default async function Tours({
     // Fetch featured programs (from new Programs table) instead of destinations
     let featuredPrograms: any[] = [];
     try {
-        featuredPrograms = await getPrograms(locale, 6);
+        const data = await getPrograms(locale, 6);
+        featuredPrograms = (data || []).map((program: any) => ({
+            ...program,
+            main_image: program.main_image
+                ? `${program.main_image}?v=${program.updated_at ? new Date(program.updated_at).getTime() : Date.now()}`
+                : undefined
+        }));
     } catch (error) {
         console.error("Error fetching programs:", error);
     }
@@ -89,7 +101,16 @@ export default async function Tours({
     // Fetch hot deals
     let hotDeals: any[] = []
     try {
-        hotDeals = await getCombinedHotDeals(locale)
+        const data = await getCombinedHotDeals(locale)
+        hotDeals = (data || []).map((deal: any) => ({
+            ...deal,
+            main_image: deal.main_image
+                ? `${deal.main_image}?v=${deal.updated_at ? new Date(deal.updated_at).getTime() : Date.now()}`
+                : undefined,
+            cover_image: deal.cover_image
+                ? `${deal.cover_image}?v=${deal.updated_at ? new Date(deal.updated_at).getTime() : Date.now()}`
+                : undefined
+        }))
     } catch (e) {
         console.error('Failed to fetch hot deals', e)
     }
