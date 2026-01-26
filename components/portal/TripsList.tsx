@@ -132,9 +132,11 @@ export default function TripsList({ trips, locale }: TripsListProps) {
 
                                         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                                             <div className="flex items-center gap-1.5 text-primary">
-                                                <span className="text-lg font-bold">
-                                                    {trip.price ? `$${trip.price}` : 'Free'}
-                                                </span>
+                                                {trip.price ? (
+                                                    <span className="text-lg font-bold">
+                                                        ${trip.price}
+                                                    </span>
+                                                ) : null}
                                             </div>
                                             <TripActions id={trip.id} />
                                         </div>
@@ -183,7 +185,7 @@ export default function TripsList({ trips, locale }: TripsListProps) {
                                                     {trip.trip_type || '-'}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                    {trip.price ? `$${trip.price}` : 'Free'}
+                                                    {trip.price ? `$${trip.price}` : null}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     <div className="flex items-center gap-4">
