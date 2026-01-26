@@ -33,7 +33,11 @@
       }
     },
     "blogs": {
+      "badge": "Our Blog",
+      "heading": "Latest Stories & Insights",
+      "description": "Discover travel tips, cultural insights, and hidden gems in Türkiye through our expert blog posts.",
       "readMore": "Read More",
+      "seeAll": "View All Articles",
       "items": {
         "istanbul": "Istanbul Bosphorus Experience",
         "kyoto": "Kyoto Cultural Escape",

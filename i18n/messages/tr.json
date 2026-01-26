@@ -33,11 +33,15 @@
       }
     },
     "blogs": {
-      "readMore": "Read More",
+      "badge": "Blogumuz",
+      "heading": "Son Hikayeler ve Görüşler",
+      "description": "Uzman blog yazılarımızla Türkiye'deki seyahat ipuçlarını, kültürel bilgileri ve gizli mücevherleri keşfedin.",
+      "readMore": "Devamını Oku",
+      "seeAll": "Tüm Makaleleri Gör",
       "items": {
-        "istanbul": "Istanbul Bosphorus Experience",
-        "kyoto": "Kyoto Cultural Escape",
-        "alpine": "Alpine Lake Adventures"
+        "istanbul": "İstanbul Boğazı Deneyimi",
+        "kyoto": "Kyoto Kültürel Kaçış",
+        "alpine": "Alp Gölü Maceraları"
       }
     },
     "hotDeals": {

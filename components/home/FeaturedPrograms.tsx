@@ -28,7 +28,7 @@ export default function FeaturedPrograms({ programs = [], locale = 'en' }: Featu
                         </span>
                     </div>
 
-                    <h2 className="text-[32px] lg:text-[42px] leading-tight font-cabinet font-extrabold text-primary mb-6">
+                    <h2 className="text-[28px] lg:text-[35px] leading-tight font-cabinet font-extrabold text-primary mb-6">
                         {(t as any).home.featuredPrograms?.heading || "Featured Tourism Programs"}
                     </h2>
 

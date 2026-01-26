@@ -44,7 +44,7 @@ export default function Testimonials() {
                         </span>
                     </div>
 
-                    <h2 className="text-[32px] lg:text-[42px] leading-tight font-cabinet font-extrabold text-primary mb-6">
+                    <h2 className="text-[28px] lg:text-[35px] leading-tight font-cabinet font-extrabold text-primary mb-6">
                         {t.testimonials.heading}
                     </h2>
                     <p className="text-gray-600 font-satoshi text-md leading-relaxed">

@@ -43,23 +43,23 @@ export default function Blogs({ blogs: initialBlogs }: BlogsProps) {
                     <div className="flex-1">
                         <div className="inline-block mb-4">
                             <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                                {t.home.services.badge}
+                                {(t as any).home.blogs?.badge || "Our Blog"}
                             </span>
                         </div>
 
-                        <h2 className="text-[32px] lg:text-[42px] leading-tight font-cabinet font-extrabold text-primary mb-4">
-                            {t.home.services.heading}
+                        <h2 className="text-[28px] lg:text-[35px] leading-tight font-cabinet font-extrabold text-primary mb-4">
+                            {(t as any).home.blogs?.heading || "Latest Stories & Insights"}
                         </h2>
 
                         <p className="max-w-2xl text-gray-600 font-satoshi text-base leading-relaxed">
-                            {t.home.services.description}
+                            {(t as any).home.blogs?.description || "Discover travel tips, cultural insights, and hidden gems in Türkiye through our expert blog posts."}
                         </p>
                     </div>
 
                     <div>
                         <Link href={`/${locale}/blogs`}>
                             <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-xl font-cabinet font-bold transition-all">
-                                {t.home.services.seeAll}
+                                {(t as any).home.blogs?.seeAll || "See All Articles"}
                             </button>
                         </Link>
                     </div>

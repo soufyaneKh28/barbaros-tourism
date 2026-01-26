@@ -33,7 +33,11 @@
       }
     },
     "blogs": {
-      "readMore": "Read More",
+      "badge": "Notre Blog",
+      "heading": "Dernières Histoires et Idées",
+      "description": "Découvrez des conseils de voyage, des idées culturelles et des joyaux cachés en Turquie grâce à nos articles de blog.",
+      "readMore": "En savoir plus",
+      "seeAll": "Voir tous les articles",
       "items": {
         "istanbul": "Istanbul Bosphorus Experience",
         "kyoto": "Kyoto Cultural Escape",

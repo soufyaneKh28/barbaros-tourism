@@ -18,7 +18,7 @@ export default function Partners() {
                     </div>
 
                     {/* Heading */}
-                    <h2 className="text-[32px] lg:text-[42px] leading-[36px] lg:leading-[40px] font-cabinet font-extrabold text-primary max-w-3xl">
+                    <h2 className="text-[28px] lg:text-[35px] leading-[36px] lg:leading-[40px] font-cabinet font-extrabold text-primary max-w-3xl">
                         {t.partners.heading}
                     </h2>
                 </div>
