@@ -10,9 +10,10 @@ interface TourHeaderProps {
     reviews: number;
     timeText?: string;
     timeIcon?: 'hour' | 'calendar';
+    description?: string;
 }
 
-export default function TourHeader({ title, location, rating, reviews, timeText, timeIcon = 'calendar' }: TourHeaderProps) {
+export default function TourHeader({ title, location, rating, reviews, timeText, timeIcon = 'calendar', description }: TourHeaderProps) {
     return (
         <div className="mb-8">
             <motion.div
@@ -66,6 +67,8 @@ export default function TourHeader({ title, location, rating, reviews, timeText,
                         </div>
                     )}
 
+
+
                     {/* <div className="flex items-center gap-3 ml-auto">
                         <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +82,15 @@ export default function TourHeader({ title, location, rating, reviews, timeText,
                         </button>
                     </div> */}
                 </div>
+
+
             </motion.div>
+            {description && (
+                <div className="flex items-center gap-2 text-gray-600 mt-3">
+
+                    <span>{description}</span>
+                </div>
+            )}
         </div>
     );
 }

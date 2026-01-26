@@ -19,8 +19,8 @@ export default function TourProgram({ itinerary, locale = 'en' }: TourProgramPro
 
     return (
         <div className="mb-12">
-            <h2 className="text-2xl font-bold font-cabinet text-gray-900 mb-6">Trip Program</h2>
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
+            <h2 className="text-lg font-bold font-cabinet text-gray-900 mb-3">Trip Program</h2>
+            <div className=" bg-white rounded-2xl border border-gray-100">
                 <div className="prose prose-gray max-w-none font-satoshi">
                     <pre className="whitespace-pre-wrap font-satoshi text-gray-700 leading-relaxed">
                         {itineraryText}

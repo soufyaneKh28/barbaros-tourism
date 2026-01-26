@@ -6,7 +6,7 @@ interface TourTabsProps {
 }
 
 export default function TourTabs({ activeTab, onTabClick }: TourTabsProps) {
-    const tabs = ['Overview', 'Program', 'Inclusions', 'Policies', 'Location', 'Reviews'];
+    const tabs = ['Program', 'Inclusions', 'Location', 'Reviews'];
 
     return (
         <div className="sticky top-20 z-30 bg-white border-b border-gray-100 mb-8 -mx-6 px-6 md:mx-0 md:px-0">

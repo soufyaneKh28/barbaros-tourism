@@ -101,31 +101,31 @@ export default function TourCarousel({ title, badge, description, items, dark = 
                         )}
                     </div>
 
-                    {/* Custom Arrows */}
-                    <div className="flex gap-4">
-                        <button
-                            onClick={() => carouselRef.current?.previous()}
-                            className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 group ${dark ? 'border-white/20 hover:bg-white hover:text-primary' : 'border-primary/20 hover:bg-primary hover:text-white'}`}
-                            aria-label="Previous"
-                        >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </button>
-                        <button
-                            onClick={() => carouselRef.current?.next()}
-                            className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 group ${dark ? 'border-white/20 hover:bg-white hover:text-primary' : 'border-primary/20 hover:bg-primary hover:text-white'}`}
-                            aria-label="Next"
-                        >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div>
+
                 </div>
 
                 {/* Carousel */}
-                <div className="-mx-4 px-4 pb-8">
+                <div className="-mx-4 px-4 pb-8 relative group">
+                    {/* Navigation Buttons */}
+                    <button
+                        onClick={() => carouselRef.current?.previous()}
+                        className={`absolute left-0 md:left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 shadow-lg ${dark ? 'bg-primary/80 border-white/20 text-white hover:bg-white hover:text-primary' : 'bg-white/80 border-primary/20 text-primary hover:bg-primary hover:text-white'} backdrop-blur-sm opacity-0 group-hover:opacity-100 disabled:opacity-0`}
+                        aria-label="Previous"
+                    >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button
+                        onClick={() => carouselRef.current?.next()}
+                        className={`absolute right-0 md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 shadow-lg ${dark ? 'bg-primary/80 border-white/20 text-white hover:bg-white hover:text-primary' : 'bg-white/80 border-primary/20 text-primary hover:bg-primary hover:text-white'} backdrop-blur-sm opacity-0 group-hover:opacity-100 disabled:opacity-0`}
+                        aria-label="Next"
+                    >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
                     <Carousel
                         ref={carouselRef}
                         responsive={responsive}

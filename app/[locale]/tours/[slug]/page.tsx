@@ -44,14 +44,13 @@ export default async function TourDetails({
                     reviews={124} // Placeholder reviews
                     timeText={trip.time_text}
                     timeIcon={trip.time_icon}
+                    description={trip.description}
                 />
 
                 <TourGallery images={galleryImages} />
 
                 <div className="grid lg:grid-cols-12 gap-12 relative">
-                    {/* Left Content (Client Component with Tabs) */}
                     <TourContent
-                        description={trip.description}
                         location={trip.location}
                         itinerary={trip.itinerary}
                         includes={trip.includes}

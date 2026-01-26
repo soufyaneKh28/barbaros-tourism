@@ -10,8 +10,9 @@ import { getMessages } from "@/i18n";
 import Image from "next/image";
 import Link from 'next/link';
 
-import { getTrips, getHotDeals, getTripsByType } from "@/lib/services/trips";
+import { getTrips, getTripsByType } from "@/lib/services/trips";
 import { getPrograms } from "@/lib/services/programs";
+import { getCombinedHotDeals } from "@/lib/services/deals";
 
 export default async function Tours({
     params,
@@ -86,9 +87,9 @@ export default async function Tours({
     }
 
     // Fetch hot deals
-    let hotDeals = []
+    let hotDeals: any[] = []
     try {
-        hotDeals = await getHotDeals(locale)
+        hotDeals = await getCombinedHotDeals(locale)
     } catch (e) {
         console.error('Failed to fetch hot deals', e)
     }

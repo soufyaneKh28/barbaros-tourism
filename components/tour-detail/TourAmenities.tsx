@@ -14,7 +14,7 @@ export default function TourAmenities({ includes = [], excludes = [] }: TourAmen
 
     return (
         <div className="mb-12">
-            <h2 className="text-2xl font-bold font-cabinet text-gray-900 mb-6">Inclusions & Exclusions</h2>
+            <h2 className="text-lg font-bold font-cabinet text-gray-900 mb-3">Inclusions & Exclusions</h2>
             <div className="grid md:grid-cols-2 gap-8">
                 {/* Includes */}
                 <div>

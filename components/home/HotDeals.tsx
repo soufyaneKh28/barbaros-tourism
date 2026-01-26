@@ -72,31 +72,31 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                         </p>
                     </div>
 
-                    {/* Custom Arrows */}
-                    <div className="flex gap-4">
-                        <button
-                            onClick={() => carouselRef.current?.previous()}
-                            className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all duration-300 group"
-                            aria-label="Previous deal"
-                        >
-                            <svg className="w-5 h-5 text-white group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </button>
-                        <button
-                            onClick={() => carouselRef.current?.next()}
-                            className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all duration-300 group"
-                            aria-label="Next deal"
-                        >
-                            <svg className="w-5 h-5 text-white group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div>
+
                 </div>
 
                 {/* Carousel */}
-                <div className="-mx-4 px-4 pb-8">
+                <div className="-mx-4 px-4 pb-8 relative group">
+                    {/* Navigation Buttons */}
+                    <button
+                        onClick={() => carouselRef.current?.previous()}
+                        className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-primary/80 backdrop-blur-sm shadow-lg text-white hover:bg-white hover:text-primary transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                        aria-label="Previous deal"
+                    >
+                        <svg className="w-5 h-5 text-current transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button
+                        onClick={() => carouselRef.current?.next()}
+                        className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-primary/80 backdrop-blur-sm shadow-lg text-white hover:bg-white hover:text-primary transition-all duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0"
+                        aria-label="Next deal"
+                    >
+                        <svg className="w-5 h-5 text-current transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
                     <Carousel
                         ref={carouselRef}
                         responsive={responsive}
@@ -105,7 +105,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                         keyBoardControl={true}
                         customTransition="transform 500ms ease-in-out"
                         transitionDuration={500}
-                        containerClass="carousel-container"
+                        containerClass="carousel-container overflow-visible"
                         itemClass="px-3"
                         arrows={false}
                         partialVisible={true}

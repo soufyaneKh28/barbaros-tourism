@@ -2,15 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react';
 import TourTabs from "./TourTabs";
-import TourOverview from "./TourOverview";
 import TourAmenities from "./TourAmenities";
 import TourProgram from "./TourProgram";
 import TourLocation from "./TourLocation";
-import TourPolicies from "./TourPolicies";
 import TourReviews from "./TourReviews";
 
 interface TourContentProps {
-    description: string;
     location: string;
     itinerary?: any[];
     includes?: string[];
@@ -18,8 +15,8 @@ interface TourContentProps {
     locale?: string;
 }
 
-export default function TourContent({ description, location, itinerary, includes, excludes, locale = 'en' }: TourContentProps) {
-    const [activeTab, setActiveTab] = useState('Overview');
+export default function TourContent({ location, itinerary, includes, excludes, locale = 'en' }: TourContentProps) {
+    const [activeTab, setActiveTab] = useState('Program');
     const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
     const scrollToSection = (sectionId: string) => {
@@ -57,11 +54,6 @@ export default function TourContent({ description, location, itinerary, includes
             <TourTabs activeTab={activeTab} onTabClick={scrollToSection} />
 
             <div className="space-y-12">
-                {/* Overview Section */}
-                <div ref={(el) => { sectionRefs.current['Overview'] = el }} id="overview">
-                    <TourOverview description={description} />
-                </div>
-
                 {/* Program Section */}
                 <div ref={(el) => { sectionRefs.current['Program'] = el }} id="program">
                     <TourProgram itinerary={itinerary || []} locale={locale} />
@@ -70,11 +62,6 @@ export default function TourContent({ description, location, itinerary, includes
                 {/* Inclusions Section */}
                 <div ref={(el) => { sectionRefs.current['Inclusions'] = el }} id="inclusions">
                     <TourAmenities includes={includes} excludes={excludes} />
-                </div>
-
-                {/* Policies Section */}
-                <div ref={(el) => { sectionRefs.current['Policies'] = el }} id="policies">
-                    <TourPolicies />
                 </div>
 
                 {/* Location Section */}
