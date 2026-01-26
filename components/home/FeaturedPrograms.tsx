@@ -24,16 +24,16 @@ export default function FeaturedPrograms({ programs = [], locale = 'en' }: Featu
                 <div className="flex flex-col items-center text-center mb-16">
                     <div className="inline-block mb-6">
                         <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                            Our Programs
+                            {(t as any).home.featuredPrograms?.badge || "Our Programs"}
                         </span>
                     </div>
 
                     <h2 className="text-[32px] lg:text-[42px] leading-tight font-cabinet font-extrabold text-primary mb-6">
-                        Featured Tourism Programs
+                        {(t as any).home.featuredPrograms?.heading || "Featured Tourism Programs"}
                     </h2>
 
                     <p className="max-w-2xl text-gray-600 font-satoshi text-lg leading-relaxed">
-                        Explore our top-rated programs designed for unforgettable experiences.
+                        {(t as any).home.featuredPrograms?.description || "Explore our top-rated programs designed for unforgettable experiences."}
                     </p>
                 </div>
 
@@ -83,7 +83,7 @@ export default function FeaturedPrograms({ programs = [], locale = 'en' }: Featu
 
                 <div className="mt-12 text-center">
                     <Link href={`/${locale}/programs`} className="inline-flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors">
-                        View All Programs
+                        {(t as any).home.featuredPrograms?.viewAll || "View All Programs"}
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>

@@ -8,6 +8,9 @@
     "blogs": "Blogs",
     "contact": "Contact us"
   },
+  "common": {
+    "viewDetails": "View Details"
+  },
   "home": {
     "services": {
       "badge": "Our services",
@@ -48,9 +51,14 @@
       "description": "Discover the most loved destinations chosen by our travelers. From iconic cities to breathtaking landscapes, these destinations offer a wide range of trips designed to match different travel styles and preferences."
     },
     "videoSection": {
-      "subtitle": "Connecting Your Journey With Purpose",
       "title": "Unforgettable journeys that make a difference.",
       "cta": "Play Video"
+    },
+    "featuredPrograms": {
+      "badge": "Our Programs",
+      "heading": "Featured Tourism Programs",
+      "description": "Explore our top-rated programs designed for unforgettable experiences.",
+      "viewAll": "View All Programs"
     }
   },
   "hero": {
@@ -555,6 +563,20 @@
       "badge": "VIP PROGRAMS",
       "heading": "Premium Luxury Experiences",
       "description": "Indulge in the finest that Türkiye has to offer with our exclusive VIP programs. Enjoy personalized service, luxury accommodations, and unforgettable experiences."
+    },
+    "tourismPrograms": {
+      "badge": "TOURISM PROGRAMS",
+      "heading": "Curated Travel Experiences",
+      "description": "Discover our specially designed tourism programs that combine culture, adventure, and relaxation for an unforgettable journey."
     }
-  }
+  },
+  "toursPage": {
+    "cta": {
+      "heading": "Ready to Write Your Turkish Story?",
+      "description": "Join over 10,000 happy travelers who trusted Barbaros Tourism for their Turkish adventure.",
+      "planTrip": "Plan Your Trip",
+      "medicalInquiries": "Medical Inquiries"
+    }
+  },
+  "tripDetails": {}
 }

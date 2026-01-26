@@ -6,7 +6,10 @@
     "tourism": "Turizm",
     "medical": "Medical tourism",
     "blogs": "Blogs",
-    "contact": "Contact us"
+    "contact": "İletişim"
+  },
+  "common": {
+    "viewDetails": "Detayları Gör"
   },
   "home": {
     "services": {
@@ -51,6 +54,12 @@
       "subtitle": "Yolculuğunuzu Amacınızla Buluşturuyoruz",
       "title": "Fark yaratan unutulmaz yolculuklar.",
       "cta": "Videoyu Oynat"
+    },
+    "featuredPrograms": {
+      "badge": "Programlarımız",
+      "heading": "Öne Çıkan Turizm Programları",
+      "description": "Unutulmaz deneyimler için tasarlanmış en çok tercih edilen programlarımızı keşfedin.",
+      "viewAll": "Tüm Programları Görüntüle"
     }
   },
   "hero": {
@@ -422,9 +431,9 @@
   },
   "tours": {
     "hero": {
-      "badge": "DISCOVER TÜRKİYE",
-      "heading": "Your Gateway to Unforgettable Experiences",
-      "description": "Expertly curated journeys through the heart of Türkiye's most iconic landscapes and hidden gems."
+      "badge": "TÜRKİYE'Yİ KEŞFEDİN",
+      "heading": "Unutulmaz Deneyimlere Açılan Kapınız",
+      "description": "Türkiye'nin en ikonik manzaraları ve gizli mücevherleri arasında ustaca hazırlanmış yolculuklar."
     }
   },
   "team": {
@@ -555,6 +564,19 @@
       "badge": "VIP PROGRAMLAR",
       "heading": "Premium Lüks Deneyimler",
       "description": "Türkiye'nin sunduğu en iyilerin tadını özel VIP programlarımızla çıkarın. Kişiselleştirilmiş hizmet, lüks konaklama ve unutulmaz deneyimlerin keyfini çıkarın."
+    },
+    "tourismPrograms": {
+      "badge": "TURİZM PROGRAMLARI",
+      "heading": "Özel Seyahat Deneyimleri",
+      "description": "Unutulmaz bir yolculuk için kültür, macera ve dinlenmeyi birleştiren özel tasarlanmış turizm programlarımızı keşfedin."
+    }
+  },
+  "toursPage": {
+    "cta": {
+      "heading": "Türkiye Hikayenizi Yazmaya Hazır Mısınız?",
+      "description": "Türkiye macerası için Barbaros Turizm'e güvenen 10.000'den fazla mutlu gezgine katılın.",
+      "planTrip": "Seyahatinizi Planlayın",
+      "medicalInquiries": "Tıbbi Sorular"
     }
   },
   "tripDetails": {

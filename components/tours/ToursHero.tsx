@@ -2,12 +2,17 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useLanguage } from '@/hooks/use-language';
 
 interface ToursHeroProps {
     locale: string;
 }
 
 export default function ToursHero({ locale }: ToursHeroProps) {
+    const { t } = useLanguage();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const heroText = (t as any).tours?.hero;
+
     return (
         <section className="relative m-2 rounded-[20px] overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
             {/* Background Image */}
@@ -31,7 +36,7 @@ export default function ToursHero({ locale }: ToursHeroProps) {
                     className="inline-block mb-4"
                 >
                     <span className="bg-secondary text-primary font-bold px-6 py-2 rounded-full text-sm">
-                        DISCOVER TÜRKİYE
+                        {heroText?.badge || "DISCOVER TÜRKİYE"}
                     </span>
                 </motion.div>
                 <motion.h1
@@ -40,7 +45,7 @@ export default function ToursHero({ locale }: ToursHeroProps) {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="text-4xl md:text-5xl font-bold font-cabinet mb-6"
                 >
-                    Your Gateway to <br /> Unforgettable Experiences
+                    {heroText?.heading || "Your Gateway to Unforgettable Experiences"}
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -48,7 +53,7 @@ export default function ToursHero({ locale }: ToursHeroProps) {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-lg font-satoshi max-w-2xl mx-auto"
                 >
-                    Expertly curated journeys through the heart of Türkiye's most iconic landscapes and hidden gems.
+                    {heroText?.description || "Expertly curated journeys through the heart of Türkiye's most iconic landscapes and hidden gems."}
                 </motion.p>
             </div>
         </section>

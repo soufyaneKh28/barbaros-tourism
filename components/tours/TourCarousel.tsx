@@ -50,7 +50,7 @@ const responsive = {
 };
 
 export default function TourCarousel({ title, badge, description, items, dark = false }: TourCarouselProps) {
-    const { locale } = useLanguage();
+    const { locale, t } = useLanguage();
     const carouselRef = useRef<any>(null);
 
     return (
@@ -183,7 +183,7 @@ export default function TourCarousel({ title, badge, description, items, dark = 
                                             href={`${item.link || `/${locale}/contact-us`}`}
                                             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-primary font-bold text-sm hover:bg-secondary transition-all duration-300"
                                         >
-                                            View Details
+                                            {(t as any).common?.viewDetails || 'View Details'}
                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                             </svg>

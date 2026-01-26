@@ -8,6 +8,9 @@
     "blogs": "Blogs",
     "contact": "Contact us"
   },
+  "common": {
+    "viewDetails": "Voir les détails"
+  },
   "home": {
     "services": {
       "badge": "Nos services",
@@ -48,9 +51,14 @@
       "description": "Découvrez les destinations les plus appréciées choisies par nos voyageurs. Des villes emblématiques aux paysages à couper le souffle, ces destinations offrent un large éventail de voyages conçus pour correspondre à différents styles et préférences de voyage."
     },
     "videoSection": {
-      "subtitle": "Relier Votre Voyage à un But",
       "title": "Des voyages inoubliables qui font la différence.",
       "cta": "Lire la Vidéo"
+    },
+    "featuredPrograms": {
+      "badge": "Nos Programmes",
+      "heading": "Programmes Touristiques en Vedette",
+      "description": "Découvrez nos programmes les mieux notés conçus pour des expériences inoubliables.",
+      "viewAll": "Voir Tous les Programmes"
     }
   },
   "hero": {
@@ -422,9 +430,9 @@
   },
   "tours": {
     "hero": {
-      "badge": "DISCOVER TÜRKİYE",
-      "heading": "Your Gateway to Unforgettable Experiences",
-      "description": "Expertly curated journeys through the heart of Türkiye's most iconic landscapes and hidden gems."
+      "badge": "DÉCOUVREZ LA TURQUIE",
+      "heading": "Votre Passerelle vers des Expériences Inoubliables",
+      "description": "Des voyages savamment organisés au cœur des paysages les plus emblématiques et des joyaux cachés de la Turquie."
     }
   },
   "team": {
@@ -555,6 +563,19 @@
       "badge": "PROGRAMMES VIP",
       "heading": "Expériences de Luxe Premium",
       "description": "Profitez du meilleur de la Turquie avec nos programmes VIP exclusifs. Bénéficiez d'un service personnalisé, d'hébergements de luxe et d'expériences inoubliables."
+    },
+    "tourismPrograms": {
+      "badge": "PROGRAMMES TOURISTIQUES",
+      "heading": "Expériences de Voyage Organisées",
+      "description": "Découvrez nos programmes touristiques spécialement conçus qui allient culture, aventure et détente pour un voyage inoubliable."
+    }
+  },
+  "toursPage": {
+    "cta": {
+      "heading": "Prêt à Écrire Votre Histoire Turque ?",
+      "description": "Rejoignez plus de 10 000 voyageurs heureux qui ont fait confiance à Barbaros Tourism pour leur aventure turque.",
+      "planTrip": "Planifiez Votre Voyage",
+      "medicalInquiries": "Renseignements Médicaux"
     }
   },
   "tripDetails": {

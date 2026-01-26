@@ -146,17 +146,17 @@ export default async function Tours({
 
             {/* Daily Tours Carousel */}
             <TourCarousel
-                badge="DAILY TOURS"
-                title="Short & Sweet Adventures"
-                description="Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots."
+                badge={(t as any).tourTypes?.dailyTours?.badge || "DAILY TOURS"}
+                title={(t as any).tourTypes?.dailyTours?.heading || "Short & Sweet Adventures"}
+                description={(t as any).tourTypes?.dailyTours?.description || "Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots."}
                 items={dailyTours}
             />
 
             {/* Tourism Programs Carousel (Dark Mode) */}
             <TourCarousel
-                badge="TOURISM PROGRAMS"
-                title="Curated Travel Experiences"
-                description="Discover our specially designed tourism programs that combine culture, adventure, and relaxation for an unforgettable journey."
+                badge={(t as any).tourTypes?.tourismPrograms?.badge || "TOURISM PROGRAMS"}
+                title={(t as any).tourTypes?.tourismPrograms?.heading || "Curated Travel Experiences"}
+                description={(t as any).tourTypes?.tourismPrograms?.description || "Discover our specially designed tourism programs that combine culture, adventure, and relaxation for an unforgettable journey."}
                 items={tourismPrograms.length > 0 ? tourismPrograms : [
                     {
                         id: 101,
@@ -175,9 +175,9 @@ export default async function Tours({
 
             {/* Specialized Tourism Packages Carousel */}
             <TourCarousel
-                badge="SPECIALIZED PACKAGES"
-                title="Tailored Tourism Solutions"
-                description="Exclusive packages designed for specific interests - from medical tourism to cultural immersion and luxury experiences."
+                badge={(t as any).tourTypes?.specialPackages?.badge || "SPECIALIZED PACKAGES"}
+                title={(t as any).tourTypes?.specialPackages?.heading || "Tailored Tourism Solutions"}
+                description={(t as any).tourTypes?.specialPackages?.description || "Exclusive packages designed for specific interests - from medical tourism to cultural immersion and luxury experiences."}
                 items={specializedPackages.length > 0 ? specializedPackages : [
                     {
                         id: 301,
@@ -195,7 +195,7 @@ export default async function Tours({
             <FeaturedPrograms programs={featuredPrograms} locale={locale} />
 
             {/* What's Included / Experience Section */}
-            <ToursExperience />
+            {/* <ToursExperience /> */}
 
             {/* Final CTA */}
             <section className="py-24 px-6 relative overflow-hidden">
@@ -210,16 +210,18 @@ export default async function Tours({
                 </div>
 
                 <div className="max-w-4xl mx-auto text-center relative z-10 text-white">
-                    <h2 className="text-4xl md:text-5xl font-bold font-cabinet mb-8">Ready to Write Your <br /> Turkish Story?</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold font-cabinet mb-8">
+                        {(t as any).toursPage?.cta?.heading || "Ready to Write Your Turkish Story?"}
+                    </h2>
                     <p className="text-xl font-satoshi mb-12 text-white/80">
-                        Join over 10,000 happy travelers who trusted Barbaros Tourism for their Turkish adventure.
+                        {(t as any).toursPage?.cta?.description || "Join over 10,000 happy travelers who trusted Barbaros Tourism for their Turkish adventure."}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href={`/${locale}/contact-us`} className="bg-secondary text-primary px-10 py-4 rounded-full font-bold font-cabinet hover:bg-white transition-all duration-300 shadow-xl">
-                            Plan Your Trip
+                            {(t as any).toursPage?.cta?.planTrip || "Plan Your Trip"}
                         </Link>
                         <Link href={`/${locale}/medical-tourism`} className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 rounded-full font-bold font-cabinet hover:bg-white/20 transition-all duration-300">
-                            Medical Inquiries
+                            {(t as any).toursPage?.cta?.medicalInquiries || "Medical Inquiries"}
                         </Link>
                     </div>
                 </div>
