@@ -63,7 +63,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                             </span>
                         </div>
 
-                        <h2 className="text-[32px] lg:text-[42px] leading-tight font-cabinet font-extrabold text-white mb-6">
+                        <h2 className="text-[28px] lg:text-[35px] leading-tight font-cabinet font-extrabold text-white mb-6">
                             {t.home.hotDeals.heading}
                         </h2>
 

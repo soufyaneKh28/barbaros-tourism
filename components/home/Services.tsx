@@ -78,7 +78,7 @@ export default function Services({ services: dynamicServices }: ServicesProps) {
     }, [isPaused, services.length]);
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-8 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
 
@@ -90,7 +90,7 @@ export default function Services({ services: dynamicServices }: ServicesProps) {
                             </span>
                         </div>
 
-                        <h2 className="text-[36px] lg:text-[48px] leading-[1.1] font-cabinet font-bold text-primary mb-10">
+                        <h2 className="text-[28px] lg:text-[35px] leading-[1.1] font-cabinet font-bold text-primary mb-10">
                             {t.home.services.heading}
                         </h2>
 
