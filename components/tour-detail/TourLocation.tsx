@@ -1,15 +1,20 @@
 'use client';
 
 import Image from "next/image";
+import { useLanguage } from '@/hooks/use-language';
 
 interface TourLocationProps {
     address: string;
 }
 
 export default function TourLocation({ address }: TourLocationProps) {
+    const { t } = useLanguage();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const tripDetails = (t as any).tripDetails;
+
     return (
         <div className="mb-12">
-            <h2 className="text-2xl font-bold font-cabinet text-gray-900 mb-6">Location</h2>
+            <h2 className="text-2xl font-bold font-cabinet text-gray-900 mb-6">{tripDetails?.location?.title || 'Location'}</h2>
             <div className="h-[400px] w-full relative rounded-3xl overflow-hidden shadow-sm border border-gray-100">
                 <Image
                     src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop"

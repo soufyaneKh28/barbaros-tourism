@@ -556,5 +556,33 @@
       "heading": "Premium Lüks Deneyimler",
       "description": "Türkiye'nin sunduğu en iyilerin tadını özel VIP programlarımızla çıkarın. Kişiselleştirilmiş hizmet, lüks konaklama ve unutulmaz deneyimlerin keyfini çıkarın."
     }
+  },
+  "tripDetails": {
+    "tabs": {
+      "program": "Program",
+      "inclusions": "Dahil Olanlar",
+      "location": "Konum",
+      "reviews": "Değerlendirmeler"
+    },
+    "program": {
+      "title": "Tur Programı",
+      "noProgram": "Program detayı bulunmamaktadır."
+    },
+    "amenities": {
+      "title": "Dahil Olanlar & Olmayanlar",
+      "included": "Dahil Olanlar",
+      "excluded": "Hariç Olanlar",
+      "noDetails": "Detay bulunmamaktadır."
+    },
+    "location": {
+      "title": "Konum"
+    },
+    "booking": {
+      "perPerson": "kişi başı",
+      "contactText": "Bu turu rezerve etmek ve seyahat planlarınız için kişiselleştirilmiş destek almak için WhatsApp üzerinden bizimle iletişime geçin.",
+      "bookWhatsApp": "WhatsApp ile Rezervasyon Yap",
+      "instantResponse": "Anında yanıt garantisi",
+      "flexibleOptions": "Esnek rezervasyon seçenekleri"
+    }
   }
 }

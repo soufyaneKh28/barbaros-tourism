@@ -556,5 +556,33 @@
       "heading": "Expériences de Luxe Premium",
       "description": "Profitez du meilleur de la Turquie avec nos programmes VIP exclusifs. Bénéficiez d'un service personnalisé, d'hébergements de luxe et d'expériences inoubliables."
     }
+  },
+  "tripDetails": {
+    "tabs": {
+      "program": "Programme",
+      "inclusions": "Inclusions",
+      "location": "Lieu",
+      "reviews": "Avis"
+    },
+    "program": {
+      "title": "Programme du voyage",
+      "noProgram": "Aucun détail disponible."
+    },
+    "amenities": {
+      "title": "Inclusions et Exclusions",
+      "included": "Inclus",
+      "excluded": "Exclus",
+      "noDetails": "Aucun détail disponible."
+    },
+    "location": {
+      "title": "Lieu"
+    },
+    "booking": {
+      "perPerson": "par personne",
+      "contactText": "Contactez-nous sur WhatsApp pour réserver cette visite et obtenir une assistance personnalisée pour vos projets de voyage.",
+      "bookWhatsApp": "Réserver via WhatsApp",
+      "instantResponse": "Réponse instantanée garantie",
+      "flexibleOptions": "Options de réservation flexibles"
+    }
   }
 }

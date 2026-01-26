@@ -60,7 +60,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                         <Image
                             src="/images/logo.png"
                             alt="Barbaros Tourism Logo"
-                            width={250}
+                            width={500}
                             height={100}
                             quality={100}
                             className={`h-auto w-[150px] transition-all duration-300 ${isTransparent ? 'filter brightness-0 invert' : ''}`}

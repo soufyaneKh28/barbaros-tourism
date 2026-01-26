@@ -1,6 +1,7 @@
 'use client';
 
 import { Check, X } from 'lucide-react';
+import { useLanguage } from '@/hooks/use-language';
 
 interface TourAmenitiesProps {
     includes?: string[];
@@ -8,19 +9,23 @@ interface TourAmenitiesProps {
 }
 
 export default function TourAmenities({ includes = [], excludes = [] }: TourAmenitiesProps) {
+    const { t } = useLanguage();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const tripDetails = (t as any).tripDetails;
+
     if (!includes?.length && !excludes?.length) {
-        return <div className="text-gray-500 italic">No inclusion details available.</div>;
+        return <div className="text-gray-500 italic">{tripDetails?.amenities?.noDetails || 'No inclusion details available.'}</div>;
     }
 
     return (
         <div className="mb-12">
-            <h2 className="text-lg font-bold font-cabinet text-gray-900 mb-3">Inclusions & Exclusions</h2>
+            <h2 className="text-lg font-bold font-cabinet text-gray-900 mb-3">{tripDetails?.amenities?.title || 'Inclusions & Exclusions'}</h2>
             <div className="grid md:grid-cols-2 gap-8">
                 {/* Includes */}
                 <div>
                     <h3 className="text-lg font-bold font-cabinet text-green-700 mb-4 flex items-center gap-2">
                         <span className="bg-green-100 p-1 rounded-full"><Check className="w-4 h-4" /></span>
-                        Included
+                        {tripDetails?.amenities?.included || 'Included'}
                     </h3>
                     <ul className="space-y-3">
                         {includes.map((item, index) => (
@@ -36,7 +41,7 @@ export default function TourAmenities({ includes = [], excludes = [] }: TourAmen
                 <div>
                     <h3 className="text-lg font-bold font-cabinet text-red-700 mb-4 flex items-center gap-2">
                         <span className="bg-red-100 p-1 rounded-full"><X className="w-4 h-4" /></span>
-                        Excluded
+                        {tripDetails?.amenities?.excluded || 'Excluded'}
                     </h3>
                     <ul className="space-y-3">
                         {excludes.map((item, index) => (
