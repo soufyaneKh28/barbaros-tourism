@@ -21,7 +21,7 @@ export default function AdminLayout({
     const navItems = [
         { href: `/${locale}/portal-manage`, label: 'Dashboard', icon: LayoutDashboard },
         { href: `/${locale}/portal-manage/trips`, label: 'Trips', icon: Plane },
-        { href: `/${locale}/portal-manage/destinations`, label: 'Destinations', icon: MapPin },
+        { href: `/${locale}/portal-manage/programs`, label: 'Programs', icon: FileText },
         { href: `/${locale}/portal-manage/blogs`, label: 'Blogs', icon: FileText },
         { href: `/${locale}/portal-manage/services`, label: 'Services', icon: Briefcase },
         { href: `/${locale}/portal-manage/messages`, label: 'Messages', icon: Mail },

@@ -8,7 +8,6 @@ import MultiImageUpload from '@/components/portal/MultiImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
 import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
-import DestinationSelect from '@/components/portal/DestinationSelect'
 import TimeInput from '@/components/portal/TimeInput'
 import { AdminLanguageProvider } from '@/contexts/AdminLanguageContext'
 import GlobalLanguageSwitcher from '@/components/portal/GlobalLanguageSwitcher'
@@ -106,7 +105,6 @@ export default function NewTripPage() {
                         </div>
                     </div>
 
-                    <DestinationSelect name="destinationId" label="Destination" required locale={locale as string} />
 
                     <MultiLangTextarea name="description" label="Description" required rows={3} />
 

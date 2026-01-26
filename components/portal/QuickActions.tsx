@@ -21,10 +21,10 @@ const actions: QuickAction[] = [
         colorClass: 'text-primary bg-primary/5'
     },
     {
-        title: 'Add Destination',
-        description: 'Add a new travel destination',
-        href: '/portal-manage/destinations/new',
-        icon: MapPin,
+        title: 'Add Program',
+        description: 'Create a new tourism program',
+        href: '/portal-manage/programs/new',
+        icon: FileText,
         colorClass: 'text-secondary bg-secondary/5'
     },
     {

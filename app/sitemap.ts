@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://barbarostourism.com'
     const locales = ['en', 'ar', 'fr', 'tr', 'ru'] // Based on earlier context
-    const paths = ['', '/about-us', '/tours', '/destinations', '/blogs', '/contact-us', '/medical-tourism']
+    const paths = ['', '/about-us', '/tours', '/blogs', '/contact-us', '/medical-tourism']
 
     const allUrls: MetadataRoute.Sitemap = []
 

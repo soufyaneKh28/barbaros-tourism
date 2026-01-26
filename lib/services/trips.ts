@@ -13,11 +13,7 @@ function transformTrip(trip: any, locale: string = 'en') {
         time_text: getLocalized(trip.time_text, locale),
         includes: getLocalized(trip.includes, locale) || [],
         excludes: getLocalized(trip.excludes, locale) || [],
-        destination: trip.destination ? {
-            ...trip.destination,
-            name: getLocalized(trip.destination.name, locale),
-            description: getLocalized(trip.destination.description, locale)
-        } : null,
+        itinerary: getLocalized(trip.itinerary, locale),
         category: trip.category ? {
             ...trip.category,
             name: getLocalized(trip.category.name, locale)
@@ -31,7 +27,6 @@ export async function getTrips(locale: string = 'en') {
         .from('trips')
         .select(`
       *,
-      destination:destinations(name, slug),
       category:categories(name, slug)
     `)
         .eq('is_active', true)
@@ -46,7 +41,6 @@ export async function getTripsByType(tripType: string, locale: string = 'en') {
         .from('trips')
         .select(`
       *,
-      destination:destinations(name, slug),
       category:categories(name, slug)
     `)
         .eq('is_active', true)
@@ -73,7 +67,6 @@ export async function getTripBySlug(slug: string, locale: string = 'en') {
         .from('trips')
         .select(`
       *,
-      destination:destinations(name, slug, description, image_url),
       category:categories(name, slug)
     `)
         .eq('slug', slug)
@@ -99,7 +92,6 @@ export async function getHotDeals(locale: string = 'en') {
         .from('trips')
         .select(`
             *,
-            destination:destinations(name, slug, description, image_url),
             category:categories(name, slug)
         `)
         .eq('is_hot_deal', true)
@@ -107,22 +99,6 @@ export async function getHotDeals(locale: string = 'en') {
         .or(`hot_deal_end_date.is.null,hot_deal_end_date.gte.${now}`)
         .order('hot_deal_priority', { ascending: true, nullsFirst: false })
         .limit(10)
-
-    if (error) throw error
-    return data.map(trip => transformTrip(trip, locale))
-}
-
-export async function getTripsByDestination(destinationSlug: string, locale: string = 'en') {
-    const { data, error } = await supabase
-        .from('trips')
-        .select(`
-            *,
-            destination:destinations!inner(name, slug, description, image_url),
-            category:categories(name, slug)
-        `)
-        .eq('is_active', true)
-        .eq('destination.slug', destinationSlug)
-        .order('created_at', { ascending: false })
 
     if (error) throw error
     return data.map(trip => transformTrip(trip, locale))

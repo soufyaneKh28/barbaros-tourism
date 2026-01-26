@@ -1,6 +1,6 @@
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-import Destinations from "@/components/home/Destinations";
+import FeaturedPrograms from "@/components/home/FeaturedPrograms";
 import HotDeals from "@/components/home/HotDeals";
 import TourCarousel from "@/components/tours/TourCarousel";
 import ToursHero from "@/components/tours/ToursHero";
@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from 'next/link';
 
 import { getTrips, getHotDeals, getTripsByType } from "@/lib/services/trips";
-import { getDestinations } from "@/lib/services/destinations";
+import { getPrograms } from "@/lib/services/programs";
 
 export default async function Tours({
     params,
@@ -31,14 +31,19 @@ export default async function Tours({
             description: trip.description,
             image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
             price: trip.price ? `$${trip.price}` : undefined,
-            tags: [trip.destination?.name, trip.category?.name].filter(Boolean),
+            tags: [trip.category?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`
         }));
     } catch (error) {
         console.error("Error fetching dynamic trips:", error);
     }
 
-    // Fetch tourism programs
+    // Fetch tourism programs (TRIPS of type tourism-programs)
+    // NOTE: This logic refers to 'trips' table type. But we also have 'Programs' table now.
+    // The user might mean the 'Programs' list. 
+    // However, existing code fetches usage of `getTripsByType`. I will keep it for now as 'Programs' might be distinct or replacing.
+    // I will replace "Destinations" section with "FeaturedPrograms" from new table.
+
     let tourismPrograms: any[] = [];
     try {
         const data = await getTripsByType('tourism-programs', locale);
@@ -48,7 +53,7 @@ export default async function Tours({
             description: trip.description,
             image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
             price: trip.price ? `$${trip.price}` : undefined,
-            tags: [trip.destination?.name, trip.category?.name].filter(Boolean),
+            tags: [trip.category?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`
         }));
     } catch (error) {
@@ -65,19 +70,19 @@ export default async function Tours({
             description: trip.description,
             image: trip.main_image || trip.images?.[0] || "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd",
             price: trip.price ? `$${trip.price}` : undefined,
-            tags: [trip.destination?.name, trip.category?.name].filter(Boolean),
+            tags: [trip.category?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`
         }));
     } catch (error) {
         console.error("Error fetching specialized packages:", error);
     }
 
-    // Fetch destinations
-    let destinations: any[] = [];
+    // Fetch featured programs (from new Programs table) instead of destinations
+    let featuredPrograms: any[] = [];
     try {
-        destinations = await getDestinations(locale);
+        featuredPrograms = await getPrograms(locale, 6);
     } catch (error) {
-        console.error("Error fetching destinations:", error);
+        console.error("Error fetching programs:", error);
     }
 
     // Fetch hot deals
@@ -164,8 +169,8 @@ export default async function Tours({
                 dark={true}
             />
 
-            {/* Destinations grid (from home for SEO/internal linking) */}
-            <Destinations destinations={destinations} locale={locale} />
+            {/* Featured Programs Grid (Replacing Destinations) */}
+            <FeaturedPrograms programs={featuredPrograms} locale={locale} />
 
             {/* What's Included / Experience Section */}
             <ToursExperience />

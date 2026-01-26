@@ -1,10 +1,10 @@
 'use client'
 
-import { Clock, Plane, MapPin, FileText } from 'lucide-react'
+import { Clock, Plane, MapPin, FileText, Calendar } from 'lucide-react'
 
 interface Activity {
     id: string
-    type: 'trip' | 'destination' | 'blog'
+    type: 'trip' | 'destination' | 'blog' | 'program'
     action: string
     title: string
     timestamp: Date
@@ -17,13 +17,15 @@ interface ActivityFeedProps {
 const iconMap = {
     trip: Plane,
     destination: MapPin,
-    blog: FileText
+    blog: FileText,
+    program: Calendar
 }
 
 const colorMap = {
     trip: 'bg-primary/5 text-primary',
     destination: 'bg-secondary/5 text-secondary',
-    blog: 'bg-primary/5 text-primary'
+    blog: 'bg-primary/5 text-primary',
+    program: 'bg-secondary/5 text-secondary'
 }
 
 function getRelativeTime(date: Date): string {

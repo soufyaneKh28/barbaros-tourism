@@ -1,5 +1,5 @@
 import { getTrips } from '@/lib/services/trips'
-import { getDestinations } from '@/lib/services/destinations'
+import { getPrograms } from '@/lib/services/programs'
 import { getBlogs } from '@/lib/services/blogs'
 import StatsCard from '@/components/portal/StatsCard'
 import QuickActions from '@/components/portal/QuickActions'
@@ -9,9 +9,9 @@ export const dynamic = 'force-dynamic'
 
 async function getDashboardData() {
     try {
-        const [trips, destinations, blogs] = await Promise.all([
+        const [trips, programs, blogs] = await Promise.all([
             getTrips(),
-            getDestinations(),
+            getPrograms(),
             getBlogs()
         ])
 
@@ -24,12 +24,12 @@ async function getDashboardData() {
                 title: trip.title,
                 timestamp: new Date(trip.created_at || Date.now())
             })),
-            ...destinations.slice(0, 2).map((dest: any) => ({
-                id: `dest-${dest.id}`,
-                type: 'destination' as const,
-                action: 'Added destination',
-                title: dest.name,
-                timestamp: new Date(dest.created_at || Date.now())
+            ...programs.slice(0, 2).map((prog: any) => ({
+                id: `prog-${prog.id}`,
+                type: 'program' as const,
+                action: 'Added program',
+                title: prog.title,
+                timestamp: new Date(prog.created_at || Date.now())
             })),
             ...blogs.slice(0, 2).map((blog: any) => ({
                 id: `blog-${blog.id}`,
@@ -43,7 +43,7 @@ async function getDashboardData() {
         return {
             stats: {
                 trips: trips.length,
-                destinations: destinations.length,
+                programs: programs.length,
                 blogs: blogs.length,
                 publishedBlogs: blogs.filter((b: any) => b.is_published).length
             },
@@ -52,7 +52,7 @@ async function getDashboardData() {
     } catch (error) {
         console.error('Failed to fetch dashboard data:', error)
         return {
-            stats: { trips: 0, destinations: 0, blogs: 0, publishedBlogs: 0 },
+            stats: { trips: 0, programs: 0, blogs: 0, publishedBlogs: 0 },
             activities: []
         }
     }
@@ -68,7 +68,7 @@ export default async function AdminDashboard() {
                 <div className="relative z-10">
                     <h1 className="text-3xl font-bold mb-2 text-primary font-cabinet">Welcome to Barbaros Portal</h1>
                     <p className="text-gray-600 text-lg">
-                        Manage your tourism content with ease. Create trips, destinations, and share stories.
+                        Manage your tourism content with ease. Create trips, programs, and share stories.
                     </p>
                 </div>
             </div>
@@ -82,9 +82,9 @@ export default async function AdminDashboard() {
                     trend={{ value: 12, isPositive: true }}
                 />
                 <StatsCard
-                    title="Destinations"
-                    value={stats.destinations}
-                    iconName="MapPin"
+                    title="Programs"
+                    value={stats.programs}
+                    iconName="FileText"
                     trend={{ value: 8, isPositive: true }}
                 />
                 <StatsCard

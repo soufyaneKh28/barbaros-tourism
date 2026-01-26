@@ -66,8 +66,6 @@ export async function createTripAction(formData: FormData) {
     const hotDealEndDateRaw = formData.get('hotDealEndDate') as string
     const hotDealEndDate = hotDealEndDateRaw ? new Date(hotDealEndDateRaw).toISOString() : null
 
-    // Get destination ID from form
-    const destinationId = formData.get('destinationId') as string
 
     // Fetch a random category if not provided
     const { data: cat } = await supabase.from('categories').select('id').limit(1).single()
@@ -92,7 +90,6 @@ export async function createTripAction(formData: FormData) {
             hot_deal_priority: hotDealPriority,
             hot_deal_start_date: hotDealStartDate,
             hot_deal_end_date: hotDealEndDate,
-            destination_id: destinationId,
             category_id: cat?.id,
             is_active: true
         }])
@@ -149,11 +146,6 @@ export async function updateTripAction(id: string, formData: FormData) {
     const hotDealEndDate = hotDealEndDateRaw ? new Date(hotDealEndDateRaw).toISOString() : null
 
 
-
-    // Get destination ID from form
-    const destinationId = formData.get('destinationId') as string
-
-
     const { error } = await supabase
         .from('trips')
         .update({
@@ -174,7 +166,6 @@ export async function updateTripAction(id: string, formData: FormData) {
             hot_deal_priority: hotDealPriority,
             hot_deal_start_date: hotDealStartDate,
             hot_deal_end_date: hotDealEndDate,
-            destination_id: destinationId,
             updated_at: new Date().toISOString()
         })
         .eq('id', id)

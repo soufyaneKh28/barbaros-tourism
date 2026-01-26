@@ -1,7 +1,7 @@
 import Hero from "@/components/home/Hero";
 import Partners from "@/components/common/Partners";
 import Services from "@/components/home/Services";
-import Destinations from "@/components/home/Destinations";
+import FeaturedPrograms from "@/components/home/FeaturedPrograms";
 import HotDeals from "@/components/home/HotDeals";
 import Testimonials from "@/components/common/Testimonials";
 import VideoSection from "@/components/home/VideoSection";
@@ -10,7 +10,7 @@ import Footer from "@/components/common/Footer";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getCombinedHotDeals } from "@/lib/services/deals";
 import { getBlogs } from "@/lib/services/blogs";
-import { getDestinations } from "@/lib/services/destinations";
+import { getPrograms } from "@/lib/services/programs";
 
 export default async function Home({
   params,
@@ -36,12 +36,12 @@ export default async function Home({
     console.error('Failed to fetch blogs', e)
   }
 
-  // Fetch destinations
-  let destinations: any[] = []
+  // Fetch featured programs
+  let featuredPrograms: any[] = []
   try {
-    destinations = await getDestinations(locale, 5)
+    featuredPrograms = await getPrograms(locale, 5)
   } catch (e) {
-    console.error('Failed to fetch destinations', e)
+    console.error('Failed to fetch featured programs', e)
   }
 
   return (
@@ -49,7 +49,7 @@ export default async function Home({
       <Hero />
       <Services />
       <HotDeals deals={hotDeals} locale={locale} />
-      <Destinations destinations={destinations} locale={locale} />
+      <FeaturedPrograms programs={featuredPrograms} locale={locale} />
       <Testimonials />
       <VideoSection />
       <Partners />
