@@ -605,18 +605,18 @@
   "immigration": {
     "hero": {
       "badge": "Immigration Services",
-      "heading": "Visa & Immigration Solutions",
-      "description": "Professional visa application and immigration services to help you navigate the process smoothly and efficiently."
+      "heading": "Citizenship & Residence Solutions",
+      "description": "Professional citizenship and residence services to help you navigate the process smoothly and efficiently."
     },
-    "visa": {
-      "badge": "Visa Services",
-      "heading": "Visa Application Services",
-      "description": "Expert assistance with all types of visa applications for Turkey and international destinations."
+    "citizenship": {
+      "badge": "Citizenship Services",
+      "heading": "Citizenship Application Services",
+      "description": "Expert assistance with all types of citizenship applications for Turkey and international destinations."
     },
-    "immigrationServices": {
-      "badge": "Immigration Services",
-      "heading": "Immigration & Residency Services",
-      "description": "Comprehensive immigration solutions including residency permits, citizenship applications, and legal support."
+    "residence": {
+      "badge": "Residence Services",
+      "heading": "Residence Permit & Settlement Services",
+      "description": "Comprehensive residence solutions including residence permits, settlement applications, and legal support."
     },
     "serviceDetail": {
       "overview": "Overview",

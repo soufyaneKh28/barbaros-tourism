@@ -5,6 +5,7 @@
     "services": "Our services",
     "tourism": "Turizm",
     "medical": "Medical tourism",
+    "immigration": "Göç",
     "blogs": "Blogs",
     "contact": "İletişim"
   },
@@ -654,6 +655,61 @@
         "slug": "Slug",
         "actions": "İşlemler"
       }
+    },
+    "immigrationServices": {
+      "title": "Göç Hizmetleri",
+      "addNew": "Yeni Hizmet Ekle",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "deleting": "Siliniyor...",
+      "noServices": "Göç hizmeti bulunamadı",
+      "createFirst": "İlk Hizmetinizi Oluşturun",
+      "addNewTitle": "Yeni Göç Hizmeti Ekle",
+      "addNewSubtitle": "Yeni bir göç hizmeti oluşturun",
+      "editTitle": "Göç Hizmetini Düzenle",
+      "editSubtitle": "Hizmet bilgilerini güncelle",
+      "creating": "Oluşturuluyor...",
+      "saving": "Kaydediliyor...",
+      "createService": "Hizmet Oluştur",
+      "saveChanges": "Değişiklikleri Kaydet",
+      "cancel": "İptal",
+      "deleteConfirm": "Bu hizmeti silmek istediğinizden emin misiniz?",
+      "table": {
+        "serviceName": "Hizmet Adı",
+        "category": "Kategori",
+        "status": "Durum",
+        "actions": "İşlemler"
+      }
+    }
+  },
+  "immigration": {
+    "hero": {
+      "badge": "Göç Hizmetleri",
+      "heading": "Vatandaşlık ve İkamet Çözümleri",
+      "description": "Süreci sorunsuz ve verimli bir şekilde yönetmenize yardımcı olacak profesyonel vatandaşlık ve ikamet hizmetleri."
+    },
+    "citizenship": {
+      "badge": "Vatandaşlık Hizmetleri",
+      "heading": "Vatandaşlık Başvuru Hizmetleri",
+      "description": "Türkiye ve uluslararası destinasyonlar için her türlü vatandaşlık başvurusunda uzman yardım."
+    },
+    "residence": {
+      "badge": "İkamet Hizmetleri",
+      "heading": "İkamet İzni ve Yerleşim Hizmetleri",
+      "description": "İkamet izinleri, yerleşim başvuruları ve yasal destek dahil kapsamlı ikamet çözümleri."
+    },
+    "serviceDetail": {
+      "overview": "Genel Bakış",
+      "features": "Neler Dahil",
+      "requirements": "Gereksinimler",
+      "processingTime": "İşlem Süresi",
+      "contactUs": "Daha Fazla Bilgi İçin Bize Ulaşın"
+    },
+    "cta": {
+      "heading": "Vatandaşlık veya İkamet Başvurunuza Başlamaya Hazır mısınız?",
+      "description": "Uzman ekibimiz süreç boyunca size rehberlik etmek için burada.",
+      "getConsultation": "Ücretsiz Danışmanlık Alın",
+      "viewAllServices": "Tüm Hizmetleri Görüntüle"
     }
   }
 }

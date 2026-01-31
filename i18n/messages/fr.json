@@ -5,6 +5,7 @@
     "services": "Our services",
     "tourism": "Tourisme",
     "medical": "Medical tourism",
+    "immigration": "Immigration",
     "blogs": "Blogs",
     "contact": "Contact us"
   },
@@ -654,6 +655,61 @@
         "slug": "Slug",
         "actions": "Actions"
       }
+    },
+    "immigrationServices": {
+      "title": "Services d'Immigration",
+      "addNew": "Ajouter un nouveau service",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "deleting": "Suppression...",
+      "noServices": "Aucun service d'immigration trouvé",
+      "createFirst": "Créez votre premier service",
+      "addNewTitle": "Ajouter un nouveau service d'immigration",
+      "addNewSubtitle": "Créer un nouveau service d'immigration",
+      "editTitle": "Modifier le service d'immigration",
+      "editSubtitle": "Mettre à jour les informations du service",
+      "creating": "Création...",
+      "saving": "Enregistrement...",
+      "createService": "Créer un service",
+      "saveChanges": "Enregistrer les modifications",
+      "cancel": "Annuler",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce service?",
+      "table": {
+        "serviceName": "Nom du service",
+        "category": "Catégorie",
+        "status": "Statut",
+        "actions": "Actions"
+      }
+    }
+  },
+  "immigration": {
+    "hero": {
+      "badge": "Services d'Immigration",
+      "heading": "Solutions de Citoyenneté et de Résidence",
+      "description": "Services professionnels de citoyenneté et de résidence pour vous aider à naviguer dans le processus de manière fluide et efficace."
+    },
+    "citizenship": {
+      "badge": "Services de Citoyenneté",
+      "heading": "Services de Demande de Citoyenneté",
+      "description": "Assistance experte pour tous les types de demandes de citoyenneté pour la Turquie et les destinations internationales."
+    },
+    "residence": {
+      "badge": "Services de Résidence",
+      "heading": "Permis de Résidence et Services d'Établissement",
+      "description": "Solutions de résidence complètes incluant les permis de résidence, les demandes d'établissement et le soutien juridique."
+    },
+    "serviceDetail": {
+      "overview": "Aperçu",
+      "features": "Ce qui est inclus",
+      "requirements": "Exigences",
+      "processingTime": "Temps de traitement",
+      "contactUs": "Contactez-nous pour plus d'informations"
+    },
+    "cta": {
+      "heading": "Prêt à commencer votre demande de citoyenneté ou de résidence?",
+      "description": "Notre équipe d'experts est là pour vous guider tout au long du processus.",
+      "getConsultation": "Obtenez une consultation gratuite",
+      "viewAllServices": "Voir tous les services"
     }
   }
 }
