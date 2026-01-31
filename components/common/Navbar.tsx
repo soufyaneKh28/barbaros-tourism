@@ -47,7 +47,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
     ];
 
     return (
-        <header className={`w-full px-6 py-4 lg:py-6 lg:px-12 sticky top-0 z-50 transition-all duration-300 ${isTransparent ? 'bg-transparent' : 'bg-white/95 backdrop-blur-md shadow-sm'}`}>
+        <header className={`w-full px-6 py-2 lg:py-6 lg:px-12 sticky  top-0 z-50 transition-all duration-300 ${isTransparent ? 'bg-transparent ' : 'bg-white/95 backdrop-blur-md shadow-sm '}`}>
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Logo */}
                 <motion.div
@@ -56,14 +56,14 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Link href={`/${locale}`} className="block transition-all duration-300">
+                    <Link href={`/${locale}`} className="inline-block transition-all duration-300">
                         <Image
                             src="/images/logo.png"
                             alt="Barbaros Tourism Logo"
-                            width={500}
-                            height={100}
+                            width={`200`}
+                            height={`100`}
                             quality={100}
-                            className={`h-auto w-[150px] transition-all duration-300 ${isTransparent ? 'filter brightness-0 invert' : ''}`}
+                            className={`h-auto w-[200px] transition-all duration-300 ${isTransparent ? 'filter brightness-0 invert' : ''}`}
                             priority
                         />
                     </Link>

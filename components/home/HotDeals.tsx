@@ -76,7 +76,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                 </div>
 
                 {/* Carousel */}
-                <div className="-mx-4 px-4 pb-8 relative group">
+                <div className="-mx-4 px-4 pb-8 relative overflow-visible group">
                     {/* Navigation Buttons */}
                     <button
                         onClick={() => carouselRef.current?.previous()}
