@@ -37,7 +37,7 @@ export default async function VisaServicesPage({
             <section className="relative m-2 rounded-[20px] overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1554224311-beee415c201f?q=80&w=2071&auto=format&fit=crop"
+                        src="/images/citizenship_hero.png"
                         alt="Citizenship Services Hero"
                         fill
                         className="object-cover"

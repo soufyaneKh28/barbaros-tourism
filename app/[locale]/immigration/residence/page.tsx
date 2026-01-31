@@ -37,7 +37,7 @@ export default async function ImmigrationServicesPage({
             <section className="relative m-2 rounded-[20px] overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop"
+                        src="/images/residence_hero.png"
                         alt="Residence Services Hero"
                         fill
                         className="object-cover"

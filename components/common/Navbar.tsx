@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from "motion/react";
 import { useState } from 'react';
-import { Plane, Calendar, Ship, Building2, Sun, Star, Crown } from 'lucide-react';
+import { Plane, Calendar, Ship, Building2, Sun, Star, Crown, Globe, Home } from 'lucide-react';
 
 interface NavbarProps {
     transparent?: boolean;
@@ -18,6 +18,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [groupMenuOpen, setGroupMenuOpen] = useState(false);
     const [tourismMenuOpen, setTourismMenuOpen] = useState(false);
+    const [immigrationMenuOpen, setImmigrationMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
     // Handle scroll effect
@@ -136,14 +137,62 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                         )}
                     </div>
 
-                    <Link href={`/${locale}/our-services`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
-                        {t.nav.services}
-                    </Link>
                     <Link href={`/${locale}/medical-tourism`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
                         {t.nav.medical}
                     </Link>
-                    <Link href={`/${locale}/immigration`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
-                        {(t.nav as any).immigration}
+
+                    {/* Immigration Mega Menu */}
+                    <div
+                        className="relative"
+                        onMouseEnter={() => setImmigrationMenuOpen(true)}
+                        onMouseLeave={() => setImmigrationMenuOpen(false)}
+                    >
+                        <button
+                            className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm flex items-center gap-1`}
+                            type="button"
+                            onClick={() => window.location.href = `/${locale}/immigration`}
+                        >
+                            {(t.nav as any).immigration}
+                            <svg
+                                className={`w-4 h-4 transition-transform duration-200 ${immigrationMenuOpen ? 'rotate-180' : ''}`}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        {immigrationMenuOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 8 }}
+                                transition={{ duration: 0.2 }}
+                                className="absolute left-1/2 top-1 z-50 mt-4 -translate-x-1/2"
+                            >
+                                <div className="flex flex-col gap-2 w-[320px] rounded-2xl bg-white shadow-2xl border border-gray-100 p-3">
+                                    <MegaMenuItem
+                                        href={`/${locale}/immigration/citizenship`}
+                                        title={(t as any).immigration?.citizenship?.badge || "Citizenship Services"}
+                                        description="Citizenship application services"
+                                        iconColor="bg-blue-50 text-blue-600"
+                                        Icon={Globe}
+                                    />
+                                    <MegaMenuItem
+                                        href={`/${locale}/immigration/residence`}
+                                        title={(t as any).immigration?.residence?.badge || "Residence Services"}
+                                        description="Residence permit solutions"
+                                        iconColor="bg-emerald-50 text-emerald-600"
+                                        Icon={Home}
+                                    />
+                                </div>
+                            </motion.div>
+                        )}
+                    </div>
+
+                    <Link href={`/${locale}/our-services`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
+                        {t.nav.services}
                     </Link>
                     <Link href={`/${locale}/blogs`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
                         {t.nav.blogs}
@@ -265,9 +314,21 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                         </div>
                     </div>
 
-                    <Link href={`/${locale}/our-services`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.services}</Link>
                     <Link href={`/${locale}/medical-tourism`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.medical}</Link>
-                    <Link href={`/${locale}/immigration`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{(t.nav as any).immigration}</Link>
+                    {/* Mobile Immigration Links */}
+                    <div className="py-2 px-4">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{(t.nav as any).immigration}</p>
+                        <div className="pl-4 space-y-2 border-l-2 border-gray-100">
+                            <Link href={`/${locale}/immigration/citizenship`} className="block text-sm text-gray-700 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
+                                {(t as any).immigration?.citizenship?.badge || "Citizenship Services"}
+                            </Link>
+                            <Link href={`/${locale}/immigration/residence`} className="block text-sm text-gray-700 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
+                                {(t as any).immigration?.residence?.badge || "Residence Services"}
+                            </Link>
+                        </div>
+                    </div>
+
+                    <Link href={`/${locale}/our-services`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.services}</Link>
                     <Link href={`/${locale}/blogs`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.blogs}</Link>
                     <Link href={`/${locale}/contact-us`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.contact}</Link>
 
