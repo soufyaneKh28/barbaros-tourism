@@ -610,5 +610,21 @@
       "instantResponse": "Réponse instantanée garantie",
       "flexibleOptions": "Options de réservation flexibles"
     }
+  },
+  "programDetails": {
+    "overview": "Aperçu",
+    "included": "Inclus",
+    "excluded": "Exclus",
+    "programItinerary": "Itinéraire du Programme",
+    "gallery": "Galerie",
+    "accommodation": "Hébergement",
+    "duration": "Durée",
+    "bookProgram": "Réserver ce Programme",
+    "booking": {
+      "contactText": "Contactez-nous sur WhatsApp pour réserver ce programme et obtenir une assistance personnalisée pour vos projets de voyage.",
+      "bookWhatsApp": "Réserver via WhatsApp",
+      "instantResponse": "Réponse instantanée garantie",
+      "flexibleOptions": "Options de réservation flexibles"
+    }
   }
 }

@@ -583,5 +583,21 @@
       "medicalInquiries": "Medical Inquiries"
     }
   },
-  "tripDetails": {}
+  "tripDetails": {},
+  "programDetails": {
+    "overview": "Overview",
+    "included": "Included",
+    "excluded": "Excluded",
+    "programItinerary": "Program Itinerary",
+    "gallery": "Gallery",
+    "accommodation": "Accommodation",
+    "duration": "Duration",
+    "bookProgram": "Book This Program",
+    "booking": {
+      "contactText": "Contact us on WhatsApp to book this program and get personalized assistance for your travel plans.",
+      "bookWhatsApp": "Book via WhatsApp",
+      "instantResponse": "Instant response guaranteed",
+      "flexibleOptions": "Flexible booking options"
+    }
+  }
 }

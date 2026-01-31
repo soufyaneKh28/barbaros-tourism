@@ -610,5 +610,21 @@
       "instantResponse": "Anında yanıt garantisi",
       "flexibleOptions": "Esnek rezervasyon seçenekleri"
     }
+  },
+  "programDetails": {
+    "overview": "Genel Bakış",
+    "included": "Dahil Olanlar",
+    "excluded": "Hariç Olanlar",
+    "programItinerary": "Program Güzergahı",
+    "gallery": "Galeri",
+    "accommodation": "Konaklama",
+    "duration": "Süre",
+    "bookProgram": "Bu Programı Rezerve Et",
+    "booking": {
+      "contactText": "Bu programı rezerve etmek ve seyahat planlarınız için kişiselleştirilmiş destek almak için WhatsApp üzerinden bizimle iletişime geçin.",
+      "bookWhatsApp": "WhatsApp ile Rezervasyon Yap",
+      "instantResponse": "Anında yanıt garantisi",
+      "flexibleOptions": "Esnek rezervasyon seçenekleri"
+    }
   }
 }

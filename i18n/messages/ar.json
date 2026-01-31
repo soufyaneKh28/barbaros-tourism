@@ -610,5 +610,21 @@
       "instantResponse": "رد فوري مضمون",
       "flexibleOptions": "خيارات حجز مرنة"
     }
+  },
+  "programDetails": {
+    "overview": "نظرة عامة",
+    "included": "مشمول",
+    "excluded": "غير مشمول",
+    "programItinerary": "برنامج الرحلة",
+    "gallery": "معرض الصور",
+    "accommodation": "الإقامة",
+    "duration": "المدة",
+    "bookProgram": "احجز هذا البرنامج",
+    "booking": {
+      "contactText": "اتصل بنا عبر واتساب لحجز هذا البرنامج والحصول على مساعدة شخصية لخطط سفرك.",
+      "bookWhatsApp": "احجز عبر واتساب",
+      "instantResponse": "استجابة فورية مضمونة",
+      "flexibleOptions": "خيارات حجز مرنة"
+    }
   }
 }
