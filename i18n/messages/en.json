@@ -600,5 +600,33 @@
       "instantResponse": "Instant response guaranteed",
       "flexibleOptions": "Flexible booking options"
     }
+  },
+  "portalAdmin": {
+    "specialPackages": {
+      "title": "Special Packages",
+      "addNew": "Add New Package",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleting": "Deleting...",
+      "noPackages": "No special packages found",
+      "createFirst": "Create Your First Package",
+      "addNewTitle": "Add New Special Package",
+      "addNewSubtitle": "Create a new special tourism package",
+      "editTitle": "Edit Special Package",
+      "editSubtitle": "Update package information",
+      "creating": "Creating...",
+      "saving": "Saving...",
+      "createPackage": "Create Package",
+      "saveChanges": "Save Changes",
+      "cancel": "Cancel",
+      "deleteConfirm": "Are you sure you want to delete this package?",
+      "table": {
+        "packageName": "Package Name",
+        "targetCategories": "Target Categories",
+        "duration": "Duration",
+        "slug": "Slug",
+        "actions": "Actions"
+      }
+    }
   }
 }

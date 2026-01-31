@@ -627,5 +627,33 @@
       "instantResponse": "Réponse instantanée garantie",
       "flexibleOptions": "Options de réservation flexibles"
     }
+  },
+  "portalAdmin": {
+    "specialPackages": {
+      "title": "Forfaits Spéciaux",
+      "addNew": "Ajouter un Nouveau Forfait",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "deleting": "Suppression...",
+      "noPackages": "Aucun forfait spécial trouvé",
+      "createFirst": "Créez Votre Premier Forfait",
+      "addNewTitle": "Ajouter un Nouveau Forfait Spécial",
+      "addNewSubtitle": "Créer un nouveau forfait touristique spécial",
+      "editTitle": "Modifier le Forfait Spécial",
+      "editSubtitle": "Mettre à jour les informations du forfait",
+      "creating": "Création...",
+      "saving": "Enregistrement...",
+      "createPackage": "Créer le Forfait",
+      "saveChanges": "Enregistrer les Modifications",
+      "cancel": "Annuler",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce forfait?",
+      "table": {
+        "packageName": "Nom du Forfait",
+        "targetCategories": "Catégories Cibles",
+        "duration": "Durée",
+        "slug": "Slug",
+        "actions": "Actions"
+      }
+    }
   }
 }

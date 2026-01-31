@@ -628,5 +628,33 @@
       "instantResponse": "استجابة فورية مضمونة",
       "flexibleOptions": "خيارات حجز مرنة"
     }
+  },
+  "portalAdmin": {
+    "specialPackages": {
+      "title": "الباقات الخاصة",
+      "addNew": "إضافة باقة جديدة",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "deleting": "جاري الحذف...",
+      "noPackages": "لا توجد باقات خاصة",
+      "createFirst": "إنشاء أول باقة",
+      "addNewTitle": "إضافة باقة خاصة جديدة",
+      "addNewSubtitle": "إنشاء باقة سياحية خاصة جديدة",
+      "editTitle": "تعديل الباقة الخاصة",
+      "editSubtitle": "تحديث معلومات الباقة",
+      "creating": "جاري الإنشاء...",
+      "saving": "جاري الحفظ...",
+      "createPackage": "إنشاء الباقة",
+      "saveChanges": "حفظ التغييرات",
+      "cancel": "إلغاء",
+      "deleteConfirm": "هل أنت متأكد من حذف هذه الباقة؟",
+      "table": {
+        "packageName": "اسم الباقة",
+        "targetCategories": "الفئات المستهدفة",
+        "duration": "المدة",
+        "slug": "المعرف",
+        "actions": "الإجراءات"
+      }
+    }
   }
 }

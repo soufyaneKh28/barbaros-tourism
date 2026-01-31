@@ -627,5 +627,33 @@
       "instantResponse": "Anında yanıt garantisi",
       "flexibleOptions": "Esnek rezervasyon seçenekleri"
     }
+  },
+  "portalAdmin": {
+    "specialPackages": {
+      "title": "Özel Paketler",
+      "addNew": "Yeni Paket Ekle",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "deleting": "Siliniyor...",
+      "noPackages": "Özel paket bulunamadı",
+      "createFirst": "İlk Paketinizi Oluşturun",
+      "addNewTitle": "Yeni Özel Paket Ekle",
+      "addNewSubtitle": "Yeni bir özel turizm paketi oluşturun",
+      "editTitle": "Özel Paketi Düzenle",
+      "editSubtitle": "Paket bilgilerini güncelle",
+      "creating": "Oluşturuluyor...",
+      "saving": "Kaydediliyor...",
+      "createPackage": "Paket Oluştur",
+      "saveChanges": "Değişiklikleri Kaydet",
+      "cancel": "İptal",
+      "deleteConfirm": "Bu paketi silmek istediğinizden emin misiniz?",
+      "table": {
+        "packageName": "Paket Adı",
+        "targetCategories": "Hedef Kategoriler",
+        "duration": "Süre",
+        "slug": "Slug",
+        "actions": "İşlemler"
+      }
+    }
   }
 }
