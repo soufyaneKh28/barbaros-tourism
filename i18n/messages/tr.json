@@ -484,8 +484,9 @@
     "heading": "Size olağanüstü bir deneyim sunmak için en iyilerle işbirliği yapıyoruz"
   },
   "servicesOfferings": {
-    "badge": "OUR EXPERTISE",
-    "heading": "What We Offer",
+    "badge": "UZMANLIĞIMIZ",
+    "heading": "Neler Sunuyoruz",
+    "ctaButton": "Daha Fazla Bilgi",
     "items": {
       "cultural": {
         "title": "Cultural Tours",

@@ -484,8 +484,9 @@
     "heading": "Nous collaborons avec les meilleurs pour vous offrir une expérience exceptionnelle"
   },
   "servicesOfferings": {
-    "badge": "OUR EXPERTISE",
-    "heading": "What We Offer",
+    "badge": "NOTRE EXPERTISE",
+    "heading": "Ce Que Nous Offrons",
+    "ctaButton": "En Savoir Plus",
     "items": {
       "cultural": {
         "title": "Cultural Tours",

@@ -486,6 +486,7 @@
   "servicesOfferings": {
     "badge": "OUR EXPERTISE",
     "heading": "What We Offer",
+    "ctaButton": "Learn More",
     "items": {
       "cultural": {
         "title": "Cultural Tours",

@@ -256,9 +256,10 @@
       "description": "من الكنوز الثقافية إلى الإجراءات الطبية العالمية، نقدم لك خدمات متكاملة لتجربة لا تُنسى في تركيا.",
       "cta": "ابدأ تجربتك"
     },
-    "offerings": {
-      "badge": "خبراتنا",
-      "heading": "ماذا نقدم",
+    "servicesOfferings": {
+      "badge": "خبرتنا",
+      "heading": "ما نقدمه",
+      "ctaButton": "اعرف المزيد",
       "titles": {
         "cultural": "الجولات الثقافية",
         "adventure": "جولات المغامرة",
@@ -484,8 +485,9 @@
     "heading": "نتعاون مع الأفضل لنقدم لكم تجربة استثنائية"
   },
   "servicesOfferings": {
-    "badge": "OUR EXPERTISE",
-    "heading": "What We Offer",
+    "badge": "خبرتنا",
+    "heading": "ما نقدمه",
+    "ctaButton": "اعرف المزيد",
     "items": {
       "cultural": {
         "title": "Cultural Tours",
