@@ -142,6 +142,9 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                     <Link href={`/${locale}/medical-tourism`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
                         {t.nav.medical}
                     </Link>
+                    <Link href={`/${locale}/immigration`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
+                        {(t.nav as any).immigration}
+                    </Link>
                     <Link href={`/${locale}/blogs`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
                         {t.nav.blogs}
                     </Link>
@@ -264,6 +267,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
 
                     <Link href={`/${locale}/our-services`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.services}</Link>
                     <Link href={`/${locale}/medical-tourism`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.medical}</Link>
+                    <Link href={`/${locale}/immigration`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{(t.nav as any).immigration}</Link>
                     <Link href={`/${locale}/blogs`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.blogs}</Link>
                     <Link href={`/${locale}/contact-us`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>{t.nav.contact}</Link>
 

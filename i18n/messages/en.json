@@ -5,6 +5,7 @@
     "services": "Services",
     "tourism": "Tourism",
     "medical": "Medical tourism",
+    "immigration": "Immigration",
     "blogs": "Blogs",
     "contact": "Contact us"
   },
@@ -601,7 +602,62 @@
       "flexibleOptions": "Flexible booking options"
     }
   },
+  "immigration": {
+    "hero": {
+      "badge": "Immigration Services",
+      "heading": "Visa & Immigration Solutions",
+      "description": "Professional visa application and immigration services to help you navigate the process smoothly and efficiently."
+    },
+    "visa": {
+      "badge": "Visa Services",
+      "heading": "Visa Application Services",
+      "description": "Expert assistance with all types of visa applications for Turkey and international destinations."
+    },
+    "immigrationServices": {
+      "badge": "Immigration Services",
+      "heading": "Immigration & Residency Services",
+      "description": "Comprehensive immigration solutions including residency permits, citizenship applications, and legal support."
+    },
+    "serviceDetail": {
+      "overview": "Overview",
+      "features": "What's Included",
+      "requirements": "Requirements",
+      "processingTime": "Processing Time",
+      "contactUs": "Contact Us for This Service"
+    },
+    "cta": {
+      "heading": "Ready to Start Your Immigration Journey?",
+      "description": "Contact us today for a free consultation and let our experts guide you through the process.",
+      "getConsultation": "Get Free Consultation",
+      "viewAllServices": "View All Services"
+    }
+  },
   "portalAdmin": {
+    "immigrationServices": {
+      "title": "Immigration Services",
+      "addNew": "Add New Service",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleting": "Deleting...",
+      "noServices": "No immigration services found",
+      "createFirst": "Create Your First Service",
+      "addNewTitle": "Add New Immigration Service",
+      "addNewSubtitle": "Create a new immigration service",
+      "editTitle": "Edit Immigration Service",
+      "editSubtitle": "Update service information",
+      "creating": "Creating...",
+      "saving": "Saving...",
+      "createService": "Create Service",
+      "saveChanges": "Save Changes",
+      "cancel": "Cancel",
+      "deleteConfirm": "Are you sure you want to delete this service?",
+      "table": {
+        "serviceName": "Service Name",
+        "category": "Category",
+        "status": "Status",
+        "actions": "Actions"
+      }
+    },
     "specialPackages": {
       "title": "Special Packages",
       "addNew": "Add New Package",

@@ -24,7 +24,10 @@ export default function MultiLangArrayInput({
     const { activeLocale } = useAdminLanguage()
     const [values, setValues] = useState<Record<string, string>>(
         Object.fromEntries(
-            Object.entries(defaultValue || {}).map(([locale, arr]) => [locale, arr.join('\n')])
+            Object.entries(defaultValue || {}).map(([locale, arr]) => [
+                locale,
+                Array.isArray(arr) ? arr.join('\n') : ''
+            ])
         )
     )
 
