@@ -126,7 +126,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                         Icon={Star}
                                     />
                                     <MegaMenuItem
-                                        href={`/${locale}/vip-programs`}
+                                        href={`/${locale}/vip-tourism-services`}
                                         title={(t as any).tourTypes?.vipPrograms?.badge || "VIP PROGRAMS"}
                                         description="Premium luxury experiences"
                                         iconColor="bg-amber-50 text-amber-600"
@@ -308,7 +308,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                             <Link href={`/${locale}/special-tourism-packages`} className="block text-sm text-gray-700 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
                                 {(t as any).tourTypes?.specialPackages?.badge || "Special Packages"}
                             </Link>
-                            <Link href={`/${locale}/vip-programs`} className="block text-sm text-gray-700 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
+                            <Link href={`/${locale}/vip-tourism-services`} className="block text-sm text-gray-700 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
                                 {(t as any).tourTypes?.vipPrograms?.badge || "VIP Programs"}
                             </Link>
                         </div>

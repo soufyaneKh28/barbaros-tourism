@@ -6,7 +6,8 @@ import React from 'react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import { signOutAction } from '@/app/actions/auth'
-import { Plane, MapPin, FileText, Database, LogOut, LayoutDashboard, Mail, Briefcase, FileCheck, BriefcaseMedical } from 'lucide-react'
+import { Plane, MapPin, FileText, Database, LogOut, LayoutDashboard, Mail, Briefcase, FileCheck, BriefcaseMedical, Crown } from 'lucide-react'
+import { AdminLanguageProvider } from '@/contexts/AdminLanguageContext'
 
 export default function AdminLayout({
     children,
@@ -23,6 +24,7 @@ export default function AdminLayout({
         { href: `/${locale}/portal-manage/trips`, label: 'Trips', icon: Plane },
         { href: `/${locale}/portal-manage/programs`, label: 'Programs', icon: FileText },
         { href: `/${locale}/portal-manage/special-packages`, label: 'Special Packages', icon: Briefcase },
+        { href: `/${locale}/portal-manage/vip-tourism-services`, label: 'VIP Services', icon: Crown },
         { href: `/${locale}/portal-manage/blogs`, label: 'Blogs', icon: FileText },
         { href: `/${locale}/portal-manage/services`, label: 'Services', icon: Briefcase },
         { href: `/${locale}/portal-manage/immigration-services`, label: 'Immigration Services', icon: FileCheck },
@@ -107,7 +109,9 @@ export default function AdminLayout({
 
             {/* Main Content Area */}
             <main className="flex-1 ml-64 p-0">
-                {children}
+                <AdminLanguageProvider>
+                    {children}
+                </AdminLanguageProvider>
             </main>
         </div>
     )

@@ -1,4 +1,4 @@
-import { supabase } from '../supabase'
+import { createClient } from '@/utils/supabase/server'
 import { getLocalized } from '../utils'
 import { MedicalTourismSection } from '../types'
 
@@ -14,6 +14,7 @@ function transformSection(section: any, locale: string = 'en'): MedicalTourismSe
 
 // Get all active medical tourism sections
 export async function getMedicalTourismSections(locale: string = 'en') {
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('medical_tourism_sections')
         .select('*')
@@ -27,6 +28,7 @@ export async function getMedicalTourismSections(locale: string = 'en') {
 
 // Get all medical tourism sections (for admin)
 export async function getAllMedicalTourismSections(locale: string = 'en') {
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('medical_tourism_sections')
         .select('*')
@@ -39,6 +41,7 @@ export async function getAllMedicalTourismSections(locale: string = 'en') {
 
 // Get single medical tourism section by ID (for admin editing)
 export async function getMedicalTourismSectionById(id: string, locale: string = 'en') {
+    const supabase = await createClient()
     const { data, error } = await supabase
         .from('medical_tourism_sections')
         .select('*')

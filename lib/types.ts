@@ -48,3 +48,16 @@ export interface MedicalTourismSection {
     created_at: string;
     updated_at: string;
 }
+
+export interface VipTourismService {
+    id: string;
+    title: Record<string, string>;
+    description: Record<string, string>;
+    cta_text: Record<string, string>;
+    cta_link: string;
+    image_url: string | null;
+    display_order: number;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+}
