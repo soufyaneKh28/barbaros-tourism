@@ -61,7 +61,7 @@ export default function MedicalHero({ locale }: { locale: Locale }) {
                     </motion.p>
 
                     {/* Stats */}
-                    <motion.div
+                    {/* <motion.div
                         className="grid grid-cols-3 gap-6 mb-8 w-full max-w-2xl"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ export default function MedicalHero({ locale }: { locale: Locale }) {
                             <div className="text-3xl font-bold text-secondary font-cabinet">500K+</div>
                             <div className="text-sm text-white/80 font-satoshi">{t.medical.whyChoose.stats.patients}</div>
                         </div>
-                    </motion.div>
+                    </motion.div> */}
 
                     {/* CTA Buttons */}
                     <motion.div

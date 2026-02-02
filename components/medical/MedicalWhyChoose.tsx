@@ -123,33 +123,6 @@ export default function MedicalWhyChoose({ locale }: MedicalWhyChooseProps) {
                     ))}
                 </div>
 
-                {/* Stats Bar */}
-                <motion.div
-                    className="mt-16 bg-gradient-to-r from-primary to-primary-700 rounded-2xl p-8 text-white"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div className="text-4xl font-bold font-cabinet text-secondary mb-2">50+</div>
-                            <div className="text-white/90 font-satoshi">{t.medical.whyChoose.stats.hospitals}</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold font-cabinet text-secondary mb-2">500K+</div>
-                            <div className="text-white/90 font-satoshi">{t.medical.whyChoose.stats.patients}</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold font-cabinet text-secondary mb-2">70%</div>
-                            <div className="text-white/90 font-satoshi">{t.medical.whyChoose.stats.savings}</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold font-cabinet text-secondary mb-2">98%</div>
-                            <div className="text-white/90 font-satoshi">{t.medical.whyChoose.stats.satisfaction}</div>
-                        </div>
-                    </div>
-                </motion.div>
             </div>
         </section>
     );

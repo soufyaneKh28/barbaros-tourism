@@ -37,3 +37,14 @@ export interface Trip {
     created_at: string;
     updated_at: string;
 }
+
+export interface MedicalTourismSection {
+    id: string;
+    title: Record<string, string>;
+    description: Record<string, string>;
+    image_url: string | null;
+    display_order: number;
+    is_active: boolean;
+    created_at: string;
+    updated_at: string;
+}

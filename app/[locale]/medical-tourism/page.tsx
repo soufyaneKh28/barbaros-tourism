@@ -3,10 +3,10 @@ import Footer from "@/components/common/Footer";
 import CtaButton from "@/components/ui/CtaButton";
 import MedicalHero from "@/components/medical/MedicalHero";
 import MedicalWhyChoose from "@/components/medical/MedicalWhyChoose";
-import MedicalServices from "@/components/medical/MedicalServices";
-import MedicalProcess from "@/components/medical/MedicalProcess";
+import MedicalDynamicSections from "@/components/medical/MedicalDynamicSections";
 import Testimonials from "@/components/common/Testimonials";
 import { type Locale, locales, defaultLocale, getMessages } from "@/i18n";
+import { getMedicalTourismSections } from "@/lib/services/medical-tourism";
 import Image from "next/image";
 
 export default async function MedicalTourism({
@@ -18,6 +18,9 @@ export default async function MedicalTourism({
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
     const t = getMessages(locale);
 
+    // Fetch dynamic sections
+    const sections = await getMedicalTourismSections(locale);
+
     return (
         <div className="bg-white">
             <Navbar />
@@ -25,20 +28,19 @@ export default async function MedicalTourism({
             {/* Hero Section */}
             <MedicalHero locale={locale} />
 
+
+            {/* Dynamic Medical Sections (Replacing old cards) */}
+            <MedicalDynamicSections locale={locale} sections={sections} />
+
             {/* Why Choose Turkey */}
             <MedicalWhyChoose locale={locale} />
 
-            {/* Medical Services */}
-            <MedicalServices locale={locale} />
-
-            {/* Process/Journey */}
-            <MedicalProcess locale={locale} />
 
             {/* Testimonials */}
-            <Testimonials />
+            {/* <Testimonials /> */}
 
             {/* Final CTA */}
-            <section className="py-24 px-6 relative overflow-hidden">
+            {/* <section className="py-24 px-6 relative overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
@@ -65,7 +67,7 @@ export default async function MedicalTourism({
                         </CtaButton>
                     </div>
 
-                    {/* Trust Badges */}
+                    {/* Trust Badges *
                     <div className="mt-12 pt-12 border-t border-white/20">
                         <p className="text-sm text-white/80 font-satoshi mb-4">Trusted by patients worldwide</p>
                         <div className="flex flex-wrap items-center justify-center gap-8">
@@ -88,7 +90,7 @@ export default async function MedicalTourism({
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <Footer />
         </div>

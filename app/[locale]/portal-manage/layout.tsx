@@ -6,7 +6,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import { signOutAction } from '@/app/actions/auth'
-import { Plane, MapPin, FileText, Database, LogOut, LayoutDashboard, Mail, Briefcase, FileCheck } from 'lucide-react'
+import { Plane, MapPin, FileText, Database, LogOut, LayoutDashboard, Mail, Briefcase, FileCheck, BriefcaseMedical } from 'lucide-react'
 
 export default function AdminLayout({
     children,
@@ -26,6 +26,7 @@ export default function AdminLayout({
         { href: `/${locale}/portal-manage/blogs`, label: 'Blogs', icon: FileText },
         { href: `/${locale}/portal-manage/services`, label: 'Services', icon: Briefcase },
         { href: `/${locale}/portal-manage/immigration-services`, label: 'Immigration Services', icon: FileCheck },
+        { href: `/${locale}/portal-manage/medical-tourism`, label: 'Medical Tourism', icon: BriefcaseMedical },
         { href: `/${locale}/portal-manage/messages`, label: 'Messages', icon: Mail },
         { href: `/${locale}/portal-manage/seed`, label: 'Seed', icon: Database, isSecondary: true }
     ]
