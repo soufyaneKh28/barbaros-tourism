@@ -60,7 +60,7 @@ export default function Hero() {
             <motion.div
               key={currentIndex}
               className="absolute inset-0 rounded-[20px] overflow-hidden "
-              initial={{ opacity: 0, scale: 1.1 }}
+              initial={currentIndex === 0 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.1 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
@@ -70,7 +70,7 @@ export default function Hero() {
                 alt="Hero background"
                 fill
                 className="object-cover object-center"
-                priority
+                priority={currentIndex === 0}
                 quality={100}
               />
             </motion.div>
