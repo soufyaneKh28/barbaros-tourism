@@ -135,7 +135,7 @@ export default function MedicalSectionForm({ section }: MedicalSectionFormProps)
                                                 id="isActive"
                                                 name="isActive"
                                                 type="checkbox"
-                                                defaultChecked={section?.is_active ?? true}
+                                                defaultChecked={section ? section.is_active : true}
                                                 className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                                             />
                                         </div>
