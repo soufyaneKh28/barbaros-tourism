@@ -109,7 +109,7 @@ export default function TourCarousel({ title, badge, description, items, dark = 
                     {/* Navigation Buttons */}
                     <button
                         onClick={() => carouselRef.current?.previous()}
-                        className={`absolute left-0 md:left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 shadow-lg ${dark ? 'bg-primary/80 border-white/20 text-white hover:bg-white hover:text-primary' : 'bg-white/80 border-primary/20 text-primary hover:bg-primary hover:text-white'} backdrop-blur-sm opacity-0 group-hover:opacity-100 disabled:opacity-0`}
+                        className={`absolute left-0 md:left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 shadow-lg ${dark ? 'bg-primary/80 border-white/20 text-white hover:bg-white hover:text-primary' : 'bg-white/80 border-primary/20 text-primary hover:bg-primary hover:text-white'} backdrop-blur-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 disabled:opacity-0`}
                         aria-label="Previous"
                     >
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,7 +118,7 @@ export default function TourCarousel({ title, badge, description, items, dark = 
                     </button>
                     <button
                         onClick={() => carouselRef.current?.next()}
-                        className={`absolute right-0 md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 shadow-lg ${dark ? 'bg-primary/80 border-white/20 text-white hover:bg-white hover:text-primary' : 'bg-white/80 border-primary/20 text-primary hover:bg-primary hover:text-white'} backdrop-blur-sm opacity-0 group-hover:opacity-100 disabled:opacity-0`}
+                        className={`absolute right-0 md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 shadow-lg ${dark ? 'bg-primary/80 border-white/20 text-white hover:bg-white hover:text-primary' : 'bg-white/80 border-primary/20 text-primary hover:bg-primary hover:text-white'} backdrop-blur-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 disabled:opacity-0`}
                         aria-label="Next"
                     >
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
