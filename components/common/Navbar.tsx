@@ -135,19 +135,20 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                             Icon={Sun}
                                         />
                                         <MegaMenuItem
-                                            href={`/${locale}/special-tourism-packages`}
-                                            title={(t as any).tourTypes?.specialPackages?.badge || "SPECIAL PACKAGES"}
-                                            description={(t as any).tourTypes?.specialPackages?.navDescription || "Tailored specific interest tours"}
-                                            iconColor="bg-purple-50 text-purple-600"
-                                            Icon={Star}
-                                        />
-                                        <MegaMenuItem
                                             href={`/${locale}/programs`}
                                             title={(t as any).tourTypes?.programs?.badge || "PROGRAMS"}
                                             description={(t as any).tourTypes?.programs?.navDescription || "Comprehensive tourism programs"}
                                             iconColor="bg-teal-50 text-teal-600"
                                             Icon={Calendar}
                                         />
+                                        <MegaMenuItem
+                                            href={`/${locale}/special-tourism-packages`}
+                                            title={(t as any).tourTypes?.specialPackages?.badge || "SPECIAL PACKAGES"}
+                                            description={(t as any).tourTypes?.specialPackages?.navDescription || "Tailored specific interest tours"}
+                                            iconColor="bg-purple-50 text-purple-600"
+                                            Icon={Star}
+                                        />
+
                                         <MegaMenuItem
                                             href={`/${locale}/vip-tourism-services`}
                                             title={(t as any).tourTypes?.vipPrograms?.badge || "VIP PROGRAMS"}
