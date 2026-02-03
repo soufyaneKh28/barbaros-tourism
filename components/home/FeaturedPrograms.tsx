@@ -56,6 +56,7 @@ export default function FeaturedPrograms({ programs = [], locale = 'en' }: Featu
                                             src={program.main_image}
                                             alt={program.title as string}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                     ) : (

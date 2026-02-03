@@ -151,6 +151,7 @@ export default function TourCarousel({ title, badge, description, items, dark = 
                                     src={item.image}
                                     alt={item.title}
                                     fill
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
 
