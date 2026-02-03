@@ -605,6 +605,14 @@
       "medicalInquiries": "Tıbbi Sorular"
     }
   },
+  "packageDetails": {
+    "targetCategories": "Hedef Kategoriler",
+    "dailyItinerary": "Günlük Gezi Programı",
+    "transportation": "Ulaşım",
+    "included": "Dahil Olanlar",
+    "excluded": "Dahil Olmayanlar",
+    "duration": "Süre"
+  },
   "tripDetails": {
     "tabs": {
       "program": "Program",

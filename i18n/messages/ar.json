@@ -605,6 +605,14 @@
       "medicalInquiries": "استفسارات طبية"
     }
   },
+  "packageDetails": {
+    "targetCategories": "الفئات المستهدفة",
+    "dailyItinerary": "جدول الرحلة اليومي",
+    "transportation": "المواصلات",
+    "included": "ما يشمله البرنامج",
+    "excluded": "ما لا يشمله البرنامج",
+    "duration": "المدة"
+  },
   "tripDetails": {
     "tabs": {
       "program": "البرنامج",

@@ -605,6 +605,14 @@
       "medicalInquiries": "Medical Inquiries"
     }
   },
+  "packageDetails": {
+    "targetCategories": "Target Categories",
+    "dailyItinerary": "Daily Itinerary",
+    "transportation": "Transportation",
+    "included": "What's Included",
+    "excluded": "What's Not Included",
+    "duration": "Duration"
+  },
   "tripDetails": {},
   "programDetails": {
     "overview": "Overview",
