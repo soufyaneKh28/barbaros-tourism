@@ -40,7 +40,8 @@ export async function getAllMedicalTourismSections(locale: string = 'en') {
 }
 
 // Get single medical tourism section by ID (for admin editing)
-export async function getMedicalTourismSectionById(id: string, locale: string = 'en') {
+// Get single medical tourism section by ID (for admin editing)
+export async function getMedicalTourismSectionById(id: string) {
     const supabase = await createClient()
     const { data, error } = await supabase
         .from('medical_tourism_sections')
@@ -49,5 +50,5 @@ export async function getMedicalTourismSectionById(id: string, locale: string = 
         .single()
 
     if (error) throw error
-    return transformSection(data, locale)
+    return data as MedicalTourismSection
 }

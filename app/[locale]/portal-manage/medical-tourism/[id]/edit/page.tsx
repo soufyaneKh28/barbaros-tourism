@@ -7,7 +7,7 @@ interface PageProps {
 
 export default async function EditMedicalTourismSectionPage({ params }: PageProps) {
     const { id } = await params
-    const section = await getMedicalTourismSectionById(id, 'en')
+    const section = await getMedicalTourismSectionById(id)
 
     if (!section) {
         return <div>Section not found</div>
