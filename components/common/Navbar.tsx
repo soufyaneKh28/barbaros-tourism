@@ -2,12 +2,12 @@
 'use client';
 
 import { useLanguage } from '@/hooks/use-language';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from 'react';
-import { Plane, Calendar, Ship, Building2, Sun, Star, Crown, Globe, Home, X } from 'lucide-react';
+import { Plane, Calendar, Ship, Building2, Sun, Star, Crown, Globe, Home, X, Stethoscope } from 'lucide-react';
 
 interface NavbarProps {
     transparent?: boolean;
@@ -15,10 +15,12 @@ interface NavbarProps {
 
 export default function Navbar({ transparent = false }: NavbarProps) {
     const { t, locale } = useLanguage();
+    const router = useRouter();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [groupMenuOpen, setGroupMenuOpen] = useState(false);
     const [tourismMenuOpen, setTourismMenuOpen] = useState(false);
     const [immigrationMenuOpen, setImmigrationMenuOpen] = useState(false);
+
     const [isScrolled, setIsScrolled] = useState(false);
 
     // Handle scroll effect
@@ -102,7 +104,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                             <button
                                 className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm flex items-center gap-1`}
                                 type="button"
-                                onClick={() => window.location.href = `/${locale}/tours`}
+                                onClick={() => router.push(`/${locale}/tours`)}
                             >
                                 {(t.nav as any).tourism}
                                 <svg
@@ -163,7 +165,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                             <button
                                 className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm flex items-center gap-1`}
                                 type="button"
-                                onClick={() => window.location.href = `/${locale}/immigration`}
+                                onClick={() => router.push(`/${locale}/immigration`)}
                             >
                                 {(t.nav as any).immigration}
                                 <svg
@@ -204,6 +206,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                             )}
                         </div>
 
+                        {/* Services Mega Menu */}
                         <Link href={`/${locale}/our-services`} className={`${isTransparent ? 'text-white hover:text-secondary' : 'text-gray-700 hover:text-primary'} transition-colors text-sm`}>
                             {t.nav.services}
                         </Link>
@@ -374,28 +377,40 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                         </div>
                                     </div>
 
-                                    <Link href={`/${locale}/medical-tourism`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>{t.nav.medical}</Link>
-
-                                    {/* Mobile Immigration Links */}
+                                    {/* Mobile Services Links */}
                                     <div className="py-2">
-                                        <p className="px-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{(t.nav as any).immigration}</p>
+                                        <p className="px-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{t.nav.services}</p>
                                         <div className="space-y-1">
-                                            <Link href={`/${locale}/immigration/citizenship`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-blue-50/50 rounded-xl transition-all" onClick={() => setMobileMenuOpen(false)}>
-                                                <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                                            <Link href={`/${locale}/medical-tourism`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-red-50/50 rounded-xl transition-all" onClick={() => setMobileMenuOpen(false)}>
+                                                <div className="w-8 h-8 rounded-full bg-red-50 text-red-600 flex items-center justify-center">
+                                                    <Stethoscope className="w-4 h-4" />
+                                                </div>
+                                                {t.nav.medical}
+                                            </Link>
+                                            <Link href={`/${locale}/vip-tourism-services`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-amber-50/50 rounded-xl transition-all" onClick={() => setMobileMenuOpen(false)}>
+                                                <div className="w-8 h-8 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center">
+                                                    <Crown className="w-4 h-4" />
+                                                </div>
+                                                {(t as any).tourTypes?.vipPrograms?.badge || "VIP Services"}
+                                            </Link>
+                                            <Link href={`/${locale}/special-tourism-packages`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-purple-50/50 rounded-xl transition-all" onClick={() => setMobileMenuOpen(false)}>
+                                                <div className="w-8 h-8 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center">
+                                                    <Star className="w-4 h-4" />
+                                                </div>
+                                                {(t as any).tourTypes?.specialPackages?.badge || "Special Packages"}
+                                            </Link>
+                                            <Link href={`/${locale}/immigration`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-emerald-50/50 rounded-xl transition-all" onClick={() => setMobileMenuOpen(false)}>
+                                                <div className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
                                                     <Globe className="w-4 h-4" />
                                                 </div>
-                                                {(t as any).immigration?.citizenship?.badge || "Citizenship Services"}
+                                                {(t.nav as any).immigration}
                                             </Link>
-                                            <Link href={`/${locale}/immigration/residence`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-emerald-50/50 rounded-xl transition-all" onClick={() => setMobileMenuOpen(false)}>
-                                                <div className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                                                    <Home className="w-4 h-4" />
-                                                </div>
-                                                {(t as any).immigration?.residence?.badge || "Residence Services"}
+                                            <Link href={`/${locale}/our-services`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-blue-50/50 rounded-xl transition-all font-semibold" onClick={() => setMobileMenuOpen(false)}>
+                                                View All Services
                                             </Link>
                                         </div>
                                     </div>
 
-                                    <Link href={`/${locale}/our-services`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>{t.nav.services}</Link>
                                     <Link href={`/${locale}/blogs`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>{t.nav.blogs}</Link>
                                     <Link href={`/${locale}/contact-us`} className="block py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>{t.nav.contact}</Link>
 

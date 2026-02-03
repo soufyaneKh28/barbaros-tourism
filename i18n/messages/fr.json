@@ -359,16 +359,22 @@
       "contact": "Contact Us"
     },
     "services": {
-      "title": "Our Services",
-      "hotel": "Hotel Booking",
-      "flight": "Flight Reservations",
-      "transfer": "VIP Transfers",
-      "tours": "Guided Tours",
-      "health": "Health Packages"
+      "title": "Programmes et Services",
+      "specialPackages": "Forfaits Spéciaux",
+      "vipServices": "Services VIP",
+      "immigration": "Services d'Immigration",
+      "citizenship": "Citoyenneté Turque",
+      "residence": "Permis de Résidence"
     },
     "contact": {
-      "title": "Contact Us",
-      "location": "Istanbul, Türkiye"
+      "title": "Contactez-nous",
+      "location": "Istanbul, Turquie"
+    },
+    "group": {
+      "title": "Groupe Barbaros",
+      "main": "Groupe Barbaros",
+      "events": "Barbaros Événements",
+      "trade": "Barbaros Commerce"
     },
     "bottom": {
       "rights": "All rights reserved.",

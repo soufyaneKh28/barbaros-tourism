@@ -5,6 +5,7 @@ import { getMessages } from "@/i18n";
 import { LanguageProvider } from "@/context/LanguageContext";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
 import SocialLinks from "@/components/common/SocialLinks";
+import NextTopLoader from 'nextjs-toploader';
 
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 
@@ -39,6 +40,18 @@ export default async function RootLayout({
     <html lang={locale} dir={dir} className={ibmPlexSansArabic.variable}>
       <body className="antialiased">
         <LanguageProvider locale={locale} messages={messages}>
+          <NextTopLoader
+            color="#FE5D26"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={4}
+            crawl={true}
+            showSpinner={false}
+            easing="ease"
+            speed={200}
+            shadow="0 0 10px #FE5D26,0 0 5px #FE5D26"
+            zIndex={1600}
+          />
           {children}
           <SocialLinks />
           <WhatsAppButton />

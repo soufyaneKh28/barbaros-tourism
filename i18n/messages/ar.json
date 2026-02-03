@@ -359,16 +359,22 @@
       "contact": "تواصل معنا"
     },
     "services": {
-      "title": "خدماتنا",
-      "hotel": "حجز الفنادق",
-      "flight": "حجوزات الطيران",
-      "transfer": "تنقلات VIP",
-      "tours": "جولات بإرشاد سياحي",
-      "health": "باقات صحية"
+      "title": "البرامج والخدمات",
+      "specialPackages": "باقات خاصة",
+      "vipServices": "خدمات VIP",
+      "immigration": "خدمات الهجرة",
+      "citizenship": "الجنسية التركية",
+      "residence": "تصريح الإقامة"
     },
     "contact": {
       "title": "اتصل بنا",
       "location": "إسطنبول، تركيا"
+    },
+    "group": {
+      "title": "مجموعة بربروس",
+      "main": "مجموعة بربروس",
+      "events": "بربروس للفعاليات",
+      "trade": "بربروس للتجارة"
     },
     "bottom": {
       "rights": "جميع الحقوق محفوظة.",

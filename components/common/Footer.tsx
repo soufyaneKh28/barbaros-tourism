@@ -10,7 +10,7 @@ export default function Footer() {
         <footer className="bg-secondary text-white pt-20 pb-10 rounded-t-[40px] mt-20">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 {/* Top Section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
                     {/* Column 1: Logo & About */}
                     <div className="flex flex-col gap-6">
                         <a href={`/${locale}`} className="inline-block">
@@ -27,10 +27,9 @@ export default function Footer() {
                         </p>
                         {/* Social Icons */}
                         <div className="flex items-center gap-4">
-                            <SocialIcon icon="facebook" />
-                            <SocialIcon icon="instagram" />
-                            <SocialIcon icon="tiktok" />
-                            <SocialIcon icon="linkedin" />
+                            <SocialIcon icon="facebook" href="https://www.facebook.com/barbaros.grp" />
+                            <SocialIcon icon="instagram" href="https://www.instagram.com/barbaros.grp/" />
+                            <SocialIcon icon="linkedin" href="#" />
                         </div>
                     </div>
 
@@ -39,26 +38,36 @@ export default function Footer() {
                         <h4 className="font-cabinet font-bold text-xl mb-6">{t.footer.links.title}</h4>
                         <ul className="flex flex-col gap-4 font-satoshi text-white/80">
                             <li><a href={`/${locale}/about-us`} className="hover:text-white transition-colors">{t.footer.links.about}</a></li>
-                            <li><a href={`/${locale}/services`} className="hover:text-white transition-colors">{t.footer.links.services}</a></li>
-                            <li><a href={`/${locale}/tours`} className="hover:text-white transition-colors">{t.footer.links.tours}</a></li>
+                            <li><a href={`/${locale}/our-services`} className="hover:text-white transition-colors">{t.footer.links.services}</a></li>
+                            <li><a href={`/${locale}/daily-tours`} className="hover:text-white transition-colors">{t.footer.links.tours}</a></li>
                             <li><a href={`/${locale}/medical-tourism`} className="hover:text-white transition-colors">{t.footer.links.medical}</a></li>
                             <li><a href={`/${locale}/contact-us`} className="hover:text-white transition-colors">{t.footer.links.contact}</a></li>
                         </ul>
                     </div>
 
-                    {/* Column 3: Services */}
+                    {/* Column 3: Programs & Services */}
                     <div>
-                        <h4 className="font-cabinet font-bold text-xl mb-6">{t.footer.services.title}</h4>
+                        <h4 className="font-cabinet font-bold text-xl mb-6">{(t.footer.services as any).title}</h4>
                         <ul className="flex flex-col gap-4 font-satoshi text-white/80">
-                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.hotel}</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.flight}</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.transfer}</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.tours}</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">{t.footer.services.health}</a></li>
+                            <li><a href={`/${locale}/special-tourism-packages`} className="hover:text-white transition-colors">{(t.footer.services as any).specialPackages}</a></li>
+                            <li><a href={`/${locale}/vip-tourism-services`} className="hover:text-white transition-colors">{(t.footer.services as any).vipServices}</a></li>
+                            <li><a href={`/${locale}/immigration`} className="hover:text-white transition-colors">{(t.footer.services as any).immigration}</a></li>
+                            <li><a href={`/${locale}/immigration/citizenship`} className="hover:text-white transition-colors">{(t.footer.services as any).citizenship}</a></li>
+                            <li><a href={`/${locale}/immigration/residence`} className="hover:text-white transition-colors">{(t.footer.services as any).residence}</a></li>
                         </ul>
                     </div>
 
-                    {/* Column 4: Contact */}
+                    {/* Column 4: Barbaros Group */}
+                    <div>
+                        <h4 className="font-cabinet font-bold text-xl mb-6">{(t.footer as any).group?.title || "Barbaros Group"}</h4>
+                        <ul className="flex flex-col gap-4 font-satoshi text-white/80">
+                            <li><a href="https://barbarosgroup.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{(t.footer as any).group?.main || "Barbaros Group"}</a></li>
+                            <li><a href="https://barbarosevents.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{(t.footer as any).group?.events || "Barbaros Events"}</a></li>
+                            <li><a href="https://barbarostrade.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{(t.footer as any).group?.trade || "Barbaros Trade"}</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Column 5: Contact */}
                     <div>
                         <h4 className="font-cabinet font-bold text-xl mb-6">{t.footer.contact.title}</h4>
                         <ul className="flex flex-col gap-5 font-satoshi text-white/80">
@@ -102,17 +111,17 @@ export default function Footer() {
     );
 }
 
-function SocialIcon({ icon }: { icon: string }) {
+function SocialIcon({ icon, href }: { icon: string, href: string }) {
     // Simple switch for icons or a mapping could be used. 
     // For brevity, using general SVGs or placeholder logic.
     let path = "";
     if (icon === 'facebook') path = "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z";
     if (icon === 'instagram') path = "M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M7.5 21h9a4.5 4.5 0 004.5-4.5v-9A4.5 4.5 0 0016.5 3h-9A4.5 4.5 0 003 7.5v9A4.5 4.5 0 007.5 21z";
-    if (icon === 'tiktok') path = "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.18 6.18 0 0 0-1-.05A6.27 6.27 0 0 0 5 20.1a6.27 6.27 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"; // Using same path as hero for simplicity
+    // if (icon === 'tiktok') path = "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.18 6.18 0 0 0-1-.05A6.27 6.27 0 0 0 5 20.1a6.27 6.27 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"; // Using same path as hero for simplicity
     if (icon === 'linkedin') path = "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 2a2 2 0 11-2 2 2 2 0 012-2z";
 
     return (
-        <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white group" aria-label={icon}>
+        <a href={href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white group" aria-label={icon}>
             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" stroke="none">
                 <path d={path} />
             </svg>
