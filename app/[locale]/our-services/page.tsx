@@ -38,7 +38,7 @@ export default async function OurServices({
             {/* <ServicesGrid /> */}
 
             {/* Services Component - Interactive Accordion */}
-            <Services />
+            {/* <Services /> */}
 
             {/* Final CTA Section */}
             <ServicesCTA locale={locale} />

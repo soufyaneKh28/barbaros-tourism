@@ -103,10 +103,10 @@ export default async function AboutUs({
             </section>
 
             {/* Team Section */}
-            <Team />
+            {/* <Team /> */}
 
             {/* Mission & Vision */}
-            <section className="py-20 px-6">
+            {/* <section className="py-20 px-6">
                 <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
                     <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
                         <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
@@ -133,10 +133,10 @@ export default async function AboutUs({
                         </p>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Why Choose Us */}
-            <section className="py-20 px-6 bg-gray-50">
+            <section className="py-20 px-6 ">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-4xl font-bold font-cabinet text-center mb-12 text-gray-900">{t.about.whyChoose.heading}</h2>
 

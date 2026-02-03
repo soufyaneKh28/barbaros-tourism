@@ -579,6 +579,12 @@
       "navDescription": "Tailored specific interest tours",
       "description": "Exclusive packages designed for specific interests - from cultural immersion to adventure experiences. Each package is carefully crafted to provide unique and memorable journeys."
     },
+    "programs": {
+      "badge": "Our Programs",
+      "navDescription": "Explore Our Tourism Programs",
+      "heading": "Explore Our Tourism Programs",
+      "description": "Discover our carefully curated programs designed to give you the best experience properly."
+    },
     "vipPrograms": {
       "badge": "VIP TOURISM SERVICES",
       "heading": "VIP Tourism Services",
@@ -700,5 +706,10 @@
         "actions": "Actions"
       }
     }
+  },
+  "blogsPage": {
+    "badge": "Our Blog",
+    "heading": "Travel Stories & Tips",
+    "description": "Explore inspiring travel stories, destination guides, and expert tips to help you plan your perfect journey."
   }
 }

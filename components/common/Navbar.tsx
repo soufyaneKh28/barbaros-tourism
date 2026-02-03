@@ -126,6 +126,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                     className="absolute left-1/2 top-1 z-50 mt-4 -translate-x-1/2"
                                 >
                                     <div className="flex flex-col gap-2 w-[320px] rounded-2xl bg-white shadow-2xl border border-gray-100 p-3">
+
                                         <MegaMenuItem
                                             href={`/${locale}/daily-tours`}
                                             title={(t as any).tourTypes?.dailyTours?.badge || "DAILY TOURS"}
@@ -139,6 +140,13 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                             description={(t as any).tourTypes?.specialPackages?.navDescription || "Tailored specific interest tours"}
                                             iconColor="bg-purple-50 text-purple-600"
                                             Icon={Star}
+                                        />
+                                        <MegaMenuItem
+                                            href={`/${locale}/programs`}
+                                            title={(t as any).tourTypes?.programs?.badge || "PROGRAMS"}
+                                            description={(t as any).tourTypes?.programs?.navDescription || "Comprehensive tourism programs"}
+                                            iconColor="bg-teal-50 text-teal-600"
+                                            Icon={Calendar}
                                         />
                                         <MegaMenuItem
                                             href={`/${locale}/vip-tourism-services`}
@@ -356,6 +364,12 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                     <div className="py-2">
                                         <p className="px-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{(t.nav as any).tourism}</p>
                                         <div className="space-y-1">
+                                            <Link href={`/${locale}/programs`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-teal-50/50 rounded-xl transition-all" onClick={() => setMobileMenuOpen(false)}>
+                                                <div className="w-8 h-8 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center">
+                                                    <Calendar className="w-4 h-4" />
+                                                </div>
+                                                {(t as any).tourTypes?.programs?.badge || "Programs"}
+                                            </Link>
                                             <Link href={`/${locale}/daily-tours`} className="flex items-center gap-3 py-3 px-4 text-sm text-gray-600 hover:text-primary hover:bg-blue-50/50 rounded-xl transition-all" onClick={() => setMobileMenuOpen(false)}>
                                                 <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
                                                     <Sun className="w-4 h-4" />

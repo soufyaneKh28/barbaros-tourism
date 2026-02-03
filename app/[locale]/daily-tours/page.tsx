@@ -27,7 +27,7 @@ export default async function DailyTours({
                 ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
                 : "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
             price: trip.price ? `$${trip.price}` : undefined,
-            tags: [trip.destination?.name, trip.category?.name].filter(Boolean),
+            tags: [trip.destination?.name].filter(Boolean),
             link: `/${locale}/tours/${trip.slug}`
         }));
     } catch (error) {

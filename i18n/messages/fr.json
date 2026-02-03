@@ -416,31 +416,31 @@
       "description": "To become the leading tourism and medical tourism provider in Türkiye, recognized globally for our commitment to quality and innovation."
     },
     "whyChoose": {
-      "heading": "Why Choose Barbaros Tourism?",
+      "heading": "Pourquoi Choisir Barbaros Tourism ?",
       "items": {
         "trusted": {
-          "title": "Trusted Experience",
-          "description": "Years of expertise in tourism and medical services with thousands of satisfied clients."
+          "title": "Expérience de Confiance",
+          "description": "Des années d'expertise dans le tourisme et les services médicaux avec des milliers de clients satisfaits."
         },
         "support": {
-          "title": "24/7 Support",
-          "description": "Round-the-clock assistance to ensure your journey is smooth and worry-free."
+          "title": "Support 24/7",
+          "description": "Une assistance 24h/24 pour garantir un voyage fluide et sans souci."
         },
         "value": {
-          "title": "Best Value",
-          "description": "Competitive pricing without compromising on quality or service excellence."
+          "title": "Meilleur Rapport Qualité-Prix",
+          "description": "Des prix compétitifs sans compromis sur la qualité ou l'excellence du service."
         },
         "personalized": {
-          "title": "Personalized Service",
-          "description": "Tailored experiences designed to match your preferences and requirements."
+          "title": "Service Personnalisé",
+          "description": "Des expériences sur mesure conçues pour répondre à vos préférences et exigences."
         },
         "team": {
-          "title": "Expert Team",
-          "description": "Professional guides and medical coordinators dedicated to your satisfaction."
+          "title": "Équipe Experte",
+          "description": "Des guides professionnels et des coordinateurs médicaux dédiés à votre satisfaction."
         },
         "network": {
-          "title": "Global Network",
-          "description": "Partnerships with top hotels, hospitals, and service providers across Türkiye."
+          "title": "Réseau Mondial",
+          "description": "Des partenariats avec les meilleurs hôtels, hôpitaux et prestataires de services à travers la Turquie."
         }
       }
     }
@@ -578,6 +578,12 @@
       "heading": "Solutions Touristiques sur Mesure",
       "navDescription": "Circuits sur mesure pour intérêts spécifiques",
       "description": "Des forfaits exclusifs conçus pour des intérêts spécifiques - de l'immersion culturelle aux expériences d'aventure. Chaque forfait est soigneusement élaboré pour offrir des voyages uniques et mémorables."
+    },
+    "programs": {
+      "badge": "Nos Programmes",
+      "navDescription": "Explorez Nos Programmes Touristiques",
+      "heading": "Explorez Nos Programmes Touristiques",
+      "description": "Découvrez nos programmes soigneusement conçus pour vous offrir la meilleure expérience."
     },
     "vipPrograms": {
       "badge": "SERVICES TOURISTIQUES VIP",
@@ -727,5 +733,10 @@
       "getConsultation": "Obtenez une consultation gratuite",
       "viewAllServices": "Voir tous les services"
     }
+  },
+  "blogsPage": {
+    "badge": "Notre Blog",
+    "heading": "Histoires de Voyage & Conseils",
+    "description": "Découvrez des histoires de voyage inspirantes, des guides de destinations et des conseils d'experts pour vous aider à planifier votre voyage parfait."
   }
 }

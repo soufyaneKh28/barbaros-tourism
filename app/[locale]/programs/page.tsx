@@ -2,6 +2,7 @@ import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { getPrograms } from "@/lib/services/programs";
 import { type Locale, locales, defaultLocale } from "@/i18n";
+import { getMessages } from "@/i18n";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -14,6 +15,7 @@ export default async function ProgramsPage({
 }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
 
     let programs: any[] = [];
     try {
@@ -31,16 +33,16 @@ export default async function ProgramsPage({
                 <div className="mb-12 text-center">
                     <div className="inline-block mb-4">
                         <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                            Our Programs
+                            {(t as any).tourTypes?.programs?.badge || "Our Programs"}
                         </span>
                     </div>
 
                     <h1 className="text-[32px] lg:text-[48px] leading-tight font-cabinet font-extrabold text-primary mb-4">
-                        Explore Our Tourism Programs
+                        {(t as any).tourTypes?.programs?.heading || "Explore Our Tourism Programs"}
                     </h1>
 
                     <p className="max-w-2xl mx-auto text-gray-600 font-satoshi text-lg leading-relaxed">
-                        Discover our carefully curated programs designed to give you the best experience properly.
+                        {(t as any).tourTypes?.programs?.description || "Discover our carefully curated programs designed to give you the best experience properly."}
                     </p>
                 </div>
 
@@ -80,7 +82,7 @@ export default async function ProgramsPage({
 
                                 <div className="flex items-center justify-between mt-4 text-sm font-medium text-gray-500 border-t pt-4">
                                     <span>{program.duration_text}</span>
-                                    <span className="text-secondary group-hover:underline">View Details &rarr;</span>
+                                    <span className="text-secondary group-hover:underline">{(t as any).common?.viewDetails || "View Details"} &rarr;</span>
                                 </div>
                             </div>
                         </Link>

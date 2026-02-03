@@ -416,31 +416,31 @@
       "description": "To become the leading tourism and medical tourism provider in Türkiye, recognized globally for our commitment to quality and innovation."
     },
     "whyChoose": {
-      "heading": "Why Choose Barbaros Tourism?",
+      "heading": "Neden Barbaros Turizm'i Seçmelisiniz?",
       "items": {
         "trusted": {
-          "title": "Trusted Experience",
-          "description": "Years of expertise in tourism and medical services with thousands of satisfied clients."
+          "title": "Güvenilir Deneyim",
+          "description": "Binlerce memnun müşteri ile turizm ve sağlık hizmetlerinde yılların tecrübesi."
         },
         "support": {
-          "title": "24/7 Support",
-          "description": "Round-the-clock assistance to ensure your journey is smooth and worry-free."
+          "title": "7/24 Destek",
+          "description": "Yolculuğunuzun sorunsuz ve endişesiz geçmesini sağlamak için günün her saati yardım."
         },
         "value": {
-          "title": "Best Value",
-          "description": "Competitive pricing without compromising on quality or service excellence."
+          "title": "En İyi Değer",
+          "description": "Kalite ve hizmet mükemmelliğinden ödün vermeden rekabetçi fiyatlandırma."
         },
         "personalized": {
-          "title": "Personalized Service",
-          "description": "Tailored experiences designed to match your preferences and requirements."
+          "title": "Kişiselleştirilmiş Hizmet",
+          "description": "Tercihlerinize ve gereksinimlerinize uyacak şekilde tasarlanmış özel deneyimler."
         },
         "team": {
-          "title": "Expert Team",
-          "description": "Professional guides and medical coordinators dedicated to your satisfaction."
+          "title": "Uzman Ekip",
+          "description": "Memnuniyetinize adanmış profesyonel rehberler ve tıbbi koordinatörler."
         },
         "network": {
-          "title": "Global Network",
-          "description": "Partnerships with top hotels, hospitals, and service providers across Türkiye."
+          "title": "Küresel Ağ",
+          "description": "Türkiye genelinde en iyi oteller, hastaneler ve hizmet sağlayıcılarla ortaklıklar."
         }
       }
     }
@@ -578,6 +578,12 @@
       "heading": "Kişiye Özel Turizm Çözümleri",
       "navDescription": "Özel ilgi alanlarına yönelik turlar",
       "description": "Kültürel daldırmadan macera deneyimlerine kadar belirli ilgi alanları için tasarlanmış özel paketler. Her paket, benzersiz ve unutulmaz yolculuklar sağlamak için özenle hazırlanmıştır."
+    },
+    "programs": {
+      "badge": "Programlarımız",
+      "navDescription": "Turizm Programlarımızı Keşfedin",
+      "heading": "Turizm Programlarımızı Keşfedin",
+      "description": "Size en iyi deneyimi yaşatmak için özenle hazırlanmış programlarımızı keşfedin."
     },
     "vipPrograms": {
       "badge": "VIP TURİZM HİZMETLERİ",
@@ -727,5 +733,10 @@
       "getConsultation": "Ücretsiz Danışmanlık Alın",
       "viewAllServices": "Tüm Hizmetleri Görüntüle"
     }
+  },
+  "blogsPage": {
+    "badge": "Blogumuz",
+    "heading": "Seyahat Hikayeleri & İpuçları",
+    "description": "Mükemmel yolculuğunuzu planlamanıza yardımcı olacak ilham verici seyahat hikayelerini, destinasyon rehberlerini ve uzman ipuçlarını keşfedin."
   }
 }

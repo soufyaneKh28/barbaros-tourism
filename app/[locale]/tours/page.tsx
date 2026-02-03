@@ -34,7 +34,7 @@ export default async function Tours({
                 ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
                 : "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
             price: trip.price ? `$${trip.price}` : undefined,
-            tags: [trip.category?.name].filter(Boolean),
+            tags: [],
             link: `/${locale}/tours/${trip.slug}`
         }));
     } catch (error) {
@@ -58,7 +58,7 @@ export default async function Tours({
                 ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
                 : "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
             price: trip.price ? `$${trip.price}` : undefined,
-            tags: [trip.category?.name].filter(Boolean),
+            tags: [],
             link: `/${locale}/tours/${trip.slug}`
         }));
     } catch (error) {
@@ -77,7 +77,7 @@ export default async function Tours({
                 ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
                 : "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd",
             price: trip.price ? `$${trip.price}` : undefined,
-            tags: [trip.category?.name].filter(Boolean),
+            tags: [],
             link: `/${locale}/tours/${trip.slug}`
         }));
     } catch (error) {

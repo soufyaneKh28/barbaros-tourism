@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/hooks/use-language";
 
 interface Trip {
     id: string | number;
@@ -20,6 +21,7 @@ interface TripGridProps {
 }
 
 export default function TripGrid({ trips, emptyMessage = "No trips available at the moment." }: TripGridProps) {
+    const { t } = useLanguage();
     if (trips.length === 0) {
         return (
             <div className="text-center py-20">
@@ -84,7 +86,7 @@ export default function TripGrid({ trips, emptyMessage = "No trips available at 
 
                                 {/* CTA */}
                                 <div className="mt-4 flex items-center text-secondary font-bold text-sm group-hover:gap-2 transition-all">
-                                    <span>View Details</span>
+                                    <span>{(t as any).common?.viewDetails || "View Details"}</span>
                                     <svg
                                         className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
                                         fill="none"

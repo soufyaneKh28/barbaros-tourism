@@ -416,31 +416,31 @@
       "description": "To become the leading tourism and medical tourism provider in Türkiye, recognized globally for our commitment to quality and innovation."
     },
     "whyChoose": {
-      "heading": "Why Choose Barbaros Tourism?",
+      "heading": "لماذا تختار Barbaros Tourism؟",
       "items": {
         "trusted": {
-          "title": "Trusted Experience",
-          "description": "Years of expertise in tourism and medical services with thousands of satisfied clients."
+          "title": "خبرة موثوقة",
+          "description": "سنوات من الخبرة في مجال السياحة والخدمات الطبية مع آلاف العملاء الراضين."
         },
         "support": {
-          "title": "24/7 Support",
-          "description": "Round-the-clock assistance to ensure your journey is smooth and worry-free."
+          "title": "دعم على مدار الساعة",
+          "description": "مساعدة على مدار الساعة لضمان أن تكون رحلتك سلسة وخالية من القلق."
         },
         "value": {
-          "title": "Best Value",
-          "description": "Competitive pricing without compromising on quality or service excellence."
+          "title": "أفضل قيمة",
+          "description": "أسعار تنافسية دون المساومة على الجودة أو تميز الخدمة."
         },
         "personalized": {
-          "title": "Personalized Service",
-          "description": "Tailored experiences designed to match your preferences and requirements."
+          "title": "خدمة مخصصة",
+          "description": "تجارب مصممة خصيصًا لتتناسب مع تفضيلاتك ومتطلباتك."
         },
         "team": {
-          "title": "Expert Team",
-          "description": "Professional guides and medical coordinators dedicated to your satisfaction."
+          "title": "فريق خبراء",
+          "description": "مرشدون محترفون ومنسقون طبيون مكرسون لرضاك."
         },
         "network": {
-          "title": "Global Network",
-          "description": "Partnerships with top hotels, hospitals, and service providers across Türkiye."
+          "title": "شبكة عالمية",
+          "description": "شراكات مع أفضل الفنادق والمستشفيات ومقدمي الخدمات في جميع أنحاء تركيا."
         }
       }
     }
@@ -578,6 +578,12 @@
       "heading": "حلول سياحية مخصصة",
       "navDescription": "جولات مصممة لاهتمامات خاصة",
       "description": "باقات حصرية مصممة لاهتمامات محددة - من الانغماس الثقافي إلى تجارب المغامرة. تم إعداد كل باقة بعناية لتوفير رحلات فريدة لا تُنسى."
+    },
+    "programs": {
+      "badge": "برامجنا",
+      "navDescription": "استكشف برامجنا السياحية",
+      "heading": "استكشف برامجنا السياحية",
+      "description": "اكتشف برامجنا المصممة بعناية لتمنحك أفضل تجربة على الإطلاق."
     },
     "vipPrograms": {
       "badge": "خدمات السياحة VIP",
@@ -727,5 +733,10 @@
         "actions": "الإجراءات"
       }
     }
+  },
+  "blogsPage": {
+    "badge": "مدونتنا",
+    "heading": "قصص السفر والنصائح",
+    "description": "اكتشف قصص السفر الملهمة وأدلة الوجهات ونصائح الخبراء لمساعدتك في التخطيط لرحلتك المثالية."
   }
 }

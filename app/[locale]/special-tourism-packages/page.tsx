@@ -92,7 +92,7 @@ export default async function SpecialTourismPackages({
 
                                     <div className="p-6">
                                         {pkg.target_categories && (
-                                            <p className="text-sm text-secondary font-medium mb-2">
+                                            <p className="text-sm text-primary font-medium mb-2">
                                                 {pkg.target_categories}
                                             </p>
                                         )}
@@ -106,7 +106,7 @@ export default async function SpecialTourismPackages({
                                                     {pkg.duration_nights}
                                                 </span>
                                             )}
-                                            <span className="text-secondary group-hover:underline">View Details &rarr;</span>
+                                            <span className="text-secondary group-hover:underline">{(t as any).common?.viewDetails || "View Details"} &rarr;</span>
                                         </div>
                                     </div>
                                 </Link>

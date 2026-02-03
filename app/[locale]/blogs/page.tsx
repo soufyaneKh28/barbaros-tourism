@@ -2,6 +2,7 @@ import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import BlogsGrid from "@/components/blogs/BlogsGrid";
 import { type Locale, locales, defaultLocale } from "@/i18n";
+import { getMessages } from "@/i18n";
 
 import { getBlogs } from "@/lib/services/blogs";
 
@@ -12,6 +13,7 @@ export default async function BlogsPage({
 }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
 
     let dynamicBlogs: any[] = [];
     try {
@@ -56,16 +58,16 @@ export default async function BlogsPage({
                 <div className="mb-12">
                     <div className="inline-block mb-4">
                         <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                            Our Blog
+                            {(t as any).blogsPage?.badge || "Our Blog"}
                         </span>
                     </div>
 
                     <h1 className="text-[32px] lg:text-[48px] leading-tight font-cabinet font-extrabold text-primary mb-4">
-                        Travel Stories & Tips
+                        {(t as any).blogsPage?.heading || "Travel Stories & Tips"}
                     </h1>
 
                     <p className="max-w-2xl text-gray-600 font-satoshi text-lg leading-relaxed">
-                        Explore inspiring travel stories, destination guides, and expert tips to help you plan your perfect journey.
+                        {(t as any).blogsPage?.description || "Explore inspiring travel stories, destination guides, and expert tips to help you plan your perfect journey."}
                     </p>
                 </div>
 
