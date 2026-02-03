@@ -58,7 +58,7 @@ export default function QuickActionForm({ initialData, isEditing = false }: Quic
                 // Determine if error is string or object
                 const errorMsg = typeof result.error === 'string'
                     ? result.error
-                    : result.error.message || 'Error saving quick action'
+                    : (result.error as any)?.message || 'Error saving quick action'
                 alert(errorMsg)
             } else {
                 router.push(`/${locale}/portal-manage/quick-actions`)
