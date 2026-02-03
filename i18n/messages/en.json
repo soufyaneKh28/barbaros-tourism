@@ -13,6 +13,11 @@
     "viewDetails": "View Details"
   },
   "home": {
+    "quickActions": {
+      "heading": "Quick Actions",
+      "subheading": "Explore Our Services",
+      "description": "Choose from our wide range of services designed to meet your needs."
+    },
     "services": {
       "badge": "Our services",
       "heading": "Integrated tourism solutions that meet all your needs in Türkiye",
@@ -559,16 +564,19 @@
     "dailyTours": {
       "badge": "DAILY TOURS",
       "heading": "Short & Sweet Adventures",
+      "navDescription": "Short adventures for limited time",
       "description": "Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots in carefully curated daily tours."
     },
     "specialPackages": {
       "badge": "SPECIAL TOURISM PACKAGES",
       "heading": "Tailored Tourism Solutions",
+      "navDescription": "Tailored specific interest tours",
       "description": "Exclusive packages designed for specific interests - from cultural immersion to adventure experiences. Each package is carefully crafted to provide unique and memorable journeys."
     },
     "vipPrograms": {
-      "badge": "VIP PROGRAMS",
-      "heading": "Premium Luxury Experiences",
+      "badge": "VIP TOURISM SERVICES",
+      "heading": "VIP Tourism Services",
+      "navDescription": "Premium luxury experiences",
       "description": "Indulge in the finest that Türkiye has to offer with our exclusive VIP programs. Enjoy personalized service, luxury accommodations, and unforgettable experiences."
     },
     "tourismPrograms": {
@@ -611,12 +619,14 @@
     "citizenship": {
       "badge": "Citizenship Services",
       "heading": "Citizenship Application Services",
-      "description": "Expert assistance with all types of citizenship applications for Turkey and international destinations."
+      "navDescription": "Citizenship application services",
+      "description": "Expert assistance with all types of citizenship applications for Türkiye and international destinations."
     },
     "residence": {
       "badge": "Residence Services",
-      "heading": "Residence Permit & Settlement Services",
-      "description": "Comprehensive residence solutions including residence permits, settlement applications, and legal support."
+      "heading": "Residence Permit & Settlement",
+      "navDescription": "Residence permit solutions",
+      "description": "Comprehensive residency solutions including residence permits, settlement applications, and legal support."
     },
     "serviceDetail": {
       "overview": "Overview",

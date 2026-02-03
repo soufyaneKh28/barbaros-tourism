@@ -1,6 +1,6 @@
 import Hero from "@/components/home/Hero";
 import Partners from "@/components/common/Partners";
-import Services from "@/components/home/Services";
+import QuickActions from "@/components/home/QuickActions";
 import FeaturedPrograms from "@/components/home/FeaturedPrograms";
 import HotDeals from "@/components/home/HotDeals";
 import Testimonials from "@/components/common/Testimonials";
@@ -11,6 +11,7 @@ import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getCombinedHotDeals } from "@/lib/services/deals";
 import { getBlogs } from "@/lib/services/blogs";
 import { getPrograms } from "@/lib/services/programs";
+import { getQuickActions } from "@/lib/services/home-quick-actions";
 
 export default async function Home({
   params,
@@ -44,10 +45,18 @@ export default async function Home({
     console.error('Failed to fetch featured programs', e)
   }
 
+  // Fetch quick actions
+  let quickActions: any[] = []
+  try {
+    quickActions = await getQuickActions(locale)
+  } catch (e) {
+    console.error('Failed to fetch quick actions', e)
+  }
+
   return (
     <>
       <Hero />
-      <Services />
+      <QuickActions actions={quickActions} />
       <HotDeals deals={hotDeals} locale={locale} />
       <FeaturedPrograms programs={featuredPrograms} locale={locale} />
       <Testimonials />

@@ -13,6 +13,11 @@
     "viewDetails": "Detayları Gör"
   },
   "home": {
+    "quickActions": {
+      "heading": "Hızlı İşlemler",
+      "subheading": "Hizmetlerimizi Keşfedin",
+      "description": "İhtiyaçlarınızı karşılamak için tasarlanmış geniş hizmet yelpazemizden seçim yapın."
+    },
     "services": {
       "badge": "Hizmetlerimiz",
       "heading": "Türkiye'deki tüm ihtiyaçlarınızı karşılayan entegre turizm çözümleri",
@@ -559,17 +564,20 @@
     "dailyTours": {
       "badge": "GÜNLÜK TURLAR",
       "heading": "Kısa ve Tatlı Maceralar",
-      "description": "Sınırlı zamanı olanlar veya günlerine heyecan katmak isteyenler için mükemmel. Özenle hazırlanmış günlük turlarda Türkiye'nin en iyi noktalarının özlerini yaşayın."
+      "navDescription": "Kısa süreli maceralar",
+      "description": "Kısıtlı zamanı olanlar veya günlerine biraz heyecan katmak isteyenler için mükemmel. Özenle düzenlenmiş günlük turlarla Türkiye'nin en iyi yerlerinin temellerini deneyimleyin."
     },
     "specialPackages": {
-      "badge": "ÖZEL TURİZM PAKETLERİ",
-      "heading": "Özel Turizm Çözümleri",
-      "description": "Kültürel keşiflerden macera deneyimlerine kadar özel ilgi alanları için tasarlanmış özel paketler. Her paket, benzersiz ve unutulmaz yolculuklar sunmak için özenle hazırlanmıştır."
+      "badge": "ÖZEL PAKETLER",
+      "heading": "Kişiye Özel Turizm Çözümleri",
+      "navDescription": "Özel ilgi alanlarına yönelik turlar",
+      "description": "Kültürel daldırmadan macera deneyimlerine kadar belirli ilgi alanları için tasarlanmış özel paketler. Her paket, benzersiz ve unutulmaz yolculuklar sağlamak için özenle hazırlanmıştır."
     },
     "vipPrograms": {
-      "badge": "VIP PROGRAMLAR",
-      "heading": "Premium Lüks Deneyimler",
-      "description": "Türkiye'nin sunduğu en iyilerin tadını özel VIP programlarımızla çıkarın. Kişiselleştirilmiş hizmet, lüks konaklama ve unutulmaz deneyimlerin keyfini çıkarın."
+      "badge": "VIP TURİZM HİZMETLERİ",
+      "heading": "VIP Turizm Hizmetleri",
+      "navDescription": "Premium lüks deneyimler",
+      "description": "Özel VIP programlarımızla Türkiye'nin sunduğu en iyi şeylerin tadını çıkarın. Kişiselleştirilmiş hizmet, lüks konaklama ve unutulmaz deneyimlerin keyfini çıkarın."
     },
     "tourismPrograms": {
       "badge": "TURİZM PROGRAMLARI",
@@ -691,11 +699,13 @@
     "citizenship": {
       "badge": "Vatandaşlık Hizmetleri",
       "heading": "Vatandaşlık Başvuru Hizmetleri",
+      "navDescription": "Vatandaşlık başvuru hizmetleri",
       "description": "Türkiye ve uluslararası destinasyonlar için her türlü vatandaşlık başvurusunda uzman yardım."
     },
     "residence": {
       "badge": "İkamet Hizmetleri",
       "heading": "İkamet İzni ve Yerleşim Hizmetleri",
+      "navDescription": "İkamet izni çözümleri",
       "description": "İkamet izinleri, yerleşim başvuruları ve yasal destek dahil kapsamlı ikamet çözümleri."
     },
     "serviceDetail": {

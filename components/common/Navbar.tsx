@@ -114,21 +114,21 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                     <MegaMenuItem
                                         href={`/${locale}/daily-tours`}
                                         title={(t as any).tourTypes?.dailyTours?.badge || "DAILY TOURS"}
-                                        description="Short adventures for limited time"
+                                        description={(t as any).tourTypes?.dailyTours?.navDescription || "Short adventures for limited time"}
                                         iconColor="bg-blue-50 text-blue-600"
                                         Icon={Sun}
                                     />
                                     <MegaMenuItem
                                         href={`/${locale}/special-tourism-packages`}
                                         title={(t as any).tourTypes?.specialPackages?.badge || "SPECIAL PACKAGES"}
-                                        description="Tailored specific interest tours"
+                                        description={(t as any).tourTypes?.specialPackages?.navDescription || "Tailored specific interest tours"}
                                         iconColor="bg-purple-50 text-purple-600"
                                         Icon={Star}
                                     />
                                     <MegaMenuItem
                                         href={`/${locale}/vip-tourism-services`}
                                         title={(t as any).tourTypes?.vipPrograms?.badge || "VIP PROGRAMS"}
-                                        description="Premium luxury experiences"
+                                        description={(t as any).tourTypes?.vipPrograms?.navDescription || "Premium luxury experiences"}
                                         iconColor="bg-amber-50 text-amber-600"
                                         Icon={Crown}
                                     />
@@ -175,14 +175,14 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                     <MegaMenuItem
                                         href={`/${locale}/immigration/citizenship`}
                                         title={(t as any).immigration?.citizenship?.badge || "Citizenship Services"}
-                                        description="Citizenship application services"
+                                        description={(t as any).immigration?.citizenship?.navDescription || "Citizenship application services"}
                                         iconColor="bg-blue-50 text-blue-600"
                                         Icon={Globe}
                                     />
                                     <MegaMenuItem
                                         href={`/${locale}/immigration/residence`}
                                         title={(t as any).immigration?.residence?.badge || "Residence Services"}
-                                        description="Residence permit solutions"
+                                        description={(t as any).immigration?.residence?.navDescription || "Residence permit solutions"}
                                         iconColor="bg-emerald-50 text-emerald-600"
                                         Icon={Home}
                                     />

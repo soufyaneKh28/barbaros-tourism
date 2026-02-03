@@ -13,6 +13,11 @@
     "viewDetails": "Voir les détails"
   },
   "home": {
+    "quickActions": {
+      "heading": "Actions Rapides",
+      "subheading": "Explorez Nos Services",
+      "description": "Choisissez parmi notre large gamme de services conçus pour répondre à vos besoins."
+    },
     "services": {
       "badge": "Nos services",
       "heading": "Des solutions touristiques intégrées qui répondent à tous vos besoins en Turquie",
@@ -557,19 +562,22 @@
   },
   "tourTypes": {
     "dailyTours": {
-      "badge": "EXCURSIONS QUOTIDIENNES",
-      "heading": "Aventures Courtes et Agréables",
-      "description": "Parfait pour ceux qui ont peu de temps ou qui cherchent à ajouter de l'excitation à leur journée. Découvrez l'essentiel des meilleurs sites de Turquie lors d'excursions quotidiennes soigneusement organisées."
+      "badge": "TOURS QUOTIDIENS",
+      "heading": "Aventures Courtes et Douces",
+      "navDescription": "Courtes aventures pour un temps limité",
+      "description": "Parfait pour ceux qui ont un temps limité ou qui cherchent à ajouter un peu d'excitation à leur journée. Découvrez l'essentiel des meilleurs endroits de la Turquie lors de circuits quotidiens soigneusement organisés."
     },
     "specialPackages": {
-      "badge": "FORFAITS TOURISTIQUES SPÉCIAUX",
-      "heading": "Solutions Touristiques Sur Mesure",
-      "description": "Des forfaits exclusifs conçus pour des intérêts spécifiques - de l'immersion culturelle aux expériences d'aventure. Chaque forfait est soigneusement conçu pour offrir des voyages uniques et mémorables."
+      "badge": "FORFAITS SPÉCIAUX",
+      "heading": "Solutions Touristiques sur Mesure",
+      "navDescription": "Circuits sur mesure pour intérêts spécifiques",
+      "description": "Des forfaits exclusifs conçus pour des intérêts spécifiques - de l'immersion culturelle aux expériences d'aventure. Chaque forfait est soigneusement élaboré pour offrir des voyages uniques et mémorables."
     },
     "vipPrograms": {
-      "badge": "PROGRAMMES VIP",
-      "heading": "Expériences de Luxe Premium",
-      "description": "Profitez du meilleur de la Turquie avec nos programmes VIP exclusifs. Bénéficiez d'un service personnalisé, d'hébergements de luxe et d'expériences inoubliables."
+      "badge": "SERVICES TOURISTIQUES VIP",
+      "heading": "Services Touristiques VIP",
+      "navDescription": "Expériences de luxe premium",
+      "description": "Profitez du meilleur de la Turquie avec nos programmes VIP exclusifs. Profitez d'un service personnalisé, d'un hébergement de luxe et d'expériences inoubliables."
     },
     "tourismPrograms": {
       "badge": "PROGRAMMES TOURISTIQUES",
@@ -691,11 +699,13 @@
     "citizenship": {
       "badge": "Services de Citoyenneté",
       "heading": "Services de Demande de Citoyenneté",
+      "navDescription": "Services de demande de citoyenneté",
       "description": "Assistance experte pour tous les types de demandes de citoyenneté pour la Turquie et les destinations internationales."
     },
     "residence": {
       "badge": "Services de Résidence",
       "heading": "Permis de Résidence et Services d'Établissement",
+      "navDescription": "Solutions de permis de résidence",
       "description": "Solutions de résidence complètes incluant les permis de résidence, les demandes d'établissement et le soutien juridique."
     },
     "serviceDetail": {
