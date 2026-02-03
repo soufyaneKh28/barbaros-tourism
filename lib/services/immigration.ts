@@ -92,8 +92,9 @@ export async function getImmigrationServiceBySlug(slug: string, locale: string =
 }
 
 // Get single immigration service by ID (for admin)
-export async function getImmigrationServiceById(id: string, locale: string = 'en') {
-    const { data, error } = await supabase
+export async function getImmigrationServiceById(id: string, locale: string = 'en', client?: any) {
+    const sb = client || supabase
+    const { data, error } = await sb
         .from('immigration_services')
         .select(`
             *,
@@ -107,8 +108,9 @@ export async function getImmigrationServiceById(id: string, locale: string = 'en
 }
 
 // Get all immigration services (for admin, including inactive)
-export async function getAllImmigrationServices(locale: string = 'en') {
-    const { data, error } = await supabase
+export async function getAllImmigrationServices(locale: string = 'en', client?: any) {
+    const sb = client || supabase
+    const { data, error } = await sb
         .from('immigration_services')
         .select(`
             *,
@@ -117,5 +119,5 @@ export async function getAllImmigrationServices(locale: string = 'en') {
         .order('created_at', { ascending: false })
 
     if (error) throw error
-    return data.map(service => transformService(service, locale))
+    return data.map((service: any) => transformService(service, locale))
 }

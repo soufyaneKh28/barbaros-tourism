@@ -2,15 +2,18 @@ import { getImmigrationServiceById, getImmigrationCategories } from '@/lib/servi
 import ImmigrationServiceForm from '@/components/portal/ImmigrationServiceForm'
 import { notFound } from 'next/navigation'
 
+import { createClient } from '@/utils/supabase/server'
+
 export default async function EditImmigrationServicePage({
     params,
 }: {
     params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
+    const supabase = await createClient()
 
     const [service, categories] = await Promise.all([
-        getImmigrationServiceById(id, 'en'),
+        getImmigrationServiceById(id, 'en', supabase),
         getImmigrationCategories('en')
     ])
 

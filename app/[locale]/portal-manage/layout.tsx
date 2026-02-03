@@ -109,7 +109,7 @@ export default function AdminLayout({
             </aside>
 
             {/* Main Content Area */}
-            <main className="flex-1 ml-64 p-0">
+            <main className="flex-1 ml-64 p-6 lg:p-8">
                 <AdminLanguageProvider>
                     {children}
                 </AdminLanguageProvider>
