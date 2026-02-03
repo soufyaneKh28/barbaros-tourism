@@ -45,14 +45,14 @@ export default function QuickActions({ actions }: QuickActionsProps) {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
                     {actions.map((action) => (
-                        <div key={action.id} className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 group cursor-pointer h-full flex flex-col items-start relative overflow-hidden">
+                        <div key={action.id} className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 group cursor-pointer h-full flex flex-col items-center text-center md:items-start md:text-left relative overflow-hidden">
                             {/* Hover Effect Background */}
                             {/* <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/5 transition-colors duration-300" /> */}
 
                             {/* Icon */}
-                            <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white transition-all duration-300 text-primary">
+                            <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-secondary group-hover:text-white transition-all duration-300 text-primary">
                                 {action.icon_url ? (
                                     <img
                                         src={action.icon_url}
