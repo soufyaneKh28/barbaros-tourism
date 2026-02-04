@@ -71,3 +71,14 @@ export async function deleteQuickAction(id: string) {
         return { error }
     }
 }
+
+export async function updateQuickActionOrderAction(id: string, order: number) {
+    try {
+        await updateQuickAction(id, { sort_order: order });
+        // Revalidation is handled inside updateQuickAction
+        return { success: true };
+    } catch (error) {
+        console.error('Error updating quick action order:', error);
+        return { success: false, error: (error as Error).message };
+    }
+}
