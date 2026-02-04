@@ -162,3 +162,21 @@ export async function toggleImmigrationServiceStatusAction(id: string) {
     revalidatePath('/[locale]/portal-manage/immigration-services')
     return { success: true }
 }
+
+export async function updateImmigrationServiceOrderAction(id: string, order: number) {
+    const supabase = await createClient()
+
+    const { error } = await supabase
+        .from('immigration_services')
+        .update({ display_order: order, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+    if (error) {
+        console.error('Error updating immigration service order:', error)
+        return { error: error.message }
+    }
+
+    revalidatePath('/[locale]/immigration', 'page')
+    revalidatePath('/[locale]/portal-manage/immigration-services')
+    return { success: true }
+}

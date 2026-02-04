@@ -133,3 +133,21 @@ export async function deleteProgramAction(id: string) {
     revalidatePath('/[locale]/portal-manage/programs')
     return { success: true }
 }
+
+export async function updateProgramOrderAction(id: string, order: number) {
+    const supabase = await createClient()
+
+    const { error } = await supabase
+        .from('programs')
+        .update({ display_order: order, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+    if (error) {
+        console.error('Error updating program order:', error)
+        return { error: error.message }
+    }
+
+    revalidatePath('/[locale]/programs', 'page')
+    revalidatePath('/[locale]/portal-manage/programs')
+    return { success: true }
+}

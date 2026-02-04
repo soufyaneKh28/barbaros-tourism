@@ -27,6 +27,7 @@ export interface SpecialPackageRaw {
     includes: Record<Locale, string>;
     excludes: Record<Locale, string>;
     main_image: string;
+    display_order: number;
     created_at: string;
     updated_at: string;
 }
@@ -40,7 +41,7 @@ export async function getSpecialPackages(locale: Locale = 'en'): Promise<Special
     const { data, error } = await supabase
         .from('special_packages')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('display_order', { ascending: true });
 
     if (error) {
         console.error('Error fetching special packages:', error);
@@ -63,6 +64,26 @@ export async function getSpecialPackages(locale: Locale = 'en'): Promise<Special
         updated_at: pkg.updated_at,
     }));
 }
+
+/**
+ * Get all special packages (raw data for admin)
+ */
+export async function getAllSpecialPackages(): Promise<SpecialPackageRaw[]> {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+        .from('special_packages')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+    if (error) {
+        console.error('Error fetching all special packages:', error);
+        throw error;
+    }
+
+    return data as SpecialPackageRaw[];
+}
+
 
 /**
  * Get a single special package by slug with localized content
@@ -125,7 +146,7 @@ export async function getSpecialPackageById(id: string): Promise<SpecialPackageR
 /**
  * Create a new special package
  */
-export async function createSpecialPackage(packageData: Omit<SpecialPackageRaw, 'id' | 'created_at' | 'updated_at'>) {
+export async function createSpecialPackage(packageData: Omit<SpecialPackageRaw, 'id' | 'created_at' | 'updated_at' | 'display_order'> & { display_order?: number }) {
     const supabase = await createClient();
 
     const { data, error } = await supabase

@@ -186,3 +186,17 @@ export async function deleteSpecialPackageAction(id: string) {
         return { success: false, error: (error as Error).message };
     }
 }
+
+/**
+ * Update special package display order
+ */
+export async function updateSpecialPackageOrderAction(id: string, order: number) {
+    try {
+        await updateSpecialPackage(id, { display_order: order });
+        revalidatePath('/en/portal-manage/special-packages');
+        return { success: true };
+    } catch (error) {
+        console.error('Error updating special package order:', error);
+        return { success: false, error: (error as Error).message };
+    }
+}

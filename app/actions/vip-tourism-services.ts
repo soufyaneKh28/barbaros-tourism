@@ -129,3 +129,21 @@ export async function toggleVipServiceStatusAction(id: string) {
     revalidatePath('/[locale]/portal-manage/vip-tourism-services')
     return { success: true }
 }
+
+export async function updateVipServiceOrderAction(id: string, order: number) {
+    const supabase = await createClient()
+
+    const { error } = await supabase
+        .from('vip_tourism_services')
+        .update({ display_order: order, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+    if (error) {
+        console.error('Error updating vip service order:', error)
+        return { error: error.message }
+    }
+
+    revalidatePath('/[locale]/vip-tourism-services', 'page')
+    revalidatePath('/[locale]/portal-manage/vip-tourism-services')
+    return { success: true }
+}

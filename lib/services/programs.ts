@@ -21,7 +21,7 @@ export async function getPrograms(locale: string = 'en', limit: number | null = 
         .from('programs')
         .select('*')
         .eq('is_active', true)
-        .order('created_at', { ascending: false })
+        .order('display_order', { ascending: true })
 
     if (limit) {
         query = query.limit(limit)
@@ -31,6 +31,16 @@ export async function getPrograms(locale: string = 'en', limit: number | null = 
 
     if (error) throw error
     return data.map(p => transformProgram(p, locale))
+}
+
+export async function getAllPrograms() {
+    const { data, error } = await supabase
+        .from('programs')
+        .select('*')
+        .order('display_order', { ascending: true })
+
+    if (error) throw error
+    return data
 }
 
 export async function getProgramBySlug(slug: string, locale: string = 'en') {

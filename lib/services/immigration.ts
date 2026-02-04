@@ -116,7 +116,7 @@ export async function getAllImmigrationServices(locale: string = 'en', client?: 
             *,
             category:immigration_service_categories(*)
         `)
-        .order('created_at', { ascending: false })
+        .order('display_order', { ascending: true })
 
     if (error) throw error
     return data.map((service: any) => transformService(service, locale))
