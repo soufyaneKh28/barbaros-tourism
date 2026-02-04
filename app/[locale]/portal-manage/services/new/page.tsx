@@ -41,11 +41,20 @@ export default function NewServicePage() {
 
                     <MultiLangTextarea name="service_details" label="Service Details (تفاصيل الخدمة)" required rows={4} />
 
-                    <MultiLangInput name="target_client_category" label="Target Client Category (فئة العميل المستهدف)" />
+                    <MultiLangInput name="cta_text" label="CTA Button Text (نص الزر)" />
 
-                    <MultiLangTextarea name="procedural_requirements" label="Procedural Requirements (متطلبات إجرائية)" rows={3} />
-
-                    <MultiLangTextarea name="additional_notes" label="Additional Notes (ملاحظات إضافية)" rows={3} />
+                    <div>
+                        <label htmlFor="cta_link" className="block text-sm font-medium text-gray-700 mb-1">
+                            CTA Link (Ex: /contact-us or https://...)
+                        </label>
+                        <input
+                            type="text"
+                            id="cta_link"
+                            name="cta_link"
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent dir-ltr"
+                            placeholder="/en/contact-us"
+                        />
+                    </div>
 
                     <div>
                         <ImageUpload
@@ -86,7 +95,7 @@ export default function NewServicePage() {
                                 </label>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label htmlFor="hotDealStartDate" className="block text-sm font-medium text-gray-700 mb-1">
                                         Hot Deal Start Date
@@ -110,7 +119,7 @@ export default function NewServicePage() {
                                         className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent"
                                     />
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div>
                                 <label htmlFor="hotDealPriority" className="block text-sm font-medium text-gray-700 mb-1">

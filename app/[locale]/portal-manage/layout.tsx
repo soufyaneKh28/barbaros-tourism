@@ -25,13 +25,14 @@ export default function AdminLayout({
         { href: `/${locale}/portal-manage/programs`, label: 'Programs', icon: FileText },
         { href: `/${locale}/portal-manage/special-packages`, label: 'Special Packages', icon: Briefcase },
         { href: `/${locale}/portal-manage/vip-tourism-services`, label: 'VIP Services', icon: Crown },
-        { href: `/${locale}/portal-manage/blogs`, label: 'Blogs', icon: FileText },
+
+        { href: `/${locale}/portal-manage/medical-tourism`, label: 'Medical Tourism', icon: BriefcaseMedical },
         { href: `/${locale}/portal-manage/services`, label: 'Services', icon: Briefcase },
         { href: `/${locale}/portal-manage/immigration-services`, label: 'Immigration Services', icon: FileCheck },
-        { href: `/${locale}/portal-manage/medical-tourism`, label: 'Medical Tourism', icon: BriefcaseMedical },
         { href: `/${locale}/portal-manage/quick-actions`, label: 'Quick Actions', icon: LayoutGrid },
         { href: `/${locale}/portal-manage/messages`, label: 'Messages', icon: Mail },
-        { href: `/${locale}/portal-manage/seed`, label: 'Seed', icon: Database, isSecondary: true }
+        { href: `/${locale}/portal-manage/blogs`, label: 'Blogs', icon: FileText },
+        // { href: `/${locale}/portal-manage/seed`, label: 'Seed', icon: Database, isSecondary: true }
     ]
 
     const isActive = (href: string) => {

@@ -12,6 +12,8 @@ import Link from 'next/link';
 
 import { getTrips, getTripsByType } from "@/lib/services/trips";
 import { getPrograms } from "@/lib/services/programs";
+import { getSpecialPackages } from "@/lib/services/specialPackages";
+import { getVipServices } from "@/lib/services/vip-tourism-services";
 import { getCombinedHotDeals } from "@/lib/services/deals";
 
 export default async function Tours({
@@ -68,20 +70,42 @@ export default async function Tours({
     // Fetch specialized packages
     let specializedPackages: any[] = [];
     try {
-        const data = await getTripsByType('specialized-packages', locale);
-        specializedPackages = (data || []).map((trip: any) => ({
-            id: trip.id,
-            title: trip.title,
-            description: trip.description,
-            image: (trip.main_image || trip.images?.[0])
-                ? `${trip.main_image || trip.images[0]}?v=${trip.updated_at ? new Date(trip.updated_at).getTime() : Date.now()}`
+        const data = await getSpecialPackages(locale);
+        specializedPackages = (data || []).map((pkg: any) => ({
+            id: pkg.id,
+            title: pkg.package_name,
+            description: pkg.target_categories,
+            image: pkg.main_image
+                ? `${pkg.main_image}?v=${pkg.updated_at ? new Date(pkg.updated_at).getTime() : Date.now()}`
                 : "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd",
-            price: trip.price ? `$${trip.price}` : undefined,
-            tags: [],
-            link: `/${locale}/tours/${trip.slug}`
+            price: undefined,
+            tags: pkg.duration_nights ? [pkg.duration_nights] : [],
+            link: `/${locale}/special-tourism-packages/${pkg.slug}`
         }));
     } catch (error) {
         console.error("Error fetching specialized packages:", error);
+    }
+
+    // Fetch VIP services
+    let vipServices: any[] = [];
+    try {
+        const data = await getVipServices(locale);
+        vipServices = (data || []).map((service: any) => ({
+            id: service.id,
+            title: service.title,
+            description: service.description,
+            image: service.image_url
+                ? `${service.image_url}?v=${service.updated_at ? new Date(service.updated_at).getTime() : Date.now()}`
+                : "https://images.unsplash.com/photo-1551522435-a13afa10f103",
+            price: undefined,
+            tags: [], // Tags removed as requested, now using CTA text in button
+            ctaText: service.cta_text,
+            link: service.cta_link && service.cta_link.startsWith('/')
+                ? `/${locale}${service.cta_link}`
+                : (service.cta_link || `/${locale}/vip-tourism-services`)
+        }));
+    } catch (error) {
+        console.error("Error fetching vip services:", error);
     }
 
     // Fetch featured programs (from new Programs table) instead of destinations
@@ -151,9 +175,10 @@ export default async function Tours({
                 description={(t as any).tourTypes?.dailyTours?.description || "Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots."}
                 items={dailyTours}
             />
+            <FeaturedPrograms programs={featuredPrograms} locale={locale} />
 
             {/* Tourism Programs Carousel (Dark Mode) */}
-            <TourCarousel
+            {/* <TourCarousel
                 badge={(t as any).tourTypes?.tourismPrograms?.badge || "TOURISM PROGRAMS"}
                 title={(t as any).tourTypes?.tourismPrograms?.heading || "Curated Travel Experiences"}
                 description={(t as any).tourTypes?.tourismPrograms?.description || "Discover our specially designed tourism programs that combine culture, adventure, and relaxation for an unforgettable journey."}
@@ -168,10 +193,10 @@ export default async function Tours({
                     }
                 ]}
                 dark={true}
-            />
+            /> */}
 
             {/* Hot Deals */}
-            <HotDeals deals={hotDeals} locale={locale} />
+            {/* <HotDeals deals={hotDeals} locale={locale} /> */}
 
             {/* Specialized Tourism Packages Carousel */}
             <TourCarousel
@@ -191,14 +216,21 @@ export default async function Tours({
                 dark={true}
             />
 
+            {/* VIP Services Carousel */}
+            <TourCarousel
+                badge={(t as any).tourTypes?.vipPrograms?.badge || "VIP SERVICES"}
+                title={(t as any).tourTypes?.vipPrograms?.heading || "Luxury & Exclusivity"}
+                description={(t as any).tourTypes?.vipPrograms?.description || "Experience the ultimate in luxury travel with our bespoke VIP services."}
+                items={vipServices.length > 0 ? vipServices : []}
+            />
+
             {/* Featured Programs Grid (Replacing Destinations) */}
-            <FeaturedPrograms programs={featuredPrograms} locale={locale} />
 
             {/* What's Included / Experience Section */}
             {/* <ToursExperience /> */}
 
             {/* Final CTA */}
-            <section className="py-24 px-6 relative overflow-hidden">
+            {/* <section className="py-24 px-6 relative overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2071&auto=format&fit=crop"
@@ -225,7 +257,7 @@ export default async function Tours({
                         </Link>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <Footer />
         </div>

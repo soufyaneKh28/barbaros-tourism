@@ -57,24 +57,24 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
                     />
 
                     <MultiLangInput
-                        name="target_client_category"
-                        label="Target Client Category (فئة العميل المستهدف)"
-                        defaultValue={service.target_client_category}
+                        name="cta_text"
+                        label="CTA Button Text (نص الزر)"
+                        defaultValue={service.cta_text}
                     />
 
-                    <MultiLangTextarea
-                        name="procedural_requirements"
-                        label="Procedural Requirements (متطلبات إجرائية)"
-                        defaultValue={service.procedural_requirements}
-                        rows={3}
-                    />
-
-                    <MultiLangTextarea
-                        name="additional_notes"
-                        label="Additional Notes (ملاحظات إضافية)"
-                        defaultValue={service.additional_notes}
-                        rows={3}
-                    />
+                    <div>
+                        <label htmlFor="cta_link" className="block text-sm font-medium text-gray-700 mb-1">
+                            CTA Link (Ex: /contact-us or https://...)
+                        </label>
+                        <input
+                            type="text"
+                            id="cta_link"
+                            name="cta_link"
+                            defaultValue={service.cta_link}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent dir-ltr"
+                            placeholder="/en/contact-us"
+                        />
+                    </div>
 
                     <div>
                         <ImageUpload

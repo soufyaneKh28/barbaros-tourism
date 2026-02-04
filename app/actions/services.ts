@@ -31,9 +31,8 @@ export async function createServiceAction(formData: FormData) {
     try {
         const serviceName = getMultiLangField(formData, 'service_name')
         const serviceDetails = getMultiLangField(formData, 'service_details')
-        const targetClientCategory = getMultiLangField(formData, 'target_client_category')
-        const proceduralRequirements = getMultiLangField(formData, 'procedural_requirements')
-        const additionalNotes = getMultiLangField(formData, 'additional_notes')
+        const ctaText = getMultiLangField(formData, 'cta_text')
+        const ctaLink = formData.get('cta_link') as string
         const coverImage = formData.get('cover_image') as string
         const isActive = formData.get('is_active') === 'on'
 
@@ -61,9 +60,8 @@ export async function createServiceAction(formData: FormData) {
             .insert([{
                 service_name: serviceName,
                 service_details: serviceDetails,
-                target_client_category: targetClientCategory,
-                procedural_requirements: proceduralRequirements,
-                additional_notes: additionalNotes,
+                cta_text: ctaText,
+                cta_link: ctaLink,
                 cover_image: coverImage || null,
                 slug,
                 is_active: isActive,
@@ -91,9 +89,8 @@ export async function updateServiceAction(id: string, formData: FormData) {
     try {
         const serviceName = getMultiLangField(formData, 'service_name')
         const serviceDetails = getMultiLangField(formData, 'service_details')
-        const targetClientCategory = getMultiLangField(formData, 'target_client_category')
-        const proceduralRequirements = getMultiLangField(formData, 'procedural_requirements')
-        const additionalNotes = getMultiLangField(formData, 'additional_notes')
+        const ctaText = getMultiLangField(formData, 'cta_text')
+        const ctaLink = formData.get('cta_link') as string
         const coverImage = formData.get('cover_image') as string
         const isActive = formData.get('is_active') === 'on'
 
@@ -117,9 +114,8 @@ export async function updateServiceAction(id: string, formData: FormData) {
             .update({
                 service_name: serviceName,
                 service_details: serviceDetails,
-                target_client_category: targetClientCategory,
-                procedural_requirements: proceduralRequirements,
-                additional_notes: additionalNotes,
+                cta_text: ctaText,
+                cta_link: ctaLink,
                 cover_image: coverImage || null,
                 slug,
                 is_active: isActive,
@@ -163,6 +159,29 @@ export async function deleteServiceAction(id: string) {
         return { success: true }
     } catch (error) {
         console.error('Error in deleteServiceAction:', error)
+        return { error: 'An unexpected error occurred' }
+    }
+}
+
+export async function updateServiceOrderAction(id: string, order: number) {
+    try {
+        const supabase = await createClient()
+
+        const { error } = await supabase
+            .from('services')
+            .update({ display_order: order })
+            .eq('id', id)
+
+        if (error) {
+            console.error('Error updating service order:', error)
+            return { error: 'Failed to update order' }
+        }
+
+        revalidatePath('/[locale]/portal-manage/services')
+        revalidatePath('/[locale]/our-services')
+        return { success: true }
+    } catch (error) {
+        console.error('Error in updateServiceOrderAction:', error)
         return { error: 'An unexpected error occurred' }
     }
 }

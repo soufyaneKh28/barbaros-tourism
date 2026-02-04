@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import Link from 'next/link'
 import { LayoutGrid, LayoutList } from 'lucide-react'
 import ServiceActions from '@/components/portal/ServiceActions'
+import { updateServiceOrderAction } from '@/app/actions/services'
 
 interface ServicesListProps {
     services: any[]
@@ -11,6 +12,13 @@ interface ServicesListProps {
 
 export default function ServicesList({ services }: ServicesListProps) {
     const [viewMode, setViewMode] = useState<'table' | 'cards'>('table')
+    const [isPending, startTransition] = useTransition()
+
+    const handleOrderUpdate = (id: string, newOrder: number) => {
+        startTransition(async () => {
+            await updateServiceOrderAction(id, newOrder)
+        })
+    }
 
     return (
         <div className="max-w-7xl mx-auto bg-white p-8 shadow rounded-lg font-satoshi">
@@ -23,8 +31,8 @@ export default function ServicesList({ services }: ServicesListProps) {
                         <button
                             onClick={() => setViewMode('table')}
                             className={`p-2 rounded-md transition-all ${viewMode === 'table'
-                                    ? 'bg-white text-primary shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-700'
+                                ? 'bg-white text-primary shadow-sm'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                             title="Table View"
                         >
@@ -33,8 +41,8 @@ export default function ServicesList({ services }: ServicesListProps) {
                         <button
                             onClick={() => setViewMode('cards')}
                             className={`p-2 rounded-md transition-all ${viewMode === 'cards'
-                                    ? 'bg-white text-primary shadow-sm'
-                                    : 'text-gray-500 hover:text-gray-700'
+                                ? 'bg-white text-primary shadow-sm'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                             title="Card View"
                         >
@@ -62,11 +70,14 @@ export default function ServicesList({ services }: ServicesListProps) {
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-50">
                                     <tr>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-20">
+                                            Order
+                                        </th>
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Service Name
                                         </th>
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Target Category
+                                            CTA Text
                                         </th>
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Status
@@ -80,6 +91,14 @@ export default function ServicesList({ services }: ServicesListProps) {
                                     {services.map((service) => (
                                         <tr key={service.id}>
                                             <td className="px-6 py-4 whitespace-nowrap">
+                                                <input
+                                                    type="number"
+                                                    defaultValue={service.display_order ?? 0}
+                                                    onBlur={(e) => handleOrderUpdate(service.id, parseInt(e.target.value))}
+                                                    className="w-16 border rounded px-2 py-1 text-sm focus:ring-primary focus:border-primary"
+                                                />
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex items-center">
                                                     {service.cover_image && (
                                                         <img
@@ -92,7 +111,7 @@ export default function ServicesList({ services }: ServicesListProps) {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{service.target_client_category || '-'}</div>
+                                                <div className="text-sm text-gray-900">{service.cta_text || '-'}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${service.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
@@ -149,7 +168,7 @@ export default function ServicesList({ services }: ServicesListProps) {
 
                                         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
                                             <div className="text-xs text-gray-500 font-medium bg-gray-50 px-2 py-1 rounded">
-                                                {service.target_client_category || 'No Category'}
+                                                {service.cta_text || 'No CTA'}
                                             </div>
 
                                             <div className="flex items-center gap-3">

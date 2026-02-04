@@ -16,6 +16,7 @@ interface TourItem {
     price?: string;
     tags?: string[];
     link?: string;
+    ctaText?: string;
 }
 
 interface TourCarouselProps {
@@ -52,6 +53,7 @@ const responsive = {
 export default function TourCarousel({ title, badge, description, items, dark = false }: TourCarouselProps) {
     const { locale, t } = useLanguage();
     const carouselRef = useRef<any>(null);
+    const isRtl = locale === 'ar';
 
     return (
         <section className={`py-20 ${dark ? 'bg-primary text-white' : 'bg-white text-gray-900'} relative overflow-hidden`}>
@@ -130,6 +132,7 @@ export default function TourCarousel({ title, badge, description, items, dark = 
                         ref={carouselRef}
                         responsive={responsive}
                         infinite={true}
+                        rtl={isRtl}
                         autoPlay={false}
                         keyBoardControl={true}
                         customTransition="transform 600ms cubic-bezier(0.4, 0, 0.2, 1)"
@@ -146,6 +149,7 @@ export default function TourCarousel({ title, badge, description, items, dark = 
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 viewport={{ once: true }}
                                 className="h-[420px] md:h-[500px] relative rounded-[32px] overflow-hidden group select-none shadow-lg hover:shadow-2xl transition-all duration-500"
+                                dir={isRtl ? 'rtl' : 'ltr'}
                             >
                                 <Image
                                     src={item.image}
@@ -156,7 +160,7 @@ export default function TourCarousel({ title, badge, description, items, dark = 
                                 />
 
                                 {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-8 flex flex-col justify-between">
+                                <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-8 flex flex-col justify-between ${isRtl ? 'text-right' : 'text-left'}`}>
                                     <div className="flex justify-between items-start">
                                         <div className="flex flex-wrap gap-2">
                                             {item.tags?.map((tag, idx) => (
@@ -182,10 +186,10 @@ export default function TourCarousel({ title, badge, description, items, dark = 
 
                                         <Link
                                             href={`${item.link || `/${locale}/contact-us`}`}
-                                            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-primary font-bold text-sm hover:bg-secondary transition-all duration-300"
+                                            className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-primary font-bold text-sm hover:bg-secondary transition-all duration-300 ${isRtl ? 'flex-row-reverse' : ''}`}
                                         >
-                                            {(t as any).common?.viewDetails || 'View Details'}
-                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            {item.ctaText || (t as any).common?.viewDetails || 'View Details'}
+                                            <svg className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                             </svg>
                                         </Link>
