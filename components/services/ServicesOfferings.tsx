@@ -18,31 +18,43 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             title: t.servicesOfferings.items.cultural.title,
             description: t.servicesOfferings.items.cultural.description,
             image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop",
+            cta_text: undefined,
+            cta_link: undefined,
         },
         {
             title: t.servicesOfferings.items.adventure.title,
             description: t.servicesOfferings.items.adventure.description,
             image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
+            cta_text: undefined,
+            cta_link: undefined,
         },
         {
             title: t.servicesOfferings.items.medical.title,
             description: t.servicesOfferings.items.medical.description,
             image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop",
+            cta_text: undefined,
+            cta_link: undefined,
         },
         {
             title: t.servicesOfferings.items.accommodation.title,
             description: t.servicesOfferings.items.accommodation.description,
             image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
+            cta_text: undefined,
+            cta_link: undefined,
         },
         {
             title: t.servicesOfferings.items.transportation.title,
             description: t.servicesOfferings.items.transportation.description,
             image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop",
+            cta_text: undefined,
+            cta_link: undefined,
         },
         {
             title: t.servicesOfferings.items.custom.title,
             description: t.servicesOfferings.items.custom.description,
             image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2035&auto=format&fit=crop",
+            cta_text: undefined,
+            cta_link: undefined,
         },
     ];
 
@@ -52,6 +64,8 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             title: service.service_name,
             description: service.service_details,
             image: service.cover_image || "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2035&auto=format&fit=crop",
+            cta_text: service.cta_text,
+            cta_link: service.cta_link,
         }))
         : staticOfferings;
 
@@ -137,16 +151,16 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
 
                                     {/* CTA Button */}
                                     <motion.a
-                                        href="https://wa.me/905053688856"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        href={service.cta_link || "https://wa.me/905053688856"}
+                                        target={service.cta_link?.startsWith('http') ? "_blank" : undefined}
+                                        rel={service.cta_link?.startsWith('http') ? "noopener noreferrer" : undefined}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: 0.5 }}
                                         viewport={{ once: true }}
                                         className="inline-flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold font-cabinet px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
                                     >
-                                        {t.servicesOfferings.ctaButton || 'Learn More'}
+                                        {service.cta_text || t.servicesOfferings.ctaButton || 'Learn More'}
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>

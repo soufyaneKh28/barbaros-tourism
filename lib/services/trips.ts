@@ -30,10 +30,23 @@ export async function getTrips(locale: string = 'en') {
       category:categories(name, slug)
     `)
         .eq('is_active', true)
-        .order('created_at', { ascending: false })
+        .order('display_order', { ascending: true })
 
     if (error) throw error
     return data.map(trip => transformTrip(trip, locale))
+}
+
+export async function getAllTrips() {
+    const { data, error } = await supabase
+        .from('trips')
+        .select(`
+      *,
+      category:categories(name, slug)
+    `)
+        .order('display_order', { ascending: true })
+
+    if (error) throw error
+    return data
 }
 
 export async function getTripsByType(tripType: string, locale: string = 'en') {
@@ -45,7 +58,7 @@ export async function getTripsByType(tripType: string, locale: string = 'en') {
     `)
         .eq('is_active', true)
         .eq('trip_type', tripType)
-        .order('created_at', { ascending: false })
+        .order('display_order', { ascending: true })
 
     if (error) throw error
     return data.map(trip => transformTrip(trip, locale))

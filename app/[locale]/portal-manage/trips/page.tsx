@@ -1,5 +1,6 @@
-import { getTrips } from '@/lib/services/trips'
+import { getAllTrips } from '@/lib/services/trips'
 import TripsList from '@/components/portal/TripsList'
+import { getLocalized } from '@/lib/utils'
 
 export const dynamic = 'force-dynamic';
 
@@ -7,13 +8,16 @@ export default async function TripsPage({ params }: { params: Promise<{ locale: 
     const { locale } = await params
     let trips = []
     try {
-        trips = await getTrips()
+        const rawTrips = await getAllTrips()
+        // Transform multi-language fields to strings for display
+        trips = rawTrips.map(trip => ({
+            ...trip,
+            title: getLocalized(trip.title, locale),
+            description: getLocalized(trip.description, locale),
+        }))
     } catch (e) {
         console.error('Failed to fetch trips', e)
     }
-
-    // Default to card view for trips is handled inside TripsList, or we can make it props controlled if needed.
-    // The previous implementation was grid only.
 
     return <TripsList trips={trips} locale={locale} />
 }

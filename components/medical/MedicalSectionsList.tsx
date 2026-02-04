@@ -1,32 +1,169 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { LayoutGrid, LayoutList, Trash2, Power, Edit } from 'lucide-react'
+import { LayoutGrid, LayoutList, Trash2, Power, Edit, GripVertical } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { toggleMedicalTourismSectionStatusAction, deleteMedicalTourismSectionAction } from '@/app/actions/medical-tourism'
+import { toggleMedicalTourismSectionStatusAction, deleteMedicalTourismSectionAction, updateMedicalTourismSectionOrderAction } from '@/app/actions/medical-tourism'
 import { MedicalTourismSection } from '@/lib/types'
+import {
+    DndContext,
+    closestCenter,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors,
+    DragEndEvent,
+} from '@dnd-kit/core'
+import {
+    arrayMove,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    useSortable,
+    verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 interface MedicalTourismSectionsListProps {
     sections: MedicalTourismSection[]
 }
 
-export default function MedicalTourismSectionsList({ sections }: MedicalTourismSectionsListProps) {
+function SortableRow({ section, onToggleStatus, onDelete, isPending }: {
+    section: MedicalTourismSection
+    onToggleStatus: (id: string) => void
+    onDelete: (id: string) => void
+    isPending: boolean
+}) {
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging,
+    } = useSortable({ id: section.id })
+
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.5 : 1,
+    }
+
+    return (
+        <tr ref={setNodeRef} style={style} className={isDragging ? 'bg-gray-50' : ''}>
+            <td className="px-6 py-4 whitespace-nowrap">
+                <button
+                    {...attributes}
+                    {...listeners}
+                    className="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600 p-1"
+                >
+                    <GripVertical className="w-5 h-5" />
+                </button>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap">
+                <div className="flex items-center">
+                    {section.image_url && (
+                        <img
+                            src={section.image_url}
+                            alt={typeof section.title === 'string' ? section.title : Object.values(section.title)[0] || ''}
+                            className="w-10 h-10 rounded object-cover mr-3"
+                        />
+                    )}
+                    <div className="text-sm font-medium text-gray-900">
+                        {typeof section.title === 'string' ? section.title : Object.values(section.title)[0] || 'Untitled'}
+                    </div>
+                </div>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap">
+                <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${section.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                    }`}>
+                    {section.is_active ? 'Active' : 'Inactive'}
+                </span>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <div className="flex gap-2">
+                    <Link
+                        href={`./medical-tourism/${section.id}/edit`}
+                        className="text-blue-600 hover:text-blue-900 p-1"
+                        title="Edit"
+                    >
+                        <Edit className="w-4 h-4" />
+                    </Link>
+                    <button
+                        onClick={() => onToggleStatus(section.id)}
+                        className={`p-1 ${section.is_active ? 'text-amber-600 hover:text-amber-900' : 'text-green-600 hover:text-green-900'}`}
+                        title={section.is_active ? 'Deactivate' : 'Activate'}
+                        disabled={isPending}
+                    >
+                        <Power className="w-4 h-4" />
+                    </button>
+                    <button
+                        onClick={() => onDelete(section.id)}
+                        className="text-red-600 hover:text-red-900 p-1"
+                        title="Delete"
+                        disabled={isPending}
+                    >
+                        <Trash2 className="w-4 h-4" />
+                    </button>
+                </div>
+            </td>
+        </tr>
+    )
+}
+
+export default function MedicalTourismSectionsList({ sections: initialSections }: MedicalTourismSectionsListProps) {
     const [viewMode, setViewMode] = useState<'table' | 'cards'>('table')
-    const [isPending, startTransition] = useTransition()
+    const [sections, setSections] = useState(initialSections)
+    const [isPending, setIsPending] = useState(false)
+    const [isUpdating, setIsUpdating] = useState(false)
     const router = useRouter()
+
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    )
+
+    const handleDragEnd = async (event: DragEndEvent) => {
+        const { active, over } = event
+
+        if (over && active.id !== over.id) {
+            const oldIndex = sections.findIndex((s) => s.id === active.id)
+            const newIndex = sections.findIndex((s) => s.id === over.id)
+
+            const newSections = arrayMove(sections, oldIndex, newIndex)
+            setSections(newSections)
+
+            // Update display_order for all affected sections
+            setIsUpdating(true)
+            try {
+                await Promise.all(
+                    newSections.map((section, index) =>
+                        updateMedicalTourismSectionOrderAction(section.id, index)
+                    )
+                )
+            } catch (error) {
+                console.error('Error updating order:', error)
+                // Revert on error
+                setSections(sections)
+            } finally {
+                setIsUpdating(false)
+            }
+        }
+    }
 
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this section?')) return
-        startTransition(async () => {
-            await deleteMedicalTourismSectionAction(id)
-        })
+        setIsPending(true)
+        await deleteMedicalTourismSectionAction(id)
+        setIsPending(false)
     }
 
     const handleToggleStatus = async (id: string) => {
-        startTransition(async () => {
-            await toggleMedicalTourismSectionStatusAction(id)
-        })
+        setIsPending(true)
+        await toggleMedicalTourismSectionStatusAction(id)
+        setIsPending(false)
     }
 
     return (
@@ -68,6 +205,12 @@ export default function MedicalTourismSectionsList({ sections }: MedicalTourismS
                 </div>
             </div>
 
+            {isUpdating && (
+                <div className="mb-4 bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-lg text-sm">
+                    Updating order...
+                </div>
+            )}
+
             {sections.length === 0 ? (
                 <div className="text-center py-12 text-gray-500">
                     <p>No medical tourism sections yet. Create your first section!</p>
@@ -76,80 +219,46 @@ export default function MedicalTourismSectionsList({ sections }: MedicalTourismS
                 <>
                     {viewMode === 'table' ? (
                         <div className="overflow-x-auto">
-                            <table className="min-w-full divide-y divide-gray-200">
-                                <thead className="bg-gray-50">
-                                    <tr>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Title
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Order
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Status
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Actions
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className="bg-white divide-y divide-gray-200">
-                                    {sections.map((section) => (
-                                        <tr key={section.id}>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    {section.image_url && (
-                                                        <img
-                                                            src={section.image_url}
-                                                            alt={typeof section.title === 'string' ? section.title : Object.values(section.title)[0] || ''}
-                                                            className="w-10 h-10 rounded object-cover mr-3"
-                                                        />
-                                                    )}
-                                                    <div className="text-sm font-medium text-gray-900">
-                                                        {typeof section.title === 'string' ? section.title : Object.values(section.title)[0] || 'Untitled'}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {section.display_order}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${section.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                                                    }`}>
-                                                    {section.is_active ? 'Active' : 'Inactive'}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                <div className="flex gap-2">
-                                                    <Link
-                                                        href={`./medical-tourism/${section.id}/edit`}
-                                                        className="text-blue-600 hover:text-blue-900 p-1"
-                                                        title="Edit"
-                                                    >
-                                                        <Edit className="w-4 h-4" />
-                                                    </Link>
-                                                    <button
-                                                        onClick={() => handleToggleStatus(section.id)}
-                                                        className={`p-1 ${section.is_active ? 'text-amber-600 hover:text-amber-900' : 'text-green-600 hover:text-green-900'}`}
-                                                        title={section.is_active ? 'Deactivate' : 'Activate'}
-                                                        disabled={isPending}
-                                                    >
-                                                        <Power className="w-4 h-4" />
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleDelete(section.id)}
-                                                        className="text-red-600 hover:text-red-900 p-1"
-                                                        title="Delete"
-                                                        disabled={isPending}
-                                                    >
-                                                        <Trash2 className="w-4 h-4" />
-                                                    </button>
-                                                </div>
-                                            </td>
+                            <DndContext
+                                sensors={sensors}
+                                collisionDetection={closestCenter}
+                                onDragEnd={handleDragEnd}
+                            >
+                                <table className="min-w-full divide-y divide-gray-200">
+                                    <thead className="bg-gray-50">
+                                        <tr>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+
+                                            </th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Title
+                                            </th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Status
+                                            </th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Actions
+                                            </th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody className="bg-white divide-y divide-gray-200">
+                                        <SortableContext
+                                            items={sections.map(s => s.id)}
+                                            strategy={verticalListSortingStrategy}
+                                        >
+                                            {sections.map((section) => (
+                                                <SortableRow
+                                                    key={section.id}
+                                                    section={section}
+                                                    onToggleStatus={handleToggleStatus}
+                                                    onDelete={handleDelete}
+                                                    isPending={isPending}
+                                                />
+                                            ))}
+                                        </SortableContext>
+                                    </tbody>
+                                </table>
+                            </DndContext>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

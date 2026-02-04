@@ -80,14 +80,12 @@ export default function AdminLayout({
                                         flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 w-full
                                         ${active
                                             ? 'bg-primary text-white shadow-md'
-                                            : item.isSecondary
-                                                ? 'text-gray-400 hover:text-secondary hover:bg-secondary/5'
-                                                : 'text-gray-600 hover:text-primary hover:bg-gray-50'
+                                            : 'text-gray-600 hover:text-primary hover:bg-gray-50'
                                         }
                                     `}
                                 >
                                     <Icon className="w-5 h-5 flex-shrink-0" />
-                                    <span className={item.isSecondary ? 'text-sm' : ''}>{item.label}</span>
+                                    <span>{item.label}</span>
                                 </Link>
                             )
                         })}

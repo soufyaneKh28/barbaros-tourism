@@ -121,3 +121,21 @@ export async function toggleMedicalTourismSectionStatusAction(id: string) {
     revalidatePath('/[locale]/portal-manage/medical-tourism')
     return { success: true }
 }
+
+export async function updateMedicalTourismSectionOrderAction(id: string, order: number) {
+    const supabase = await createClient()
+
+    const { error } = await supabase
+        .from('medical_tourism_sections')
+        .update({ display_order: order, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+    if (error) {
+        console.error('Error updating section order:', error)
+        return { error: error.message }
+    }
+
+    revalidatePath('/[locale]/medical-tourism', 'page')
+    revalidatePath('/[locale]/portal-manage/medical-tourism')
+    return { success: true }
+}
