@@ -260,14 +260,14 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                     <div className="flex flex-col gap-3 w-[420px] rounded-2xl bg-white shadow-2xl border border-gray-100 p-4">
 
                                         <CompanyCard
-                                            href="https://barbarosevents.com"
+                                            href="https://barbaros.events"
                                             title="Barbaros Events"
                                             description="Corporate & private event planning and management."
                                             iconColor="bg-purple-50 text-purple-600"
                                             imageSrc="/images/eventIcon.png"
                                         />
                                         <CompanyCard
-                                            href="https://barbarostrade.com"
+                                            href="https://barbaros.trade"
                                             title="Barbaros Trade"
                                             description="International trade, logistics and import/export."
                                             iconColor="bg-emerald-50 text-emerald-600"
