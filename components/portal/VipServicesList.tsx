@@ -2,9 +2,9 @@
 
 import { useState, useTransition } from 'react'
 import Link from 'next/link'
-import { LayoutGrid, LayoutList, Trash2, Power, Edit, ExternalLink, GripVertical } from 'lucide-react'
+import { LayoutGrid, LayoutList, Trash2, Power, Edit, ExternalLink, GripVertical, Clock } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { toggleVipServiceStatusAction, deleteVipServiceAction, updateVipServiceOrderAction } from '@/app/actions/vip-tourism-services'
+import { toggleVipServiceStatusAction, deleteVipServiceAction, updateVipServiceOrderAction, toggleVipServiceComingSoonAction } from '@/app/actions/vip-tourism-services'
 import { VipTourismService } from '@/lib/types'
 import {
     DndContext,
@@ -28,11 +28,12 @@ interface VipServicesListProps {
     services: VipTourismService[]
 }
 
-function SortableRow({ service, viewMode, isPending, handleToggleStatus, handleDelete }: {
+function SortableRow({ service, viewMode, isPending, handleToggleStatus, handleToggleComingSoon, handleDelete }: {
     service: VipTourismService
     viewMode: 'table' | 'cards'
     isPending: boolean
     handleToggleStatus: (id: string) => void
+    handleToggleComingSoon: (id: string, value: boolean) => void
     handleDelete: (id: string) => void
 }) {
     const {
@@ -89,6 +90,18 @@ function SortableRow({ service, viewMode, isPending, handleToggleStatus, handleD
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <div className="flex gap-2">
+                    <button
+                        onClick={() => handleToggleComingSoon(service.id, !service.is_coming_soon)}
+                        className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${service.is_coming_soon
+                                ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                                : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                            }`}
+                        title={service.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
+                    >
+                        <Clock className={`w-3.5 h-3.5 ${service.is_coming_soon ? 'fill-current' : ''}`} />
+                        {service.is_coming_soon ? 'Coming Soon' : 'Active'}
+                    </button>
+                    <div className="w-px h-4 bg-gray-200 mx-1" />
                     <Link
                         href={`./vip-tourism-services/${service.id}/edit`}
                         className="text-blue-600 hover:text-blue-900 p-1"
@@ -171,9 +184,39 @@ export default function VipServicesList({ services: initialServices }: VipServic
     const handleToggleStatus = async (id: string) => {
         startTransition(async () => {
             await toggleVipServiceStatusAction(id)
-            // Ideally we'd update optimistic UI here too, but revalidation should handle it
             router.refresh()
         })
+    }
+
+    async function handleToggleComingSoon(id: string, value: boolean) {
+        // Optimistically update the UI immediately
+        setServices(prevServices =>
+            prevServices.map(s =>
+                s.id === id ? { ...s, is_coming_soon: value } : s
+            )
+        );
+
+        try {
+            const result = await toggleVipServiceComingSoonAction(id, value);
+            if (result.error) {
+                // Revert on error
+                setServices(prevServices =>
+                    prevServices.map(s =>
+                        s.id === id ? { ...s, is_coming_soon: !value } : s
+                    )
+                );
+                alert("Failed to update service status: " + result.error);
+            }
+        } catch (error) {
+            // Revert on error
+            setServices(prevServices =>
+                prevServices.map(s =>
+                    s.id === id ? { ...s, is_coming_soon: !value } : s
+                )
+            );
+            console.error(error);
+            alert("Failed to update service status");
+        }
     }
 
     return (
@@ -264,6 +307,7 @@ export default function VipServicesList({ services: initialServices }: VipServic
                                                     viewMode={viewMode}
                                                     isPending={isPending}
                                                     handleToggleStatus={handleToggleStatus}
+                                                    handleToggleComingSoon={handleToggleComingSoon}
                                                     handleDelete={handleDelete}
                                                 />
                                             ))}
@@ -304,9 +348,17 @@ export default function VipServicesList({ services: initialServices }: VipServic
                                         </p>
 
                                         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
-                                            <div className="text-xs text-gray-500 font-medium bg-gray-50 px-2 py-1 rounded">
-                                                Order: {service.display_order}
-                                            </div>
+                                            <button
+                                                onClick={() => handleToggleComingSoon(service.id, !service.is_coming_soon)}
+                                                className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${service.is_coming_soon
+                                                        ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                                                        : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                                                    }`}
+                                                title={service.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
+                                            >
+                                                <Clock className={`w-3.5 h-3.5 ${service.is_coming_soon ? 'fill-current' : ''}`} />
+                                                {service.is_coming_soon ? 'Coming Soon' : 'Active'}
+                                            </button>
 
                                             <div className="flex items-center gap-2">
                                                 {service.cta_link && (

@@ -212,3 +212,21 @@ export async function updateTripOrderAction(id: string, order: number) {
     revalidatePath('/[locale]/portal-manage/trips')
     return { success: true }
 }
+
+export async function toggleTripComingSoonAction(id: string, isComingSoon: boolean) {
+    const supabase = await createClient()
+
+    const { error } = await supabase
+        .from('trips')
+        .update({ is_coming_soon: isComingSoon, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+    if (error) {
+        console.error('Error updating trip coming soon status:', error)
+        return { error: error.message }
+    }
+
+    revalidatePath('/[locale]/tours', 'page')
+    revalidatePath('/[locale]/portal-manage/trips')
+    return { success: true }
+}

@@ -28,7 +28,8 @@ export default async function DailyTours({
                 : "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b",
             price: trip.price ? `$${trip.price}` : undefined,
             tags: [trip.destination?.name].filter(Boolean),
-            link: `/${locale}/tours/${trip.slug}`
+            link: `/${locale}/tours/${trip.slug}`,
+            is_coming_soon: trip.is_coming_soon
         }));
     } catch (error) {
         console.error("Error fetching daily tours:", error);

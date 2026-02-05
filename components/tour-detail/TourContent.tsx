@@ -65,14 +65,14 @@ export default function TourContent({ location, itinerary, includes, excludes, l
                 </div>
 
                 {/* Location Section */}
-                <div ref={(el) => { sectionRefs.current['Location'] = el }} id="location">
+                {/* <div ref={(el) => { sectionRefs.current['Location'] = el }} id="location">
                     <TourLocation address={location} />
-                </div>
+                </div> */}
 
                 {/* Reviews Section */}
-                <div ref={(el) => { sectionRefs.current['Reviews'] = el }} id="reviews">
+                {/* <div ref={(el) => { sectionRefs.current['Reviews'] = el }} id="reviews">
                     <TourReviews />
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -147,3 +147,21 @@ export async function updateVipServiceOrderAction(id: string, order: number) {
     revalidatePath('/[locale]/portal-manage/vip-tourism-services')
     return { success: true }
 }
+
+export async function toggleVipServiceComingSoonAction(id: string, isComingSoon: boolean) {
+    const supabase = await createClient()
+
+    const { error } = await supabase
+        .from('vip_tourism_services')
+        .update({ is_coming_soon: isComingSoon, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+    if (error) {
+        console.error('Error updating vip service coming soon status:', error)
+        return { error: error.message }
+    }
+
+    revalidatePath('/[locale]/vip-tourism-services', 'page')
+    revalidatePath('/[locale]/portal-manage/vip-tourism-services')
+    return { success: true }
+}

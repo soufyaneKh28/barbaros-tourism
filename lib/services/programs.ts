@@ -13,6 +13,7 @@ function transformProgram(program: any, locale: string = 'en') {
         includes: getLocalized(program.includes, locale) || [],
         excludes: getLocalized(program.excludes, locale) || [],
         itinerary: getLocalized(program.itinerary, locale),
+        is_coming_soon: program.is_coming_soon,
     }
 }
 

@@ -9,7 +9,8 @@ function transformVipService(service: any, locale: string = 'en'): VipTourismSer
         ...service,
         title: getLocalized(service.title, locale),
         description: getLocalized(service.description, locale),
-        cta_text: getLocalized(service.cta_text, locale)
+        cta_text: getLocalized(service.cta_text, locale),
+        is_coming_soon: service.is_coming_soon
     }
 }
 

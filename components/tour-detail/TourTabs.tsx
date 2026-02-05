@@ -15,8 +15,8 @@ export default function TourTabs({ activeTab, onTabClick }: TourTabsProps) {
     const tabs = [
         { key: 'Program', label: tripDetails?.tabs?.program || 'Program' },
         { key: 'Inclusions', label: tripDetails?.tabs?.inclusions || 'Inclusions' },
-        { key: 'Location', label: tripDetails?.tabs?.location || 'Location' },
-        { key: 'Reviews', label: tripDetails?.tabs?.reviews || 'Reviews' }
+        // { key: 'Location', label: tripDetails?.tabs?.location || 'Location' },
+        // { key: 'Reviews', label: tripDetails?.tabs?.reviews || 'Reviews' }
     ];
 
     return (

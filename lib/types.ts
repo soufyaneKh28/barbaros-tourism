@@ -11,6 +11,7 @@ export interface Program {
     main_image: string | null;
     images: string[];
     is_active: boolean;
+    is_coming_soon?: boolean;
     created_at: string;
     updated_at: string;
 }
@@ -58,6 +59,7 @@ export interface VipTourismService {
     image_url: string | null;
     display_order: number;
     is_active: boolean;
+    is_coming_soon?: boolean;
     created_at: string;
     updated_at: string;
 }

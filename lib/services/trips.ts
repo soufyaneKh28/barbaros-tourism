@@ -14,6 +14,7 @@ function transformTrip(trip: any, locale: string = 'en') {
         includes: getLocalized(trip.includes, locale) || [],
         excludes: getLocalized(trip.excludes, locale) || [],
         itinerary: getLocalized(trip.itinerary, locale),
+        is_coming_soon: trip.is_coming_soon,
         category: trip.category ? {
             ...trip.category,
             name: getLocalized(trip.category.name, locale)

@@ -12,6 +12,7 @@ export interface SpecialPackage {
     includes: string;
     excludes: string;
     main_image: string;
+    is_coming_soon?: boolean;
     created_at: string;
     updated_at: string;
 }
@@ -28,6 +29,7 @@ export interface SpecialPackageRaw {
     excludes: Record<Locale, string>;
     main_image: string;
     display_order: number;
+    is_coming_soon?: boolean;
     created_at: string;
     updated_at: string;
 }
@@ -60,6 +62,7 @@ export async function getSpecialPackages(locale: Locale = 'en'): Promise<Special
         includes: pkg.includes[locale] || pkg.includes.en,
         excludes: pkg.excludes[locale] || pkg.excludes.en,
         main_image: pkg.main_image,
+        is_coming_soon: pkg.is_coming_soon,
         created_at: pkg.created_at,
         updated_at: pkg.updated_at,
     }));
@@ -118,6 +121,7 @@ export async function getSpecialPackageBySlug(
         includes: pkg.includes[locale] || pkg.includes.en,
         excludes: pkg.excludes[locale] || pkg.excludes.en,
         main_image: pkg.main_image,
+        is_coming_soon: pkg.is_coming_soon,
         created_at: pkg.created_at,
         updated_at: pkg.updated_at,
     };

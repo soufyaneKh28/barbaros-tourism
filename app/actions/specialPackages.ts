@@ -200,3 +200,18 @@ export async function updateSpecialPackageOrderAction(id: string, order: number)
         return { success: false, error: (error as Error).message };
     }
 }
+
+/**
+ * Toggle special package coming soon status
+ */
+export async function toggleSpecialPackageComingSoonAction(id: string, isComingSoon: boolean) {
+    try {
+        await updateSpecialPackage(id, { is_coming_soon: isComingSoon });
+        revalidatePath('/en/portal-manage/special-packages');
+        revalidatePath('/en/special-tourism-packages');
+        return { success: true };
+    } catch (error) {
+        console.error('Error updating special package coming soon status:', error);
+        return { success: false, error: (error as Error).message };
+    }
+}

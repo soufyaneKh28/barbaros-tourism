@@ -60,11 +60,16 @@ export default async function ProgramsPage({
                                         src={program.main_image}
                                         alt={program.title}
                                         fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        className={`object-cover transition-transform duration-500 group-hover:scale-110 ${program.is_coming_soon ? 'grayscale' : ''}`}
                                     />
                                 ) : (
                                     <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
                                         No Image
+                                    </div>
+                                )}
+                                {program.is_coming_soon && (
+                                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white font-bold px-4 py-2 rounded-full text-xs uppercase tracking-wider z-10">
+                                        Coming Soon
                                     </div>
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />

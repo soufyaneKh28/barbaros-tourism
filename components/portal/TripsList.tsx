@@ -85,7 +85,7 @@ function SortableRow({ trip }: { trip: any }) {
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <div className="flex items-center gap-4">
-                    <TripActions id={trip.id} />
+                    <TripActions id={trip.id} initialIsComingSoon={trip.is_coming_soon} />
                 </div>
             </td>
         </tr>
@@ -262,7 +262,7 @@ export default function TripsList({ trips: initialTrips, locale }: TripsListProp
                                                     </span>
                                                 ) : null}
                                             </div>
-                                            <TripActions id={trip.id} />
+                                            <TripActions id={trip.id} initialIsComingSoon={trip.is_coming_soon} />
                                         </div>
                                     </div>
                                 </div>

@@ -53,11 +53,16 @@ export default async function VipTourismServicesPage({ params }: { params: Promi
                                         <img
                                             src={service.image_url}
                                             alt={typeof service.title === 'string' ? service.title : Object.values(service.title)[0] || 'Service'}
-                                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                            className={`w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ${service.is_coming_soon ? 'grayscale' : ''}`}
                                         />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-200">
                                             <span className="text-sm">No Image</span>
+                                        </div>
+                                    )}
+                                    {service.is_coming_soon && (
+                                        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white font-bold px-4 py-2 rounded-full text-xs uppercase tracking-wider z-10">
+                                            Coming Soon
                                         </div>
                                     )}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />

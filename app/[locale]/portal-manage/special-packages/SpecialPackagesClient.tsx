@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
-import { deleteSpecialPackageAction, updateSpecialPackageOrderAction } from '@/app/actions/specialPackages';
-import { Pencil, Trash2, Plus, GripVertical } from 'lucide-react';
+import { deleteSpecialPackageAction, updateSpecialPackageOrderAction, toggleSpecialPackageComingSoonAction } from '@/app/actions/specialPackages';
+import { Pencil, Trash2, Plus, GripVertical, Clock } from 'lucide-react';
 import { useLanguage } from '@/hooks/use-language';
 import {
     DndContext,
@@ -31,16 +31,18 @@ interface SpecialPackage {
     target_categories: string;
     duration_nights: string;
     main_image: string;
+    is_coming_soon?: boolean;
 }
 
 interface Props {
     initialPackages: SpecialPackage[];
 }
 
-function SortableRow({ pkg, locale, onDelete, isDeleting, t }: {
+function SortableRow({ pkg, locale, onDelete, onToggleComingSoon, isDeleting, t }: {
     pkg: SpecialPackage
     locale: string
     onDelete: (id: string) => void
+    onToggleComingSoon: (id: string, value: boolean) => void
     isDeleting: string | null
     t: any
 }) {
@@ -94,21 +96,34 @@ function SortableRow({ pkg, locale, onDelete, isDeleting, t }: {
                 <div className="text-sm text-gray-500">{pkg.slug}</div>
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <Link
-                    href={`/${locale}/portal-manage/special-packages/${pkg.id}/edit`}
-                    className="text-primary hover:text-secondary mr-4 inline-flex items-center gap-1"
-                >
-                    <Pencil className="w-4 h-4" />
-                    {t.portalAdmin.specialPackages.edit}
-                </Link>
-                <button
-                    onClick={() => onDelete(pkg.id)}
-                    disabled={isDeleting === pkg.id}
-                    className="text-red-600 hover:text-red-900 inline-flex items-center gap-1 disabled:opacity-50"
-                >
-                    <Trash2 className="w-4 h-4" />
-                    {isDeleting === pkg.id ? t.portalAdmin.specialPackages.deleting : t.portalAdmin.specialPackages.delete}
-                </button>
+                <div className="flex items-center justify-end gap-2">
+                    <button
+                        onClick={() => onToggleComingSoon(pkg.id, !pkg.is_coming_soon)}
+                        className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${pkg.is_coming_soon
+                                ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                                : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                            }`}
+                        title={pkg.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
+                    >
+                        <Clock className={`w-3.5 h-3.5 ${pkg.is_coming_soon ? 'fill-current' : ''}`} />
+                        {pkg.is_coming_soon ? 'Coming Soon' : 'Active'}
+                    </button>
+                    <Link
+                        href={`/${locale}/portal-manage/special-packages/${pkg.id}/edit`}
+                        className="text-primary hover:text-secondary inline-flex items-center gap-1"
+                    >
+                        <Pencil className="w-4 h-4" />
+                        {t.portalAdmin.specialPackages.edit}
+                    </Link>
+                    <button
+                        onClick={() => onDelete(pkg.id)}
+                        disabled={isDeleting === pkg.id}
+                        className="text-red-600 hover:text-red-900 inline-flex items-center gap-1 disabled:opacity-50"
+                    >
+                        <Trash2 className="w-4 h-4" />
+                        {isDeleting === pkg.id ? t.portalAdmin.specialPackages.deleting : t.portalAdmin.specialPackages.delete}
+                    </button>
+                </div>
             </td>
         </tr>
     )
@@ -177,6 +192,37 @@ export default function SpecialPackagesClient({ initialPackages }: Props) {
             alert('Error deleting package');
         } finally {
             setDeleteId(null);
+        }
+    }
+
+    async function handleToggleComingSoon(id: string, value: boolean) {
+        // Optimistically update the UI immediately
+        setPackages(prevPackages =>
+            prevPackages.map(p =>
+                p.id === id ? { ...p, is_coming_soon: value } : p
+            )
+        );
+
+        try {
+            const result = await toggleSpecialPackageComingSoonAction(id, value);
+            if (!result.success) {
+                // Revert on error
+                setPackages(prevPackages =>
+                    prevPackages.map(p =>
+                        p.id === id ? { ...p, is_coming_soon: !value } : p
+                    )
+                );
+                alert("Failed to update package status: " + result.error);
+            }
+        } catch (error) {
+            // Revert on error
+            setPackages(prevPackages =>
+                prevPackages.map(p =>
+                    p.id === id ? { ...p, is_coming_soon: !value } : p
+                )
+            );
+            console.error(error);
+            alert("Failed to update package status");
         }
     }
 
@@ -251,6 +297,7 @@ export default function SpecialPackagesClient({ initialPackages }: Props) {
                                             pkg={pkg}
                                             locale={locale}
                                             onDelete={handleDelete}
+                                            onToggleComingSoon={handleToggleComingSoon}
                                             isDeleting={deleteId}
                                             t={t}
                                         />

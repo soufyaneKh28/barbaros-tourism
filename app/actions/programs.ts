@@ -151,3 +151,21 @@ export async function updateProgramOrderAction(id: string, order: number) {
     revalidatePath('/[locale]/portal-manage/programs')
     return { success: true }
 }
+
+export async function toggleProgramComingSoonAction(id: string, isComingSoon: boolean) {
+    const supabase = await createClient()
+
+    const { error } = await supabase
+        .from('programs')
+        .update({ is_coming_soon: isComingSoon, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+    if (error) {
+        console.error('Error updating program coming soon status:', error)
+        return { error: error.message }
+    }
+
+    revalidatePath('/[locale]/programs', 'page')
+    revalidatePath('/[locale]/portal-manage/programs')
+    return { success: true }
+}

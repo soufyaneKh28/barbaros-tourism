@@ -4,9 +4,9 @@ import { Program } from "@/lib/types";
 import { type Locale } from "@/i18n";
 import Link from "next/link";
 import Image from "next/image";
-import { Edit, Trash2, LayoutGrid, LayoutList, GripVertical } from "lucide-react";
+import { Edit, Trash2, LayoutGrid, LayoutList, GripVertical, Clock } from "lucide-react";
 import { useState } from "react";
-import { deleteProgramAction, updateProgramOrderAction } from "@/app/actions/programs";
+import { deleteProgramAction, updateProgramOrderAction, toggleProgramComingSoonAction } from "@/app/actions/programs";
 import { useRouter } from "next/navigation";
 import {
     DndContext,
@@ -31,10 +31,11 @@ interface ProgramsListProps {
     locale: Locale;
 }
 
-function SortableRow({ program, locale, onDelete, isDeleting }: {
+function SortableRow({ program, locale, onDelete, onToggleComingSoon, isDeleting }: {
     program: Program
     locale: Locale
     onDelete: (id: string) => void
+    onToggleComingSoon: (id: string, value: boolean) => void
     isDeleting: string | null
 }) {
     const {
@@ -87,6 +88,18 @@ function SortableRow({ program, locale, onDelete, isDeleting }: {
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => onToggleComingSoon(program.id, !program.is_coming_soon)}
+                        className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${program.is_coming_soon
+                            ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                            : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                            }`}
+                        title={program.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
+                    >
+                        <Clock className={`w-3.5 h-3.5 ${program.is_coming_soon ? 'fill-current' : ''}`} />
+                        {program.is_coming_soon ? 'Coming Soon' : 'Active'}
+                    </button>
+                    <div className="w-px h-4 bg-gray-200 mx-1" />
                     <Link
                         href={`/${locale}/portal-manage/programs/${program.id}`}
                         className="text-blue-600 hover:text-blue-900 p-1"
@@ -162,6 +175,37 @@ export default function ProgramsList({ programs: initialPrograms, locale }: Prog
             alert("Failed to delete program");
         }
         setIsDeleting(null);
+    }
+
+    async function handleToggleComingSoon(id: string, value: boolean) {
+        // Optimistically update the UI immediately
+        setPrograms(prevPrograms =>
+            prevPrograms.map(p =>
+                p.id === id ? { ...p, is_coming_soon: value } : p
+            )
+        );
+
+        try {
+            const result = await toggleProgramComingSoonAction(id, value);
+            if (result.error) {
+                // Revert on error
+                setPrograms(prevPrograms =>
+                    prevPrograms.map(p =>
+                        p.id === id ? { ...p, is_coming_soon: !value } : p
+                    )
+                );
+                alert("Failed to update program status: " + result.error);
+            }
+        } catch (error) {
+            // Revert on error
+            setPrograms(prevPrograms =>
+                prevPrograms.map(p =>
+                    p.id === id ? { ...p, is_coming_soon: !value } : p
+                )
+            );
+            console.error(error);
+            alert("Failed to update program status");
+        }
     }
 
     return (
@@ -243,21 +287,34 @@ export default function ProgramsList({ programs: initialPrograms, locale }: Prog
                                         </p>
 
                                         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                                            <Link
-                                                href={`/${locale}/portal-manage/programs/${program.id}`}
-                                                className="flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-                                            >
-                                                <Edit className="w-4 h-4" />
-                                                Edit
-                                            </Link>
                                             <button
-                                                onClick={() => handleDelete(program.id)}
-                                                disabled={isDeleting === program.id}
-                                                className="flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-700 transition-colors disabled:opacity-50"
+                                                onClick={() => handleToggleComingSoon(program.id, !program.is_coming_soon)}
+                                                className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${program.is_coming_soon
+                                                    ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                                                    : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                                                    }`}
+                                                title={program.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
                                             >
-                                                <Trash2 className="w-4 h-4" />
-                                                {isDeleting === program.id ? 'Deleting...' : 'Delete'}
+                                                <Clock className={`w-3.5 h-3.5 ${program.is_coming_soon ? 'fill-current' : ''}`} />
+                                                {program.is_coming_soon ? 'Coming Soon' : 'Active'}
                                             </button>
+                                            <div className="flex items-center gap-2">
+                                                <Link
+                                                    href={`/${locale}/portal-manage/programs/${program.id}`}
+                                                    className="flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                                                >
+                                                    <Edit className="w-4 h-4" />
+                                                    Edit
+                                                </Link>
+                                                <button
+                                                    onClick={() => handleDelete(program.id)}
+                                                    disabled={isDeleting === program.id}
+                                                    className="flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-700 transition-colors disabled:opacity-50"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                    {isDeleting === program.id ? 'Deleting...' : 'Delete'}
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -293,6 +350,7 @@ export default function ProgramsList({ programs: initialPrograms, locale }: Prog
                                                         program={program}
                                                         locale={locale}
                                                         onDelete={handleDelete}
+                                                        onToggleComingSoon={handleToggleComingSoon}
                                                         isDeleting={isDeleting}
                                                     />
                                                 ))}

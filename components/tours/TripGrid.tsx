@@ -13,6 +13,7 @@ interface Trip {
     price?: string;
     tags?: string[];
     link: string;
+    is_coming_soon?: boolean;
 }
 
 interface TripGridProps {
@@ -49,8 +50,13 @@ export default function TripGrid({ trips, emptyMessage = "No trips available at 
                                     alt={trip.title}
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                    className={`object-cover group-hover:scale-110 transition-transform duration-500 ${trip.is_coming_soon ? 'grayscale' : ''}`}
                                 />
+                                {trip.is_coming_soon && (
+                                    <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white font-bold px-4 py-2 rounded-full text-xs uppercase tracking-wider z-10">
+                                        Coming Soon
+                                    </div>
+                                )}
                                 {trip.price && (
                                     <div className="absolute top-4 right-4 bg-secondary text-primary font-bold px-4 py-2 rounded-full text-sm">
                                         {trip.price}
