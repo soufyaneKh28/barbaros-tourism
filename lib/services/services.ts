@@ -9,7 +9,8 @@ function transformService(service: any, locale: string = 'en') {
         service_name: getLocalized(service.service_name, locale),
         service_details: getLocalized(service.service_details, locale),
         cta_text: getLocalized(service.cta_text, locale),
-        cta_link: service.cta_link
+        cta_link: service.cta_link,
+        is_coming_soon: service.is_coming_soon
     }
 }
 

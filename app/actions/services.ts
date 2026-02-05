@@ -185,3 +185,26 @@ export async function updateServiceOrderAction(id: string, order: number) {
         return { error: 'An unexpected error occurred' }
     }
 }
+
+export async function toggleServiceComingSoonAction(id: string, isComingSoon: boolean) {
+    try {
+        const supabase = await createClient()
+
+        const { error } = await supabase
+            .from('services')
+            .update({ is_coming_soon: isComingSoon })
+            .eq('id', id)
+
+        if (error) {
+            console.error('Error updating service coming soon status:', error)
+            return { error: 'Failed to update status' }
+        }
+
+        revalidatePath('/[locale]/portal-manage/services')
+        revalidatePath('/[locale]/our-services')
+        return { success: true }
+    } catch (error) {
+        console.error('Error in toggleServiceComingSoonAction:', error)
+        return { error: 'An unexpected error occurred' }
+    }
+}

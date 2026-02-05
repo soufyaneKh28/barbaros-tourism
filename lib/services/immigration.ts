@@ -22,6 +22,7 @@ function transformService(service: any, locale: string = 'en') {
         features: getLocalized(service.features, locale) || [],
         requirements: getLocalized(service.requirements, locale) || [],
         processing_time: getLocalized(service.processing_time, locale),
+        is_coming_soon: service.is_coming_soon,
         category: service.category ? transformCategory(service.category, locale) : null
     }
 }

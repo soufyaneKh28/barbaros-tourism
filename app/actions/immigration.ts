@@ -180,3 +180,21 @@ export async function updateImmigrationServiceOrderAction(id: string, order: num
     revalidatePath('/[locale]/portal-manage/immigration-services')
     return { success: true }
 }
+
+export async function toggleImmigrationServiceComingSoonAction(id: string, isComingSoon: boolean) {
+    const supabase = await createClient()
+
+    const { error } = await supabase
+        .from('immigration_services')
+        .update({ is_coming_soon: isComingSoon, updated_at: new Date().toISOString() })
+        .eq('id', id)
+
+    if (error) {
+        console.error('Error updating immigration service coming soon status:', error)
+        return { error: error.message }
+    }
+
+    revalidatePath('/[locale]/immigration', 'page')
+    revalidatePath('/[locale]/portal-manage/immigration-services')
+    return { success: true }
+}

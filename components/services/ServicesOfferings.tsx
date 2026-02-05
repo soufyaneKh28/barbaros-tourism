@@ -20,6 +20,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop",
             cta_text: undefined,
             cta_link: undefined,
+            is_coming_soon: false,
         },
         {
             title: t.servicesOfferings.items.adventure.title,
@@ -27,6 +28,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
             cta_text: undefined,
             cta_link: undefined,
+            is_coming_soon: false,
         },
         {
             title: t.servicesOfferings.items.medical.title,
@@ -34,6 +36,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop",
             cta_text: undefined,
             cta_link: undefined,
+            is_coming_soon: false,
         },
         {
             title: t.servicesOfferings.items.accommodation.title,
@@ -41,6 +44,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
             cta_text: undefined,
             cta_link: undefined,
+            is_coming_soon: false,
         },
         {
             title: t.servicesOfferings.items.transportation.title,
@@ -48,6 +52,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop",
             cta_text: undefined,
             cta_link: undefined,
+            is_coming_soon: false,
         },
         {
             title: t.servicesOfferings.items.custom.title,
@@ -55,6 +60,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2035&auto=format&fit=crop",
             cta_text: undefined,
             cta_link: undefined,
+            is_coming_soon: false,
         },
     ];
 
@@ -66,6 +72,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
             image: service.cover_image || "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2035&auto=format&fit=crop",
             cta_text: service.cta_text,
             cta_link: service.cta_link,
+            is_coming_soon: service.is_coming_soon,
         }))
         : staticOfferings;
 
@@ -121,8 +128,13 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
                                                 src={service.image}
                                                 alt={service.title}
                                                 fill
-                                                className="object-cover"
+                                                className={`object-cover ${service.is_coming_soon ? 'grayscale' : ''}`}
                                             />
+                                            {service.is_coming_soon && (
+                                                <div className="absolute top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg z-10">
+                                                    Coming Soon
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

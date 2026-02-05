@@ -104,8 +104,13 @@ export default async function ImmigrationPage({
                                             src={service.main_image}
                                             alt={service.title}
                                             fill
-                                            className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                            className={`object-cover group-hover:scale-110 transition-transform duration-300 ${service.is_coming_soon ? 'grayscale' : ''}`}
                                         />
+                                        {service.is_coming_soon && (
+                                            <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg z-10">
+                                                Coming Soon
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="p-6">
                                         <h3 className="text-xl font-bold font-cabinet mb-2 group-hover:text-primary transition-colors">
@@ -163,8 +168,13 @@ export default async function ImmigrationPage({
                                             src={service.main_image}
                                             alt={service.title}
                                             fill
-                                            className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                            className={`object-cover group-hover:scale-110 transition-transform duration-300 ${service.is_coming_soon ? 'grayscale' : ''}`}
                                         />
+                                        {service.is_coming_soon && (
+                                            <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg z-10">
+                                                Coming Soon
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="p-6">
                                         <h3 className="text-xl font-bold font-cabinet mb-2 group-hover:text-primary transition-colors">

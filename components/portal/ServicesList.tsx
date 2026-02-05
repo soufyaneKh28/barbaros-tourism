@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { LayoutGrid, LayoutList, GripVertical } from 'lucide-react'
+import { LayoutGrid, LayoutList, GripVertical, Clock } from 'lucide-react'
 import ServiceActions from '@/components/portal/ServiceActions'
-import { updateServiceOrderAction } from '@/app/actions/services'
+import { updateServiceOrderAction, toggleServiceComingSoonAction } from '@/app/actions/services'
 import {
     DndContext,
     closestCenter,
@@ -27,7 +27,7 @@ interface ServicesListProps {
     services: any[]
 }
 
-function SortableRow({ service }: { service: any }) {
+function SortableRow({ service, onToggleComingSoon }: { service: any, onToggleComingSoon: (id: string, value: boolean) => void }) {
     const {
         attributes,
         listeners,
@@ -76,7 +76,19 @@ function SortableRow({ service }: { service: any }) {
                 </span>
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
+                    <button
+                        onClick={() => onToggleComingSoon(service.id, !service.is_coming_soon)}
+                        className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${service.is_coming_soon
+                                ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                                : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                            }`}
+                        title={service.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
+                    >
+                        <Clock className={`w-3.5 h-3.5 ${service.is_coming_soon ? 'fill-current' : ''}`} />
+                        {service.is_coming_soon ? 'Coming Soon' : 'Active'}
+                    </button>
+                    <div className="w-px h-4 bg-gray-200" />
                     <Link
                         href={`./services/${service.id}/edit`}
                         className="text-primary hover:text-primary-600"
@@ -127,6 +139,37 @@ export default function ServicesList({ services: initialServices }: ServicesList
             } finally {
                 setIsUpdating(false)
             }
+        }
+    }
+
+    async function handleToggleComingSoon(id: string, value: boolean) {
+        // Optimistically update the UI immediately
+        setServices(prevServices =>
+            prevServices.map(s =>
+                s.id === id ? { ...s, is_coming_soon: value } : s
+            )
+        );
+
+        try {
+            const result = await toggleServiceComingSoonAction(id, value);
+            if (result.error) {
+                // Revert on error
+                setServices(prevServices =>
+                    prevServices.map(s =>
+                        s.id === id ? { ...s, is_coming_soon: !value } : s
+                    )
+                );
+                alert("Failed to update service status: " + result.error);
+            }
+        } catch (error) {
+            // Revert on error
+            setServices(prevServices =>
+                prevServices.map(s =>
+                    s.id === id ? { ...s, is_coming_soon: !value } : s
+                )
+            );
+            console.error(error);
+            alert("Failed to update service status");
         }
     }
 
@@ -214,7 +257,7 @@ export default function ServicesList({ services: initialServices }: ServicesList
                                             strategy={verticalListSortingStrategy}
                                         >
                                             {services.map((service) => (
-                                                <SortableRow key={service.id} service={service} />
+                                                <SortableRow key={service.id} service={service} onToggleComingSoon={handleToggleComingSoon} />
                                             ))}
                                         </SortableContext>
                                     </tbody>
@@ -253,9 +296,17 @@ export default function ServicesList({ services: initialServices }: ServicesList
                                         </p>
 
                                         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
-                                            <div className="text-xs text-gray-500 font-medium bg-gray-50 px-2 py-1 rounded">
-                                                {service.cta_text || 'No CTA'}
-                                            </div>
+                                            <button
+                                                onClick={() => handleToggleComingSoon(service.id, !service.is_coming_soon)}
+                                                className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${service.is_coming_soon
+                                                        ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                                                        : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                                                    }`}
+                                                title={service.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
+                                            >
+                                                <Clock className={`w-3.5 h-3.5 ${service.is_coming_soon ? 'fill-current' : ''}`} />
+                                                {service.is_coming_soon ? 'Coming Soon' : 'Active'}
+                                            </button>
 
                                             <div className="flex items-center gap-3">
                                                 <Link
