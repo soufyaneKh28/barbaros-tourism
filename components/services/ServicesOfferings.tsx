@@ -114,10 +114,10 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
                                 viewport={{ once: true }}
-                                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
+                                className={`flex flex-col ${isEven ? 'lg:flex-row justify-between' : 'lg:flex-row-reverse justify-between'} gap-12 items-center`}
                             >
                                 {/* Image Section */}
-                                <div className="w-full lg:w-1/2 relative">
+                                <div className="w-full lg:w-2/5 relative">
                                     <div className={`relative rounded-[40px] shadow-2xl ${isEven ? 'lg:rounded-tr-[100px]' : 'lg:rounded-tl-[100px]'}`}>
                                         <div className={`absolute inset-0 translate-x-5 translate-y-5 border-[8px] bg-secondary border-secondary rounded-[40px] ${isEven ? 'lg:rounded-tr-[100px]' : 'lg:rounded-tl-[100px]'} pointer-events-none z-0`} />
                                         {/* Decorative border */}
@@ -140,7 +140,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
                                 </div>
 
                                 {/* Content Section */}
-                                <div className="w-full lg:w-1/2">
+                                <div className="w-full lg:w-2/5">
                                     <motion.h3
                                         initial={{ opacity: 0, x: isEven ? -20 : 20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
