@@ -57,7 +57,7 @@ export async function getAllServices(locale: string = 'en') {
     }
 }
 
-export async function getServiceById(id: string) {
+export async function getServiceById(id: string, skipTransform: boolean = false) {
     try {
         const supabase = await createClient()
 
@@ -72,7 +72,18 @@ export async function getServiceById(id: string) {
             return null
         }
 
-        return data
+        if (skipTransform) return data
+        return data // Original implementation returned data directly but typically we should transform. However, getServiceById seemed to return untransformed data before? 
+        // Wait, line 75 was simply `return data`.
+        // If the original implementation was returning raw data, then `services.ts` might be inconsistent with `immigration.ts`.
+        // Let's look at `services.ts` again.
+        // It WAS returning `data` directly (line 75).
+        // But `transformService` was defined at line 5.
+        // If `getServiceById` returns raw data, then maybe `services` edit page was working fine because it got raw JSONB.
+        // But `immigration.ts` was definitely transforming it.
+
+        // Actually, let's stick to fixing `immigration.ts`. `services.ts` changes are risky without full context of where it's used.
+        // The user only complained about immigration service.
     } catch (error) {
         console.error('Error in getServiceById:', error)
         return null

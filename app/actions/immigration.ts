@@ -32,15 +32,13 @@ export async function createImmigrationServiceAction(formData: FormData) {
     // Multi-language fields
     const title = getMultiLangField(formData, 'title')
     const description = getMultiLangField(formData, 'description')
-    const longDescription = getMultiLangField(formData, 'longDescription')
-    const features = getMultiLangArrayField(formData, 'features')
-    const requirements = getMultiLangArrayField(formData, 'requirements')
-    const processingTime = getMultiLangField(formData, 'processingTime')
+    const ctaText = getMultiLangField(formData, 'ctaText')
 
     // Regular fields
     const slug = formData.get('slug') as string
     const categoryId = formData.get('categoryId') as string
     const mainImage = formData.get('mainImage') as string
+    const ctaLink = formData.get('ctaLink') as string
     const displayOrderRaw = formData.get('displayOrder') as string
     const displayOrder = displayOrderRaw ? parseInt(displayOrderRaw) : 0
     const isActive = formData.get('isActive') === 'on'
@@ -51,12 +49,10 @@ export async function createImmigrationServiceAction(formData: FormData) {
             title,
             slug,
             description,
-            long_description: longDescription,
             category_id: categoryId,
-            features,
-            requirements,
-            processing_time: processingTime,
             main_image: mainImage,
+            cta_text: ctaText,
+            cta_link: ctaLink,
             display_order: displayOrder,
             is_active: isActive
         }])
@@ -77,15 +73,13 @@ export async function updateImmigrationServiceAction(id: string, formData: FormD
     // Multi-language fields
     const title = getMultiLangField(formData, 'title')
     const description = getMultiLangField(formData, 'description')
-    const longDescription = getMultiLangField(formData, 'longDescription')
-    const features = getMultiLangArrayField(formData, 'features')
-    const requirements = getMultiLangArrayField(formData, 'requirements')
-    const processingTime = getMultiLangField(formData, 'processingTime')
+    const ctaText = getMultiLangField(formData, 'ctaText')
 
     // Regular fields
     const slug = formData.get('slug') as string
     const categoryId = formData.get('categoryId') as string
     const mainImage = formData.get('mainImage') as string
+    const ctaLink = formData.get('ctaLink') as string
     const displayOrderRaw = formData.get('displayOrder') as string
     const displayOrder = displayOrderRaw ? parseInt(displayOrderRaw) : 0
     const isActive = formData.get('isActive') === 'on'
@@ -96,12 +90,10 @@ export async function updateImmigrationServiceAction(id: string, formData: FormD
             title,
             slug,
             description,
-            long_description: longDescription,
             category_id: categoryId,
-            features,
-            requirements,
-            processing_time: processingTime,
             main_image: mainImage,
+            cta_text: ctaText,
+            cta_link: ctaLink,
             display_order: displayOrder,
             is_active: isActive,
             updated_at: new Date().toISOString()

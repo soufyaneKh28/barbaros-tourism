@@ -13,7 +13,7 @@ export default async function EditImmigrationServicePage({
     const supabase = await createClient()
 
     const [service, categories] = await Promise.all([
-        getImmigrationServiceById(id, 'en', supabase),
+        getImmigrationServiceById(id, undefined, supabase, true),
         getImmigrationCategories('en')
     ])
 

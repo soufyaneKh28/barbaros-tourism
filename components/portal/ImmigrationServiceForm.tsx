@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { createImmigrationServiceAction, updateImmigrationServiceAction } from '@/app/actions/immigration'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
-import MultiLangArrayInput from '@/components/portal/MultiLangArrayInput'
 import ImageUpload from '@/components/portal/ImageUpload'
 import { AdminLanguageProvider } from '@/contexts/AdminLanguageContext'
 import GlobalLanguageSwitcher from '@/components/portal/GlobalLanguageSwitcher'
@@ -15,11 +14,13 @@ interface ImmigrationServiceFormProps {
     categories: any[]
 }
 
-export default function ImmigrationServiceForm({ service, categories }: ImmigrationServiceFormProps) {
+export default function ImmigrationServiceForm(props: ImmigrationServiceFormProps) {
+    const { service = null, categories = [] } = props || {}
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [mainImage, setMainImage] = useState(service?.main_image || '')
     const isEditing = !!service
+    const defaultIsActive = service?.is_active ?? true
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -94,39 +95,32 @@ export default function ImmigrationServiceForm({ service, categories }: Immigrat
 
                     <MultiLangTextarea
                         name="description"
-                        label="Short Description (for cards)"
+                        label="Description"
                         defaultValue={service?.description}
                         required
-                        rows={3}
-                    />
-
-                    <MultiLangTextarea
-                        name="longDescription"
-                        label="Long Description (detailed overview)"
-                        defaultValue={service?.long_description}
-                        rows={6}
-                    />
-
-                    <MultiLangArrayInput
-                        name="features"
-                        label="Features / What's Included"
-                        defaultValue={service?.features}
-                        placeholder="Enter one feature per line"
-                    />
-
-                    <MultiLangArrayInput
-                        name="requirements"
-                        label="Requirements / Documents Needed"
-                        defaultValue={service?.requirements}
-                        placeholder="Enter one requirement per line"
+                        rows={4}
                     />
 
                     <MultiLangInput
-                        name="processingTime"
-                        label="Processing Time"
-                        defaultValue={service?.processing_time}
-                        placeholder="e.g., 2-4 weeks"
+                        name="ctaText"
+                        label="Button Text"
+                        defaultValue={service?.cta_text}
+                        placeholder="e.g., Apply Now"
                     />
+
+                    <div>
+                        <label htmlFor="ctaLink" className="block text-sm font-medium text-gray-700 mb-1">
+                            Button Link (URL)
+                        </label>
+                        <input
+                            type="text"
+                            id="ctaLink"
+                            name="ctaLink"
+                            defaultValue={service?.cta_link || ''}
+                            placeholder="e.g., https://example.com/apply"
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                    </div>
 
                     <div>
                         <label htmlFor="displayOrder" className="block text-sm font-medium text-gray-700 mb-1">
@@ -157,7 +151,7 @@ export default function ImmigrationServiceForm({ service, categories }: Immigrat
                             type="checkbox"
                             id="isActive"
                             name="isActive"
-                            defaultChecked={service?.is_active ?? true}
+                            defaultChecked={defaultIsActive}
                             className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                         />
                         <label htmlFor="isActive" className="ml-2 block text-sm text-gray-900">

@@ -58,7 +58,7 @@ export default function ImmigrationServiceActions({ service }: ImmigrationServic
                 disabled={isToggling}
                 className="text-blue-600 hover:text-blue-800 disabled:opacity-50"
             >
-                {isToggling ? 'Toggling...' : (service.is_active ? 'Deactivate' : 'Activate')}
+                {isToggling ? 'Toggling...' : (service.is_active ? 'Hide' : 'Show')}
             </button>
             <button
                 onClick={handleDelete}

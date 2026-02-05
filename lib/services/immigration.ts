@@ -22,6 +22,8 @@ function transformService(service: any, locale: string = 'en') {
         features: getLocalized(service.features, locale) || [],
         requirements: getLocalized(service.requirements, locale) || [],
         processing_time: getLocalized(service.processing_time, locale),
+        cta_text: getLocalized(service.cta_text, locale),
+        cta_link: service.cta_link,
         is_coming_soon: service.is_coming_soon,
         category: service.category ? transformCategory(service.category, locale) : null
     }
@@ -93,7 +95,7 @@ export async function getImmigrationServiceBySlug(slug: string, locale: string =
 }
 
 // Get single immigration service by ID (for admin)
-export async function getImmigrationServiceById(id: string, locale: string = 'en', client?: any) {
+export async function getImmigrationServiceById(id: string, locale?: string, client?: any, skipTransform: boolean = false) {
     const sb = client || supabase
     const { data, error } = await sb
         .from('immigration_services')
@@ -105,7 +107,8 @@ export async function getImmigrationServiceById(id: string, locale: string = 'en
         .single()
 
     if (error) throw error
-    return transformService(data, locale)
+    if (skipTransform) return data
+    return transformService(data, locale || 'en')
 }
 
 // Get all immigration services (for admin, including inactive)

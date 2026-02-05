@@ -68,9 +68,8 @@ export default async function ImmigrationServicesPage({
                     {services.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {services.map((service) => (
-                                <Link
+                                <div
                                     key={service.id}
-                                    href={`/${locale}/immigration/residence/${service.slug}`}
                                     className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
                                 >
                                     <div className="relative h-56 overflow-hidden">
@@ -78,24 +77,35 @@ export default async function ImmigrationServicesPage({
                                             src={service.main_image}
                                             alt={service.title}
                                             fill
-                                            className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                            className={`object-cover group-hover:scale-110 transition-transform duration-300 ${service.is_coming_soon ? 'grayscale' : ''}`}
                                         />
+                                        {service.is_coming_soon && (
+                                            <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg z-10">
+                                                Coming Soon
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="p-6">
                                         <h3 className="text-xl font-bold font-cabinet mb-3 group-hover:text-primary transition-colors">
                                             {service.title}
                                         </h3>
-                                        <p className="text-gray-600 mb-4 line-clamp-3">
+                                        <p className="text-gray-600 line-clamp-3">
                                             {service.description}
                                         </p>
-                                        <div className="flex items-center text-primary font-semibold">
-                                            <span>Learn More</span>
-                                            <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </div>
+                                        {service.cta_link && service.cta_text && (
+                                            <div className="mt-4">
+                                                <Link
+                                                    href={service.cta_link}
+                                                    target={service.cta_link.startsWith('http') ? "_blank" : "_self"}
+                                                    rel={service.cta_link.startsWith('http') ? "noopener noreferrer" : undefined}
+                                                    className="inline-block bg-primary text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors"
+                                                >
+                                                    {service.cta_text}
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
-                                </Link>
+                                </div>
                             ))}
                         </div>
                     ) : (

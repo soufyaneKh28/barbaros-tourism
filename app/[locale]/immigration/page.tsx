@@ -94,9 +94,8 @@ export default async function ImmigrationPage({
                     {citizenshipServices.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {citizenshipServices.map((service) => (
-                                <Link
+                                <div
                                     key={service.id}
-                                    href={`/${locale}/immigration/citizenship/${service.slug}`}
                                     className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
                                 >
                                     <div className="relative h-48 overflow-hidden">
@@ -119,8 +118,20 @@ export default async function ImmigrationPage({
                                         <p className="text-gray-600 line-clamp-2">
                                             {service.description}
                                         </p>
+                                        {!service.is_coming_soon && service.cta_link && service.cta_text && (
+                                            <div className="mt-4">
+                                                <Link
+                                                    href={service.cta_link}
+                                                    target={service.cta_link.startsWith('http') ? "_blank" : "_self"}
+                                                    rel={service.cta_link.startsWith('http') ? "noopener noreferrer" : undefined}
+                                                    className="inline-block bg-primary text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors"
+                                                >
+                                                    {service.cta_text}
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
-                                </Link>
+                                </div>
                             ))}
                         </div>
                     ) : (
@@ -158,9 +169,8 @@ export default async function ImmigrationPage({
                     {residenceServices.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {residenceServices.map((service) => (
-                                <Link
+                                <div
                                     key={service.id}
-                                    href={`/${locale}/immigration/residence/${service.slug}`}
                                     className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
                                 >
                                     <div className="relative h-48 overflow-hidden">
@@ -183,8 +193,20 @@ export default async function ImmigrationPage({
                                         <p className="text-gray-600 line-clamp-2">
                                             {service.description}
                                         </p>
+                                        {!service.is_coming_soon && service.cta_link && service.cta_text && (
+                                            <div className="mt-4">
+                                                <Link
+                                                    href={service.cta_link}
+                                                    target={service.cta_link.startsWith('http') ? "_blank" : "_self"}
+                                                    rel={service.cta_link.startsWith('http') ? "noopener noreferrer" : undefined}
+                                                    className="inline-block bg-primary text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors"
+                                                >
+                                                    {service.cta_text}
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
-                                </Link>
+                                </div>
                             ))}
                         </div>
                     ) : (
