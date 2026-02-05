@@ -19,7 +19,7 @@ export default async function MessagesPage() {
     }
 
     return (
-        <div className="max-w-7xl mx-auto bg-white p-8 shadow rounded-lg font-satoshi">
+        <div className="max-w-7xl mx-auto bg-white p-4 sm:p-8 shadow rounded-lg font-satoshi overflow-hidden">
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h2 className="text-2xl font-bold font-cabinet text-primary">Contact Messages</h2>

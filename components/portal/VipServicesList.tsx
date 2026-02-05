@@ -93,8 +93,8 @@ function SortableRow({ service, viewMode, isPending, handleToggleStatus, handleT
                     <button
                         onClick={() => handleToggleComingSoon(service.id, !service.is_coming_soon)}
                         className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${service.is_coming_soon
-                                ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
-                                : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                            ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                            : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
                             }`}
                         title={service.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
                     >
@@ -220,7 +220,7 @@ export default function VipServicesList({ services: initialServices }: VipServic
     }
 
     return (
-        <div className="max-w-7xl mx-auto bg-white p-8 shadow rounded-lg font-satoshi">
+        <div className="max-w-7xl mx-auto bg-white p-4 sm:p-8 shadow rounded-lg font-satoshi overflow-hidden">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <h2 className="text-2xl font-bold font-cabinet text-primary">VIP Tourism Services</h2>
 
@@ -351,8 +351,8 @@ export default function VipServicesList({ services: initialServices }: VipServic
                                             <button
                                                 onClick={() => handleToggleComingSoon(service.id, !service.is_coming_soon)}
                                                 className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${service.is_coming_soon
-                                                        ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
-                                                        : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                                                    ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                                                    : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
                                                     }`}
                                                 title={service.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
                                             >

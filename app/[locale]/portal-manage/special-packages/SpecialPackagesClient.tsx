@@ -100,8 +100,8 @@ function SortableRow({ pkg, locale, onDelete, onToggleComingSoon, isDeleting, t 
                     <button
                         onClick={() => onToggleComingSoon(pkg.id, !pkg.is_coming_soon)}
                         className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-colors text-xs font-medium border ${pkg.is_coming_soon
-                                ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
-                                : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
+                            ? 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                            : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'
                             }`}
                         title={pkg.is_coming_soon ? "Mark as Active" : "Mark as Coming Soon"}
                     >
@@ -227,7 +227,7 @@ export default function SpecialPackagesClient({ initialPackages }: Props) {
     }
 
     return (
-        <div className="p-8">
+        <div className="p-4 sm:p-8 overflow-hidden">
             <div className="flex justify-between items-center mb-8">
                 <h1 className="text-3xl font-bold font-cabinet text-primary">
                     {t.portalAdmin.specialPackages.title}
@@ -260,52 +260,54 @@ export default function SpecialPackagesClient({ initialPackages }: Props) {
                 </div>
             ) : (
                 <div className="bg-white rounded-lg shadow overflow-hidden">
-                    <DndContext
-                        sensors={sensors}
-                        collisionDetection={closestCenter}
-                        onDragEnd={handleDragEnd}
-                    >
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
-                                <tr>
-                                    <th className="w-10 px-6 py-3"></th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {t.portalAdmin.specialPackages.table.packageName}
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {t.portalAdmin.specialPackages.table.targetCategories}
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {t.portalAdmin.specialPackages.table.duration}
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {t.portalAdmin.specialPackages.table.slug}
-                                    </th>
-                                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {t.portalAdmin.specialPackages.table.actions}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
-                                <SortableContext
-                                    items={packages.map(p => p.id)}
-                                    strategy={verticalListSortingStrategy}
-                                >
-                                    {packages.map((pkg) => (
-                                        <SortableRow
-                                            key={pkg.id}
-                                            pkg={pkg}
-                                            locale={locale}
-                                            onDelete={handleDelete}
-                                            onToggleComingSoon={handleToggleComingSoon}
-                                            isDeleting={deleteId}
-                                            t={t}
-                                        />
-                                    ))}
-                                </SortableContext>
-                            </tbody>
-                        </table>
-                    </DndContext>
+                    <div className="overflow-x-auto">
+                        <DndContext
+                            sensors={sensors}
+                            collisionDetection={closestCenter}
+                            onDragEnd={handleDragEnd}
+                        >
+                            <table className="min-w-full divide-y divide-gray-200">
+                                <thead className="bg-gray-50">
+                                    <tr>
+                                        <th className="w-10 px-6 py-3"></th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {t.portalAdmin.specialPackages.table.packageName}
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {t.portalAdmin.specialPackages.table.targetCategories}
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {t.portalAdmin.specialPackages.table.duration}
+                                        </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {t.portalAdmin.specialPackages.table.slug}
+                                        </th>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {t.portalAdmin.specialPackages.table.actions}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    <SortableContext
+                                        items={packages.map(p => p.id)}
+                                        strategy={verticalListSortingStrategy}
+                                    >
+                                        {packages.map((pkg) => (
+                                            <SortableRow
+                                                key={pkg.id}
+                                                pkg={pkg}
+                                                locale={locale}
+                                                onDelete={handleDelete}
+                                                onToggleComingSoon={handleToggleComingSoon}
+                                                isDeleting={deleteId}
+                                                t={t}
+                                            />
+                                        ))}
+                                    </SortableContext>
+                                </tbody>
+                            </table>
+                        </DndContext>
+                    </div>
                 </div>
             )}
         </div>
