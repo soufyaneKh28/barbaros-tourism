@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { motion, useInView } from 'motion/react';
 
 import { useLanguage } from '@/hooks/use-language';
 
@@ -38,6 +39,8 @@ interface HotDealsProps {
 
 export default function HotDeals({ deals, locale }: HotDealsProps) {
     const carouselRef = useRef<any>(null);
+    const sectionRef = useRef(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
     const { t } = useLanguage();
 
     if (!deals || deals.length === 0) {
@@ -45,7 +48,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
     }
 
     return (
-        <section className="py-20 bg-primary text-white relative">
+        <section ref={sectionRef} className="py-20 bg-primary text-white relative">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5 pointer-events-none">
                 <div className="absolute inset-0 bg-[url('/images/pattern.png')] bg-repeat opacity-10"></div>
@@ -55,7 +58,12 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
             <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
 
                 {/* Header & Navigation Wrapper */}
-                <div className="flex flex-col lg:flex-row justify-between items-end mb-12 gap-8 relative">
+                <motion.div
+                    className="flex flex-col lg:flex-row justify-between items-end mb-12 gap-8 relative"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.6 }}
+                >
                     <div className="max-w-2xl">
                         <div className="inline-block mb-6">
                             <span className="border border-white/20 rounded-full px-6 py-2 text-white/80 font-bold font-cabinet text-sm backdrop-blur-sm bg-white/5">
@@ -73,7 +81,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                     </div>
 
 
-                </div>
+                </motion.div>
 
                 {/* Carousel */}
                 <div className="-mx-4 px-4 pb-8 relative overflow-visible group">

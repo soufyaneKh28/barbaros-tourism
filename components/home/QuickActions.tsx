@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/hooks/use-language';
+import { motion, useInView } from 'motion/react';
 
 interface QuickAction {
     id: string;
@@ -20,6 +21,8 @@ interface QuickActionsProps {
 
 export default function QuickActions({ actions }: QuickActionsProps) {
     const { t } = useLanguage();
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
 
     // If no actions (or empty array), normally we'd hide or show text.
     // Design requirement: "replace this section... with section like the second image"
@@ -30,10 +33,15 @@ export default function QuickActions({ actions }: QuickActionsProps) {
     }
 
     return (
-        <section className="py-16 bg-white">
+        <section ref={ref} className="py-16 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 {/* Section Header */}
-                <div className="text-center mb-12">
+                <motion.div
+                    className="text-center mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6 }}
+                >
                     <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm inline-block mb-4">
                         {t.home.quickActions?.subheading || 'Explore Our Services'}
                     </span>
@@ -43,11 +51,17 @@ export default function QuickActions({ actions }: QuickActionsProps) {
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto font-satoshi">
                         {t.home.quickActions?.description || 'Choose from our wide range of services designed to meet your needs.'}
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
-                    {actions.map((action) => (
-                        <div key={action.id} className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 group cursor-pointer h-full flex flex-col items-center text-center md:items-center md:text-center relative overflow-hidden">
+                    {actions.map((action, index) => (
+                        <motion.div
+                            key={action.id}
+                            className="bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 group cursor-pointer h-full flex flex-col items-center text-center md:items-center md:text-center relative overflow-hidden"
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
                             {/* Hover Effect Background */}
                             {/* <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/5 transition-colors duration-300" /> */}
 
@@ -83,7 +97,7 @@ export default function QuickActions({ actions }: QuickActionsProps) {
                                 >
                                 </Link>
                             )}
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
