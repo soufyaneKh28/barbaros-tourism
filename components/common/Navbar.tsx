@@ -24,7 +24,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
 
     // Handle scroll effect
-    useState(() => {
+    useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
         };
@@ -34,7 +34,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
             window.addEventListener('scroll', handleScroll);
             return () => window.removeEventListener('scroll', handleScroll);
         }
-    });
+    }, []);
 
     // Effective transparent state: true only if transparent prop is true AND not scrolled
     const isTransparent = transparent && !isScrolled;

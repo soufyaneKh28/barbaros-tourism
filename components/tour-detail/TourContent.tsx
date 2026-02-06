@@ -22,31 +22,48 @@ export default function TourContent({ location, itinerary, includes, excludes, l
     const scrollToSection = (sectionId: string) => {
         const section = sectionRefs.current[sectionId];
         if (section) {
-            const yOffset = -100; // Offset for sticky header
-            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
+            // Use scrollIntoView to avoid forced reflow from getBoundingClientRect
+            const headerOffset = 100;
+            const elementPosition = section.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
             setActiveTab(sectionId);
         }
     };
 
-    // Track scroll position to update active tab
+    // Track scroll position to update active tab using IntersectionObserver
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY + 150;
+        const observerOptions = {
+            rootMargin: '-150px 0px 0px 0px',
+            threshold: 0
+        };
 
-            // Check which section is currently in view
-            const sections = Object.entries(sectionRefs.current);
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const [id, element] = sections[i];
-                if (element && element.offsetTop <= scrollPosition) {
-                    setActiveTab(id);
-                    break;
-                }
+        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+            // Find the first intersecting section from top to bottom
+            const intersectingEntries = entries.filter(entry => entry.isIntersecting);
+            if (intersectingEntries.length > 0) {
+                // Get the topmost intersecting section
+                const topEntry = intersectingEntries.reduce((top, entry) => {
+                    return entry.boundingClientRect.top < top.boundingClientRect.top ? entry : top;
+                });
+
+                const id = topEntry.target.id === 'program' ? 'Program' : 'Inclusions';
+                setActiveTab(id);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Observe all sections
+        Object.values(sectionRefs.current).forEach(element => {
+            if (element) observer.observe(element);
+        });
+
+        return () => observer.disconnect();
     }, []);
 
     return (
