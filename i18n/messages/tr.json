@@ -1,12 +1,12 @@
 {
   "nav": {
-    "home": "Home",
-    "about": "About us",
-    "services": "Our services",
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "services": "Hizmetlerimiz",
     "tourism": "Turizm",
-    "medical": "Medical tourism",
+    "medical": "Sağlık Turizmi",
     "immigration": "Göç",
-    "blogs": "Blogs",
+    "blogs": "Blog",
     "contact": "İletişim"
   },
   "common": {

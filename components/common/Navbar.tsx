@@ -273,13 +273,13 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                             iconColor="bg-emerald-50 text-emerald-600"
                                             imageSrc="/images/tradeIcon.png"
                                         />
-                                        <CompanyCard
+                                        {/* <CompanyCard
                                             href="https://barbarosgroup.com"
                                             title="Barbaros Group"
                                             description="Holding company and shared group services."
                                             iconColor="bg-amber-50 text-amber-600"
                                             imageSrc="/images/tourismIcon.png"
-                                        />
+                                        /> */}
                                     </div>
                                 </motion.div>
                             )}

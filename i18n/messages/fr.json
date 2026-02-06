@@ -1,18 +1,22 @@
 {
   "nav": {
-    "home": "Home",
-    "about": "About us",
-    "services": "Our services",
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Nos services",
     "tourism": "Tourisme",
-    "medical": "Medical tourism",
+    "medical": "Tourisme médical",
     "immigration": "Immigration",
-    "blogs": "Blogs",
-    "contact": "Contact us"
+    "blogs": "Blog",
+    "contact": "Contact"
   },
   "common": {
     "viewDetails": "Voir les détails"
   },
   "home": {
+    "metadata": {
+      "title": "Barbaros Tourism | Votre Porte d'Entrée vers la Turquie",
+      "description": "Découvrez le meilleur de la Turquie avec Barbaros Tourism. Nous proposons des circuits exclusifs, des forfaits de tourisme médical et des services VIP adaptés à vos besoins."
+    },
     "quickActions": {
       "heading": "Actions Rapides",
       "subheading": "Explorez Nos Services",
@@ -81,6 +85,10 @@
     "medicalTourism": "Medical tourism"
   },
   "medical": {
+    "metadata": {
+      "title": "Tourisme Médical en Turquie | Barbaros Tourism",
+      "description": "Services de santé de classe mondiale en Turquie. Des greffes de cheveux à la chirurgie esthétique, nous proposons des forfaits complets avec les meilleurs hôpitaux accrédités JCI."
+    },
     "hero": {
       "tagline": "World-Class Healthcare",
       "heading": "Advanced Medical Tourism in Türkiye",
@@ -256,6 +264,10 @@
     ]
   },
   "servicesPage": {
+    "metadata": {
+      "title": "Nos Services | Barbaros Tourism",
+      "description": "Explorez notre large gamme de services incluant des circuits culturels, des voyages d'aventure, du tourisme médical et des hébergements de luxe en Turquie."
+    },
     "hero": {
       "badge": "Comprehensive Solutions",
       "heading": "Exceptional Services for Your Journey",
@@ -282,6 +294,10 @@
     }
   },
   "contact": {
+    "metadata": {
+      "title": "Contactez-nous | Barbaros Tourism",
+      "description": "Contactez notre équipe pour une planification de voyage personnalisée, des demandes de tourisme médical ou des questions générales. Nous sommes là pour vous aider 24h/24 et 7j/7."
+    },
     "hero": {
       "badge": "GET IN TOUCH",
       "heading": "Let's Start Your Journey",
@@ -384,6 +400,10 @@
     }
   },
   "about": {
+    "metadata": {
+      "title": "À Propos de Nous | Barbaros Tourism",
+      "description": "Découvrez notre parcours, notre mission et l'équipe passionnée derrière Barbaros Tourism. Nous nous engageons à fournir des expériences de voyage et médicales exceptionnelles."
+    },
     "hero": {
       "badge": "WHO WE ARE",
       "heading": "About Us",
@@ -446,6 +466,10 @@
     }
   },
   "tours": {
+    "metadata": {
+      "title": "Explorez la Turquie | Forfaits Touristiques",
+      "description": "Forfaits touristiques inoubliables vers les destinations les plus emblématiques de la Turquie. Découvrez l'histoire, la culture et la nature avec nos guides experts."
+    },
     "hero": {
       "badge": "DÉCOUVREZ LA TURQUIE",
       "heading": "Votre Passerelle vers des Expériences Inoubliables",
@@ -568,24 +592,40 @@
   },
   "tourTypes": {
     "dailyTours": {
+      "metadata": {
+        "title": "Circuits Quotidiens et Excursions | Barbaros Tourism",
+        "description": "Circuits quotidiens courts et passionnants à Istanbul, Cappadoce et plus encore. Parfait pour les voyageurs avec un temps limité."
+      },
       "badge": "TOURS QUOTIDIENS",
       "heading": "Aventures Courtes et Douces",
       "navDescription": "Courtes aventures pour un temps limité",
       "description": "Parfait pour ceux qui ont un temps limité ou qui cherchent à ajouter un peu d'excitation à leur journée. Découvrez l'essentiel des meilleurs endroits de la Turquie lors de circuits quotidiens soigneusement organisés."
     },
     "specialPackages": {
+      "metadata": {
+        "title": "Forfaits Touristiques Spéciaux | Barbaros Tourism",
+        "description": "Forfaits touristiques uniques et sur mesure pour des intérêts spécifiques. Découvrez la Turquie à votre manière avec nos offres spéciales."
+      },
       "badge": "FORFAITS SPÉCIAUX",
       "heading": "Solutions Touristiques sur Mesure",
       "navDescription": "Circuits sur mesure pour intérêts spécifiques",
       "description": "Des forfaits exclusifs conçus pour des intérêts spécifiques - de l'immersion culturelle aux expériences d'aventure. Chaque forfait est soigneusement élaboré pour offrir des voyages uniques et mémorables."
     },
     "programs": {
+      "metadata": {
+        "title": "Programmes Touristiques en Vedette | Barbaros Tourism",
+        "description": "Programmes touristiques complets conçus pour des expériences immersives. Explorez nos itinéraires soigneusement élaborés."
+      },
       "badge": "Nos Programmes",
       "navDescription": "Explorez Nos Programmes Touristiques",
       "heading": "Explorez Nos Programmes Touristiques",
       "description": "Découvrez nos programmes soigneusement conçus pour vous offrir la meilleure expérience."
     },
     "vipPrograms": {
+      "metadata": {
+        "title": "Services Touristiques VIP | Barbaros Tourism",
+        "description": "Expériences de voyage de luxe avec nos programmes VIP. Jets privés, véhicules de luxe et accès exclusif aux meilleurs endroits de Turquie."
+      },
       "badge": "SERVICES TOURISTIQUES VIP",
       "heading": "Services Touristiques VIP",
       "navDescription": "Expériences de luxe premium",
@@ -711,18 +751,30 @@
     }
   },
   "immigration": {
+    "metadata": {
+      "title": "Services d'Immigration | Barbaros Tourism",
+      "description": "Assistance professionnelle pour la citoyenneté turque et les permis de résidence. Nous vous guidons à chaque étape du processus d'immigration."
+    },
     "hero": {
       "badge": "Services d'Immigration",
       "heading": "Solutions de Citoyenneté et de Résidence",
       "description": "Services professionnels de citoyenneté et de résidence pour vous aider à naviguer dans le processus de manière fluide et efficace."
     },
     "citizenship": {
+      "metadata": {
+        "title": "Services de Citoyenneté Turque | Barbaros Tourism",
+        "description": "Soutien juridique et procédural expert pour l'obtention de la citoyenneté turque. Service rapide, fiable et professionnel."
+      },
       "badge": "Services de Citoyenneté",
       "heading": "Services de Demande de Citoyenneté",
       "navDescription": "Services de demande de citoyenneté",
       "description": "Assistance experte pour tous les types de demandes de citoyenneté pour la Turquie et les destinations internationales."
     },
     "residence": {
+      "metadata": {
+        "title": "Services de Permis de Résidence | Barbaros Tourism",
+        "description": "Demandes de permis de résidence sans tracas en Turquie. Nous vous assistons avec les documents, les rendez-vous et les suivis."
+      },
       "badge": "Services de Résidence",
       "heading": "Permis de Résidence et Services d'Établissement",
       "navDescription": "Solutions de permis de résidence",
@@ -743,6 +795,10 @@
     }
   },
   "blogsPage": {
+    "metadata": {
+      "title": "Blog de Voyage et Conseils | Barbaros Tourism",
+      "description": "Lisez des histoires inspirantes, des conseils d'experts et des guides de destinations pour vous aider à planifier votre aventure turque parfaite."
+    },
     "badge": "Notre Blog",
     "heading": "Histoires de Voyage & Conseils",
     "description": "Découvrez des histoires de voyage inspirantes, des guides de destinations et des conseils d'experts pour vous aider à planifier votre voyage parfait."
