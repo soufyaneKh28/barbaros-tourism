@@ -20,7 +20,10 @@ export default function AboutHero({ locale }: AboutHeroProps) {
                     fill
                     className="object-cover"
                     priority
+                    loading="eager"
+                    fetchPriority="high"
                     quality={100}
+                    sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-black/40 z-10" />
             </div>

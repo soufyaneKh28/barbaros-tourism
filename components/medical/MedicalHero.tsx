@@ -19,6 +19,9 @@ export default function MedicalHero({ locale }: { locale: Locale }) {
                     fill
                     className="object-cover"
                     priority
+                    loading="eager"
+                    fetchPriority="high"
+                    sizes="100vw"
                 />
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />

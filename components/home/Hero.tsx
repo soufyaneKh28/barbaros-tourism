@@ -71,7 +71,10 @@ export default function Hero() {
                 fill
                 className="object-cover object-center"
                 priority={currentIndex === 0}
+                loading={currentIndex === 0 ? "eager" : "lazy"}
+                fetchPriority={currentIndex === 0 ? "high" : "auto"}
                 quality={100}
+                sizes="100vw"
               />
             </motion.div>
           </AnimatePresence>

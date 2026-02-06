@@ -28,7 +28,10 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     fill
                     className="object-cover"
                     priority
+                    loading="eager"
+                    fetchPriority="high"
                     quality={100}
+                    sizes="100vw"
                 />
 
                 {/* Modern Overlays */}

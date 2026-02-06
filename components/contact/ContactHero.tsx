@@ -19,6 +19,9 @@ export default function ContactHero() {
                     fill
                     className="object-cover"
                     priority
+                    loading="eager"
+                    fetchPriority="high"
+                    sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/80 to-primary-900/90" />
             </div>

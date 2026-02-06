@@ -23,7 +23,10 @@ export default function ToursHero({ locale }: ToursHeroProps) {
                     fill
                     className="object-cover"
                     priority
+                    loading="eager"
+                    fetchPriority="high"
                     quality={100}
+                    sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/50 to-slate-900/30 z-10" />
             </div>
