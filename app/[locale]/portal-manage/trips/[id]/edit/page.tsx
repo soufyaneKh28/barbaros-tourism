@@ -166,19 +166,9 @@ export default function EditTripPage() {
                                 </label>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">Priority (lower = higher priority)</label>
-                                    <input name="hotDealPriority" type="number" min="1" defaultValue={trip.hot_deal_priority} className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="1" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">Start Date (Optional)</label>
-                                    <input name="hotDealStartDate" type="datetime-local" defaultValue={trip.hot_deal_start_date ? new Date(trip.hot_deal_start_date).toISOString().slice(0, 16) : ''} className="mt-1 block w-full border rounded-md px-3 py-2" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">End Date (Optional)</label>
-                                    <input name="hotDealEndDate" type="datetime-local" defaultValue={trip.hot_deal_end_date ? new Date(trip.hot_deal_end_date).toISOString().slice(0, 16) : ''} className="mt-1 block w-full border rounded-md px-3 py-2" />
-                                </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Priority (lower = higher priority)</label>
+                                <input name="hotDealPriority" type="number" min="1" defaultValue={trip.hot_deal_priority} className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="1" />
                             </div>
                         </div>
                     </div>

@@ -127,19 +127,9 @@ export default function NewTripPage() {
                                 </label>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">Priority (lower = higher priority)</label>
-                                    <input name="hotDealPriority" type="number" min="1" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="1" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">Start Date (Optional)</label>
-                                    <input name="hotDealStartDate" type="datetime-local" className="mt-1 block w-full border rounded-md px-3 py-2" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">End Date (Optional)</label>
-                                    <input name="hotDealEndDate" type="datetime-local" className="mt-1 block w-full border rounded-md px-3 py-2" />
-                                </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Priority (lower = higher priority)</label>
+                                <input name="hotDealPriority" type="number" min="1" className="mt-1 block w-full border rounded-md px-3 py-2" placeholder="1" />
                             </div>
                         </div>
                     </div>
