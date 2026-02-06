@@ -29,18 +29,20 @@ export default function QuickActionForm({ initialData, isEditing = false }: Quic
         // Construct title and desc objects
         const title: Record<string, string> = {}
         const description: Record<string, string> = {}
+        const link_url: Record<string, string> = {}
 
         // Use imported locales config
         locales.forEach(loc => {
             if (rawData[`title_${loc}`]) title[loc] = rawData[`title_${loc}`] as string
             if (rawData[`description_${loc}`]) description[loc] = rawData[`description_${loc}`] as string
+            if (rawData[`link_url_${loc}`]) link_url[loc] = rawData[`link_url_${loc}`] as string
         })
 
         const payload = {
             title,
             description,
             icon_url: image, // Use state
-            link_url: rawData.link_url as string,
+            link_url,        // Use object
             sort_order: parseInt(rawData.sort_order as string || '0'),
             is_active: isActive,
             updated_at: new Date().toISOString()
@@ -113,17 +115,20 @@ export default function QuickActionForm({ initialData, isEditing = false }: Quic
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Link URL</label>
-                            <input
-                                type="text"
+                            <MultiLangInput
                                 name="link_url"
-                                defaultValue={initialData?.link_url}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                                label="Link URL"
+                                defaultValue={
+                                    typeof initialData?.link_url === 'string'
+                                        ? { en: initialData.link_url }
+                                        : initialData?.link_url
+                                }
                                 placeholder="/services/medical"
+                                required
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Sort Order</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Sort Order</label>
                             <input
                                 type="number"
                                 name="sort_order"

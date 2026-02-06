@@ -6,7 +6,7 @@ export type QuickAction = {
     title: any
     description: any
     icon_url: string
-    link_url: string
+    link_url: any // Changed to any for JSONB support
     is_active: boolean
     sort_order: number
     created_at: string
@@ -15,11 +15,30 @@ export type QuickAction = {
 
 function transformQuickAction(action: any, locale: string = 'en') {
     if (!action) return null
-    return {
+
+    console.log('transformQuickAction input:', { id: action.id, link_url: action.link_url, type: typeof action.link_url, locale })
+
+    let linkUrl = action.link_url
+    // Handle case where JSONB is returned as string or it's legacy text data
+    if (typeof linkUrl === 'string') {
+        try {
+            const parsed = JSON.parse(linkUrl)
+            if (parsed && typeof parsed === 'object') {
+                linkUrl = parsed
+            }
+        } catch (e) {
+            // Not JSON, keep as string (legacy plain URL)
+        }
+    }
+
+    const result = {
         ...action,
         title: getLocalized(action.title, locale),
         description: getLocalized(action.description, locale),
+        link_url: getLocalized(linkUrl, locale)
     }
+    console.log('transformQuickAction output:', { id: result.id, link_url: result.link_url })
+    return result
 }
 
 export async function getQuickActions(locale: string = 'en') {
