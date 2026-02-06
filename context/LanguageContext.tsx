@@ -20,7 +20,7 @@ export function LanguageProvider({
 }: {
     children: React.ReactNode;
     locale: Locale;
-    messages: Messages;
+    messages: any;
 }) {
     return (
         <LanguageContext.Provider value={{ locale, t: messages }}>

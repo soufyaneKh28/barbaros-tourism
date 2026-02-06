@@ -6,6 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { getImmigrationServices } from "@/lib/services/immigration";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).immigration?.citizenship?.metadata?.title,
+        description: (t as any).immigration?.citizenship?.metadata?.description,
+    };
+}
+
 export default async function VisaServicesPage({
     params,
 }: {

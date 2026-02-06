@@ -8,6 +8,17 @@ import Footer from '@/components/common/Footer'
 
 export const dynamic = 'force-dynamic'
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).tourTypes?.vipPrograms?.metadata?.title,
+        description: (t as any).tourTypes?.vipPrograms?.metadata?.description,
+    };
+}
+
 export default async function VipTourismServicesPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale: localeParam } = await params
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale

@@ -8,6 +8,17 @@ import Link from "next/link";
 
 export const dynamic = 'force-dynamic';
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).tourTypes?.specialPackages?.metadata?.title,
+        description: (t as any).tourTypes?.specialPackages?.metadata?.description,
+    };
+}
+
 export default async function SpecialTourismPackages({
     params,
 }: {

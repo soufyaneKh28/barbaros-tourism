@@ -6,6 +6,17 @@ import { getMessages } from "@/i18n";
 
 import { getBlogs } from "@/lib/services/blogs";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).blogsPage?.metadata?.title,
+        description: (t as any).blogsPage?.metadata?.description,
+    };
+}
+
 export default async function BlogsPage({
     params,
 }: {

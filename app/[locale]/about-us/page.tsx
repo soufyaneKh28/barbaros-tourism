@@ -1,9 +1,21 @@
 import Navbar from "@/components/common/Navbar";
+
 import Footer from "@/components/common/Footer";
 import Team from "@/components/about/Team";
 import { type Locale, locales, defaultLocale, getMessages } from "@/i18n";
 import Image from "next/image";
 import AboutHero from "@/components/about/AboutHero";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).about?.metadata?.title,
+        description: (t as any).about?.metadata?.description,
+    };
+}
 
 export default async function AboutUs({
     params,

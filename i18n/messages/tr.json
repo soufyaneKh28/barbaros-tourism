@@ -13,6 +13,10 @@
     "viewDetails": "Detayları Gör"
   },
   "home": {
+    "metadata": {
+      "title": "Barbaros Turizm | Türkiye'ye Açılan Kapınız",
+      "description": "Barbaros Turizm ile Türkiye'nin en iyilerini keşfedin. Özel turlar, sağlık turizmi paketleri ve VIP hizmetler sunuyoruz."
+    },
     "quickActions": {
       "heading": "Hızlı İşlemler",
       "subheading": "Hizmetlerimizi Keşfedin",
@@ -81,6 +85,10 @@
     "medicalTourism": "Medical tourism"
   },
   "medical": {
+    "metadata": {
+      "title": "Türkiye'de Sağlık Turizmi | Barbaros Turizm",
+      "description": "Türkiye'de dünya standartlarında sağlık hizmetleri. Saç ekiminden estetik cerrahiye kadar kapsamlı paketler sunuyoruz."
+    },
     "hero": {
       "tagline": "World-Class Healthcare",
       "heading": "Advanced Medical Tourism in Türkiye",
@@ -256,6 +264,10 @@
     ]
   },
   "servicesPage": {
+    "metadata": {
+      "title": "Hizmetlerimiz | Barbaros Turizm",
+      "description": "Kültür turları, macera gezileri, sağlık turizmi ve lüks konaklama dahil geniş hizmet yelpazemizi keşfedin."
+    },
     "hero": {
       "badge": "Comprehensive Solutions",
       "heading": "Exceptional Services for Your Journey",
@@ -282,6 +294,10 @@
     }
   },
   "contact": {
+    "metadata": {
+      "title": "İletişim | Barbaros Turizm",
+      "description": "Kişiselleştirilmiş seyahat planlaması ve sorularınız için bizimle iletişime geçin. 7/24 yanınızdayız."
+    },
     "hero": {
       "badge": "GET IN TOUCH",
       "heading": "Let's Start Your Journey",
@@ -384,6 +400,10 @@
     }
   },
   "about": {
+    "metadata": {
+      "title": "Hakkımızda | Barbaros Turizm",
+      "description": "Yolculuğumuz, misyonumuz ve tutkulu ekibimiz hakkında bilgi edinin. Olağanüstü seyahat deneyimleri sunmaya kendimizi adadık."
+    },
     "hero": {
       "badge": "WHO WE ARE",
       "heading": "About Us",
@@ -446,6 +466,10 @@
     }
   },
   "tours": {
+    "metadata": {
+      "title": "Türkiye'yi Keşfedin | Tur Paketleri",
+      "description": "Türkiye'nin en ikonik destinasyonlarına unutulmaz tur paketleri. Uzman rehberlerimizle tarihi ve doğayı keşfedin."
+    },
     "hero": {
       "badge": "TÜRKİYE'Yİ KEŞFEDİN",
       "heading": "Unutulmaz Deneyimlere Açılan Kapınız",
@@ -568,24 +592,40 @@
   },
   "tourTypes": {
     "dailyTours": {
+      "metadata": {
+        "title": "Günlük Turlar | Barbaros Turizm",
+        "description": "İstanbul, Kapadokya ve daha fazlasında kısa ve heyecan verici günlük turlar."
+      },
       "badge": "GÜNLÜK TURLAR",
       "heading": "Kısa ve Tatlı Maceralar",
       "navDescription": "Kısa süreli maceralar",
       "description": "Kısıtlı zamanı olanlar veya günlerine biraz heyecan katmak isteyenler için mükemmel. Özenle düzenlenmiş günlük turlarla Türkiye'nin en iyi yerlerinin temellerini deneyimleyin."
     },
     "specialPackages": {
+      "metadata": {
+        "title": "Özel Turizm Paketleri | Barbaros Turizm",
+        "description": "Özel ilgi alanları için benzersiz turizm paketleri. Özel tekliflerimizle Türkiye'yi kendi tarzınızla deneyimleyin."
+      },
       "badge": "ÖZEL PAKETLER",
       "heading": "Kişiye Özel Turizm Çözümleri",
       "navDescription": "Özel ilgi alanlarına yönelik turlar",
       "description": "Kültürel daldırmadan macera deneyimlerine kadar belirli ilgi alanları için tasarlanmış özel paketler. Her paket, benzersiz ve unutulmaz yolculuklar sağlamak için özenle hazırlanmıştır."
     },
     "programs": {
+      "metadata": {
+        "title": "Öne Çıkan Programlar | Barbaros Turizm",
+        "description": "Kapsamlı deneyimler için tasarlanmış turizm programları. Özenle hazırlanmış güzergahlarımızı keşfedin."
+      },
       "badge": "Programlarımız",
       "navDescription": "Turizm Programlarımızı Keşfedin",
       "heading": "Turizm Programlarımızı Keşfedin",
       "description": "Size en iyi deneyimi yaşatmak için özenle hazırlanmış programlarımızı keşfedin."
     },
     "vipPrograms": {
+      "metadata": {
+        "title": "VIP Turizm Hizmetleri | Barbaros Turizm",
+        "description": "VIP programlarımızla lüks seyahat deneyimleri. Özel jetler, lüks araçlar ve ayrıcalıklı erişim."
+      },
       "badge": "VIP TURİZM HİZMETLERİ",
       "heading": "VIP Turizm Hizmetleri",
       "navDescription": "Premium lüks deneyimler",
@@ -711,18 +751,30 @@
     }
   },
   "immigration": {
+    "metadata": {
+      "title": "Göçmenlik Hizmetleri | Barbaros Turizm",
+      "description": "Türk vatandaşlığı ve oturma izni için profesyonel destek. Göçmenlik sürecinin her adımında yanınızdayız."
+    },
     "hero": {
       "badge": "Göç Hizmetleri",
       "heading": "Vatandaşlık ve İkamet Çözümleri",
       "description": "Süreci sorunsuz ve verimli bir şekilde yönetmenize yardımcı olacak profesyonel vatandaşlık ve ikamet hizmetleri."
     },
     "citizenship": {
+      "metadata": {
+        "title": "Vatandaşlık Hizmetleri | Barbaros Turizm",
+        "description": "Türk vatandaşlığı başvuruları için uzman yasal ve prosedürel destek. Hızlı ve güvenilir hizmet."
+      },
       "badge": "Vatandaşlık Hizmetleri",
       "heading": "Vatandaşlık Başvuru Hizmetleri",
       "navDescription": "Vatandaşlık başvuru hizmetleri",
       "description": "Türkiye ve uluslararası destinasyonlar için her türlü vatandaşlık başvurusunda uzman yardım."
     },
     "residence": {
+      "metadata": {
+        "title": "Oturma İzni Hizmetleri | Barbaros Turizm",
+        "description": "Türkiye'de sorunsuz oturma izni başvuruları. Belge ve randevu süreçlerinde size yardımcı oluyoruz."
+      },
       "badge": "İkamet Hizmetleri",
       "heading": "İkamet İzni ve Yerleşim Hizmetleri",
       "navDescription": "İkamet izni çözümleri",
@@ -743,8 +795,17 @@
     }
   },
   "blogsPage": {
+    "metadata": {
+      "title": "Seyahat Blogu | Barbaros Turizm",
+      "description": "Mükemmel Türkiye maceranızı planlamanıza yardımcı olacak ilham verici hikayeler ve uzman ipuçları."
+    },
     "badge": "Blogumuz",
-    "heading": "Seyahat Hikayeleri & İpuçları",
-    "description": "Mükemmel yolculuğunuzu planlamanıza yardımcı olacak ilham verici seyahat hikayelerini, destinasyon rehberlerini ve uzman ipuçlarını keşfedin."
+    "heading": "Seyahat Hikayeleri ve İpuçları",
+    "description": "Mükemmel yolculuğunuzu planlamanıza yardımcı olacak ilham verici seyahat hikayelerini, varış noktası rehberlerini ve uzman ipuçlarını keşfedin."
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Üzgünüz, aradığınız sayfa mevcut değil.",
+    "homeButton": "Ana Sayfaya Dön"
   }
 }

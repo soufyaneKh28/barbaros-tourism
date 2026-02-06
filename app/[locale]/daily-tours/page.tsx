@@ -6,6 +6,17 @@ import { getMessages } from "@/i18n";
 import Image from "next/image";
 import { getTripsByType } from "@/lib/services/trips";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).tourTypes?.dailyTours?.metadata?.title,
+        description: (t as any).tourTypes?.dailyTours?.metadata?.description,
+    };
+}
+
 export default async function DailyTours({
     params,
 }: {

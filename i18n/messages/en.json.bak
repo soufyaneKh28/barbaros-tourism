@@ -775,10 +775,5 @@
     "badge": "Our Blog",
     "heading": "Travel Stories & Tips",
     "description": "Explore inspiring travel stories, destination guides, and expert tips to help you plan your perfect journey."
-  },
-  "notFound": {
-    "title": "Page Not Found",
-    "description": "Sorry, the page you are looking for does not exist.",
-    "homeButton": "Back to Home"
   }
 }

@@ -1,4 +1,5 @@
 import Hero from "@/components/home/Hero";
+import { getTranslations } from 'next-intl/server';
 import Partners from "@/components/common/Partners";
 import QuickActions from "@/components/home/QuickActions";
 import FeaturedPrograms from "@/components/home/FeaturedPrograms";
@@ -12,6 +13,18 @@ import { getCombinedHotDeals } from "@/lib/services/deals";
 import { getBlogs } from "@/lib/services/blogs";
 import { getPrograms } from "@/lib/services/programs";
 import { getQuickActions } from "@/lib/services/home-quick-actions";
+import { getMessages } from "@/i18n";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: localeParam } = await params;
+  const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+  const t = getMessages(locale);
+
+  return {
+    title: (t as any).home?.metadata?.title,
+    description: (t as any).home?.metadata?.description,
+  };
+}
 
 export default async function Home({
   params,

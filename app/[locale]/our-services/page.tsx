@@ -5,8 +5,19 @@ import ServicesGrid from "@/components/services/ServicesGrid";
 import ServicesHero from "@/components/services/ServicesHero";
 import ServicesOfferings from "@/components/services/ServicesOfferings";
 import ServicesCTA from "@/components/services/ServicesCTA";
-import { type Locale, locales, defaultLocale } from "@/i18n";
+import { type Locale, locales, defaultLocale, getMessages } from "@/i18n";
 import { getServices } from "@/lib/services/services";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).servicesPage?.metadata?.title,
+        description: (t as any).servicesPage?.metadata?.description,
+    };
+}
 
 export default async function OurServices({
     params,

@@ -1,4 +1,5 @@
 import Footer from "@/components/common/Footer";
+
 import ContactHero from "@/components/contact/ContactHero";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
@@ -6,6 +7,17 @@ import FAQ from "@/components/common/FAQ";
 import MapPlaceholder from "@/components/common/MapPlaceholder";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).contact?.metadata?.title,
+        description: (t as any).contact?.metadata?.description,
+    };
+}
 
 export default async function ContactUs({
     params,

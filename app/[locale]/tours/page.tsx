@@ -16,6 +16,17 @@ import { getSpecialPackages } from "@/lib/services/specialPackages";
 import { getVipServices } from "@/lib/services/vip-tourism-services";
 import { getCombinedHotDeals } from "@/lib/services/deals";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale: localeParam } = await params;
+    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
+    const t = getMessages(locale);
+
+    return {
+        title: (t as any).tours?.metadata?.title,
+        description: (t as any).tours?.metadata?.description,
+    };
+}
+
 export default async function Tours({
     params,
 }: {
