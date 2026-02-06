@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    // Use modern output for smaller bundles
+    optimizePackageImports: ['lucide-react', 'motion'],
+  },
 };
 
 export default nextConfig;
