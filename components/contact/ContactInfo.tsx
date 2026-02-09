@@ -18,7 +18,7 @@ export default function ContactInfo({ locale = 'en' }: ContactInfoProps) {
                 </svg>
             ),
             title: t.contact.info.phone,
-            info: ["+90 555 123 4567", "+90 555 987 6543"],
+            info: ["+90 505 368 88 56"],
             color: "bg-blue-50 text-blue-600"
         },
         {
@@ -28,7 +28,7 @@ export default function ContactInfo({ locale = 'en' }: ContactInfoProps) {
                 </svg>
             ),
             title: t.contact.info.email,
-            info: ["info@barbarostourism.com", "medical@barbarostourism.com"],
+            info: ["barbaros.grp@gmail.com"],
             color: "bg-purple-50 text-purple-600"
         },
         {
@@ -88,18 +88,28 @@ export default function ContactInfo({ locale = 'en' }: ContactInfoProps) {
 
                 <h3 className="font-bold font-cabinet text-xl mb-4 relative z-10">{t.contact.info.connect}</h3>
                 <div className="flex gap-4 relative z-10">
-                    {['facebook', 'instagram', 'twitter', 'linkedin'].map((social, idx) => (
-                        <a
-                            key={idx}
-                            href="#"
-                            className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm"
-                        >
-                            <span className="sr-only">{social}</span>
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z" />
-                            </svg>
-                        </a>
-                    ))}
+                    <a
+                        href="https://www.facebook.com/barbaros.grp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm"
+                    >
+                        <span className="sr-only">Facebook</span>
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://www.instagram.com/barbaros.grp/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm"
+                    >
+                        <span className="sr-only">Instagram</span>
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M7.5 21h9a4.5 4.5 0 004.5-4.5v-9A4.5 4.5 0 0016.5 3h-9A4.5 4.5 0 003 7.5v9A4.5 4.5 0 007.5 21z" />
+                        </svg>
+                    </a>
                 </div>
             </motion.div>
         </div>

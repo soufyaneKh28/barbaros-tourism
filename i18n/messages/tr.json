@@ -329,8 +329,8 @@
       "office": {
         "title": "Office",
         "name": "Barbaros Tourism Agency",
-        "address": "Taksim Square, Beyoğlu",
-        "city": "Istanbul, Türkiye 34437"
+        "address": "Akşemsettin Mah. Akdeniz Cad. No: 70/2, 1",
+        "city": "Fatih, İstanbul, 34080"
       },
       "hours": {
         "title": "Hours",
@@ -384,7 +384,7 @@
     },
     "contact": {
       "title": "Bize Ulaşın",
-      "location": "İstanbul, Türkiye"
+      "location": "Fatih, İstanbul, Türkiye"
     },
     "group": {
       "title": "Barbaros Grup",
