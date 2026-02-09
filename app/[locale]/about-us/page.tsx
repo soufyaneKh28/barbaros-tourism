@@ -5,6 +5,7 @@ import Team from "@/components/about/Team";
 import { type Locale, locales, defaultLocale, getMessages } from "@/i18n";
 import Image from "next/image";
 import AboutHero from "@/components/about/AboutHero";
+import FAQ from "@/components/common/FAQ";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale: localeParam } = await params;
@@ -220,6 +221,8 @@ export default async function AboutUs({
                     </div>
                 </div>
             </section>
+
+            <FAQ locale={locale} />
 
             <Footer />
         </div>
