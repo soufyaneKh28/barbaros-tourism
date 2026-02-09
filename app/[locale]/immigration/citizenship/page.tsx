@@ -6,6 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { getImmigrationServices } from "@/lib/services/immigration";
 
+// Disable caching to always fetch fresh data
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
