@@ -130,7 +130,7 @@ export default async function ImmigrationPage({
                                         <h3 className="text-xl font-bold font-cabinet mb-2 group-hover:text-primary transition-colors">
                                             {service.title}
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-600 line-clamp-2">
                                             {service.description}
                                         </p>
                                         {!service.is_coming_soon && service.cta_link && service.cta_text && (
@@ -205,7 +205,7 @@ export default async function ImmigrationPage({
                                         <h3 className="text-xl font-bold font-cabinet mb-2 group-hover:text-primary transition-colors">
                                             {service.title}
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-600 line-clamp-2">
                                             {service.description}
                                         </p>
                                         {!service.is_coming_soon && service.cta_link && service.cta_text && (

@@ -104,7 +104,7 @@ export default async function ImmigrationServicesPage({
                                         <h3 className="text-xl font-bold font-cabinet mb-3 group-hover:text-primary transition-colors">
                                             {service.title}
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-600 line-clamp-3">
                                             {service.description}
                                         </p>
                                         {service.cta_link && service.cta_text && (
