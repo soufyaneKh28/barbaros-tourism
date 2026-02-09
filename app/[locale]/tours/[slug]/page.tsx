@@ -7,32 +7,6 @@ import BookingCard from "@/components/tour-detail/BookingCard";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getTripBySlug } from "@/lib/services/trips";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
-
-export async function generateMetadata({
-    params,
-}: {
-    params: Promise<{ locale: string; slug: string }>;
-}): Promise<Metadata> {
-    const { locale: localeParam, slug } = await params;
-    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
-
-    // Fetch trip data
-    const trip = await getTripBySlug(slug, locale);
-
-    if (!trip) {
-        return {
-            title: "Trip Not Found",
-            description: "The trip you are looking for does not exist.",
-        };
-    }
-
-    return {
-        title: trip.title,
-        description: trip.description || trip.overview || `Details about ${trip.title}`,
-    };
-}
-
 
 export default async function TourDetails({
     params,

@@ -36,44 +36,6 @@ export async function generateStaticParams() {
 // Enable dynamic rendering for paths not generated at build time
 export const dynamicParams = true;
 
-import { Metadata } from "next";
-
-export async function generateMetadata({
-    params,
-}: {
-    params: Promise<{ locale: string; slug: string }>;
-}): Promise<Metadata> {
-    const { locale: localeParam, slug } = await params;
-    const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
-
-    let blog;
-    try {
-        blog = await getBlogBySlug(slug, locale);
-    } catch (error) {
-        console.error("Error fetching blog:", error);
-    }
-
-    if (!blog) {
-        if (slug === 'istanbul-bosphorus-experience') {
-            blog = {
-                title: 'Istanbul Bosphorus Experience',
-                excerpt: 'Discover the enchanting beauty of Istanbul and the Bosphorus strait.',
-            };
-        } else {
-            return {
-                title: "Blog Not Found",
-                description: "The blog post you are looking for does not exist.",
-            };
-        }
-    }
-
-    return {
-        title: blog.title,
-        description: blog.excerpt || `Read about ${blog.title}`,
-    };
-}
-
-
 
 export default async function BlogDetails({
     params,
