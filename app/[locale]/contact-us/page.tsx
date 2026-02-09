@@ -3,7 +3,7 @@ import Footer from "@/components/common/Footer";
 import ContactHero from "@/components/contact/ContactHero";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
-
+import FAQ from "@/components/common/FAQ";
 import MapPlaceholder from "@/components/common/MapPlaceholder";
 import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
@@ -45,7 +45,7 @@ export default async function ContactUs({
                 </div>
             </section>
 
-
+            <FAQ locale={locale} />
 
             <MapPlaceholder />
 

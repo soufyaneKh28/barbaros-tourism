@@ -329,8 +329,8 @@
       "office": {
         "title": "المكتب",
         "name": "وكالة بارباروس للسياحة",
-        "address": "Aksemsettin Mah. Akdeniz Cad. No: 70/2, 1",
-        "city": "فاتح، إسطنبول، 34080"
+        "address": "ميدان تقسيم، بيوغلو",
+        "city": "إسطنبول، تركيا 34437"
       },
       "hours": {
         "title": "ساعات العمل",
@@ -384,13 +384,13 @@
     },
     "contact": {
       "title": "اتصل بنا",
-      "location": "فاتح، إسطنبول، تركيا"
+      "location": "إسطنبول، تركيا"
     },
     "group": {
-      "title": "Barbaros Group",
-      "main": "Barbaros Group",
-      "events": "Barbaros Events",
-      "trade": "Barbaros Trade"
+      "title": "مجموعة بربروس",
+      "main": "مجموعة بربروس",
+      "events": "بربروس للفعاليات",
+      "trade": "بربروس للتجارة"
     },
     "bottom": {
       "rights": "جميع الحقوق محفوظة.",
