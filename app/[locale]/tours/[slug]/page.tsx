@@ -18,7 +18,12 @@ export async function generateMetadata({
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
 
     // Fetch trip data
-    const trip = await getTripBySlug(slug, locale);
+    let trip = null;
+    try {
+        trip = await getTripBySlug(slug, locale);
+    } catch (error) {
+        console.error("Error fetching trip for metadata:", error);
+    }
 
     if (!trip) {
         return {
@@ -42,7 +47,12 @@ export default async function TourDetails({
     const { locale: localeParam, slug } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
 
-    const trip = await getTripBySlug(slug, locale);
+    let trip = null;
+    try {
+        trip = await getTripBySlug(slug, locale);
+    } catch (error) {
+        console.error("Error fetching trip:", error);
+    }
 
     if (!trip) {
         notFound();
