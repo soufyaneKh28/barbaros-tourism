@@ -2,6 +2,7 @@
 
 import { type Locale } from '@/i18n';
 import { useLanguage } from '@/hooks/use-language';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from "motion/react";
@@ -10,17 +11,10 @@ import CtaButton from '../ui/CtaButton';
 import { Plane, Calendar, Ship, Building2 } from 'lucide-react';
 import Navbar from '../common/Navbar';
 
-
-
-const heroImages = [
-  "/images/heroBg.png",
-  "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop", // Istanbul
-  "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=2070&auto=format&fit=crop", // Cappadocia
-  "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1794&auto=format&fit=crop", // Tokyo/General Travel
-];
-
 export default function Hero() {
   const { t, locale } = useLanguage();
+  const { hero } = useSiteContent();
+  const heroImages = hero.images;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [groupMenuOpen, setGroupMenuOpen] = useState(false);
@@ -99,7 +93,7 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <span className="bg-[#835874]/90 backdrop-blur-sm rounded-full text-white px-4 py-2 text-sm font-medium font-cabinet border border-white/10">
-                  {t.hero.tagline}
+                  {hero.tagline}
                 </span>
               </motion.div>
 
@@ -110,7 +104,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                {t.hero.heading}
+                {hero.heading}
               </motion.h1>
 
               {/* Description */}
@@ -120,7 +114,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                {t.hero.description}
+                {hero.description}
               </motion.p>
 
               {/* Action Buttons */}

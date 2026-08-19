@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { type Locale, getMessages } from "@/i18n";
+import { type Locale } from "@/i18n";
 import Image from 'next/image';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
 interface ServicesOfferingsProps {
     locale?: Locale;
@@ -10,59 +11,18 @@ interface ServicesOfferingsProps {
 }
 
 export default function ServicesOfferings({ locale = 'en', services: dynamicServices }: ServicesOfferingsProps) {
-    const t = getMessages(locale);
+    const { generic } = useSiteContent();
+    const t = generic.services_offerings;
 
     // Static fallback offerings with placeholder images
-    const staticOfferings = [
-        {
-            title: t.servicesOfferings.items.cultural.title,
-            description: t.servicesOfferings.items.cultural.description,
-            image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop",
-            cta_text: undefined,
-            cta_link: undefined,
-            is_coming_soon: false,
-        },
-        {
-            title: t.servicesOfferings.items.adventure.title,
-            description: t.servicesOfferings.items.adventure.description,
-            image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
-            cta_text: undefined,
-            cta_link: undefined,
-            is_coming_soon: false,
-        },
-        {
-            title: t.servicesOfferings.items.medical.title,
-            description: t.servicesOfferings.items.medical.description,
-            image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop",
-            cta_text: undefined,
-            cta_link: undefined,
-            is_coming_soon: false,
-        },
-        {
-            title: t.servicesOfferings.items.accommodation.title,
-            description: t.servicesOfferings.items.accommodation.description,
-            image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
-            cta_text: undefined,
-            cta_link: undefined,
-            is_coming_soon: false,
-        },
-        {
-            title: t.servicesOfferings.items.transportation.title,
-            description: t.servicesOfferings.items.transportation.description,
-            image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop",
-            cta_text: undefined,
-            cta_link: undefined,
-            is_coming_soon: false,
-        },
-        {
-            title: t.servicesOfferings.items.custom.title,
-            description: t.servicesOfferings.items.custom.description,
-            image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2035&auto=format&fit=crop",
-            cta_text: undefined,
-            cta_link: undefined,
-            is_coming_soon: false,
-        },
-    ];
+    const staticOfferings = t.items.map((item: any) => ({
+        title: item.title,
+        description: item.description,
+        image: item.image,
+        cta_text: undefined,
+        cta_link: undefined,
+        is_coming_soon: false,
+    }));
 
     // Use dynamic services if available, otherwise use static
     const offerings = dynamicServices && dynamicServices.length > 0
@@ -88,7 +48,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
                         viewport={{ once: true }}
                         className="text-secondary font-bold font-cabinet text-sm tracking-[0.2em] uppercase block mb-4"
                     >
-                        {t.servicesOfferings.badge}
+                        {t.badge}
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
@@ -97,14 +57,14 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-bold font-cabinet text-primary mb-6"
                     >
-                        {t.servicesOfferings.heading}
+                        {t.heading}
                     </motion.h2>
                     <div className="w-24 h-1.5 bg-secondary mx-auto rounded-full" />
                 </div>
 
                 {/* Services Grid - Alternating Layout */}
                 <div className="space-y-32">
-                    {offerings.map((service, index) => {
+                    {offerings.map((service: any, index: number) => {
                         const isEven = index % 2 === 0;
 
                         return (
@@ -172,7 +132,7 @@ export default function ServicesOfferings({ locale = 'en', services: dynamicServ
                                         viewport={{ once: true }}
                                         className="inline-flex items-center gap-2 bg-secondary hover:bg-primary text-white font-bold font-cabinet px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
                                     >
-                                        {service.cta_text || t.servicesOfferings.ctaButton || 'Learn More'}
+                                        {service.cta_text || t.ctaButtonLabel}
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>

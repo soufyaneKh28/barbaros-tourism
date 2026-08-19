@@ -5,6 +5,7 @@ import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
 import Image from "next/image";
 import Link from "next/link";
+import { getResolvedSiteContent } from "@/lib/services/site-content";
 
 export const dynamic = 'force-dynamic';
 
@@ -26,7 +27,8 @@ export default async function SpecialTourismPackages({
 }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
-    const t = getMessages(locale);
+    const { specialPackagesHero, generic } = await getResolvedSiteContent(locale);
+    const content = generic.special_packages_content;
 
     // Fetch special tourism packages
     let packages: any[] = [];
@@ -44,7 +46,7 @@ export default async function SpecialTourismPackages({
             <section className="relative m-2 rounded-[20px] overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=2071&auto=format&fit=crop"
+                        src={specialPackagesHero.image}
                         alt="Special Tourism Packages Hero"
                         fill
                         className="object-cover"
@@ -57,14 +59,14 @@ export default async function SpecialTourismPackages({
                 <div className="relative z-20 max-w-7xl mx-auto px-6 text-center text-white">
                     <div className="inline-block mb-4">
                         <span className="bg-secondary text-primary font-bold px-6 py-2 rounded-full text-sm">
-                            {(t as any).tourTypes?.specialPackages?.badge || "Special Packages"}
+                            {specialPackagesHero.badge}
                         </span>
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold font-cabinet mb-6">
-                        {(t as any).tourTypes?.specialPackages?.heading || "Exclusive Tourism Packages"}
+                        {specialPackagesHero.heading}
                     </h1>
                     <p className="text-lg font-satoshi max-w-2xl mx-auto">
-                        {(t as any).tourTypes?.specialPackages?.description || "Discover our specially curated tourism packages designed to give you unforgettable experiences in Turkey."}
+                        {specialPackagesHero.description}
                     </p>
                 </div>
             </section>
@@ -90,12 +92,12 @@ export default async function SpecialTourismPackages({
                                             />
                                         ) : (
                                             <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
-                                                No Image
+                                                {content.noImageLabel}
                                             </div>
                                         )}
                                         {pkg.is_coming_soon && (
                                             <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white font-bold px-4 py-2 rounded-full text-xs uppercase tracking-wider z-10">
-                                                Coming Soon
+                                                {content.comingSoonLabel}
                                             </div>
                                         )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
@@ -122,7 +124,7 @@ export default async function SpecialTourismPackages({
                                                     {pkg.duration_nights}
                                                 </span>
                                             )}
-                                            <span className="text-secondary group-hover:underline">{(t as any).common?.viewDetails || "View Details"} &rarr;</span>
+                                            <span className="text-secondary group-hover:underline">{content.viewDetailsLabel} &rarr;</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -130,7 +132,7 @@ export default async function SpecialTourismPackages({
                         </div>
                     ) : (
                         <div className="text-center py-20 bg-gray-50 rounded-2xl">
-                            <p className="text-gray-500 text-lg">No special tourism packages available at the moment. Check back soon!</p>
+                            <p className="text-gray-500 text-lg">{content.emptyStateMessage}</p>
                         </div>
                     )}
                 </div>

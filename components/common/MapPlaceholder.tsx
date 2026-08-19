@@ -2,12 +2,16 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useSiteContent } from "@/contexts/SiteContentContext";
 
 export default function MapPlaceholder() {
+    const { generic } = useSiteContent();
+    const content = generic.contact_map;
+
     return (
         <section className="h-[400px] w-full relative bg-gray-100 overflow-hidden">
             <Image
-                src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop"
+                src={content.backgroundImage}
                 alt="Map Background"
                 fill
                 className="object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
@@ -28,18 +32,18 @@ export default function MapPlaceholder() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                     </div>
-                    <h3 className="text-xl font-bold font-cabinet text-gray-900 mb-2">Visit Our Office</h3>
+                    <h3 className="text-xl font-bold font-cabinet text-gray-900 mb-2">{content.heading}</h3>
                     <p className="text-gray-600 font-satoshi mb-6">
-                        Aksemsettin Mah. Akdeniz Cad. No: 70/2, 1<br />
-                        Fatih, Istanbul, 34080
+                        {content.addressLine1}<br />
+                        {content.addressLine2}
                     </p>
                     <a
-                        href="https://maps.app.goo.gl/4Jy1T9zTn4xrNnDR8"
+                        href={content.mapUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold font-cabinet hover:bg-primary-600 transition-colors w-full justify-center"
                     >
-                        Get Directions
+                        {content.buttonLabel}
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>

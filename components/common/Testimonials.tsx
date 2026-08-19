@@ -2,26 +2,15 @@
 
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { motion } from "motion/react";
-import { useLanguage } from '@/hooks/use-language';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
 export default function Testimonials() {
-    const { t } = useLanguage();
+    const { generic } = useSiteContent();
+    const content = generic.home_testimonials;
 
-    const testimonialImages = [
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop",
-        "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&h=100&fit=crop",
-        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=100&h=100&fit=crop",
-        "https://images.unsplash.com/photo-1554151228-14d9def656ec?w=100&h=100&fit=crop",
-        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&h=100&fit=crop",
-    ];
-
-    const testimonials = t.testimonials.items.map((item, index) => ({
+    const testimonials = content.items.map((item: { photo: string; text: string; name: string; role: string }) => ({
         ...item,
-        image: testimonialImages[index] || testimonialImages[0],
+        image: item.photo,
     }));
 
     const firstColumn = testimonials.slice(0, 3);
@@ -40,15 +29,15 @@ export default function Testimonials() {
                 >
                     <div className="inline-block mb-6">
                         <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm bg-secondary/5">
-                            {t.testimonials.badge}
+                            {content.badge}
                         </span>
                     </div>
 
                     <h2 className="text-[28px] lg:text-[35px] leading-tight font-cabinet font-extrabold text-primary mb-6">
-                        {t.testimonials.heading}
+                        {content.heading}
                     </h2>
                     <p className="text-gray-600 font-satoshi text-md leading-relaxed">
-                        {t.testimonials.description}
+                        {content.description}
                     </p>
                 </motion.div>
 

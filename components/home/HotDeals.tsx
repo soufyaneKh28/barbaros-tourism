@@ -7,7 +7,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { motion, useInView } from 'motion/react';
 
-import { useLanguage } from '@/hooks/use-language';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
 const responsive = {
     superLargeDesktop: {
@@ -41,7 +41,8 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
     const carouselRef = useRef<any>(null);
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-    const { t } = useLanguage();
+    const { generic } = useSiteContent();
+    const content = generic.home_hot_deals;
 
     if (!deals || deals.length === 0) {
         return null
@@ -67,16 +68,16 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                     <div className="max-w-2xl">
                         <div className="inline-block mb-6">
                             <span className="border border-white/20 rounded-full px-6 py-2 text-white/80 font-bold font-cabinet text-sm backdrop-blur-sm bg-white/5">
-                                {t.home.hotDeals.badge}
+                                {content.badge}
                             </span>
                         </div>
 
                         <h2 className="text-[28px] lg:text-[35px] leading-tight font-cabinet font-extrabold text-white mb-6">
-                            {t.home.hotDeals.heading}
+                            {content.heading}
                         </h2>
 
                         <p className="text-white/70 font-satoshi text-lg leading-relaxed max-w-xl">
-                            {t.home.hotDeals.description}
+                            {content.description}
                         </p>
                     </div>
 

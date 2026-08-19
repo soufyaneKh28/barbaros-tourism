@@ -5,6 +5,7 @@ import { getMessages } from "@/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import { getImmigrationServices } from "@/lib/services/immigration";
+import { getResolvedSiteContent } from "@/lib/services/site-content";
 
 // Disable caching to always fetch fresh data
 export const dynamic = 'force-dynamic';
@@ -28,7 +29,10 @@ export default async function ImmigrationPage({
 }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
-    const t = getMessages(locale);
+    const { immigrationHero, generic } = await getResolvedSiteContent(locale);
+    const citizenship = generic.immigration_citizenship_header;
+    const residence = generic.immigration_residence_header;
+    const cta = generic.immigration_cta;
 
     // Fetch citizenship services
     let citizenshipServices: any[] = [];
@@ -38,7 +42,7 @@ export default async function ImmigrationPage({
             ...service,
             main_image: service.main_image
                 ? `${service.main_image}?v=${service.updated_at ? new Date(service.updated_at).getTime() : Date.now()}`
-                : "https://images.unsplash.com/photo-1554224311-beee415c201f?q=80&w=800&auto=format&fit=crop"
+                : citizenship.fallbackImage
         }));
     } catch (error) {
         console.error("Error fetching citizenship services:", error);
@@ -52,7 +56,7 @@ export default async function ImmigrationPage({
             ...service,
             main_image: service.main_image
                 ? `${service.main_image}?v=${service.updated_at ? new Date(service.updated_at).getTime() : Date.now()}`
-                : "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop"
+                : residence.fallbackImage
         }));
     } catch (error) {
         console.error("Error fetching residence services:", error);
@@ -66,7 +70,7 @@ export default async function ImmigrationPage({
             <section className="relative m-2 rounded-[20px] overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/citizenship_hero.png"
+                        src={immigrationHero.image}
                         alt="Immigration Services Hero"
                         fill
                         className="object-cover"
@@ -79,14 +83,14 @@ export default async function ImmigrationPage({
                 <div className="relative z-20 max-w-7xl mx-auto px-6 text-center text-white">
                     <div className="inline-block mb-4">
                         <span className="bg-secondary text-primary font-bold px-6 py-2 rounded-full text-sm">
-                            {(t as any).immigration.hero.badge}
+                            {immigrationHero.badge}
                         </span>
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold font-cabinet mb-6">
-                        {(t as any).immigration.hero.heading}
+                        {immigrationHero.heading}
                     </h1>
                     <p className="text-lg font-satoshi max-w-2xl mx-auto">
-                        {(t as any).immigration.hero.description}
+                        {immigrationHero.description}
                     </p>
                 </div>
             </section>
@@ -96,13 +100,13 @@ export default async function ImmigrationPage({
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-12">
                         <span className="bg-secondary text-primary font-bold px-6 py-2 rounded-full text-sm inline-block mb-4">
-                            {(t as any).immigration.citizenship.badge}
+                            {citizenship.badge}
                         </span>
                         <h2 className="text-3xl md:text-4xl font-bold font-cabinet mb-4">
-                            {(t as any).immigration.citizenship.heading}
+                            {citizenship.heading}
                         </h2>
                         <p className="text-gray-600 max-w-2xl mx-auto">
-                            {(t as any).immigration.citizenship.description}
+                            {citizenship.description}
                         </p>
                     </div>
 
@@ -150,7 +154,7 @@ export default async function ImmigrationPage({
                             ))}
                         </div>
                     ) : (
-                        <p className="text-center text-gray-500">No visa services available at the moment.</p>
+                        <p className="text-center text-gray-500">{citizenship.emptyStateMessage}</p>
                     )}
 
                     {citizenshipServices.length > 0 && (
@@ -159,7 +163,7 @@ export default async function ImmigrationPage({
                                 href={`/${locale}/immigration/citizenship`}
                                 className="inline-block bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary/90 transition-colors"
                             >
-                                View All Visa Services
+                                {citizenship.viewAllLabel}
                             </Link>
                         </div>
                     )}
@@ -171,13 +175,13 @@ export default async function ImmigrationPage({
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-12">
                         <span className="bg-secondary text-primary font-bold px-6 py-2 rounded-full text-sm inline-block mb-4">
-                            {(t as any).immigration.residence.badge}
+                            {residence.badge}
                         </span>
                         <h2 className="text-3xl md:text-4xl font-bold font-cabinet mb-4">
-                            {(t as any).immigration.residence.heading}
+                            {residence.heading}
                         </h2>
                         <p className="text-gray-600 max-w-2xl mx-auto">
-                            {(t as any).immigration.residence.description}
+                            {residence.description}
                         </p>
                     </div>
 
@@ -225,7 +229,7 @@ export default async function ImmigrationPage({
                             ))}
                         </div>
                     ) : (
-                        <p className="text-center text-gray-500">No immigration services available at the moment.</p>
+                        <p className="text-center text-gray-500">{residence.emptyStateMessage}</p>
                     )}
 
                     {residenceServices.length > 0 && (
@@ -234,7 +238,7 @@ export default async function ImmigrationPage({
                                 href={`/${locale}/immigration/residence`}
                                 className="inline-block bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary/90 transition-colors"
                             >
-                                View All Immigration Services
+                                {residence.viewAllLabel}
                             </Link>
                         </div>
                     )}
@@ -245,7 +249,7 @@ export default async function ImmigrationPage({
             <section className="py-24 px-6 relative overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop"
+                        src={cta.backgroundImage}
                         alt="CTA background"
                         fill
                         className="object-cover"
@@ -255,17 +259,17 @@ export default async function ImmigrationPage({
 
                 <div className="max-w-4xl mx-auto text-center relative z-10 text-white">
                     <h2 className="text-4xl md:text-5xl font-bold font-cabinet mb-8">
-                        {(t as any).immigration.cta.heading}
+                        {cta.heading}
                     </h2>
                     <p className="text-xl font-satoshi mb-12 text-white/80">
-                        {(t as any).immigration.cta.description}
+                        {cta.description}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href={`/${locale}/contact-us`}
                             className="bg-secondary text-primary px-10 py-4 rounded-full font-bold font-cabinet hover:bg-white transition-all duration-300 shadow-xl"
                         >
-                            {(t as any).immigration.cta.getConsultation}
+                            {cta.buttonLabel}
                         </Link>
                     </div>
                 </div>

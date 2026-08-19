@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import CtaButton from '../ui/CtaButton';
 import Navbar from '../common/Navbar';
 import { type Locale, getMessages } from "@/i18n";
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
 interface ServicesHeroProps {
     locale: Locale;
@@ -12,6 +13,7 @@ interface ServicesHeroProps {
 
 export default function ServicesHero({ locale }: ServicesHeroProps) {
     const t = getMessages(locale);
+    const { servicesHero } = useSiteContent();
 
     return (
         <section className="relative m-2 rounded-[32px] overflow-hidden flex flex-col min-h-[600px] lg:min-h-[600px]">
@@ -23,7 +25,7 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop"
+                    src={servicesHero.image}
                     alt="Our Services"
                     fill
                     className="object-cover"
@@ -49,7 +51,7 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     className="inline-block mb-8"
                 >
                     <span className="bg-secondary/90 backdrop-blur-md border border-white/20 rounded-full px-6 py-2 text-white font-bold font-cabinet text-xs tracking-widest uppercase">
-                        {t.servicesPage.hero.badge}
+                        {servicesHero.badge}
                     </span>
                 </motion.div>
 
@@ -60,7 +62,7 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="text-2xl md:text-2xl lg:text-5xl font-extrabold font-cabinet text-white mb-3 leading-[1] drop-shadow-2xl"
                 >
-                    {t.servicesPage.hero.heading}
+                    {servicesHero.heading}
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -70,7 +72,7 @@ export default function ServicesHero({ locale }: ServicesHeroProps) {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-xl md:text-lg text-white/95 font-satoshi leading-relaxed mb-12 max-w-3xl mx-auto drop-shadow-lg"
                 >
-                    {t.servicesPage.hero.description}
+                    {servicesHero.description}
                 </motion.p>
 
                 {/* CTA Button */}

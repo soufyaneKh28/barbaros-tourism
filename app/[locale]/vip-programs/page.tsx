@@ -5,6 +5,7 @@ import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
 import Image from "next/image";
 import { getTripsByType } from "@/lib/services/trips";
+import { getResolvedSiteContent } from "@/lib/services/site-content";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale: localeParam } = await params;
@@ -24,7 +25,8 @@ export default async function VIPPrograms({
 }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
-    const t = getMessages(locale);
+    const { vipProgramsHero, generic } = await getResolvedSiteContent(locale);
+    const content = generic.vip_programs_content;
 
     // Fetch VIP programs
     let trips: any[] = [];
@@ -51,7 +53,7 @@ export default async function VIPPrograms({
             <section className="relative m-2 rounded-[20px] overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+                        src={vipProgramsHero.image}
                         alt="VIP Programs Hero"
                         fill
                         className="object-cover"
@@ -64,14 +66,14 @@ export default async function VIPPrograms({
                 <div className="relative z-20 max-w-7xl mx-auto px-6 text-center text-white">
                     <div className="inline-block mb-4">
                         <span className="bg-secondary text-primary font-bold px-6 py-2 rounded-full text-sm">
-                            {(t as any).tourTypes.vipPrograms.badge}
+                            {vipProgramsHero.badge}
                         </span>
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold font-cabinet mb-6">
-                        {(t as any).tourTypes.vipPrograms.heading}
+                        {vipProgramsHero.heading}
                     </h1>
                     <p className="text-lg font-satoshi max-w-2xl mx-auto">
-                        {(t as any).tourTypes.vipPrograms.description}
+                        {vipProgramsHero.description}
                     </p>
                 </div>
             </section>
@@ -81,7 +83,7 @@ export default async function VIPPrograms({
                 <div className="max-w-7xl mx-auto">
                     <TripGrid
                         trips={trips}
-                        emptyMessage="No VIP programs available at the moment. Check back soon!"
+                        emptyMessage={content.emptyStateMessage}
                     />
                 </div>
             </section>

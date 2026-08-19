@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/utils/supabase/client'
+import { uploadImageAction } from '@/app/actions/upload'
 import { Upload, X, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 
 interface ImageUploadProps {
-    bucket: 'trip-images' | 'blog-images' | 'destination-images' | 'service-images'
+    bucket: 'trip-images' | 'blog-images' | 'destination-images' | 'service-images' | 'site-content'
     onUploadComplete: (url: string) => void
     currentImage?: string
     label?: string
@@ -50,37 +50,21 @@ export default function ImageUpload({
                 return
             }
 
-            const supabase = createClient()
+            const uploadData = new FormData()
+            uploadData.append('file', file)
+            uploadData.append('folder', bucket)
 
-            // Create unique filename
-            const fileExt = file.name.split('.').pop()
-            const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`
-            const filePath = fileName
+            const { url, error: uploadError } = await uploadImageAction(uploadData)
 
-            // Upload to Supabase Storage
-            const { error: uploadError } = await supabase.storage
-                .from(bucket)
-                .upload(filePath, file, {
-                    cacheControl: '3600',
-                    upsert: false
-                })
-
-            if (uploadError) {
-                throw uploadError
+            if (uploadError || !url) {
+                throw new Error(uploadError || 'Failed to upload image')
             }
 
-            // Get public URL
-            const { data } = supabase.storage
-                .from(bucket)
-                .getPublicUrl(filePath)
-
-            const publicUrl = data.publicUrl
-
             // Set preview
-            setPreview(publicUrl)
+            setPreview(url)
 
             // Notify parent component
-            onUploadComplete(publicUrl)
+            onUploadComplete(url)
 
         } catch (error: any) {
             console.error('Error uploading image:', error)

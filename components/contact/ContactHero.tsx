@@ -4,9 +4,11 @@ import { motion } from "motion/react";
 import Navbar from "@/components/common/Navbar";
 import Image from "next/image";
 import { useLanguage } from "@/hooks/use-language";
+import { useSiteContent } from "@/contexts/SiteContentContext";
 
 export default function ContactHero() {
     const { t } = useLanguage();
+    const { contactHero } = useSiteContent();
     return (
         <section className="relative min-h-[50vh] flex flex-col">
             <Navbar transparent={true} />
@@ -35,13 +37,13 @@ export default function ContactHero() {
                     className="max-w-3xl mx-auto"
                 >
                     <span className="inline-block px-6 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white/90 font-bold font-cabinet text-sm mb-6">
-                        {t.contact.hero.badge}
+                        {contactHero.badge}
                     </span>
                     <h1 className="text-5xl md:text-5xl font-bold font-cabinet text-white mb-6 leading-[40px]">
-                        {t.contact.hero.heading}
+                        {contactHero.heading}
                     </h1>
                     <p className="text-lg font-satoshi text-white/80 leading-relaxed max-w-2xl mx-auto">
-                        {t.contact.hero.description}
+                        {contactHero.description}
                     </p>
                 </motion.div>
             </div>

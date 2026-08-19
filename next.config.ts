@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'yourdomain.com',
       },
     ],
@@ -24,6 +28,10 @@ const nextConfig: NextConfig = {
   experimental: {
     // Use modern output for smaller bundles
     optimizePackageImports: ['lucide-react', 'motion'],
+    serverActions: {
+      // Allow uploading images up to the 5MB limit enforced in the upload action
+      bodySizeLimit: '8mb',
+    },
   },
 };
 

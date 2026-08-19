@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/utils/supabase/client'
+import { uploadImageAction } from '@/app/actions/upload'
 import { Upload, X, Loader2, ImagePlus } from 'lucide-react'
 import Image from 'next/image'
 
 interface MultiImageUploadProps {
-    bucket: 'trip-images' | 'blog-images' | 'destination-images'
+    bucket: 'trip-images' | 'blog-images' | 'destination-images' | 'site-content'
     onUploadComplete: (urls: string[]) => void
     currentImages?: string[]
     label?: string
@@ -42,7 +42,6 @@ export default function MultiImageUpload({
                 return
             }
 
-            const supabase = createClient()
             const newUrls: string[] = []
 
             for (const file of newFiles) {
@@ -56,29 +55,18 @@ export default function MultiImageUpload({
                     continue
                 }
 
-                // Create unique filename
-                const fileExt = file.name.split('.').pop()
-                const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`
+                const uploadData = new FormData()
+                uploadData.append('file', file)
+                uploadData.append('folder', bucket)
 
-                // Upload to Supabase Storage
-                const { error: uploadError } = await supabase.storage
-                    .from(bucket)
-                    .upload(fileName, file, {
-                        cacheControl: '3600',
-                        upsert: false
-                    })
+                const { url, error: uploadError } = await uploadImageAction(uploadData)
 
-                if (uploadError) {
+                if (uploadError || !url) {
                     console.error('Error uploading:', uploadError)
                     continue
                 }
 
-                // Get public URL
-                const { data } = supabase.storage
-                    .from(bucket)
-                    .getPublicUrl(fileName)
-
-                newUrls.push(data.publicUrl)
+                newUrls.push(url)
             }
 
             const updatedImages = [...images, ...newUrls]

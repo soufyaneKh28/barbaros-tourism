@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ExternalLink, ArrowRight } from 'lucide-react'
 import Navbar from '@/components/common/Navbar'
 import Footer from '@/components/common/Footer'
+import { getResolvedSiteContent } from '@/lib/services/site-content'
 
 export const dynamic = 'force-dynamic'
 
@@ -22,8 +23,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function VipTourismServicesPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale: localeParam } = await params
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale
-    const t = getMessages(locale)
     const services = await getVipServices(locale)
+    const { vipTourismServicesHero, generic } = await getResolvedSiteContent(locale)
+    const content = generic.vip_tourism_services_content
 
     return (
         <div className="min-h-screen bg-white">
@@ -34,17 +36,17 @@ export default async function VipTourismServicesPage({ params }: { params: Promi
                 <div className="absolute inset-0 bg-black/40 z-10" />
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2094&auto=format&fit=crop"
+                        src={vipTourismServicesHero.image}
                         alt="VIP Services"
                         className="w-full h-full object-cover"
                     />
                 </div>
                 <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
                     <h1 className="text-4xl md:text-5xl font-bold font-cabinet text-white mb-4">
-                        {(t as any).tourTypes?.vipPrograms?.heading || "VIP Tourism Services"}
+                        {vipTourismServicesHero.heading}
                     </h1>
                     <p className="text-white/90 text-lg md:text-xl max-w-2xl font-satoshi">
-                        {(t as any).tourTypes?.vipPrograms?.description || "Exclusive services tailored for your comfort and luxury."}
+                        {vipTourismServicesHero.description}
                     </p>
                 </div>
             </div>
@@ -53,7 +55,7 @@ export default async function VipTourismServicesPage({ params }: { params: Promi
             <div className="container mx-auto px-4 py-16">
                 {services.length === 0 ? (
                     <div className="text-center py-20 bg-gray-50 rounded-2xl">
-                        <p className="text-gray-500 text-lg">{(t as any).common?.comingSoon || "Coming soon..."}</p>
+                        <p className="text-gray-500 text-lg">{content.emptyStateMessage}</p>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -68,12 +70,12 @@ export default async function VipTourismServicesPage({ params }: { params: Promi
                                         />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-200">
-                                            <span className="text-sm">No Image</span>
+                                            <span className="text-sm">{content.noImageLabel}</span>
                                         </div>
                                     )}
                                     {service.is_coming_soon && (
                                         <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white font-bold px-4 py-2 rounded-full text-xs uppercase tracking-wider z-10">
-                                            Coming Soon
+                                            {content.comingSoonLabel}
                                         </div>
                                     )}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />

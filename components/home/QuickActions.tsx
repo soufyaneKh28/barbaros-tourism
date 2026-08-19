@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useLanguage } from '@/hooks/use-language';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 import { motion, useInView } from 'motion/react';
 
 interface QuickAction {
@@ -20,7 +20,8 @@ interface QuickActionsProps {
 }
 
 export default function QuickActions({ actions }: QuickActionsProps) {
-    const { t } = useLanguage();
+    const { generic } = useSiteContent();
+    const content = generic.home_quick_actions;
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -43,13 +44,13 @@ export default function QuickActions({ actions }: QuickActionsProps) {
                     transition={{ duration: 0.6 }}
                 >
                     <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm inline-block mb-4">
-                        {t.home.quickActions?.subheading || 'Explore Our Services'}
+                        {content.subheading}
                     </span>
                     <h2 className="text-[28px] lg:text-[40px] leading-[1.1] font-cabinet font-bold text-primary mb-4">
-                        {t.home.quickActions?.heading || 'Quick Actions'}
+                        {content.heading}
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto font-satoshi">
-                        {t.home.quickActions?.description || 'Choose from our wide range of services designed to meet your needs.'}
+                        {content.description}
                     </p>
                 </motion.div>
 

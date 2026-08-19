@@ -5,16 +5,18 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import CtaButton from '../ui/CtaButton';
 import { type Locale, getMessages } from '@/i18n';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
 
 export default function MedicalHero({ locale }: { locale: Locale }) {
     const t = getMessages(locale);
+    const { medicalHero } = useSiteContent();
     return (
         <section className="relative m-2 rounded-[20px] overflow-hidden min-h-[600px] flex items-center">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2070&auto=format&fit=crop"
+                    src={medicalHero.image}
                     alt="Medical Tourism"
                     fill
                     className="object-cover"
@@ -39,7 +41,7 @@ export default function MedicalHero({ locale }: { locale: Locale }) {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <span className="bg-secondary/90 backdrop-blur-sm rounded-full text-white px-4 py-2 text-sm font-medium font-cabinet border border-white/10">
-                            {t.medical.hero.tagline}
+                            {medicalHero.badge}
                         </span>
                     </motion.div>
 
@@ -50,7 +52,7 @@ export default function MedicalHero({ locale }: { locale: Locale }) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        {t.medical.hero.heading}
+                        {medicalHero.heading}
                     </motion.h1>
 
                     {/* Description */}
@@ -60,7 +62,7 @@ export default function MedicalHero({ locale }: { locale: Locale }) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
-                        {t.medical.hero.description}
+                        {medicalHero.description}
                     </motion.p>
 
                     {/* Stats */}

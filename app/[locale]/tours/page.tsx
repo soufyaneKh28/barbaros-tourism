@@ -15,6 +15,7 @@ import { getPrograms } from "@/lib/services/programs";
 import { getSpecialPackages } from "@/lib/services/specialPackages";
 import { getVipServices } from "@/lib/services/vip-tourism-services";
 import { getCombinedHotDeals } from "@/lib/services/deals";
+import { getResolvedSiteContent } from "@/lib/services/site-content";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale: localeParam } = await params;
@@ -34,7 +35,8 @@ export default async function Tours({
 }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
-    const t = getMessages(locale);
+    const { generic } = await getResolvedSiteContent(locale);
+    const carouselHeaders = generic.tours_carousel_headers;
 
     let dynamicTrips: any[] = [];
     try {
@@ -181,9 +183,9 @@ export default async function Tours({
 
             {/* Daily Tours Carousel */}
             <TourCarousel
-                badge={(t as any).tourTypes?.dailyTours?.badge || "DAILY TOURS"}
-                title={(t as any).tourTypes?.dailyTours?.heading || "Short & Sweet Adventures"}
-                description={(t as any).tourTypes?.dailyTours?.description || "Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots."}
+                badge={carouselHeaders.dailyToursBadge}
+                title={carouselHeaders.dailyToursTitle}
+                description={carouselHeaders.dailyToursDescription}
                 items={dailyTours}
             />
             <FeaturedPrograms programs={featuredPrograms} locale={locale} />
@@ -211,9 +213,9 @@ export default async function Tours({
 
             {/* Specialized Tourism Packages Carousel */}
             <TourCarousel
-                badge={(t as any).tourTypes?.specialPackages?.badge || "SPECIALIZED PACKAGES"}
-                title={(t as any).tourTypes?.specialPackages?.heading || "Tailored Tourism Solutions"}
-                description={(t as any).tourTypes?.specialPackages?.description || "Exclusive packages designed for specific interests - from medical tourism to cultural immersion and luxury experiences."}
+                badge={carouselHeaders.specialPackagesBadge}
+                title={carouselHeaders.specialPackagesTitle}
+                description={carouselHeaders.specialPackagesDescription}
                 items={specializedPackages.length > 0 ? specializedPackages : [
                     {
                         id: 301,
@@ -229,9 +231,9 @@ export default async function Tours({
 
             {/* VIP Services Carousel */}
             <TourCarousel
-                badge={(t as any).tourTypes?.vipPrograms?.badge || "VIP SERVICES"}
-                title={(t as any).tourTypes?.vipPrograms?.heading || "Luxury & Exclusivity"}
-                description={(t as any).tourTypes?.vipPrograms?.description || "Experience the ultimate in luxury travel with our bespoke VIP services."}
+                badge={carouselHeaders.vipServicesBadge}
+                title={carouselHeaders.vipServicesTitle}
+                description={carouselHeaders.vipServicesDescription}
                 items={vipServices.length > 0 ? vipServices : []}
             />
 

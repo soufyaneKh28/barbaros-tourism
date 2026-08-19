@@ -5,6 +5,7 @@ import { type Locale, locales, defaultLocale } from "@/i18n";
 import { getMessages } from "@/i18n";
 
 import { getBlogs } from "@/lib/services/blogs";
+import { getResolvedSiteContent } from "@/lib/services/site-content";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale: localeParam } = await params;
@@ -24,7 +25,8 @@ export default async function BlogsPage({
 }) {
     const { locale: localeParam } = await params;
     const locale = (locales.includes(localeParam as Locale) ? localeParam : defaultLocale) as Locale;
-    const t = getMessages(locale);
+    const { blogsHero, generic } = await getResolvedSiteContent(locale);
+    const fallbackContent = generic.blogs_content;
 
     let dynamicBlogs: any[] = [];
     try {
@@ -47,14 +49,14 @@ export default async function BlogsPage({
     const fallbackBlogs = [
         {
             id: 1,
-            category: 'TRAVEL',
-            title: 'Istanbul Bosphorus Experience',
+            category: fallbackContent.category,
+            title: fallbackContent.title,
             slug: 'istanbul-bosphorus-experience',
-            excerpt: 'Discover the enchanting beauty of Istanbul and the Bosphorus strait. Experience the perfect blend of European and Asian cultures.',
-            image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop',
-            author: 'Sarah Johnson',
-            date: 'January 15, 2026',
-            readTime: '8 min read',
+            excerpt: fallbackContent.excerpt,
+            image: fallbackContent.image,
+            author: fallbackContent.author,
+            date: fallbackContent.date,
+            readTime: fallbackContent.readTime,
         }
     ];
 
@@ -69,16 +71,16 @@ export default async function BlogsPage({
                 <div className="mb-12">
                     <div className="inline-block mb-4">
                         <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                            {(t as any).blogsPage?.badge || "Our Blog"}
+                            {blogsHero.badge}
                         </span>
                     </div>
 
                     <h1 className="text-[32px] lg:text-[48px] leading-tight font-cabinet font-extrabold text-primary mb-4">
-                        {(t as any).blogsPage?.heading || "Travel Stories & Tips"}
+                        {blogsHero.heading}
                     </h1>
 
                     <p className="max-w-2xl text-gray-600 font-satoshi text-lg leading-relaxed">
-                        {(t as any).blogsPage?.description || "Explore inspiring travel stories, destination guides, and expert tips to help you plan your perfect journey."}
+                        {blogsHero.description}
                     </p>
                 </div>
 

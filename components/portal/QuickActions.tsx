@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { LucideIcon, PlusCircle, MapPin, FileText, Plane } from 'lucide-react'
+import { LucideIcon, Plane, FileText, Newspaper } from 'lucide-react'
 
 interface QuickAction {
     title: string
@@ -31,7 +31,7 @@ const actions: QuickAction[] = [
         title: 'Write Blog Post',
         description: 'Share travel stories',
         href: '/portal-manage/blogs/new',
-        icon: FileText,
+        icon: Newspaper,
         colorClass: 'text-primary bg-primary/5'
     }
 ]

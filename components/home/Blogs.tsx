@@ -5,19 +5,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { useLanguage } from '@/hooks/use-language';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
 interface BlogsProps {
     blogs?: any[]
 }
 
 export default function Blogs({ blogs: initialBlogs }: BlogsProps) {
-    const { t, locale } = useLanguage();
+    const { locale } = useLanguage();
+    const { generic } = useSiteContent();
+    const content = generic.home_blogs;
 
     const staticBlogs = [
         {
             id: 1,
             category: 'TRAVEL',
-            title: t.home.blogs.items.istanbul,
+            title: 'Istanbul Bosphorus Experience',
             slug: 'istanbul-bosphorus-experience',
             image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop',
             large: true,
@@ -43,23 +46,23 @@ export default function Blogs({ blogs: initialBlogs }: BlogsProps) {
                     <div className="flex-1">
                         <div className="inline-block mb-4">
                             <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                                {(t as any).home.blogs?.badge || "Our Blog"}
+                                {content.badge}
                             </span>
                         </div>
 
                         <h2 className="text-[28px] lg:text-[35px] leading-tight font-cabinet font-extrabold text-primary mb-4">
-                            {(t as any).home.blogs?.heading || "Latest Stories & Insights"}
+                            {content.heading}
                         </h2>
 
                         <p className="max-w-2xl text-gray-600 font-satoshi text-base leading-relaxed">
-                            {(t as any).home.blogs?.description || "Discover travel tips, cultural insights, and hidden gems in Türkiye through our expert blog posts."}
+                            {content.description}
                         </p>
                     </div>
 
                     <div>
                         <Link href={`/${locale}/blogs`}>
                             <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-xl font-cabinet font-bold transition-all">
-                                {(t as any).home.blogs?.seeAll || "See All Articles"}
+                                {content.seeAllLabel}
                             </button>
                         </Link>
                     </div>
@@ -105,7 +108,7 @@ export default function Blogs({ blogs: initialBlogs }: BlogsProps) {
                                         </h3>
 
                                         <div className="flex items-center gap-2 text-white font-cabinet font-medium group-hover:gap-3 transition-all">
-                                            <span>{t.home.blogs.readMore}</span>
+                                            <span>{content.readMoreLabel}</span>
                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                             </svg>

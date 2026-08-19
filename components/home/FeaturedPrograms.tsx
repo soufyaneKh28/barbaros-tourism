@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLanguage } from '@/hooks/use-language';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 import { Program } from '@/lib/types';
 import { motion, useInView } from 'motion/react';
 
@@ -13,7 +13,8 @@ interface FeaturedProgramsProps {
 }
 
 export default function FeaturedPrograms({ programs = [], locale = 'en' }: FeaturedProgramsProps) {
-    const { t } = useLanguage();
+    const { generic } = useSiteContent();
+    const content = generic.home_featured_programs;
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -32,16 +33,16 @@ export default function FeaturedPrograms({ programs = [], locale = 'en' }: Featu
                 >
                     <div className="inline-block mb-6">
                         <span className="border border-secondary/20 rounded-full px-6 py-2 text-secondary font-bold font-cabinet text-sm">
-                            {(t as any).home.featuredPrograms?.badge || "Our Programs"}
+                            {content.badge}
                         </span>
                     </div>
 
                     <h2 className="text-[28px] lg:text-[35px] leading-tight font-cabinet font-extrabold text-primary mb-6">
-                        {(t as any).home.featuredPrograms?.heading || "Featured Tourism Programs"}
+                        {content.heading}
                     </h2>
 
                     <p className="max-w-2xl text-gray-600 font-satoshi text-lg leading-relaxed">
-                        {(t as any).home.featuredPrograms?.description || "Explore our top-rated programs designed for unforgettable experiences."}
+                        {content.description}
                     </p>
                 </motion.div>
 
@@ -99,7 +100,7 @@ export default function FeaturedPrograms({ programs = [], locale = 'en' }: Featu
 
                 <div className="mt-12 text-center">
                     <Link href={`/${locale}/programs`} className="inline-flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors">
-                        {(t as any).home.featuredPrograms?.viewAll || "View All Programs"}
+                        {content.viewAllLabel}
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>

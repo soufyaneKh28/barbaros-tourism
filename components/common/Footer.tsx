@@ -2,9 +2,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/hooks/use-language';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
 export default function Footer() {
     const { t, locale } = useLanguage();
+    const { footer, global } = useSiteContent();
 
     return (
         <footer className="bg-secondary text-white pt-20 pb-10 rounded-t-[40px] mt-20">
@@ -15,7 +17,7 @@ export default function Footer() {
                     <div className="flex flex-col gap-6">
                         <a href={`/${locale}`} className="inline-block">
                             <Image
-                                src="/images/logo.png"
+                                src={global.logo}
                                 alt="Barbaros Tourism Logo"
                                 width={140}
                                 height={50}
@@ -23,13 +25,13 @@ export default function Footer() {
                             />
                         </a>
                         <p className="text-white/80 font-satoshi text-sm leading-relaxed max-w-xs">
-                            {t.footer.about}
+                            {footer.about}
                         </p>
                         {/* Social Icons */}
                         <div className="flex items-center gap-4">
-                            <SocialIcon icon="facebook" href="https://www.facebook.com/barbaros.grp" />
-                            <SocialIcon icon="instagram" href="https://www.instagram.com/barbaros.grp/" />
-                            <SocialIcon icon="linkedin" href="#" />
+                            <SocialIcon icon="facebook" href={global.facebookUrl} />
+                            <SocialIcon icon="instagram" href={global.instagramUrl} />
+                            <SocialIcon icon="linkedin" href={global.linkedinUrl} />
                         </div>
                     </div>
 
@@ -76,19 +78,19 @@ export default function Footer() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span>{t.footer.contact.location}</span>
+                                <span>{global.officeCity}</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
-                                <a href="tel:+905053688856" className="hover:text-white transition-colors">+90 505 368 88 56</a>
+                                <a href={`tel:${global.phone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">{global.phone}</a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
-                                <a href="mailto:barbaros.grp@gmail.com" className="hover:text-white transition-colors">barbaros.grp@gmail.com</a>
+                                <a href={`mailto:${global.email}`} className="hover:text-white transition-colors">{global.email}</a>
                             </li>
                         </ul>
                     </div>

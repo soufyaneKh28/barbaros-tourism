@@ -2,14 +2,16 @@
 
 import { motion } from 'motion/react';
 import CtaButton from '../ui/CtaButton';
-import { type Locale, getMessages } from "@/i18n";
+import { type Locale } from "@/i18n";
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
 interface ServicesCTAProps {
     locale: Locale;
 }
 
 export default function ServicesCTA({ locale }: ServicesCTAProps) {
-    const t = getMessages(locale);
+    const { generic } = useSiteContent();
+    const t = generic.services_cta;
     return (
         <section className="py-24 px-6 relative overflow-hidden">
             {/* Background with Gradient and Blur */}
@@ -25,7 +27,7 @@ export default function ServicesCTA({ locale }: ServicesCTAProps) {
                     viewport={{ once: true }}
                     className="text-4xl md:text-5xl lg:text-6xl font-extrabold font-cabinet mb-8 text-white leading-tight"
                 >
-                    {t.servicesPage.cta.heading}
+                    {t.heading}
                 </motion.h2>
 
                 <motion.p
@@ -35,7 +37,7 @@ export default function ServicesCTA({ locale }: ServicesCTAProps) {
                     viewport={{ once: true }}
                     className="text-xl text-white/80 font-satoshi mb-12 max-w-2xl mx-auto leading-relaxed"
                 >
-                    {t.servicesPage.cta.description}
+                    {t.description}
                 </motion.p>
 
                 <motion.div
@@ -46,10 +48,10 @@ export default function ServicesCTA({ locale }: ServicesCTAProps) {
                     className="flex flex-col sm:flex-row gap-6 justify-center"
                 >
                     <CtaButton href={`/${locale}/contact-us`}>
-                        {t.servicesPage.cta.schedule}
+                        {t.button1Label}
                     </CtaButton>
                     <CtaButton href={`/${locale}/tours`} variant="outline">
-                        {t.servicesPage.cta.explore}
+                        {t.button2Label}
                     </CtaButton>
                 </motion.div>
             </div>
