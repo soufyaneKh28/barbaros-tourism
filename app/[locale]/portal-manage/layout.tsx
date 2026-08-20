@@ -2,13 +2,13 @@
 
 export const dynamic = 'force-dynamic'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import { signOutAction } from '@/app/actions/auth'
 import {
     Plane, FileText, LogOut, LayoutDashboard, Mail, Briefcase, FileCheck,
-    BriefcaseMedical, Crown, LayoutGrid, Globe, Newspaper,
+    BriefcaseMedical, Crown, LayoutGrid, Globe, Newspaper, Menu, X,
 } from 'lucide-react'
 import { AdminLanguageProvider } from '@/contexts/AdminLanguageContext'
 
@@ -21,6 +21,14 @@ export default function AdminLayout({
     const pathname = usePathname()
     const locale = params?.locale || 'en'
     const isLoginPage = pathname?.includes('/login')
+    const [sidebarOpen, setSidebarOpen] = useState(false)
+
+    // Close the mobile drawer whenever the route changes.
+    const [lastPathname, setLastPathname] = useState(pathname)
+    if (pathname !== lastPathname) {
+        setLastPathname(pathname)
+        setSidebarOpen(false)
+    }
 
     const navGroups = [
         {
@@ -69,11 +77,45 @@ export default function AdminLayout({
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-900 font-satoshi flex">
-            {/* Left Sidebar */}
-            <aside className="w-64 bg-white border-r border-gray-200 shadow-sm flex flex-col fixed h-screen">
+        <div className="min-h-screen bg-gray-50 text-gray-900 font-satoshi lg:flex">
+            {/* Mobile Topbar */}
+            <div className="lg:hidden sticky top-0 z-30 flex items-center justify-between gap-3 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
+                <Link href={`/${locale}/portal-manage`} className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-700 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                        BT
+                    </div>
+                    <span className="text-sm font-bold text-primary font-cabinet">Barbaros Portal</span>
+                </Link>
+                <button
+                    type="button"
+                    onClick={() => setSidebarOpen(true)}
+                    className="p-2 -mr-2 text-gray-500 hover:text-primary transition-colors"
+                    aria-label="Open menu"
+                >
+                    <Menu className="w-6 h-6" />
+                </button>
+            </div>
+
+            {/* Backdrop (mobile only, shown while drawer is open) */}
+            {sidebarOpen && (
+                <div
+                    className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                    aria-hidden="true"
+                />
+            )}
+
+            {/* Left Sidebar — off-canvas drawer on mobile, pinned on lg+ */}
+            <aside
+                className={`
+                    w-64 bg-white border-r border-gray-200 shadow-sm flex flex-col fixed h-screen z-50
+                    transition-transform duration-300 ease-in-out
+                    ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+                    lg:translate-x-0
+                `}
+            >
                 {/* Logo/Brand */}
-                <div className="p-6 border-b border-gray-200">
+                <div className="p-6 border-b border-gray-200 flex items-center justify-between">
                     <Link
                         href={`/${locale}/portal-manage`}
                         className="flex items-center gap-3 group"
@@ -88,6 +130,14 @@ export default function AdminLayout({
                             <span className="text-[11px] text-gray-400 font-medium">Admin Dashboard</span>
                         </div>
                     </Link>
+                    <button
+                        type="button"
+                        onClick={() => setSidebarOpen(false)}
+                        className="lg:hidden p-1.5 text-gray-400 hover:text-gray-600 transition-colors"
+                        aria-label="Close menu"
+                    >
+                        <X className="w-5 h-5" />
+                    </button>
                 </div>
 
                 {/* Navigation Links */}
@@ -140,7 +190,7 @@ export default function AdminLayout({
             </aside>
 
             {/* Main Content Area */}
-            <main className="flex-1 ml-64 p-6 lg:p-8">
+            <main className="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8 min-w-0">
                 <AdminLanguageProvider>
                     {children}
                 </AdminLanguageProvider>

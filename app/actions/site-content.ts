@@ -67,6 +67,12 @@ export async function updateHomeHeroAction(formData: FormData) {
         heading: getMultiLangField(formData, 'heading'),
         description: getMultiLangField(formData, 'description'),
         images,
+        ctaPrimaryLabel: getMultiLangField(formData, 'ctaPrimaryLabel'),
+        ctaPrimaryLink: (formData.get('ctaPrimaryLink') as string) || '',
+        ctaPrimaryEnabled: formData.get('ctaPrimaryEnabled') === 'on',
+        ctaSecondaryLabel: getMultiLangField(formData, 'ctaSecondaryLabel'),
+        ctaSecondaryLink: (formData.get('ctaSecondaryLink') as string) || '',
+        ctaSecondaryEnabled: formData.get('ctaSecondaryEnabled') === 'on',
     })
 }
 

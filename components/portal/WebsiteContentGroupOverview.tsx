@@ -15,6 +15,7 @@ import {
     DEFAULT_HOME_HERO,
     DEFAULT_FOOTER,
     GENERIC_SECTION_DEFAULTS,
+    defaultText,
     type SiteContentRow,
     type SiteContentSectionMeta,
     type SiteContentGroupMeta,
@@ -61,7 +62,7 @@ function getPreview(section: SiteContentSectionMeta, data: Record<string, any>):
         const textField = section.schema.fields.find(f => f.type !== 'image')
         const imageField = section.schema.fields.find(f => f.type === 'image')
         const heading = textField
-            ? (data[textField.key]?.en || (typeof data[textField.key] === 'string' ? data[textField.key] : '') || defaults[textField.key] || '')
+            ? (data[textField.key]?.en || (typeof data[textField.key] === 'string' ? data[textField.key] : '') || defaultText(defaults[textField.key], 'en'))
             : ''
         const image = imageField ? (data[imageField.key] || defaults[imageField.key] || null) : null
         return { heading: heading || section.title, image }

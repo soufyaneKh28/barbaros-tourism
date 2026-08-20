@@ -11,8 +11,16 @@ import CtaButton from '../ui/CtaButton';
 import { Plane, Calendar, Ship, Building2 } from 'lucide-react';
 import Navbar from '../common/Navbar';
 
+// Admin-entered CTA links can be an absolute URL (used as-is) or a site-relative
+// path like "/tours" (locale-prefixed so it stays on the visitor's language).
+function resolveCtaHref(path: string, locale: string): string {
+  if (!path) return `/${locale}`;
+  if (path.startsWith('http')) return path;
+  return `/${locale}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
 export default function Hero() {
-  const { t, locale } = useLanguage();
+  const { locale } = useLanguage();
   const { hero } = useSiteContent();
   const heroImages = hero.images;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -124,12 +132,16 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <CtaButton href={`/${locale}/tours`} className="w-full sm:w-auto">
-                  {t.hero.exploreTours}
-                </CtaButton>
-                <CtaButton href={`/${locale}/medical-tourism`} variant="outline" className="w-full sm:w-auto">
-                  {t.hero.medicalTourism}
-                </CtaButton>
+                {hero.ctaPrimaryEnabled && (
+                  <CtaButton href={resolveCtaHref(hero.ctaPrimaryLink, locale)} className="w-full sm:w-auto">
+                    {hero.ctaPrimaryLabel}
+                  </CtaButton>
+                )}
+                {hero.ctaSecondaryEnabled && (
+                  <CtaButton href={resolveCtaHref(hero.ctaSecondaryLink, locale)} variant="outline" className="w-full sm:w-auto">
+                    {hero.ctaSecondaryLabel}
+                  </CtaButton>
+                )}
               </motion.div>
 
 

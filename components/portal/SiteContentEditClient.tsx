@@ -34,11 +34,14 @@ import {
 } from '@/lib/site-content-shared'
 
 // Builds the initial defaultValue for a generic field: if the section was
-// never saved, only the English slot is filled (so other locale tabs show
-// blank — correctly signaling "not translated yet, falls back to English on
-// the live site" — rather than a plain string MultiLangInput can't read).
-function genericFieldDefault(saved: any, fallback: string): Record<string, string> {
+// never saved, falls back to the code-level default — which is either a
+// plain English string (only the "en" tab gets filled in, correctly
+// signaling "not translated yet, falls back to English on the live site")
+// or a real {en, ar, ...} translation transcribed from the site's original
+// copy, in which case every locale it covers shows up pre-filled.
+function genericFieldDefault(saved: any, fallback: string | Record<string, string>): Record<string, string> {
     if (saved && typeof saved === 'object') return saved
+    if (fallback && typeof fallback === 'object') return fallback
     return { en: fallback }
 }
 
@@ -225,6 +228,55 @@ export default function SiteContentEditClient({
                                     {homeImages.map((url, i) => (
                                         <input key={i} type="hidden" name="images" value={url} />
                                     ))}
+                                </div>
+
+                                <div className="grid md:grid-cols-2 gap-6 pt-2 border-t border-gray-100">
+                                    <div className="space-y-2 pt-4">
+                                        <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                                            <input
+                                                type="checkbox"
+                                                name="ctaPrimaryEnabled"
+                                                defaultChecked={data.ctaPrimaryEnabled !== false}
+                                                className="rounded border-gray-300 text-primary focus:ring-primary/20"
+                                            />
+                                            Show primary button
+                                        </label>
+                                        <MultiLangInput name="ctaPrimaryLabel" label="Button Text" defaultValue={genericFieldDefault(data.ctaPrimaryLabel, homeDefaults.ctaPrimaryLabel)} placeholder="Explore tours" />
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">Button Link</label>
+                                            <input
+                                                type="text"
+                                                name="ctaPrimaryLink"
+                                                defaultValue={data.ctaPrimaryLink || homeDefaults.ctaPrimaryLink}
+                                                placeholder="/tours or https://..."
+                                                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                            />
+                                            <p className="text-xs text-gray-400 mt-1">A path like <code>/tours</code> stays on the site (in the visitor&apos;s language); a full <code>https://</code> link opens as-is.</p>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2 pt-4">
+                                        <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                                            <input
+                                                type="checkbox"
+                                                name="ctaSecondaryEnabled"
+                                                defaultChecked={data.ctaSecondaryEnabled !== false}
+                                                className="rounded border-gray-300 text-primary focus:ring-primary/20"
+                                            />
+                                            Show secondary button
+                                        </label>
+                                        <MultiLangInput name="ctaSecondaryLabel" label="Button Text" defaultValue={genericFieldDefault(data.ctaSecondaryLabel, homeDefaults.ctaSecondaryLabel)} placeholder="Medical tourism" />
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">Button Link</label>
+                                            <input
+                                                type="text"
+                                                name="ctaSecondaryLink"
+                                                defaultValue={data.ctaSecondaryLink || homeDefaults.ctaSecondaryLink}
+                                                placeholder="/medical-tourism or https://..."
+                                                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                            />
+                                            <p className="text-xs text-gray-400 mt-1">A path like <code>/medical-tourism</code> stays on the site (in the visitor&apos;s language); a full <code>https://</code> link opens as-is.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </>
                         )}

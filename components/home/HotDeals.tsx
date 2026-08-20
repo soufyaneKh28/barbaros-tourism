@@ -43,6 +43,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
     const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
     const { generic } = useSiteContent();
     const content = generic.home_hot_deals;
+    const isRtl = locale === 'ar';
 
     if (!deals || deals.length === 0) {
         return null
@@ -110,6 +111,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                         ref={carouselRef}
                         responsive={responsive}
                         infinite={true}
+                        rtl={isRtl}
                         autoPlay={false}
                         keyBoardControl={true}
                         customTransition="transform 500ms ease-in-out"
@@ -130,6 +132,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                                 <Link
                                     key={deal.id}
                                     href={href}
+                                    dir={isRtl ? 'rtl' : 'ltr'}
                                     className="block h-[400px] md:h-[480px] relative rounded-3xl overflow-hidden group select-none"
                                 >
                                     <Image
@@ -141,7 +144,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                                     />
 
                                     {/* Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 p-8 flex flex-col justify-between">
+                                    <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 p-8 flex flex-col justify-between ${isRtl ? 'text-right' : 'text-left'}`}>
 
                                         {/* Top Tags */}
                                         <div className="flex flex-wrap gap-2">
@@ -172,7 +175,7 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
 
                                             <div className="flex items-center justify-between">
                                                 <div className="px-6 py-2.5 rounded-full border border-white/30 text-white font-medium text-sm hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm">
-                                                    View Deal
+                                                    {content.viewDealLabel}
                                                 </div>
                                                 {deal.price && (
                                                     <div className="text-white font-bold text-xl">

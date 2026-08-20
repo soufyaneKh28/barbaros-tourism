@@ -30,8 +30,14 @@ export default function CtaButton({
     const combinedStyles = `${baseStyles} ${variants[variant]} ${className}`;
 
     if (href) {
+        const isExternal = href.startsWith('http');
         return (
-            <Link href={href} className={combinedStyles}>
+            <Link
+                href={href}
+                className={combinedStyles}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener noreferrer' : undefined}
+            >
                 {children}
             </Link>
         );

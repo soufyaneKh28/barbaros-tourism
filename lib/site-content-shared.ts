@@ -17,6 +17,12 @@ export interface HomeHeroContent {
     heading?: MultiLang
     description?: MultiLang
     images?: string[]
+    ctaPrimaryLabel?: MultiLang
+    ctaPrimaryLink?: string
+    ctaPrimaryEnabled?: boolean
+    ctaSecondaryLabel?: MultiLang
+    ctaSecondaryLink?: string
+    ctaSecondaryEnabled?: boolean
 }
 
 export interface HeroContent {
@@ -149,6 +155,7 @@ export const GENERIC_SCHEMAS: Record<GenericSectionKey, GenericSectionSchema> = 
             { key: 'badge', label: 'Badge', type: 'text' },
             { key: 'heading', label: 'Heading', type: 'text' },
             { key: 'description', label: 'Description', type: 'textarea' },
+            { key: 'viewDealLabel', label: '"View Deal" Button Text', type: 'text' },
         ],
     },
     home_featured_programs: {
@@ -183,6 +190,7 @@ export const GENERIC_SCHEMAS: Record<GenericSectionKey, GenericSectionSchema> = 
             { key: 'title', label: 'Title', type: 'text' },
             { key: 'ctaLabel', label: 'Button Text', type: 'text' },
             { key: 'backgroundImage', label: 'Background Image', type: 'image' },
+            { key: 'videoUrl', label: 'YouTube Video URL', type: 'text', multiLang: false, inputType: 'url', placeholder: 'https://www.youtube.com/watch?v=...' },
         ],
     },
     home_partners: {
@@ -595,6 +603,12 @@ export interface ResolvedSiteContent {
         heading: string
         description: string
         images: string[]
+        ctaPrimaryLabel: string
+        ctaPrimaryLink: string
+        ctaPrimaryEnabled: boolean
+        ctaSecondaryLabel: string
+        ctaSecondaryLink: string
+        ctaSecondaryEnabled: boolean
     }
     aboutHero: ResolvedHero
     contactHero: ResolvedHero
@@ -640,6 +654,10 @@ export const DEFAULT_HOME_HERO = {
     tagline: 'Trusted Tourism Services in Turkey',
     heading: 'Barbaros Tourism Your reliable partner in Türkiye',
     description: 'Comprehensive tourism solutions in Türkiye - from unforgettable tours to world-class medical tourism services.',
+    ctaPrimaryLabel: 'Explore tours',
+    ctaPrimaryLink: '/tours',
+    ctaSecondaryLabel: 'Medical tourism',
+    ctaSecondaryLink: '/medical-tourism',
 }
 
 export const DEFAULT_FOOTER = {
@@ -743,6 +761,18 @@ export function pick(ml: MultiLang | undefined, locale: Locale, fallback: string
     return value && value.trim() ? value : fallback
 }
 
+// A code-level default is usually just an English fallback string (shown for
+// every locale until an admin translates it), but some fields carry a real
+// translation transcribed from the site's original i18n copy — those are
+// {en, ar, ...} objects instead. This resolves either shape to one string.
+export type LocalizedDefault = string | MultiLang
+
+export function defaultText(d: LocalizedDefault | undefined, locale: Locale): string {
+    if (!d) return ''
+    if (typeof d === 'string') return d
+    return d[locale] || d.en || ''
+}
+
 export function resolveHero(raw: HeroContent | undefined, locale: Locale, key: HeroSectionKey): ResolvedHero {
     const defaults = HERO_DEFAULTS[key]
     return {
@@ -763,46 +793,48 @@ export function resolveHero(raw: HeroContent | undefined, locale: Locale, key: H
 
 export const GENERIC_SECTION_DEFAULTS: Record<GenericSectionKey, Record<string, any>> = {
     home_quick_actions: {
-        subheading: 'Explore Our Services',
-        heading: 'Quick Actions',
-        description: 'Choose from our wide range of services designed to meet your needs.',
+        subheading: { en: 'Explore Our Services', ar: 'استكشف خدماتنا' },
+        heading: { en: 'Quick Actions', ar: 'الإجراءات السريعة' },
+        description: { en: 'Choose from our wide range of services designed to meet your needs.', ar: 'اختر من بين مجموعة واسعة من الخدمات المصممة لتلبية احتياجاتك.' },
     },
     home_hot_deals: {
-        badge: 'Hot Deals',
-        heading: 'Limited-Time Offers on Selected Services',
-        description: "Explore our best travel packages and services with exclusive discounts. Don't miss the chance to book your dream experience at an unbeatable price.",
+        badge: { en: 'Hot Deals', ar: 'عروض مميزة' },
+        heading: { en: 'Limited-Time Offers on Selected Services', ar: 'عروض لفترة محدودة على خدمات مختارة' },
+        description: { en: "Explore our best travel packages and services with exclusive discounts. Don't miss the chance to book your dream experience at an unbeatable price.", ar: 'استكشف أفضل باقات السفر والخدمات لدينا مع خصومات حصرية. لا تفوت فرصة حجز تجربة أحلامك بسعر لا يُنافس.' },
+        viewDealLabel: 'View Deal',
     },
     home_featured_programs: {
-        badge: 'Our Programs',
-        heading: 'Featured Tourism Programs',
-        description: 'Explore our top-rated programs designed for unforgettable experiences.',
-        viewAllLabel: 'View All Programs',
+        badge: { en: 'Our Programs', ar: 'برامجنا' },
+        heading: { en: 'Featured Tourism Programs', ar: 'البرامج السياحية المميزة' },
+        description: { en: 'Explore our top-rated programs designed for unforgettable experiences.', ar: 'استكشف أفضل برامجنا المصممة لتجارب لا تُنسى.' },
+        viewAllLabel: { en: 'View All Programs', ar: 'عرض جميع البرامج' },
     },
     home_testimonials: {
-        badge: 'Testimonials',
-        heading: 'Real Experiences from Travelers Who Trusted Us',
-        description: 'Hear from our clients about their journeys with Barbaros Tourism. From seamless travel planning to exceptional medical tourism services, these real stories reflect our commitment to quality, care, and unforgettable experiences.',
+        badge: { en: 'Testimonials', ar: 'آراء العملاء' },
+        heading: { en: 'Real Experiences from Travelers Who Trusted Us', ar: 'تجارب حقيقية من مسافرين وثقوا بنا' },
+        description: { en: 'Hear from our clients about their journeys with Barbaros Tourism. From seamless travel planning to exceptional medical tourism services, these real stories reflect our commitment to quality, care, and unforgettable experiences.', ar: 'استمع إلى قصص عملائنا مع بارباروس للسياحة. من تنظيم السفر بسلاسة إلى خدمات السياحة العلاجية المتميزة، تعكس هذه التجارب التزامنا بالجودة والرعاية وتجارب لا تُنسى.' },
         items: [
-            { photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop', text: 'Barbaros Tourism made our family trip to Turkey unforgettable. The guides were knowledgeable and the transfers were seamless.', name: 'Sarah Jenkins', role: 'Family Traveler' },
-            { photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop', text: 'The medical tourism package was exceptional. From the clinic to the hotel, everything was handled with the utmost care and professionalism.', name: 'Michael Chen', role: 'Medical Tourist' },
-            { photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop', text: "I loved the hot air balloon tour in Cappadocia! It was a dream come true. Highly recommend their services for anyone visiting Turkey.", name: 'Elena Rodriguez', role: 'Adventure Seeker' },
-            { photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop', text: 'Professional, reliable, and friendly. They tailored the itinerary exactly to our needs. Istanbul is magical thanks to them.', name: 'James Wilson', role: 'Cultural Enthusiast' },
-            { photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop', text: 'The VIP transfer service was top-notch. Comfortable vehicles and punctual drivers. Made our business trip stress-free.', name: 'Emily Davis', role: 'Business Traveler' },
-            { photo: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&h=100&fit=crop', text: 'We booked a full package including flights, hotels, and tours. Best value for money and excellent customer support throughout.', name: 'Robert Taylor', role: 'Vacationer' },
-            { photo: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=100&h=100&fit=crop', text: "Their attention to detail is amazing. They suggested hidden gems in Istanbul that we wouldn't have found on our own.", name: 'David Kim', role: 'Explorer' },
-            { photo: 'https://images.unsplash.com/photo-1554151228-14d9def656ec?w=100&h=100&fit=crop', text: 'Safe and trustworthy. As a solo female traveler, I felt completely secure with their guides and drivers.', name: 'Sophie Martin', role: 'Solo Traveler' },
-            { photo: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&h=100&fit=crop', text: 'The Bosphorus cruise dinner was the highlight of our trip. Great food, great views, and perfect organization.', name: 'Thomas Anderson', role: 'Foodie' },
+            { photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop', text: { en: 'Barbaros Tourism made our family trip to Turkey unforgettable. The guides were knowledgeable and the transfers were seamless.', ar: 'جعلت بارباروس للسياحة رحلتنا العائلية إلى تركيا تجربة لا تُنسى. المرشدون كانوا محترفين والتنقلات منظمة بسلاسة.' }, name: { en: 'Sarah Jenkins', ar: 'سارة جينكنز' }, role: { en: 'Family Traveler', ar: 'مسافرة مع العائلة' } },
+            { photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop', text: { en: 'The medical tourism package was exceptional. From the clinic to the hotel, everything was handled with the utmost care and professionalism.', ar: 'باقة السياحة العلاجية كانت ممتازة. من العيادة إلى الفندق، كل شيء كان منظمًا بعناية واحترافية عالية.' }, name: { en: 'Michael Chen', ar: 'مايكل تشين' }, role: { en: 'Medical Tourist', ar: 'سائح علاجي' } },
+            { photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop', text: { en: "I loved the hot air balloon tour in Cappadocia! It was a dream come true. Highly recommend their services for anyone visiting Turkey.", ar: 'رحلة المنطاد في كابادوكيا كانت حلمًا تحقق! أنصح بشدة بخدماتهم لكل من يزور تركيا.' }, name: { en: 'Elena Rodriguez', ar: 'إيلينا رودريغيز' }, role: { en: 'Adventure Seeker', ar: 'محبة للمغامرات' } },
+            { photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop', text: { en: 'Professional, reliable, and friendly. They tailored the itinerary exactly to our needs. Istanbul is magical thanks to them.', ar: 'احترافية، موثوقية، وتعامل ودود. صمموا برنامج الرحلة بما يناسب احتياجاتنا تمامًا.' }, name: { en: 'James Wilson', ar: 'جيمس ويلسون' }, role: { en: 'Cultural Enthusiast', ar: 'محب للثقافة' } },
+            { photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop', text: { en: 'The VIP transfer service was top-notch. Comfortable vehicles and punctual drivers. Made our business trip stress-free.', ar: 'خدمة النقل VIP كانت على أعلى مستوى. سيارات مريحة وسائقون في غاية الالتزام.' }, name: { en: 'Emily Davis', ar: 'إميلي ديفيس' }, role: { en: 'Business Traveler', ar: 'مسافرة لأعمال' } },
+            { photo: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&h=100&fit=crop', text: { en: 'We booked a full package including flights, hotels, and tours. Best value for money and excellent customer support throughout.', ar: 'حجزنا باقة متكاملة تشمل الطيران والفنادق والجولات. أفضل قيمة مقابل السعر ودعم ممتاز طوال الرحلة.' }, name: { en: 'Robert Taylor', ar: 'روبرت تايلور' }, role: { en: 'Vacationer', ar: 'سائح' } },
+            { photo: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=100&h=100&fit=crop', text: { en: "Their attention to detail is amazing. They suggested hidden gems in Istanbul that we wouldn't have found on our own.", ar: 'اهتمامهم بالتفاصيل رائع. اقترحوا أماكن مميزة في إسطنبول لم نكن لنعرفها وحدنا.' }, name: { en: 'David Kim', ar: 'ديفيد كيم' }, role: { en: 'Explorer', ar: 'مستكشف' } },
+            { photo: 'https://images.unsplash.com/photo-1554151228-14d9def656ec?w=100&h=100&fit=crop', text: { en: 'Safe and trustworthy. As a solo female traveler, I felt completely secure with their guides and drivers.', ar: 'شعرت بالأمان التام كمسافرة منفردة. فريقهم كان داعمًا ومحترفًا للغاية.' }, name: { en: 'Sophie Martin', ar: 'صوفي مارتن' }, role: { en: 'Solo Traveler', ar: 'مسافرة منفردة' } },
+            { photo: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&h=100&fit=crop', text: { en: 'The Bosphorus cruise dinner was the highlight of our trip. Great food, great views, and perfect organization.', ar: 'عشاء رحلة البوسفور كان أجمل جزء في الرحلة. تنظيم مثالي وتجربة رائعة.' }, name: { en: 'Thomas Anderson', ar: 'توماس أندرسون' }, role: { en: 'Foodie', ar: 'محب للطعام' } },
         ],
     },
     home_video_section: {
-        subtitle: 'Connecting Your Journey with Purpose',
-        title: 'Unforgettable journeys that make a difference.',
-        ctaLabel: 'Play Video',
+        subtitle: { en: 'Connecting Your Journey with Purpose', ar: 'نربط رحلتك بالغاية' },
+        title: { en: 'Unforgettable journeys that make a difference.', ar: 'رحلات لا تُنسى تصنع الفارق.' },
+        ctaLabel: { en: 'Play Video', ar: 'شاهد الفيديو' },
         backgroundImage: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?q=80&w=2070&auto=format&fit=crop',
+        videoUrl: '',
     },
     home_partners: {
-        badge: 'Our trusted partners',
-        heading: 'We collaborate with the best to provide you with an exceptional experience',
+        badge: { en: 'Our trusted partners', ar: 'شركاؤنا الموثوقون' },
+        heading: { en: 'We collaborate with the best to provide you with an exceptional experience', ar: 'نتعاون مع الأفضل لنقدم لكم تجربة استثنائية' },
         items: [
             { name: 'Aspen Online', logo: '' },
             { name: 'Crop and Highlight', logo: '' },
@@ -813,71 +845,71 @@ export const GENERIC_SECTION_DEFAULTS: Record<GenericSectionKey, Record<string, 
         ],
     },
     home_blogs: {
-        badge: 'Our Blog',
-        heading: 'Latest Stories & Insights',
-        description: 'Discover travel tips, cultural insights, and hidden gems in Türkiye through our expert blog posts.',
-        seeAllLabel: 'View All Articles',
-        readMoreLabel: 'Read More',
+        badge: { en: 'Our Blog', ar: 'مدونتنا' },
+        heading: { en: 'Latest Stories & Insights', ar: 'أحدث القصص والرؤى' },
+        description: { en: 'Discover travel tips, cultural insights, and hidden gems in Türkiye through our expert blog posts.', ar: 'اكتشف نصائح السفر والرؤى الثقافية والكنوز الخفية في تركيا من خلال مقالات مدونتنا.' },
+        seeAllLabel: { en: 'View All Articles', ar: 'عرض جميع المقالات' },
+        readMoreLabel: { en: 'Read More', ar: 'اقرأ المزيد' },
     },
     about_story: {
-        badge: 'OUR STORY',
-        heading: 'It feels like family (because it is)',
-        p1: 'Founded with a passion for showcasing the beauty and culture of Türkiye, Barbaros Tourism has grown from a small local agency to a comprehensive tourism and medical tourism provider.',
-        p2: "Our journey began with a simple mission: to share the wonders of Türkiye with the world while providing exceptional service. Over the years, we've expanded our services to include medical tourism, recognizing the growing demand for quality healthcare combined with travel.",
-        p3: "Today, we're proud to serve thousands of clients annually, helping them discover Türkiye's rich history, stunning landscapes, and world-class medical facilities.",
-        readMoreLabel: 'Read more',
+        badge: { en: 'OUR STORY', ar: 'قصتنا' },
+        heading: { en: 'It feels like family (because it is)', ar: 'نشعر وكأننا عائلة (لأننا كذلك)' },
+        p1: { en: 'Founded with a passion for showcasing the beauty and culture of Türkiye, Barbaros Tourism has grown from a small local agency to a comprehensive tourism and medical tourism provider.', ar: 'تأسست بارباروس للسياحة بشغف لإبراز جمال وثقافة تركيا، ونمت من وكالة محلية صغيرة إلى مزود متكامل للسياحة والسياحة العلاجية.' },
+        p2: { en: "Our journey began with a simple mission: to share the wonders of Türkiye with the world while providing exceptional service. Over the years, we've expanded our services to include medical tourism, recognizing the growing demand for quality healthcare combined with travel.", ar: 'بدأت رحلتنا بمهمة بسيطة: مشاركة روائع تركيا مع العالم مع تقديم خدمة استثنائية.' },
+        p3: { en: "Today, we're proud to serve thousands of clients annually, helping them discover Türkiye's rich history, stunning landscapes, and world-class medical facilities.", ar: 'اليوم نفخر بخدمة آلاف العملاء سنويًا، ومساعدتهم على اكتشاف تاريخ تركيا الغني ومناظرها الخلابة.' },
+        readMoreLabel: { en: 'Read more', ar: 'اقرأ المزيد' },
         image1: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop',
         image2: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
     },
     about_stats: {
-        heading: 'We’re here to introduce you to all the places out there',
-        description: 'Our impact across the globe through years of dedicated service and passion for travel.',
+        heading: { en: 'We’re here to introduce you to all the places out there', ar: 'نحن هنا لنعرفك على كل الأماكن' },
+        description: { en: 'Our impact across the globe through years of dedicated service and passion for travel.', ar: 'أثرنا العالمي عبر سنوات من الشغف والخدمة.' },
         items: [
-            { value: '10,000+', label: 'Happy customers' },
-            { value: '5,000+', label: 'Tours and activities' },
-            { value: '30+', label: 'Countries around the globe' },
-            { value: '200+', label: 'Local Partners' },
+            { value: '10,000+', label: { en: 'Happy customers', ar: 'عملاء سعداء' } },
+            { value: '5,000+', label: { en: 'Tours and activities', ar: 'جولات وأنشطة' } },
+            { value: '30+', label: { en: 'Countries around the globe', ar: 'دول حول العالم' } },
+            { value: '200+', label: { en: 'Local Partners', ar: 'شركاء محليون' } },
         ],
     },
     about_why_choose: {
-        heading: 'Why Choose Barbaros Tourism?',
+        heading: { en: 'Why Choose Barbaros Tourism?', ar: 'لماذا تختار بارباروس للسياحة؟' },
         items: [
-            { title: 'Trusted Experience', description: 'Years of expertise in tourism and medical services with thousands of satisfied clients.' },
-            { title: '24/7 Support', description: 'Round-the-clock assistance to ensure your journey is smooth and worry-free.' },
-            { title: 'Best Value', description: 'Competitive pricing without compromising on quality or service excellence.' },
-            { title: 'Personalized Service', description: 'Tailored experiences designed to match your preferences and requirements.' },
-            { title: 'Expert Team', description: 'Professional guides and medical coordinators dedicated to your satisfaction.' },
-            { title: 'Global Network', description: 'Partnerships with top hotels, hospitals, and service providers across Türkiye.' },
+            { title: { en: 'Trusted Experience', ar: 'خبرة موثوقة' }, description: { en: 'Years of expertise in tourism and medical services with thousands of satisfied clients.', ar: 'سنوات من الخبرة في مجال السياحة والخدمات الطبية مع آلاف العملاء الراضين.' } },
+            { title: { en: '24/7 Support', ar: 'دعم على مدار الساعة' }, description: { en: 'Round-the-clock assistance to ensure your journey is smooth and worry-free.', ar: 'مساعدة على مدار الساعة لضمان أن تكون رحلتك سلسة وخالية من القلق.' } },
+            { title: { en: 'Best Value', ar: 'أفضل قيمة' }, description: { en: 'Competitive pricing without compromising on quality or service excellence.', ar: 'أسعار تنافسية دون المساومة على الجودة أو تميز الخدمة.' } },
+            { title: { en: 'Personalized Service', ar: 'خدمة مخصصة' }, description: { en: 'Tailored experiences designed to match your preferences and requirements.', ar: 'تجارب مصممة خصيصًا لتتناسب مع تفضيلاتك ومتطلباتك.' } },
+            { title: { en: 'Expert Team', ar: 'فريق خبراء' }, description: { en: 'Professional guides and medical coordinators dedicated to your satisfaction.', ar: 'مرشدون محترفون ومنسقون طبيون مكرسون لرضاك.' } },
+            { title: { en: 'Global Network', ar: 'شبكة عالمية' }, description: { en: 'Partnerships with top hotels, hospitals, and service providers across Türkiye.', ar: 'شراكات مع أفضل الفنادق والمستشفيات ومقدمي الخدمات في جميع أنحاء تركيا.' } },
         ],
     },
     contact_form: {
-        heading: 'Send us a Message',
-        subheading: 'Fill out the form below and our team will get back to you within 24 hours.',
-        firstNameLabel: 'First Name',
-        lastNameLabel: 'Last Name',
-        emailLabel: 'Email Address',
-        phoneLabel: 'Phone Number',
-        interestPlaceholder: 'Select Interest',
-        messageLabel: 'Message',
-        submitLabel: 'Send Message',
-        optionCultural: 'Cultural Tours',
-        optionAdventure: 'Adventure Tours',
-        optionHair: 'Medical Tourism - Hair Transplant',
-        optionDental: 'Medical Tourism - Dental',
-        optionCosmetic: 'Medical Tourism - Cosmetic Surgery',
-        optionCustom: 'Custom Package',
-        optionOther: 'Other',
+        heading: { en: 'Send us a Message', ar: 'أرسل لنا رسالة' },
+        subheading: { en: 'Fill out the form below and our team will get back to you within 24 hours.', ar: 'املأ النموذج وسيتواصل معك فريقنا خلال 24 ساعة.' },
+        firstNameLabel: { en: 'First Name', ar: 'الاسم الأول' },
+        lastNameLabel: { en: 'Last Name', ar: 'اسم العائلة' },
+        emailLabel: { en: 'Email Address', ar: 'البريد الإلكتروني' },
+        phoneLabel: { en: 'Phone Number', ar: 'رقم الهاتف' },
+        interestPlaceholder: { en: 'Select Interest', ar: 'اختر الاهتمام' },
+        messageLabel: { en: 'Message', ar: 'الرسالة' },
+        submitLabel: { en: 'Send Message', ar: 'إرسال الرسالة' },
+        optionCultural: { en: 'Cultural Tours', ar: 'جولات ثقافية' },
+        optionAdventure: { en: 'Adventure Tours', ar: 'جولات مغامرة' },
+        optionHair: { en: 'Medical Tourism - Hair Transplant', ar: 'سياحة علاجية - زراعة الشعر' },
+        optionDental: { en: 'Medical Tourism - Dental', ar: 'سياحة علاجية - طب الأسنان' },
+        optionCosmetic: { en: 'Medical Tourism - Cosmetic Surgery', ar: 'سياحة علاجية - جراحة تجميلية' },
+        optionCustom: { en: 'Custom Package', ar: 'باقة مخصصة' },
+        optionOther: { en: 'Other', ar: 'أخرى' },
         successMessage: '✓ Thank you! Your message has been sent successfully.',
         fullNameError: 'Please enter your full name',
         emailError: 'Please enter a valid email address',
         messageError: 'Message must be at least 10 characters',
     },
     contact_info: {
-        phoneLabel: 'Phone',
-        emailLabel: 'Email',
-        officeLabel: 'Office',
-        hoursLabel: 'Hours',
-        connectLabel: 'Connect With Us',
+        phoneLabel: { en: 'Phone', ar: 'الهاتف' },
+        emailLabel: { en: 'Email', ar: 'البريد الإلكتروني' },
+        officeLabel: { en: 'Office', ar: 'المكتب' },
+        hoursLabel: { en: 'Hours', ar: 'ساعات العمل' },
+        connectLabel: { en: 'Connect With Us', ar: 'تواصل معنا' },
     },
     contact_map: {
         heading: 'Visit Our Office',
@@ -888,9 +920,9 @@ export const GENERIC_SECTION_DEFAULTS: Record<GenericSectionKey, Record<string, 
         backgroundImage: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop',
     },
     services_offerings: {
-        badge: 'OUR EXPERTISE',
-        heading: 'What We Offer',
-        ctaButtonLabel: 'Learn More',
+        badge: { en: 'OUR EXPERTISE', ar: 'خبرتنا' },
+        heading: { en: 'What We Offer', ar: 'ما نقدمه' },
+        ctaButtonLabel: { en: 'Learn More', ar: 'اعرف المزيد' },
         items: [
             { title: 'Cultural Tours', description: "Explore Türkiye's rich history and heritage with expert guides who bring ancient stories to life.", image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop' },
             { title: 'Adventure Tours', description: "Thrilling experiences for adrenaline seekers and nature lovers in Türkiye's most breathtaking landscapes.", image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop' },
@@ -901,55 +933,55 @@ export const GENERIC_SECTION_DEFAULTS: Record<GenericSectionKey, Record<string, 
         ],
     },
     services_cta: {
-        heading: 'Ready to Start Your Perfect Journey?',
-        description: 'Contact us today to discuss your travel plans and let us create a personalized package that meets all your expectations.',
-        button1Label: 'Schedule a Consultation',
-        button2Label: 'Explore Our Tours',
+        heading: { en: 'Ready to Start Your Perfect Journey?', ar: 'هل أنت مستعد لبدء رحلتك المثالية؟' },
+        description: { en: 'Contact us today to discuss your travel plans and let us create a personalized package that meets all your expectations.', ar: 'تواصل معنا اليوم ودعنا نصمم لك باقة مخصصة تلبي جميع تطلعاتك.' },
+        button1Label: { en: 'Schedule a Consultation', ar: 'احجز استشارة' },
+        button2Label: { en: 'Explore Our Tours', ar: 'استكشف جولاتنا' },
     },
     tours_carousel_headers: {
-        dailyToursBadge: 'DAILY TOURS',
-        dailyToursTitle: 'Short & Sweet Adventures',
-        dailyToursDescription: "Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots in carefully curated daily tours.",
-        specialPackagesBadge: 'SPECIAL TOURISM PACKAGES',
-        specialPackagesTitle: 'Tailored Tourism Solutions',
-        specialPackagesDescription: 'Exclusive packages designed for specific interests - from cultural immersion to adventure experiences. Each package is carefully crafted to provide unique and memorable journeys.',
-        vipServicesBadge: 'VIP TOURISM SERVICES',
-        vipServicesTitle: 'VIP Tourism Services',
-        vipServicesDescription: 'Indulge in the finest that Türkiye has to offer with our exclusive VIP programs. Enjoy personalized service, luxury accommodations, and unforgettable experiences.',
+        dailyToursBadge: { en: 'DAILY TOURS', ar: 'الجولات اليومية' },
+        dailyToursTitle: { en: 'Short & Sweet Adventures', ar: 'مغامرات قصيرة وممتعة' },
+        dailyToursDescription: { en: "Perfect for those with limited time or looking to add excitement to their day. Experience the essentials of Türkiye's best spots in carefully curated daily tours.", ar: 'مثالي لأولئك الذين لديهم وقت محدود أو يبحثون عن إضافة الإثارة إلى يومهم. استمتع بأساسيات أفضل الأماكن في تركيا في جولات يومية منظمة بعناية.' },
+        specialPackagesBadge: { en: 'SPECIAL TOURISM PACKAGES', ar: 'باقات سياحية خاصة' },
+        specialPackagesTitle: { en: 'Tailored Tourism Solutions', ar: 'حلول سياحية مخصصة' },
+        specialPackagesDescription: { en: 'Exclusive packages designed for specific interests - from cultural immersion to adventure experiences. Each package is carefully crafted to provide unique and memorable journeys.', ar: 'باقات حصرية مصممة لاهتمامات محددة - من الانغماس الثقافي إلى تجارب المغامرة. تم إعداد كل باقة بعناية لتوفير رحلات فريدة لا تُنسى.' },
+        vipServicesBadge: { en: 'VIP TOURISM SERVICES', ar: 'خدمات السياحة VIP' },
+        vipServicesTitle: { en: 'VIP Tourism Services', ar: 'خدمات السياحة VIP' },
+        vipServicesDescription: { en: 'Indulge in the finest that Türkiye has to offer with our exclusive VIP programs. Enjoy personalized service, luxury accommodations, and unforgettable experiences.', ar: 'استمتع بأفضل ما تقدمه تركيا مع برامج VIP الحصرية. استمتع بخدمة شخصية وإقامة فاخرة وتجارب لا تُنسى.' },
     },
     medical_why_choose: {
-        badge: 'Why Türkiye',
-        heading: 'World-Class Healthcare at Affordable Prices',
-        description: 'Türkiye has become a global leader in medical tourism, combining cutting-edge facilities with exceptional service and stunning locations.',
+        badge: { en: 'Why Türkiye', ar: 'لماذا تركيا' },
+        heading: { en: 'World-Class Healthcare at Affordable Prices', ar: 'رعاية صحية عالمية بأسعار مناسبة' },
+        description: { en: 'Türkiye has become a global leader in medical tourism, combining cutting-edge facilities with exceptional service and stunning locations.', ar: 'أصبحت تركيا رائدة عالميًا في السياحة العلاجية، حيث تجمع بين أحدث التقنيات الطبية وخدمة متميزة ومواقع خلابة.' },
         items: [
-            { title: 'JCI Accredited Hospitals', description: 'All our partner hospitals hold international Joint Commission International accreditation, ensuring the highest standards of care.' },
-            { title: 'Competitive Pricing', description: 'Save up to 70% compared to Western countries without compromising on quality or safety standards.' },
-            { title: 'Expert Surgeons', description: 'Our medical professionals have years of international experience and specialized training in their fields.' },
-            { title: 'Full Support Package', description: 'From translation services to accommodation and transfers, we handle all logistics for a seamless experience.' },
-            { title: 'Tourism Combination', description: "Combine your treatment with a memorable vacation in one of the world's most beautiful countries." },
-            { title: 'Aftercare Support', description: 'Continued support after your return home with online consultations and follow-up care.' },
+            { title: { en: 'JCI Accredited Hospitals', ar: 'مستشفيات معتمدة من JCI' }, description: { en: 'All our partner hospitals hold international Joint Commission International accreditation, ensuring the highest standards of care.', ar: 'جميع مستشفياتنا الشريكة حاصلة على اعتماد اللجنة الدولية المشتركة، مما يضمن أعلى معايير الرعاية.' } },
+            { title: { en: 'Competitive Pricing', ar: 'أسعار تنافسية' }, description: { en: 'Save up to 70% compared to Western countries without compromising on quality or safety standards.', ar: 'وفر حتى 70٪ مقارنة بالدول الغربية دون أي تنازل عن الجودة أو السلامة.' } },
+            { title: { en: 'Expert Surgeons', ar: 'أطباء خبراء' }, description: { en: 'Our medical professionals have years of international experience and specialized training in their fields.', ar: 'أطباؤنا يتمتعون بخبرة دولية وسنوات من التدريب المتخصص.' } },
+            { title: { en: 'Full Support Package', ar: 'حزمة دعم متكاملة' }, description: { en: 'From translation services to accommodation and transfers, we handle all logistics for a seamless experience.', ar: 'من خدمات الترجمة إلى الإقامة والتنقل، نتولى جميع التفاصيل لتجربة سلسة.' } },
+            { title: { en: 'Tourism Combination', ar: 'الجمع بين العلاج والسياحة' }, description: { en: "Combine your treatment with a memorable vacation in one of the world's most beautiful countries.", ar: 'اجمع بين علاجك وإجازة مميزة في واحدة من أجمل دول العالم.' } },
+            { title: { en: 'Aftercare Support', ar: 'رعاية ما بعد العلاج' }, description: { en: 'Continued support after your return home with online consultations and follow-up care.', ar: 'دعم مستمر بعد عودتك من خلال الاستشارات والمتابعة عن بُعد.' } },
         ],
     },
     immigration_citizenship_header: {
-        badge: 'Citizenship Services',
-        heading: 'Citizenship Application Services',
-        description: 'Expert assistance with all types of citizenship applications for Türkiye and international destinations.',
+        badge: { en: 'Citizenship Services', ar: 'خدمات الجنسية' },
+        heading: { en: 'Citizenship Application Services', ar: 'خدمات تقديم طلبات الجنسية' },
+        description: { en: 'Expert assistance with all types of citizenship applications for Türkiye and international destinations.', ar: 'مساعدة متخصصة في جميع أنواع طلبات الجنسية لتركيا والوجهات الدولية.' },
         emptyStateMessage: 'No visa services available at the moment.',
         viewAllLabel: 'View All Visa Services',
         fallbackImage: 'https://images.unsplash.com/photo-1554224311-beee415c201f?q=80&w=800&auto=format&fit=crop',
     },
     immigration_residence_header: {
-        badge: 'Residence Services',
-        heading: 'Residence Permit & Settlement',
-        description: 'Comprehensive residency solutions including residence permits, settlement applications, and legal support.',
+        badge: { en: 'Residence Services', ar: 'خدمات الإقامة' },
+        heading: { en: 'Residence Permit & Settlement', ar: 'خدمات تصريح الإقامة والاستقرار' },
+        description: { en: 'Comprehensive residency solutions including residence permits, settlement applications, and legal support.', ar: 'حلول إقامة شاملة تشمل تصاريح الإقامة وطلبات الاستقرار والدعم القانوني.' },
         emptyStateMessage: 'No immigration services available at the moment.',
         viewAllLabel: 'View All Immigration Services',
         fallbackImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop',
     },
     immigration_cta: {
-        heading: 'Ready to Start Your Immigration Journey?',
-        description: 'Contact us today for a free consultation and let our experts guide you through the process.',
-        buttonLabel: 'Get Free Consultation',
+        heading: { en: 'Ready to Start Your Immigration Journey?', ar: 'هل أنت مستعد لبدء رحلة الهجرة الخاصة بك؟' },
+        description: { en: 'Contact us today for a free consultation and let our experts guide you through the process.', ar: 'اتصل بنا اليوم للحصول على استشارة مجانية ودع خبراءنا يرشدونك خلال العملية.' },
+        buttonLabel: { en: 'Get Free Consultation', ar: 'احصل على استشارة مجانية' },
         backgroundImage: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop',
     },
     special_packages_content: {
@@ -1007,7 +1039,7 @@ export function resolveListItems<T extends Record<string, any>>(
         const keys = new Set([...Object.keys(fallback), ...Object.keys(item || {})])
         keys.forEach((k) => {
             if (mlKeys.includes(k)) {
-                result[k] = pick(item?.[k], locale, typeof fallback[k] === 'string' ? fallback[k] : '')
+                result[k] = pick(item?.[k], locale, defaultText(fallback[k], locale))
             } else {
                 result[k] = item?.[k] !== undefined && item?.[k] !== '' ? item[k] : fallback[k] || ''
             }
@@ -1028,7 +1060,7 @@ export function resolveGenericSection(
         if (f.type === 'image') {
             result[f.key] = raw?.[f.key] || defaults[f.key] || ''
         } else if (isMultiLangField(f)) {
-            result[f.key] = pick(raw?.[f.key], locale, defaults[f.key] || '')
+            result[f.key] = pick(raw?.[f.key], locale, defaultText(defaults[f.key], locale))
         } else {
             result[f.key] = raw?.[f.key] || defaults[f.key] || ''
         }
