@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
 
 
 @custom-variant dark (&:is(.dark *));
@@ -121,6 +122,8 @@ html[lang="ar"] body {
 }
 
 @theme inline {
+  --animate-marquee: marquee 30s linear infinite;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-satoshi);
@@ -241,5 +244,64 @@ body {
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Partner logo marquee: the track renders two copies of the logo list,
+   so translating it by half its width loops seamlessly. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+
+/* ── Admin portal sign-in ──────────────────────────────────────────────
+   Scoped to .auth-shell so the portal's palette can't leak into the
+   public site. Neutrals are tinted toward the brand navy (OKLCH hue 256)
+   rather than being pure gray, so every surface reads as related to it. */
+.auth-shell {
+  --auth-navy: oklch(0.333 0.053 256.4);        /* #243751 */
+  --auth-navy-deep: oklch(0.248 0.044 256.4);
+  --auth-crimson: oklch(0.468 0.188 8.5);       /* #A80045 */
+  --auth-crimson-hover: oklch(0.404 0.168 8.5);
+  --auth-page: oklch(0.985 0.004 256);
+  --auth-line: oklch(0.906 0.008 256);
+  --auth-line-strong: oklch(0.83 0.013 256);
+  --auth-ink: oklch(0.305 0.032 256);
+  --auth-muted: oklch(0.525 0.019 256);
+  --auth-danger: oklch(0.487 0.174 22);
+  --auth-danger-surface: oklch(0.968 0.016 22);
+}
+
+/* One orchestrated entrance, staggered via inline animation-delay.
+   Exponential ease-out: decelerates like a real object, no bounce. */
+@keyframes auth-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.auth-rise {
+  animation: auth-rise 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-rise {
+    animation: none;
   }
 }

@@ -45,6 +45,10 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
     const content = generic.home_hot_deals;
     const isRtl = locale === 'ar';
 
+    // In RTL the track runs right-to-left, so the on-screen left arrow advances.
+    const goLeft = () => (isRtl ? carouselRef.current?.next() : carouselRef.current?.previous());
+    const goRight = () => (isRtl ? carouselRef.current?.previous() : carouselRef.current?.next());
+
     if (!deals || deals.length === 0) {
         return null
     }
@@ -89,18 +93,18 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                 <div className="-mx-4 px-4 pb-8 relative overflow-visible group">
                     {/* Navigation Buttons */}
                     <button
-                        onClick={() => carouselRef.current?.previous()}
+                        onClick={goLeft}
                         className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-primary/80 backdrop-blur-sm shadow-lg text-white hover:bg-white hover:text-primary transition-all duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100 disabled:opacity-0"
-                        aria-label="Previous deal"
+                        aria-label={isRtl ? 'Next deal' : 'Previous deal'}
                     >
                         <svg className="w-5 h-5 text-current transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
                     <button
-                        onClick={() => carouselRef.current?.next()}
+                        onClick={goRight}
                         className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-primary/80 backdrop-blur-sm shadow-lg text-white hover:bg-white hover:text-primary transition-all duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100 disabled:opacity-0"
-                        aria-label="Next deal"
+                        aria-label={isRtl ? 'Previous deal' : 'Next deal'}
                     >
                         <svg className="w-5 h-5 text-current transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -112,7 +116,9 @@ export default function HotDeals({ deals, locale }: HotDealsProps) {
                         responsive={responsive}
                         infinite={true}
                         rtl={isRtl}
-                        autoPlay={false}
+                        autoPlay={true}
+                        autoPlaySpeed={2000}
+                        pauseOnHover={true}
                         keyBoardControl={true}
                         customTransition="transform 500ms ease-in-out"
                         transitionDuration={500}

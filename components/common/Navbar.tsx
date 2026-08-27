@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from 'react';
-import { Plane, Calendar, Ship, Building2, Sun, Star, Crown, Globe, Home, X, Stethoscope } from 'lucide-react';
+import { Calendar, Ship, Building2, Sun, Star, Crown, Globe, Home, X, Stethoscope } from 'lucide-react';
 
 interface NavbarProps {
     transparent?: boolean;
@@ -434,9 +434,6 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                                             Barbaros Group
                                         </p>
                                         <div className="gap-2 grid grid-cols-1 px-2">
-                                            <Link href="https://barbarostourism.com" target="_blank" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 text-sm font-medium text-gray-600">
-                                                <Plane className="w-4 h-4 text-gray-400" /> Barbaros Tourism
-                                            </Link>
                                             <Link href="https://barbarosevents.com" target="_blank" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 text-sm font-medium text-gray-600">
                                                 <Calendar className="w-4 h-4 text-gray-400" /> Barbaros Events
                                             </Link>

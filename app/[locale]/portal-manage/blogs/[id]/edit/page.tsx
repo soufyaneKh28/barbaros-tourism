@@ -7,6 +7,7 @@ import { createClient } from '@/utils/supabase/client'
 import ImageUpload from '@/components/portal/ImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
+import MultiLangRichText from '@/components/portal/MultiLangRichText'
 import { AdminLanguageProvider } from '@/contexts/AdminLanguageContext'
 import GlobalLanguageSwitcher from '@/components/portal/GlobalLanguageSwitcher'
 
@@ -111,7 +112,7 @@ export default function EditBlogPage() {
 
                     <MultiLangTextarea name="excerpt" label="Excerpt (Short summary)" required rows={2} defaultValue={blog.excerpt} />
 
-                    <MultiLangTextarea name="content" label="Content (HTML allowed)" required rows={10} placeholder="<p>Start writing...</p>" defaultValue={blog.content} />
+                    <MultiLangRichText name="content" label="Content" required defaultValue={blog.content} />
 
                     {error && <p className="text-red-600 text-sm">{error}</p>}
 
