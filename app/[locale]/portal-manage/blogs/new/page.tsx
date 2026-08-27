@@ -6,6 +6,7 @@ import { useRouter, useParams } from 'next/navigation'
 import ImageUpload from '@/components/portal/ImageUpload'
 import MultiLangInput from '@/components/portal/MultiLangInput'
 import MultiLangTextarea from '@/components/portal/MultiLangTextarea'
+import MultiLangRichText from '@/components/portal/MultiLangRichText'
 import { AdminLanguageProvider } from '@/contexts/AdminLanguageContext'
 import GlobalLanguageSwitcher from '@/components/portal/GlobalLanguageSwitcher'
 
@@ -68,7 +69,7 @@ export default function NewBlogPage() {
 
                     <MultiLangTextarea name="excerpt" label="Excerpt (Short summary)" required rows={2} />
 
-                    <MultiLangTextarea name="content" label="Content (HTML allowed)" required rows={10} placeholder="<p>Start writing...</p>" />
+                    <MultiLangRichText name="content" label="Content" required />
 
                     <div className="flex items-center">
                         <input id="isPublished" name="isPublished" type="checkbox" className="h-4 w-4 text-blue-600 border-gray-300 rounded" defaultChecked />
